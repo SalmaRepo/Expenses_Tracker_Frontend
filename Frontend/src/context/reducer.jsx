@@ -1,4 +1,4 @@
-export default function reducer(state,action){
+export function reducer(state,action){
   switch(action.type){
     case "setUser":
         return {user:action.payload}
@@ -7,5 +7,4 @@ export default function reducer(state,action){
 
 export const initialState={
     user:null,
-
 }
