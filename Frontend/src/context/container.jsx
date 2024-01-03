@@ -1,9 +1,9 @@
-import { useReducer } from "react"
+import { useReducer,useEffect } from "react"
 import { context } from "./context"
 import { initialState,reducer } from "./reducer"
 import BASE_URL from "../config/urlConfig"
 
-export default function container({children}){
+export default function Container({children}){
     const [state,dispatch]=useReducer(reducer,initialState)
 
     useEffect(() => {
