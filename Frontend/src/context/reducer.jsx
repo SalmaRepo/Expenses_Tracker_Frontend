@@ -7,5 +7,4 @@ export function reducer(state,action){
 
 export const initialState={
     user:null,
-
 }

@@ -7,8 +7,6 @@ import SignUp from './components/signUp/SignUp'
 import Home from './components/home/Home'
 
 function App() {
- 
-
   return (
     <>
     <BrowserRouter>
@@ -22,7 +20,7 @@ function App() {
     
     </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
