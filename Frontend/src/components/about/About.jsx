@@ -33,7 +33,7 @@ export default function About() {
         {/* Card-3 */}
         <div className="offer-card">
           <h2>Weekly/Monthly History</h2>
-          <img src="images/imgTwo.jpg" alt="graph" />
+          <img className='imgTwo' src="images/imgTwo.jpg" alt="graph" />
           <p>Explore your financial history with weekly and monthly reports, helping you plan for the future.</p>
         </div>
       </div>

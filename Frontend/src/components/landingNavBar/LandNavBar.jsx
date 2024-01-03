@@ -9,7 +9,7 @@ export default function LandNavBar() {
   console.log(state)
   return (
     <div className='landingNavBar'>
-       <Link to="/">Logo</Link>
+       <Link to="/"><img className='logo' src="images/logoWhite.png" alt="logo of the project" /></Link>
       <ul className='landingNavList'> 
         <li>
           <Link to="/about">About</Link>
