@@ -1,13 +1,12 @@
 import React from 'react'
 import {Link} from "react-router-dom"
+import "./landingNavbar.css"
 
 export default function LandNavBar() {
   return (
-    <div>
-      <ul>
-        <li>
-          <Link to="/">Logo</Link>
-        </li>
+    <div className='landingNavBar'>
+       <Link to="/">Logo</Link>
+      <ul className='landingNavList'> 
         <li>
           <Link to="/about">About</Link>
         </li>
