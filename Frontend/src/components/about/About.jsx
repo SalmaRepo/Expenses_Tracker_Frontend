@@ -27,13 +27,19 @@ export default function About() {
         <div className="offer-card">
           <h2>Track Income with Graphs</h2>
           <LineChart /> 
+          <br />
+          <br />
+          <br />
+          <br />
+         
+
           <p>Visualize your income over time with interactive graphs and charts for better financial insights.</p>
         </div>
 
         {/* Card-3 */}
         <div className="offer-card">
           <h2>Weekly/Monthly History</h2>
-          <img className='imgTwo' src="images/imgTwo.jpg" alt="graph" />
+          <img className='imgOne' src="images/imgTwo.jpg" alt="graph" />
           <p>Explore your financial history with weekly and monthly reports, helping you plan for the future.</p>
         </div>
       </div>
