@@ -1,0 +1,38 @@
+.home{
+    display: flex;
+}
+
+
+
+.homeHero{
+    width: 65%;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.homeHeroTop{
+    height: 30%;
+    border: 1px solid;
+}
+
+.homeHeroMiddle{
+    height: 50%;
+    border: 1px solid;
+}
+
+.homeAddExpButton{
+    padding: 2.8rem;
+    width: 100%;
+    font-size: 2rem;
+}
+
+.homeExpensesDisplay{
+    text-align: center;
+    padding-top: 3rem;
+    font-size: 4rem;
+}
+
+
+
+

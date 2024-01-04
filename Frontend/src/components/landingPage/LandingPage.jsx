@@ -9,12 +9,11 @@ export default function LandingPage() {
   const navigate=useNavigate()
   const getStarted=()=>{
     const token=localStorage.getItem("token");
-
-    if(token){
+   if(token){
       navigate("/home")
     }else{
       navigate("/login")
-    }
+    } 
   }
   return (
     <div className='landingPage'>
