@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import BASE_URL from "../../config/urlConfig";
+import { context } from "../../context/context";
 
 export default function Login() {
+  const {state,dispatch}=useContext(context)
 
   const navigate = useNavigate();
 
@@ -23,6 +26,7 @@ export default function Login() {
         return res.json();
       })
       .then((result) => {
+        console.log(result)
         dispatch({ type: "setUser", payload: result.data.foundUser });
         navigate("/home");
       })
