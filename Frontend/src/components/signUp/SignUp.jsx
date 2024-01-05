@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import BASE_URL from "../../config/urlConfig";
-import LandNavBar from '../landingNavBar/LandNavBar'
-import Footer from "../footer/Footer"
+import LandNavBar from "../landingNavBar/LandNavBar";
+import Footer from "../footer/Footer";
+
 
 export default function Signup() {
   

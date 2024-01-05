@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import LandNavBar from '../landingNavBar/LandNavBar'
 import "./landingPage.css"
 import About from '../about/About';
+import Footer from '../footer/Footer';
 import { context } from '../../context/context';
 import BASE_URL from '../../config/urlConfig';
 
@@ -36,6 +37,7 @@ export default function LandingPage() {
 
       </div>
       <About/>
+      <Footer/>
     </div>
   )
 }

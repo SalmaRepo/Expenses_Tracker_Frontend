@@ -3,13 +3,18 @@ import { useNavigate } from "react-router-dom";
 import BASE_URL from "../../config/urlConfig";
 import toast, { Toaster } from "react-hot-toast";
 import { context } from "../../context/context";
-import LandNavBar from '../landingNavBar/LandNavBar'
-import Footer from "../footer/Footer"
+import Footer from "../footer/Footer";
+import LandNavBar from "../landingNavBar/LandNavBar";
+
 
 export default function Login() {
   const {state,dispatch}=useContext(context)
 
   const navigate = useNavigate();
+
+  function showSignUp(){
+    navigate("/SignUp")
+  }
 
   const loginUser = (e) => {
     e.preventDefault();
@@ -57,6 +62,7 @@ export default function Login() {
     <>
     <LandNavBar/>
       <div className="login">
+        <LandNavBar/>
         <h1>Login</h1>
         <Toaster position="top-center" />
         <form onSubmit={loginUser}>
@@ -70,6 +76,8 @@ export default function Login() {
           <br />
           <button>Login</button> 
         </form>
+        <p>Don't have an account? </p>
+        <button onClick={showSignUp}>create an account!</button>
       <Footer/>
       </div>
     </>

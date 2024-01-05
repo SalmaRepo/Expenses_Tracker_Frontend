@@ -1,0 +1,38 @@
+.footer {
+  list-style-type: none;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  color: #242e30;
+  height: 14rem;
+}
+
+.imageHolder {
+  max-width: 100%;
+  width: 400px;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoFooter {
+  width: 400px;
+  height: 400px;
+}
+
+.gitHubLogo {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
