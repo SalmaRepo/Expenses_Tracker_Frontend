@@ -1,12 +1,13 @@
 import React from 'react'
 import "./sideMenu.css"
 import {Link} from "react-router-dom"
+import LogOut from '../logout/Logout'
 
 export default function SideMenu() {
   return (
     <div className="sideBar">
         <div className="sideBarTop">
-          <p>Logo</p>
+        <Link to="/"><img className='logo' src="images/logoWhite.png" alt="logo of the project" /></Link>
           <ul>
             <li>
               <Link to="/home">Home</Link>
@@ -25,7 +26,7 @@ export default function SideMenu() {
         <div className="sideBarBottom">
           <ul>
             <li>
-              <Link to="/logout">Logout</Link>
+              <Link to="/login"><LogOut/></Link>
             </li>
             <li>
               <Link to="/settings">Settings</Link>

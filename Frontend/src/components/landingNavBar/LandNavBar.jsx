@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 import "./landingNavbar.css"
 import {useContext} from "react" 
 import {context} from "../../context/context"
+import LogOut from '../logout/Logout'
 
 export default function LandNavBar() {
   const {state, dispatch}= useContext(context)
@@ -21,8 +22,6 @@ export default function LandNavBar() {
           <Link to="/SignUp">Sign-Up</Link>
         </li>
       </ul>
-
-
     </div>
   
   )

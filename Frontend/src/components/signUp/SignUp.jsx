@@ -4,6 +4,7 @@ import BASE_URL from "../../config/urlConfig";
 import LandNavBar from "../landingNavBar/LandNavBar";
 import Footer from "../footer/Footer";
 
+
 export default function Signup() {
   
   const navigate = useNavigate();
