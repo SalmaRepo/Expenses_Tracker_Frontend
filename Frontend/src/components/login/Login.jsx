@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import BASE_URL from "../../config/urlConfig";
+import toast, { Toaster } from "react-hot-toast";
 import { context } from "../../context/context";
 
 export default function Login() {
@@ -27,17 +28,39 @@ export default function Login() {
       })
       .then((result) => {
         console.log(result)
-        dispatch({ type: "setUser", payload: result.data.foundUser });
-        navigate("/home");
+        
+        /* 
+          navigate("/home"); */
+          if (result.success) {
+            dispatch({ type: "setUser", payload: result.data});
+            e.target.reset();
+            toast.success("You successfully logged in!"); // pop-up message
+            setTimeout(() => {
+             navigate("/home");
+            }, 1500);
+            
+
+            
+          } else {
+            toast.error(JSON.stringify(result.message));
+          }  
+        
       })
       .catch((err) => console.log(err));
+
+     
   };
+
+  
+
+  console.log(state.user)
 
 
   return (
     <>
       <div className="login">
         <h1>Login</h1>
+        <Toaster position="top-center" />
         <form onSubmit={loginUser}>
           <label htmlFor="email">E-mail:</label>
           <br />
