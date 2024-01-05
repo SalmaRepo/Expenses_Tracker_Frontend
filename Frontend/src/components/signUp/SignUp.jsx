@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import BASE_URL from "../../config/urlConfig";
+import LandNavBar from "../landingNavBar/LandNavBar";
+import Footer from "../footer/Footer";
+
 
 export default function Signup() {
   
@@ -37,6 +40,7 @@ export default function Signup() {
 
   return (
     <div>
+      <LandNavBar/>
       <h1>Signup</h1>
       <Toaster position="top-center" /> {/* toast position*/}
       <form onSubmit={signupUser}>
@@ -50,6 +54,7 @@ export default function Signup() {
         <input type="password" id="password" name="password" /> <br />
         <button>SignUp</button>
       </form>
+      <Footer/>
     </div>
   );
 }

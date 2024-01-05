@@ -19,11 +19,27 @@
 .homeHeroMiddle{
     height: 50%;
     border: 1px solid;
+    overflow: auto;
 }
+
+.homeHeroBottom{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
 
 .homeAddExpButton{
     padding: 2.8rem;
-    width: 100%;
+    width: 50%;
+    font-size: 2rem;
+}
+
+.homeAddIncomeButton{
+    padding: 2.8rem;
+    width: 50%;
     font-size: 2rem;
 }
 
