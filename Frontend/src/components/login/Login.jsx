@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import BASE_URL from "../../config/urlConfig";
 import toast, { Toaster } from "react-hot-toast";
 import { context } from "../../context/context";
+import LandNavBar from '../landingNavBar/LandNavBar'
+import Footer from "../footer/Footer"
 
 export default function Login() {
   const {state,dispatch}=useContext(context)
@@ -28,7 +30,7 @@ export default function Login() {
       })
       .then((result) => {
         console.log(result)
-        
+       
         /* 
           navigate("/home"); */
           if (result.success) {
@@ -38,17 +40,12 @@ export default function Login() {
             setTimeout(() => {
              navigate("/home");
             }, 1500);
-            
-
-            
+                  
           } else {
             toast.error(JSON.stringify(result.message));
           }  
-        
       })
-      .catch((err) => console.log(err));
-
-     
+      .catch((err) => console.log(err)); 
   };
 
   
@@ -58,6 +55,7 @@ export default function Login() {
 
   return (
     <>
+    <LandNavBar/>
       <div className="login">
         <h1>Login</h1>
         <Toaster position="top-center" />
@@ -72,6 +70,7 @@ export default function Login() {
           <br />
           <button>Login</button> 
         </form>
+      <Footer/>
       </div>
     </>
   );
