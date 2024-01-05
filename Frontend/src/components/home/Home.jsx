@@ -5,6 +5,7 @@ import { context } from "../../context/context";
 import ShowExpenses from "../showExpenses/ShowExpenses";
 import SideMenu from "../sideMenu/SideMenu";
 import "./home.css";
+import Profile from "../profile/Profile";
 
 export default function Home() {
   const {state,dispatch}=useContext(context)
@@ -16,8 +17,12 @@ export default function Home() {
     navigate("/addIncomes")
   }
  
- /*  console.log(state.user) */
- 
+
+
+  console.log(state.user)
+
+  
+
   return (
   
 <div className="home">
@@ -36,6 +41,7 @@ export default function Home() {
         </div>
 
       </div>
+      <Profile/>
     </div>
     
     

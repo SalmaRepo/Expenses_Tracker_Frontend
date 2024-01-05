@@ -14,6 +14,9 @@ import Settings from "./components/settings/Settings";
 function App() {
   return (
     <>
+
+    
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -28,6 +31,7 @@ function App() {
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </BrowserRouter>
+
     </>
   );
 }

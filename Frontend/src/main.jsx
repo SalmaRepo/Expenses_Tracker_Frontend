@@ -5,11 +5,11 @@ import Container from './context/container.jsx'
 import './index.css'
 
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <React.StrictMode> 
     <Container>
     <App />
     </Container>
-
   </React.StrictMode>,
 )

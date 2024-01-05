@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"; //import because we are using it in line 12
 //import './logout.css'
+
 import {useContext} from "react"
 import { context } from "../../context/context";
+
 
 function LogOut() {
   //brings it from onClick

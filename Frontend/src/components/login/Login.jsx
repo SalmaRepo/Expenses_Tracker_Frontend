@@ -35,6 +35,7 @@ export default function Login() {
       })
       .then((result) => {
         console.log(result)
+
        
         /* 
           navigate("/home"); */
@@ -49,6 +50,7 @@ export default function Login() {
           } else {
             toast.error(JSON.stringify(result.message));
           }  
+
       })
       .catch((err) => console.log(err)); 
   };
