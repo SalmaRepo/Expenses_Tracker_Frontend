@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import BASE_URL from "../../config/urlConfig";
 import { context } from "../../context/context";
+import LandNavBar from '../landingNavBar/LandNavBar'
+import Footer from "../footer/Footer"
 
 export default function Login() {
   const {state,dispatch}=useContext(context)
@@ -27,7 +29,7 @@ export default function Login() {
       })
       .then((result) => {
         console.log(result)
-        dispatch({ type: "setUser", payload: result.data.foundUser });
+        dispatch({ type: "setUser", payload: result.data });
         navigate("/home");
       })
       .catch((err) => console.log(err));
@@ -36,6 +38,7 @@ export default function Login() {
 
   return (
     <>
+    <LandNavBar/>
       <div className="login">
         <h1>Login</h1>
         <form onSubmit={loginUser}>
@@ -49,6 +52,7 @@ export default function Login() {
           <br />
           <button>Login</button> 
         </form>
+      <Footer/>
       </div>
     </>
   );
