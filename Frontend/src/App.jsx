@@ -11,10 +11,14 @@ import Logout from "./components/logout/Logout"
 import History from "./components/history/History"
 import Settings from "./components/settings/Settings"
 
+import Profile from './components/profile/Profile'
+
+
 function App() {
  
   return (
     <>
+     
     <BrowserRouter>
     <Routes>
    <Route path="/" element={<LandingPage/>}/>
@@ -24,12 +28,14 @@ function App() {
    <Route path="/home"  element={<Home/>}/>
    <Route path="/addExpenses" element={<AddExpences/>}/>
    <Route path="/addIncomes" element={<AddIncomes/>}/>
-   <Route path="/history" elment={<History/>}/>
+   <Route path="/history" element={<History/>}/>
    <Route path="/logout" element={<Logout/>}/>
    <Route path="/settings" element={<Settings/>}/>
+   <Route path="/profile" element={<Profile/>}/>
     </Routes>
-    
+   
     </BrowserRouter>
+    
     </>
   )
 }

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"; //import because we are using it in line 12
 //import './logout.css'
+
+
 function LogOut() {
   //brings it from onClick
   const logoutUser = () => {

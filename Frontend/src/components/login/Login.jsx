@@ -27,7 +27,7 @@ export default function Login() {
       })
       .then((result) => {
         console.log(result)
-        dispatch({ type: "setUser", payload: result.data.foundUser });
+        dispatch({ type: "setUser", payload: result.data });
         navigate("/home");
       })
       .catch((err) => console.log(err));

@@ -4,6 +4,7 @@ import BASE_URL from "../../config/urlConfig";
 import { context } from "../../context/context";
 import SideMenu from "../sideMenu/SideMenu";
 import "./home.css";
+import Profile from "../profile/Profile";
 
 export default function Home() {
   const {state,dispatch}=useContext(context)
@@ -11,7 +12,6 @@ export default function Home() {
   const homeAddNewExp=()=>{
     navigate("/addExpenses")
   }
- 
  
 
   console.log(state.user)
@@ -33,6 +33,7 @@ export default function Home() {
         </div>
 
       </div>
+      <Profile/>
     </div>
   );
 }
