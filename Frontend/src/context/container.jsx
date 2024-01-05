@@ -27,7 +27,19 @@ export default function Container({children}){
               }
             });
           } 
+
+          /* fetch(`${BASE_URL}/api/users/getUserById/${state.user?._id}`,{
+            method: "GET",
+            headers: { token: token },
+          })
+          .then(res=>res.json())
+          .then(result=>dispatch({type:"setUser",payload:result.data}))
+          .catch(err=>console.log(err)) */
+
+          
       }, []);
+
+      console.log(state.user)
 
     return(
         <context.Provider value={{state,dispatch}}>
