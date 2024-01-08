@@ -16,16 +16,15 @@ export default function AddIncomes() {
   }, []);
 
   const fetchIncomes = async () => {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
     try {
       const response = await fetch(`${BASE_URL}/api/incomes/getIncomesByUser`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "token":token
+          token: token,
         },
       });
-
       if (response.ok) {
         const incomesData = await response.json();
         setEnteredIncomes(incomesData.data);
@@ -37,25 +36,24 @@ export default function AddIncomes() {
     }
   };
 
+  // add new created income
   const incomesUpdate = async (e) => {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
     e.preventDefault();
     const newIncome = {
       date: calDate,
       amount: incomeAmount.current.value,
       category: incomeCategory.current.value,
     };
-
     try {
       const response = await fetch(`${BASE_URL}/api/incomes/createIncome`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "token":token
+          token: token,
         },
         body: JSON.stringify(newIncome),
       });
-
       if (response.ok) {
         setEnteredIncomes([newIncome, ...enteredIncomes]);
         incomeAmount.current.value = "";
@@ -66,21 +64,53 @@ export default function AddIncomes() {
     } catch (error) {
       console.error("Error while adding income", error.message);
     }
+    fetchIncomes();
   };
 
   function onChange(calDate) {
     setCalDate(calDate);
   }
 
+  // .... delete income ................
+
+  const handleDelete = (id, index) => {
+    deleteIncome(id, index);
+  };
+
+  const deleteIncome = async (id, index) => {
+    console.log(id, index);
+    const token = localStorage.getItem("token");
+
+    try {
+      // delete income from database
+      const response = await fetch(
+        `${BASE_URL}/api/incomes/deleteIncome/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            token: token,
+          },
+        }
+      );
+      fetchIncomes();
+      if (response.ok) {
+        console.log("deleted income");
+      } else {
+        console.error("Error while deleting income", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error while deleting income", error.message);
+    }
+  };
+
+  //........................................
+
   return (
     <div className="addIncome">
       <SideMenu />
       <div className="addIncomesHero">
-        <form
-          action="incomeForm"
-          className="incomeForm"
-          onSubmit={incomesUpdate}
-        >
+        <form className="incomeForm">
           <Calendar onChange={onChange} value={calDate} className="calendar" />
 
           <div className="incomeEnterSection">
@@ -102,7 +132,9 @@ export default function AddIncomes() {
               <option value="Others">Others</option>
             </select>
 
-            <button type="submit">Confirm Income</button>
+            <button type="button" onClick={incomesUpdate}>
+              Confirm Income
+            </button>
           </div>
 
           <div className="displayEnteredIncome">
@@ -110,7 +142,16 @@ export default function AddIncomes() {
             <ul>
               {enteredIncomes.map((income, index) => (
                 <li key={index}>
-                  Date: {new Date(income.date).toLocaleDateString()}| Amount: {income.amount} | Category: {income.category}
+                  Date: {new Date(income.date).toLocaleDateString()}| Category:{" "}
+                  {income.category}| Amount: {income.amount}
+                  <button
+                    type="button"
+                    className="delete"
+                    onClick={() => handleDelete(income._id, index)}
+                  >
+                    {" "}
+                    Delete
+                  </button>
                 </li>
               ))}
             </ul>
