@@ -5,7 +5,7 @@ import LineChart from '../graph/lineChart';
 
 export default function About() {
   return (
-    <div className='about-container'>
+    <div id='about' className='about-container'>
       <div className='headline'>
         <h1 className='first-line'>Why Should You</h1>
         <h2 className='second-line'>Use Our Expenses App?</h2>
