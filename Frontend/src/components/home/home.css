@@ -12,8 +12,14 @@
 }
 
 .homeHeroTop{
-    height: 30%;
+    height: 50%;
+    padding: 1rem;
+    
+    width: 100%;
+   
     border: 1px solid;
+   
+
 }
 
 .homeHeroMiddle{

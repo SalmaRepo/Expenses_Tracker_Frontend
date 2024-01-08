@@ -12,6 +12,7 @@ import ShowExpenses from "../showExpenses/ShowExpenses";
 
 
 
+
 export default function AddExpences() {
   const {state,dispatch}=useContext(context)
   console.log(state.expenses)
@@ -22,7 +23,8 @@ export default function AddExpences() {
   const expCategory = useRef();
   const expAmount = useRef();
   const expImg=useRef();
-  const token=localStorage.getItem("token")
+  const token=localStorage.getItem("token");
+  const [expenses,setExpenses]=useState({})
 
   
   const grabImage = (e) => {
@@ -36,27 +38,35 @@ export default function AddExpences() {
     dispatch({type:"setReciept",payload:URL.createObjectURL( e.target.files[0])})
   }
 
+  const isUploadImageSelect=()=>{
+    dispatch({type:"setIsUploadImageSelect",payload:!state.isUploadImageSelect})
+  }
+
  const expensesUpdate = (e) => {
+  e.stopPropagation();
   e.preventDefault();
+
     const token=localStorage.getItem("token")
    /*  const data = new FormData(e.target) */
    const data=new FormData()
    console.log(preview)
-   data.append('file',preview);
-   data.append('amount',parseFloat(expAmount.current.value));
-   data.append("category",expCategory.current.value);
-   data.append("date",calDate);
-   data.append("userId",state.user._id)
+
+  data.append('file',preview);
+  data.append('amount',parseFloat(expAmount.current.value));
+  data.append("category",expCategory.current.value);
+  data.append("date",calDate);
+  data.append("userId",state.user._id)
    
    console.log(data)
-    /* const expenses = {
+    setExpenses({
       amount: parseFloat(expAmount.current.value),
       category: expCategory.current.value,
       date: calDate,
-      reciept:data
-    }; */
+      reciept:preview
+    }); 
 
-    dispatch({type:"setUpdateExpense",payload:true})
+    dispatch({type:"setIsUpdateExpense",payload:true})
+    dispatch({type:"setExpensesFormData",payload:expenses})
     /* fetch(`${BASE_URL}/api/expenses/createExpense`,{
       method:"POST",
       headers:{"token":token,"Content-Type": "multipart/form-data"},
@@ -78,10 +88,11 @@ export default function AddExpences() {
       dispatch({type:"setUser",payload:result.data.data})
     })
 
-    expAmount.current.value="";
-    expCategory.current.value="";
+    expAmount.current.value=0;
+    expCategory.current.value="food";
     setPreview("")
-    dispatch({type:"setReciept",payload:""})
+    dispatch({type:"setReciept",payload:"images/no-image.jpg"})
+    dispatch({type:"setIsUploadImageSelect",payload:false})
   };
   
 console.log(state.expenses)
@@ -121,26 +132,26 @@ console.log(state.expenses)
                 <option value="telephone">Tele-Phone</option>
                 <option value="pets">Pets</option>
                 <option value="kids">Kids</option>
-                <option value="Insurance">Insurance</option>
+                <option value="insurance">Insurance</option>
                 <option value="energy">Energy</option>
                 <option value="rent">Rent</option>
                 <option value="holidays">Holidays</option>
-                <option value="other">Others</option>
+                <option value="others">Others</option>
               </select>
               <div className="addReciept">
                 <h4>Add Reciept</h4>
-           
-                <input type="file" name="file" onChange={grabImage} ref={expImg} />  
+                <button type="button" onClick={()=>isUploadImageSelect()} className="isUploadButton">+</button>
+                {state.isUploadImageSelect&&<input type="file" name="file" onChange={grabImage} ref={expImg} />} 
               </div>
               <button type="submit">Confirm Expenses</button>
             </div>
             <div className="displayExpArea">
               <div className="displayEnteredExp">
-           <ShowExpenses/>
+           <ShowExpenses expenses={expenses} setExpenses={setExpenses}/>
               </div>
-              <div className="showReciept">
+              {state.isUploadImageSelect&&<div className="showReciept">
                 <img src={state.reciept} alt="recipet" className="recieptImage" />
-              </div>
+              </div>}
             </div>
           </form>
         </div>

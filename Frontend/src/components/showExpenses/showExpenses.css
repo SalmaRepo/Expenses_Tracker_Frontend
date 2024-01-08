@@ -1,4 +1,6 @@
 .showExpenses{
     display:flex;
-    gap: 5rem;
+    border-bottom: 0.5px solid;
+    padding: 1rem;
+    justify-content: space-around;
 }

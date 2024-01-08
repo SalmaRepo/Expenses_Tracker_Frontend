@@ -48,9 +48,9 @@ export default function Profile({token}) {
       </div>
     </div>
     <div>
-      <p>User Name:{state.user.firstName} </p>
+      <p>User Name:{state.user?.firstName} </p>
       
-      <p>Email: {state.user.email}</p>
+      <p>Email: {state.user?.email}</p>
     </div>
   </div>
 );
