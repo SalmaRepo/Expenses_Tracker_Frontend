@@ -1,4 +1,4 @@
-import { useReducer,useEffect } from "react"
+import { useReducer,useEffect, useState } from "react"
 import { context } from "./context"
 import { initialState,reducer } from "./reducer"
 import BASE_URL from "../config/urlConfig"
@@ -6,6 +6,8 @@ import BASE_URL from "../config/urlConfig"
 
 export default function Container({children}){
     const [state,dispatch]=useReducer(reducer,initialState)
+    const [darkMode, setDarkMode]= useState(false)
+
 
     useEffect(() => {
         //on load
@@ -26,16 +28,11 @@ export default function Container({children}){
               }
             });
           } 
-
-
           
-      }, []);
-
-    
-    
+      }, [])
 
     return(
-        <context.Provider value={{state,dispatch}}>
+        <context.Provider value={{state,dispatch, darkMode, setDarkMode}}>
         {children}
         </context.Provider>
 
