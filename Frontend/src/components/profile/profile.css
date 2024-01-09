@@ -1,0 +1,22 @@
+.profile {
+    text-align: center;
+    margin-left: 4rem; 
+  }
+
+  .profile-image-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #ccc; 
+    display: inline-block;  
+  }
+
+  .balance{
+    width: 200px;
+    height: 200px; 
+    border: 1px solid #ccc;
+    padding: 4rem; 
+    margin-top: 5rem;
+  }
+  
+
