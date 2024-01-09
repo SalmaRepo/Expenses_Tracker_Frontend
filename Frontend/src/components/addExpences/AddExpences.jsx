@@ -10,9 +10,6 @@ import axios from "axios"
 import ShowExpenses from "../showExpenses/ShowExpenses";
 
 
-
-
-
 export default function AddExpences() {
   const {state,dispatch}=useContext(context)
   console.log(state.expenses)
