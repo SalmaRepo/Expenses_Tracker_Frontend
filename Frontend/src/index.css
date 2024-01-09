@@ -6,3 +6,20 @@
   font-family: 'Noto Sans', sans-serif;
 }
 
+.darkMode {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  }
+  
+  .darkMode ul li a{
+    color: #ffffff;
+  }
+  
+  .lightMode {
+    background-color: #fffbfb;
+    color: #0e0e0e;
+    }
+    
+    .lightMode ul li a{
+      color: #0d0d0d;
+    }

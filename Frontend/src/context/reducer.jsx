@@ -9,9 +9,13 @@ export function reducer(state,action){
     } 
     case "setReciept":{
       return {...state,reciept:action.payload}
+    }    
+    case "setCurrency":{
+      return {...state,currency:action.payload}
+    }
     }   
     case "setIsUploadImageSelect":{
-    return {...state,isUploadImageSelect:action.payload}
+      return {...state,isUploadImageSelect:action.payload}
     } 
     case "setExpensesFormData":{
       return {...state,isUploadImageSelect:action.payload}
@@ -25,6 +29,9 @@ export function reducer(state,action){
 export const initialState={
     user:null,
     expenses:null,
+    updateExpense:false,
+    reciept:"",
+    currency:"",
     isUpdateExpense:false,
     reciept:"images/no-image.jpg",
     isUploadImageSelect:false,
