@@ -10,6 +10,9 @@ export function reducer(state,action){
     case "setReciept":{
       return {...state,reciept:action.payload}
     }    
+    case "setCurrency":{
+      return {...state,currency:action.payload}
+    }
   }
 }
 
@@ -18,4 +21,5 @@ export const initialState={
     expenses:null,
     updateExpense:false,
     reciept:"",
+    currency:""
 }
