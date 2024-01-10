@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
-import { context } from "../../context/context";
-import "./profile.css";
+
+import React, {useContext} from 'react'
+import { context } from '../../context/context';
+import './profile.css';
 import Balance from "../balance/Balance";
 
 export default function Profile() {
@@ -27,4 +28,5 @@ export default function Profile() {
     </>
   );
 }
+
 

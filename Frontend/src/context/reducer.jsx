@@ -35,7 +35,7 @@ export const initialState={
     user:null,
     expenses:null,
     updateExpense:false,
-    reciept:"",
+    recieptInfo:"",
     currency:"",
     isUpdateExpense:false,
     reciept:"images/no-image.jpg",

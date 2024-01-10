@@ -15,6 +15,11 @@ export default function Settings() {
     navigate("/help");
   }
 
+  function showUpdateUserDetails() {
+    navigate("/UpdateUserDetails");
+  }
+
+
   function toogleDarkMode() {
     setDarkMode(!darkMode);
   }
@@ -38,7 +43,7 @@ export default function Settings() {
             <button>Change Profile Picture</button>
           </li>
           <li>
-            <button>Update Profile Details</button>
+            <button onClick={showUpdateUserDetails}>Update Profile Details</button>
           </li>
           <li>
             {/* <label for="dropdown">Currency:</label>
@@ -66,7 +71,7 @@ export default function Settings() {
           </li>
         </ul>
       </div>
-      {/* <Profile/> */}
+      <Profile/>
     </div>
   );
 }

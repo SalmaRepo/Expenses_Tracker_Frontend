@@ -1,9 +1,9 @@
-.Help{
+.UpdateDetails{
     display: flex;
 }
 
 
-.HelpHero{
+.UpdateDetailsHero{
     width: 65%;
     border: 1px solid;
     display: flex;
