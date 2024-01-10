@@ -5,43 +5,27 @@ import "./Settings.css";
 import { useNavigate } from "react-router-dom";
 import { context } from "../../context/context";
 
-
 export default function Settings() {
   const navigate = useNavigate();
- const currencySelector= useRef()
-  const {darkMode, setDarkMode,state,dispatch}= useContext(context)
-  console.log(darkMode)
- 
-  
+  const currencySelector = useRef();
+  const { darkMode, setDarkMode, state, dispatch } = useContext(context);
+  console.log(darkMode);
 
   function showHelp() {
     navigate("/help");
   }
 
   function toogleDarkMode() {
-setDarkMode(!darkMode)
+    setDarkMode(!darkMode);
   }
 
-  const handleCurrency=()=>{
-    dispatch({type:"setCurrency",payload:currencySelector.current.value})
-  }
-
-  const handleOtherCurrency=(e)=>{
-    e.stopPropagation()
-  e.preventDefault();
-  console.log(e.target.otherCurrency.value)
-/* 
-  dispatch({type:"setCurreny",paylod:curr}) */
-  }
-
- 
- 
-
-
+  const handleChageCurrency = () => {
+    navigate("/selectCurrency")
+  };
 
   return (
     <div className="Settings">
-      <SideMenu/> 
+      <SideMenu />
 
       <div className="SettingHero">
         <h1>Settings</h1>
@@ -57,23 +41,23 @@ setDarkMode(!darkMode)
             <button>Update Profile Details</button>
           </li>
           <li>
-            <label for="dropdown">Currency:</label>
+            {/* <label for="dropdown">Currency:</label>
             <select id="dropdown" name="dropdown" ref={currencySelector} onChange={handleCurrency}>
               <option value="Euros">Euros</option>
               <option value="Dollars">Dollars</option>
               <option value="Pesos">Pesos</option>
               <option value="Yuan">Yuan</option>
               <option value="Other">Other</option>
-            </select>
+            </select> */}
+            <button onClick={handleChageCurrency}>Change Currency</button>
           </li>
-          {state.currency==="Other"&&<form action="" onSubmit={handleOtherCurrency}>
-        
-            <input type="text" name="otherCurrency" />
-            <button type="submit">Submit</button>
-           
-        
-          </form>}
-          
+          {state.currency === "Other" && (
+            <form action="" onSubmit={handleOtherCurrency}>
+              <input type="text" name="otherCurrency" />
+              <button type="submit">Submit</button>
+            </form>
+          )}
+
           <li>
             <button onClick={showHelp}>Help/FAQ</button>
           </li>

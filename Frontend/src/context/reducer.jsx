@@ -1,7 +1,7 @@
 export function reducer(state,action){
   switch(action.type){
     case "setUser":
-        return {...state,user:action.payload}
+        return {user:action.payload}
     case "setExpenses":
       return {...state,expenses:action.payload} 
     case "setIsUpdateExpense":{
@@ -19,6 +19,9 @@ export function reducer(state,action){
     case "setExpensesFormData":{
       return {...state,isUploadImageSelect:action.payload}
       } 
+    case "setIsSignUp":{
+      return {...state,isSignUp:action.payload}
+    }  
     case "setEnteredIncomes" : {
       return {...state,enteredIncomes:action.payload}
     }
@@ -37,6 +40,7 @@ export const initialState={
     isUpdateExpense:false,
     reciept:"images/no-image.jpg",
     isUploadImageSelect:false,
+    isSignUp:false,
     enteredIncomes:[], 
     balance:0
 }

@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast"
 
 function ShowExpenses({expenses,setExpenses}) {
   const { state, dispatch } = useContext(context);
+  const curr=state.user?.currency.slice(3)+"s"
 
   //console.log(state.expenses);
   //console.log(state.user);
@@ -87,7 +88,7 @@ function ShowExpenses({expenses,setExpenses}) {
             return (
               <div key={expense?._id} className="showExpenses">
                 <p>{expense?.category?.charAt(0)?.toUpperCase()+expense?.category?.slice(1)}</p>
-                <p>{expense?.amount}</p>
+                <p>{expense?.amount}<span>{curr}</span></p>
                 <p>{new Date(expense?.date).toLocaleString()}</p>
                 <button type="button" onClick={()=>deleteExpense(expense?._id)}>Delete</button>
                 <button type="button" onClick={()=>editExpense(expense?._id)}>Edit</button>
@@ -98,7 +99,7 @@ function ShowExpenses({expenses,setExpenses}) {
             return (
               <div key={expense._id} className="showExpenses">
                 <p>{expense?.category?.charAt(0)?.toUpperCase()+expense?.category?.slice(1)}</p>
-                <p>{expense?.amount}</p>
+                <p>{expense?.amount}<span>{curr}</span></p>
                 <p>{new Date(expense?.date).toLocaleString()}</p>
                 <button>Delete</button>
                 <button>Edit</button>
