@@ -13,7 +13,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   function showSignUp(){
-    navigate("/SignUp")
+    navigate("/signUp")
   }
 
   const loginUser = (e) => {

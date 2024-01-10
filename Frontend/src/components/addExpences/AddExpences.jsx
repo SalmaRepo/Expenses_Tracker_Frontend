@@ -11,13 +11,10 @@ import ShowExpenses from "../showExpenses/ShowExpenses";
 import Profile from "../profile/Profile";
 
 
-
-
-
 export default function AddExpences() {
   const {state,dispatch}=useContext(context)
-  console.log(state.expenses)
-  console.log(state.user)
+  //console.log(state.expenses)
+  //console.log(state.user)
 
   const [calDate, setCalDate] = useState(new Date());
   const [preview, setPreview] = useState("");
@@ -58,7 +55,7 @@ export default function AddExpences() {
   data.append("date",calDate);
   data.append("userId",state.user._id)
    
-   console.log(data)
+   //console.log(data)
     setExpenses({
       amount: parseFloat(expAmount.current.value),
       category: expCategory.current.value,

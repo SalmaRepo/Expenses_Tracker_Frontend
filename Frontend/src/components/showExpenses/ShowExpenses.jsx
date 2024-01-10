@@ -8,9 +8,9 @@ function ShowExpenses({expenses,setExpenses}) {
   const { state, dispatch } = useContext(context);
   const curr=state.user?.currency.slice(3)+"s"
 
-  console.log(state.expenses);
-  console.log(state.user);
-  console.log(expenses)
+  //console.log(state.expenses);
+  //console.log(state.user);
+  //console.log(expenses)
 
   const getExpenseByUser=()=>{
     const token = localStorage.getItem("token");

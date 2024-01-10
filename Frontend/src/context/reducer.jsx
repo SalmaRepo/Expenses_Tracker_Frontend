@@ -13,7 +13,6 @@ export function reducer(state,action){
     case "setCurrency":{
       return {...state,currency:action.payload}
     }
-     
     case "setIsUploadImageSelect":{
       return {...state,isUploadImageSelect:action.payload}
     } 
@@ -23,6 +22,12 @@ export function reducer(state,action){
     case "setIsSignUp":{
       return {...state,isSignUp:action.payload}
     }  
+    case "setEnteredIncomes" : {
+      return {...state,enteredIncomes:action.payload}
+    }
+    case "setBalance" : {
+      return {...state,balance:action.payload}
+    }
   }
 }
 
@@ -36,4 +41,6 @@ export const initialState={
     reciept:"images/no-image.jpg",
     isUploadImageSelect:false,
     isSignUp:false,
+    enteredIncomes:[], 
+    balance:0
 }
