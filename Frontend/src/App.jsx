@@ -11,6 +11,7 @@ import Logout from "./components/logout/Logout";
 import History from "./components/history/History";
 import Settings from "./components/settings/Settings";
 import Help from "./components/Help/Help";
+import UpdateUserDetails from "./components/UpdateUserDetails/UpdateUserDetails";
 import { useContext } from "react";
 import { context } from "./context/context";
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/UpdateUserDetails" element={<UpdateUserDetails />} />
         </Routes>
       </BrowserRouter>
 
