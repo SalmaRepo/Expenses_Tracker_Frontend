@@ -1,20 +1,24 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import Calendar from "react-calendar";
 import SideMenu from "../sideMenu/SideMenu";
 import "react-calendar/dist/Calendar.css";
 import BASE_URL from "../../config/urlConfig";
 import "./addIncomes.css";
+import History from "../history/History";
+import { context } from "../../context/context";
+
 
 export default function AddIncomes() {
+  const {state,dispatch}=useContext(context) 
   const [calDate, setCalDate] = useState(new Date());
   const incomeCategory = useRef();
   const incomeAmount = useRef();
-  const [enteredIncomes, setEnteredIncomes] = useState([]);
 
   useEffect(() => {
     fetchIncomes();
   }, []);
 
+// Get incomes by user
   const fetchIncomes = async () => {
     const token = localStorage.getItem("token");
     try {
@@ -27,7 +31,7 @@ export default function AddIncomes() {
       });
       if (response.ok) {
         const incomesData = await response.json();
-        setEnteredIncomes(incomesData.data);
+        dispatch({type:"setEnteredIncomes",payload:incomesData.data})
       } else {
         console.error("Error while retrieving income:", response.statusText);
       }
@@ -36,7 +40,7 @@ export default function AddIncomes() {
     }
   };
 
-  // add new created income
+ // Create and add income
   const incomesUpdate = async (e) => {
     const token = localStorage.getItem("token");
     e.preventDefault();
@@ -55,7 +59,7 @@ export default function AddIncomes() {
         body: JSON.stringify(newIncome),
       });
       if (response.ok) {
-        setEnteredIncomes([newIncome, ...enteredIncomes]);
+        dispatch({ type: "setEnteredIncomes", payload: [newIncome, ...state.enteredIncomes] });
         incomeAmount.current.value = "";
         incomeCategory.current.value = "Salary";
       } else {
@@ -71,8 +75,7 @@ export default function AddIncomes() {
     setCalDate(calDate);
   }
 
-  // .... delete income ................
-
+  // Delete income
   const handleDelete = (id, index) => {
     deleteIncome(id, index);
   };
@@ -82,7 +85,6 @@ export default function AddIncomes() {
     const token = localStorage.getItem("token");
 
     try {
-      // delete income from database
       const response = await fetch(
         `${BASE_URL}/api/incomes/deleteIncome/${id}`,
         {
@@ -104,7 +106,6 @@ export default function AddIncomes() {
     }
   };
 
-  //........................................
 
   return (
     <div className="addIncome">
@@ -140,16 +141,14 @@ export default function AddIncomes() {
           <div className="displayEnteredIncome">
             <h2>Added Incomes</h2>
             <ul>
-              {enteredIncomes.map((income, index) => (
+              {state.enteredIncomes.map((income, index) => (
                 <li key={index}>
-                  Date: {new Date(income.date).toLocaleDateString()}| Category:{" "}
-                  {income.category}| Amount: {income.amount}
+                  Date: {new Date(income.date).toLocaleDateString()}| Category: {income.category}| Amount: {income.amount} 
                   <button
                     type="button"
                     className="delete"
                     onClick={() => handleDelete(income._id, index)}
                   >
-                    {" "}
                     Delete
                   </button>
                 </li>

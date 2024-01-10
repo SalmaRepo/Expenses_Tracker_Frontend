@@ -34,7 +34,7 @@ export default function Home() {
  
 
 
-  console.log(state.expenses)
+  //console.log(state.expenses)
 
   
 

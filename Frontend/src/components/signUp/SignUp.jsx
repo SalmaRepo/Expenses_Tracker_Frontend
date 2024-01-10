@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import BASE_URL from "../../config/urlConfig";
 import LandNavBar from "../landingNavBar/LandNavBar";
 import Footer from "../footer/Footer";
+import { context } from "../../context/context";
 
 
 export default function Signup() {
+  const {state,dispatch}=useContext(context)
   
   const navigate = useNavigate();
 
@@ -31,6 +33,7 @@ export default function Signup() {
         } else {
           e.target.reset();
           toast.success("You successfully signed up!"); // pop-up message
+          dispatch({type:"setIsSignUp",payload:true})
           setTimeout(() => {
            navigate("/login");
           }, 1500);
