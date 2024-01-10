@@ -8,11 +8,12 @@ import Home from "./components/home/Home";
 import AddExpences from "./components/addExpences/AddExpences";
 import AddIncomes from "./components/addIncomes/AddIncomes";
 import Logout from "./components/logout/Logout";
-import History from "./components/history/History";
 import Settings from "./components/settings/Settings";
 import Help from "./components/Help/Help";
 import { useContext } from "react";
 import { context } from "./context/context";
+import History from "./components/history/History";
+import SelectCurrency from "./components/selectCurrency/SelectCurrency";
 
 function App() {
   const {darkMode,setDarkMode} = useContext(context)
@@ -29,10 +30,12 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/addExpenses" element={<AddExpences />} />
           <Route path="/addIncomes" element={<AddIncomes />} />
-          <Route path="/history" elment={<History />} />
+          <Route path="/history" element={<History/>} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/selectCurrency" element={<SelectCurrency/>}/>
+        
         </Routes>
       </BrowserRouter>
 

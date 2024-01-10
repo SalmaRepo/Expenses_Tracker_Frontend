@@ -8,6 +8,7 @@ import "./showExpensesHome.css"
 function ShowExpensesHome() {
 
   const { state, dispatch } = useContext(context);
+  let curr=state.user?.currency.slice(3)+"s";
   useEffect(() => {
     const token = localStorage.getItem("token");
     fetch(`${BASE_URL}/api/expenses/getExpensesByUser`, {
@@ -39,7 +40,7 @@ function ShowExpensesHome() {
                     {expense?.category?.charAt(0).toUpperCase() +
                       expense?.category.slice(1)}
                   </p>
-                  <p>{expense?.amount}</p>
+                  <p>{expense?.amount}<span>{curr}</span></p>
                   <p>{new Date(expense?.date).toLocaleString()}</p>
                 </div>
               );
@@ -53,7 +54,7 @@ function ShowExpensesHome() {
                     {expense?.category?.charAt(0).toUpperCase() +
                       expense?.category.slice(1)}
                   </p>
-                  <p>{expense?.amount}</p>
+                  <p>{expense?.amount}<span>{curr}</span></p>
                   <p>{new Date(expense?.date).toLocaleString()}</p>
                 </div>
               );

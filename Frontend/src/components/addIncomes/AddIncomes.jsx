@@ -4,6 +4,7 @@ import SideMenu from "../sideMenu/SideMenu";
 import "react-calendar/dist/Calendar.css";
 import BASE_URL from "../../config/urlConfig";
 import "./addIncomes.css";
+import History from "../history/History";
 
 export default function AddIncomes() {
   const [calDate, setCalDate] = useState(new Date());

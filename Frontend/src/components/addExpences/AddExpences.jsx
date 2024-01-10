@@ -8,6 +8,7 @@ import BASE_URL from "../../config/urlConfig";
 import { context } from "../../context/context";
 import axios from "axios"
 import ShowExpenses from "../showExpenses/ShowExpenses";
+import Profile from "../profile/Profile";
 
 
 
@@ -118,6 +119,7 @@ console.log(state.expenses)
               className="calendar"
             />
             <div className="expensesEnterSection">
+              <div className="expensesAmountContainer">
               <input
                 type="number"
                 name="amount"
@@ -125,6 +127,9 @@ console.log(state.expenses)
                 className="expensesAmount"
                 ref={expAmount}
               />
+              <p>{state.user?.currency.slice(3)}s</p>
+              </div>
+              
               <select name="category" ref={expCategory}>
                 <option value="food">Food</option>
                 <option value="fuel">Fuel</option>
@@ -155,6 +160,7 @@ console.log(state.expenses)
             </div>
           </form>
         </div>
+        <Profile/>
       </div>
     );
   

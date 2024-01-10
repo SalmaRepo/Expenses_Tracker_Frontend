@@ -25,7 +25,7 @@ function ExpensesHomeGraph() {
   //summing up similar categories
   const expensesSummary = [];
   let addedCategories = {};
-  state.expenses?.map((exp) => {
+  state.user?.expenses?.map((exp) => {
     const { category, amount,date } = exp;
 
     if (addedCategories[category] && new Date(addedCategories[date]).getMonth+1===new Date().getMonth+1) {
