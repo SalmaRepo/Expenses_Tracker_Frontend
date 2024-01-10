@@ -141,13 +141,12 @@ export default function AddIncomes() {
             <ul>
               {state.enteredIncomes.map((income, index) => (
                 <li key={index}>
-                  Date: {new Date(income.date).toLocaleDateString()}| Category: {income.category}| Amount: {income.amount}
+                  Date: {new Date(income.date).toLocaleDateString()}| Category: {income.category}| Amount: {income.amount} 
                   <button
                     type="button"
                     className="delete"
                     onClick={() => handleDelete(income._id, index)}
                   >
-                    {" "}
                     Delete
                   </button>
                 </li>
