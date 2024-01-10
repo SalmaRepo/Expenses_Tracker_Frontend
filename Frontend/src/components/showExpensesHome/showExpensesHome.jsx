@@ -21,7 +21,7 @@ function ShowExpensesHome() {
       .catch((err) => console.log(err));
   },[]);
 
-  console.log(state.expenses)
+  //console.log(state.expenses)
 
  
 
