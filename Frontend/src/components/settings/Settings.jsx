@@ -19,6 +19,8 @@ export default function Settings() {
 
   console.log(darkMode);
 
+
+  
   function showHelp() {
     // navigate("/help");
     setIsHelpShow(!isHelpShow);
@@ -36,6 +38,7 @@ export default function Settings() {
     setDarkMode(!darkMode);
     setIsDarkLight(!isDarkLight)
   }
+
 
   const handleChageCurrency = () => {
     setIsSelectCurrency(!isSelectCurrency);
