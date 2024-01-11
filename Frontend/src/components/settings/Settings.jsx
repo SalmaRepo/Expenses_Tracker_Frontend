@@ -13,7 +13,6 @@ export default function Settings() {
   console.log(darkMode)
  
   
-
   function showHelp() {
     navigate("/help");
   }
@@ -33,11 +32,6 @@ setDarkMode(!darkMode)
 /* 
   dispatch({type:"setCurreny",paylod:curr}) */
   }
-
- 
- 
-
-
 
   return (
     <div className="Settings">
