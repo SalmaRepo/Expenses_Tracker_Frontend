@@ -6,9 +6,9 @@ import "./addExpences.css";
 import SideMenu from "../sideMenu/SideMenu";
 import BASE_URL from "../../config/urlConfig";
 import { context } from "../../context/context";
-import axios from "axios"
 import ShowExpenses from "../showExpenses/ShowExpenses";
 import Profile from "../profile/Profile";
+import axios from "axios"
 
 
 export default function AddExpences() {
@@ -46,7 +46,9 @@ export default function AddExpences() {
     reader.readAsDataURL(e.target.files[0]); 
     reader.onload = (main) => { */
      /*  console.log(main.target.result); */
+     e.stopPropagation();
      const link = e.target.files[0];
+  
      setPreview(link)
       /* setPreview(main.target.result); */
     dispatch({type:"setReciept",payload:URL.createObjectURL( e.target.files[0])})
@@ -102,6 +104,7 @@ export default function AddExpences() {
       dispatch({type:"setUser",payload:result.data.data}) 
     })
 
+    console.log(state.user.expenses)
     expAmount.current.value=0;
     expCategory.current.value="food";
     setPreview("")

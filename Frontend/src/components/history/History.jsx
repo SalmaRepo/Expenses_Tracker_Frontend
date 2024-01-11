@@ -187,6 +187,8 @@ const handleDay = () => {
   const handleNextYear = () => { 
       setYear(year + 1);
   }
+
+  
   useEffect(() => {
     getUserById();
   }, []);

@@ -7,7 +7,30 @@ import BASE_URL from "../config/urlConfig"
 export default function Container({children}){
     const [state,dispatch]=useReducer(reducer,initialState)
     const [darkMode, setDarkMode]= useState(false)
-
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "Sepetember",
+      "October",
+      "November",
+      "December",
+    ];
+  
+    const weekday = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
 
     useEffect(() => {
         //on load
@@ -32,7 +55,7 @@ export default function Container({children}){
       }, [])
 
     return(
-        <context.Provider value={{state,dispatch, darkMode, setDarkMode}}>
+        <context.Provider value={{state,dispatch, darkMode, setDarkMode,months,weekday}}>
         {children}
         </context.Provider>
 
