@@ -4,14 +4,15 @@ import { context } from "../../context/context";
 import "./showExpenses.css";
 import toast, { Toaster } from "react-hot-toast"
 
-function ShowExpenses({expenses,setExpenses}) {
+function ShowExpenses(/* {expenses,setExpenses} */) {
   const { state, dispatch } = useContext(context);
+  const curr=state.user?.currency.slice(3)+"s"
 
-  console.log(state.expenses);
-  console.log(state.user);
-  console.log(expenses)
+  //console.log(state.expenses);
+  //console.log(state.user);
+  //console.log(expenses)
 
-  const getExpenseByUser=()=>{
+  const getExpenseByUser = () => {
     const token = localStorage.getItem("token");
     fetch(`${BASE_URL}/api/expenses/getExpensesByUser`, {
       method: "GET",
@@ -22,10 +23,31 @@ function ShowExpenses({expenses,setExpenses}) {
       .then((res) => res.json())
       .then((result) => dispatch({ type: "setExpenses", payload: result.data }))
       .catch((err) => console.log(err));
+  };
+
+  //calling this in useEffect so that state.user gets updated every time when there is a change in application
+  const getUserById=()=>{
+      if(state.user){
+        const token = localStorage.getItem("token");
+        fetch(`${BASE_URL}/api/users/getUserById/${state.user?._id}`, {
+          method: "GET",
+          headers: {
+            token: token,
+          },
+        })
+          .then((res) => res.json())
+          .then((result) => dispatch({ type: "setUser", payload: result.data }))
+          .catch((err) => console.log(err));
+      
+      }
+      
+    
   }
 
   useEffect(() => {
     getExpenseByUser()
+    getUserById()
+    
   },[]);
 
   const deleteExpense=(id)=>{
@@ -37,7 +59,7 @@ function ShowExpenses({expenses,setExpenses}) {
           token: token,
         },
         
-      body:JSON.stringify({userId:state.user?._id}) 
+      body:JSON.stringify({userId:id}) 
      }).then(res=>res.json())
      .then(result=>{
       toast.success("expenses Deleted")
@@ -46,6 +68,7 @@ function ShowExpenses({expenses,setExpenses}) {
    }
 
    getExpenseByUser()
+   getUserById()
    
   }
 
@@ -83,28 +106,28 @@ function ShowExpenses({expenses,setExpenses}) {
         <h3>Time</h3>
       </div>
       {state.expenses
-        ? state.expenses?.map((expense) => {
+        ?  state.expenses?.map((expense) => {
             return (
               <div key={expense?._id} className="showExpenses">
                 <p>{expense?.category?.charAt(0)?.toUpperCase()+expense?.category?.slice(1)}</p>
-                <p>{expense?.amount}</p>
+                <p>{expense?.amount}<span>{curr}</span></p>
                 <p>{new Date(expense?.date).toLocaleString()}</p>
                 <button type="button" onClick={()=>deleteExpense(expense?._id)}>Delete</button>
                 <button type="button" onClick={()=>editExpense(expense?._id)}>Edit</button>
               </div>
             );
           }).reverse()
-        : state.user?.expenses?.map((expense) => {
+         : state.user?.expenses?.map((expense) => {
             return (
               <div key={expense._id} className="showExpenses">
                 <p>{expense?.category?.charAt(0)?.toUpperCase()+expense?.category?.slice(1)}</p>
-                <p>{expense?.amount}</p>
+                <p>{expense?.amount}<span>{curr}</span></p>
                 <p>{new Date(expense?.date).toLocaleString()}</p>
-                <button>Delete</button>
-                <button>Edit</button>
+                <button type="button" onClick={()=>deleteExpense(expense?._id)}>Delete</button>
+                <button type="button" onClick={()=>editExpense(expense?._id)}>Edit</button>
               </div>
             );
-          }).reverse()}
+          }).reverse() }
     </div>
   );
 }

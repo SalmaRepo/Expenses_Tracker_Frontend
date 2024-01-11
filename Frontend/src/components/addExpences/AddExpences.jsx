@@ -8,15 +8,13 @@ import BASE_URL from "../../config/urlConfig";
 import { context } from "../../context/context";
 import axios from "axios"
 import ShowExpenses from "../showExpenses/ShowExpenses";
-
-
-
+import Profile from "../profile/Profile";
 
 
 export default function AddExpences() {
   const {state,dispatch}=useContext(context)
-  console.log(state.expenses)
-  console.log(state.user)
+  //console.log(state.expenses)
+  //console.log(state.user)
 
   const [calDate, setCalDate] = useState(new Date());
   const [preview, setPreview] = useState("");
@@ -26,7 +24,23 @@ export default function AddExpences() {
   const token=localStorage.getItem("token");
   const [expenses,setExpenses]=useState({})
 
+  const getUserById=()=>{
+    if(state.user){
+      const token = localStorage.getItem("token");
+      fetch(`${BASE_URL}/api/users/getUserById/${state.user?._id}`, {
+        method: "GET",
+        headers: {
+          token: token,
+        },
+      })
+        .then((res) => res.json())
+        .then((result) => dispatch({ type: "setUser", payload: result.data }))
+        .catch((err) => console.log(err));
+    
+    }
+    
   
+}
   const grabImage = (e) => {
     /* const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]); 
@@ -57,7 +71,7 @@ export default function AddExpences() {
   data.append("date",calDate);
   data.append("userId",state.user._id)
    
-   console.log(data)
+   //console.log(data)
     setExpenses({
       amount: parseFloat(expAmount.current.value),
       category: expCategory.current.value,
@@ -83,9 +97,9 @@ export default function AddExpences() {
     axios.post(`${BASE_URL}/api/expenses/createExpense`,data,
     {headers:{"token":token,"Content-Type": "multipart/form-data"}})
     .then(result=>{
-      console.log(result)
+      /* console.log(result) */
       dispatch({type:"setExpenses",payload:result.data.data.expenses})
-      dispatch({type:"setUser",payload:result.data.data})
+      dispatch({type:"setUser",payload:result.data.data}) 
     })
 
     expAmount.current.value=0;
@@ -118,6 +132,7 @@ console.log(state.expenses)
               className="calendar"
             />
             <div className="expensesEnterSection">
+              <div className="expensesAmountContainer">
               <input
                 type="number"
                 name="amount"
@@ -125,6 +140,9 @@ console.log(state.expenses)
                 className="expensesAmount"
                 ref={expAmount}
               />
+              <p>{state.user?.currency.slice(3)}s</p>
+              </div>
+              
               <select name="category" ref={expCategory}>
                 <option value="food">Food</option>
                 <option value="fuel">Fuel</option>
@@ -155,6 +173,7 @@ console.log(state.expenses)
             </div>
           </form>
         </div>
+        <Profile/>
       </div>
     );
   

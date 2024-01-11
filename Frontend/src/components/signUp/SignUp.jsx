@@ -1,20 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import BASE_URL from "../../config/urlConfig";
 import LandNavBar from "../landingNavBar/LandNavBar";
 import Footer from "../footer/Footer";
 import axios from "axios"
-
+import { context } from "../../context/context";
 
 export default function Signup() {
   const [preview, setPreview] = useState("");
   const [showImg,setShowImg]=useState("");
   const navigate=useNavigate()
 
-  const grabImage=(e)=>{
+  export default function Signup() {
+  const {state,dispatch}=useContext(context)
   
-    
+   
+    const grabImage=(e)=>{ 
     const link = e.target.files[0]
     setPreview(link)
 
@@ -49,6 +51,7 @@ export default function Signup() {
         } else {
           e.target.reset();
           toast.success("You successfully signed up!"); // pop-up message
+          dispatch({type:"setIsSignUp",payload:true})
           setTimeout(() => {
            navigate("/login");
           }, 1500);

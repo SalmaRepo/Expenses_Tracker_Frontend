@@ -13,7 +13,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   function showSignUp(){
-    navigate("/SignUp")
+    navigate("/signUp")
   }
 
   const loginUser = (e) => {
@@ -44,7 +44,12 @@ export default function Login() {
             e.target.reset();
             toast.success("You successfully logged in!"); // pop-up message
             setTimeout(() => {
-             navigate("/home");
+              if(state.isSignUp){
+                navigate("/selectCurrency")
+              }else{
+                navigate("/home");
+              }
+           
             }, 1500);
                   
           } else {
