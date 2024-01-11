@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast"
 
 function ShowExpenses({expenses,setExpenses}) {
   const { state, dispatch } = useContext(context);
-  const curr=state.user?.currency.slice(3)+"s"
+  const curr=state.user?.currency?.slice(3)+"s"
 
   //console.log(state.expenses);
   //console.log(state.user);

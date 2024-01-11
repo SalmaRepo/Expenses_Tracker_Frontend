@@ -6,7 +6,7 @@ import "./help.css";
 function Help() {
   return (
     <div className="Help">
-      <SideMenu />
+      {/* <SideMenu /> */}
       <div className="HelpHero">
         <h1>FAQs</h1>
         <p>
@@ -118,7 +118,7 @@ function Help() {
           categorizing it into the food category.
         </p>
       </div>
-<Profile/>
+{/* <Profile/> */}
     </div>
   );
 }

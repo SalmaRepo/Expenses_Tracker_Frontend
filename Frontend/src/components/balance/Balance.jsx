@@ -62,7 +62,7 @@ const Balance = ({ userId }) => {
     };
 
     fetchBalance();
-  }, [userId]);
+  }, []);
 
   return (
     <div>

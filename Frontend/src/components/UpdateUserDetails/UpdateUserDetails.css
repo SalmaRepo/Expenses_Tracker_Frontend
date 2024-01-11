@@ -1,10 +1,11 @@
 .UpdateDetails{
     display: flex;
+    width: 100%;
 }
 
 
 .UpdateDetailsHero{
-    width: 65%;
+    width: 100%;
     border: 1px solid;
     display: flex;
     flex-direction: column;
