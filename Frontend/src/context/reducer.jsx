@@ -43,4 +43,5 @@ export const initialState={
     isSignUp:false,
     enteredIncomes:[], 
     balance:0
+
 }

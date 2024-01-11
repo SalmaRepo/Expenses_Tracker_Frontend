@@ -4,15 +4,27 @@ import toast, { Toaster } from "react-hot-toast";
 import BASE_URL from "../../config/urlConfig";
 import LandNavBar from "../landingNavBar/LandNavBar";
 import Footer from "../footer/Footer";
+import axios from "axios"
 import { context } from "../../context/context";
 
-
 export default function Signup() {
+  const [preview, setPreview] = useState("");
+  const [showImg,setShowImg]=useState("");
+  const navigate=useNavigate()
+
+  export default function Signup() {
   const {state,dispatch}=useContext(context)
   
-  const navigate = useNavigate();
+   
+    const grabImage=(e)=>{ 
+    const link = e.target.files[0]
+    setPreview(link)
+
+    setShowImg(URL.createObjectURL(link))
+  }
 
   const signupUser = (e) => {
+    e.stopPropagation();
     e.preventDefault();
     const user = {
       firstName: e.target.firstname.value,
@@ -20,7 +32,13 @@ export default function Signup() {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    fetch(`${BASE_URL}/api/users/signUp`, {
+    const data=new FormData();
+    data.append('userImage',preview);
+    data.append('firstName',e.target.firstname.value),
+    data.append('lastName', e.target.lastname.value),
+    data.append('email', e.target.email.value),
+    data.append('password',e.target.password.value)
+    /* fetch(`${BASE_URL}/api/users/signUp`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
@@ -39,47 +57,48 @@ export default function Signup() {
           }, 1500);
         }
       })
+      .catch((err) => console.log(err)); */
+
+      axios.post(`${BASE_URL}/api/users/signUp`, data,{headers:{"Content-Type": "multipart/form-data"}})
+      .then((result) => {
+        if (result.errors) {
+          console.log(result.errors);
+          toast.error(JSON.stringify(result.errors));
+        } else {
+          e.target.reset();
+          toast.success("You successfully signed up!"); // pop-up message
+          setTimeout(() => {
+           navigate("/login");
+          }, 1500);
+        }
+      })
       .catch((err) => console.log(err));
   };
 
-  const [preview, setPreview] = useState("");
-  const grabImage = (e)=> {
-    // const link = URL.createObjectURL(e.target.files[0])
-    // console.log(link)
-    // setPreview(link)
 
-    const reader = new FileReader()
-
-    reader.readAsDataURL(e.target.files[0]) //converting binary data into base64urlencodeddata
-    reader.onload = (event)=>{
-      console.log(event.target.result)
-      setPreview(event.target.result)
-    }
-  }
-
-  const uploadFile = (e)=>{
-    e.preventDefault()
-    fetch("http://localhost:5173/api/userimages",
-    {method:"POST",
-    headers:{"content-type":"application/json"},
-    body:JSON.stringify(preview),
-  })
-    .then(res => res.json())
-    .then(result=>console.log(result))
-  };
+ 
+  // const uploadFile = (e)=>{
+  //   e.stopPropagation()
+  //   e.preventDefault()
+  //   const data=new FormData()
+  //   console.log(preview)
+  //   data.append('file',preview);
+  //   fetch("http://localhost:5000/api/userimages/uploadImage",
+  //   {method:"POST",
+  //   // headers:{"content-type":"application/json"},
+  //   body:data,
+  // })
+  //   .then(res => res.json())
+  //   .then(result=>console.log(result.okay))
+  // };
   
   return (
     <div>
       <LandNavBar/>
       <h1>Signup</h1>
       <Toaster position="top-center" /> {/* toast position*/}
-      <form onSubmit={uploadFile}>
-      <input type="file" onChange={grabImage} />
-      <button>Upload</button>
-      </form>
-      <div style={{display:"flex", width:"200px", height:"200px", border:"2px solid black", justifyContent:"center"}}>
-        <img src= {preview} alt=""  width="100%"/>
-      </div>
+      
+      
       <form onSubmit={signupUser}>
         <label htmlFor="firstname">First Name: </label>
         <input type="text" id="firstname" name="firstname" /> <br />
@@ -89,6 +108,12 @@ export default function Signup() {
         <input type="email" id="email" name="email" /> <br />
         <label htmlFor="password">Password : </label>
         <input type="password" id="password" name="password" /> <br />
+
+        <h3>Upload your Image</h3>
+        <input type="file" name="file" onChange={grabImage} />   
+      <div style={{display:"flex", width:"200px", height:"200px", border:"2px solid black", justifyContent:"center"}}>
+        <img src= {showImg} alt=""  width="100%"/>
+      </div>
         <button>SignUp</button>
       </form>
       <Footer/>
