@@ -5,13 +5,14 @@ import { context } from "../../context/context";
 import "./history.css";
 import BASE_URL from "../../config/urlConfig";
 
+
 function History() {
-  const { state, dispatch } = useContext(context);
+  const { state, dispatch} = useContext(context);
   const [monthExp, setMonthExp] = useState([]);
   const [filterType, setFilterType] = useState("");
   const [month, setMonth] = useState(new Date().getMonth());
-  const [year, setYear] = useState(new Date().getFullYear());
-  const months = [
+  const [year, setYear] = useState(new Date().getFullYear()); 
+   const months = [
     "January",
     "February",
     "March",
@@ -34,7 +35,7 @@ function History() {
     "Thursday",
     "Friday",
     "Saturday",
-  ];
+  ]; 
   const getUserById = () => {
     if (state.user) {
       const token = localStorage.getItem("token");
@@ -52,18 +53,18 @@ function History() {
   useEffect(() => {
     getUserById();
   }, []);
-
-  const handleMonth = () => {
-    setFilterType("month");
-    getUserById()
-    console.log(state.user.expenses)
+ 
+   const handleMonth = () => {
+    setFilterType("month")
+  
+   // console.log(state.user.expenses) 
     let currentMonth = state.user?.expenses.filter(
       (exp) =>
         new Date(exp.date).getMonth() === month &&
-        new Date(exp.date).getFullYear() === year
+        new Date(exp.date).getFullYear() ===year
     );
 
-    console.log(currentMonth)
+    //console.log(currentMonth)
 
     const expensesSummary = [];
     let addedCategories = {};
@@ -71,8 +72,8 @@ function History() {
       const { category, amount, date } = exp;
 
       if (
-        addedCategories[category] &&
-        new Date(addedCategories[date]).getMonth === month
+        addedCategories[category] 
+        //new Date(addedCategories[date]).getMonth() === month 
       ) {
         addedCategories[category] += amount;
       } else {
@@ -82,11 +83,12 @@ function History() {
     for (const category in addedCategories) {
       expensesSummary.push({ category, amount: addedCategories[category] });
     }
-    setMonthExp(expensesSummary);
-  };
+setMonthExp(expensesSummary); 
+    
+  }; 
 
-  console.log(monthExp);
-  const total = monthExp.reduce((acc, exp) => {
+  console.log(monthExp); 
+  const total =monthExp ?.reduce((acc, exp) => {
     acc += exp.amount;
     return acc;
   }, 0);
@@ -96,11 +98,11 @@ function History() {
       setMonth(month - 1);
     } else if (month === 0) {
       setMonth(11);
-      setYear(year - 1);
+      setYear(year - 1); 
     }
-  };
+  }; 
 
-  const handleNextMonth = () => {
+   const handleNextMonth = () => {
     if (month >= 0 && month <= 10) {
       setMonth(month + 1);
     } else if (month === 11) {
@@ -108,7 +110,7 @@ function History() {
       setYear(year + 1);
     }
     handleMonth();
-  };
+  }; 
 
   useEffect(() => {
     handleMonth();
@@ -141,8 +143,8 @@ function History() {
           <div className="history-bottom-left">
             <div className="history-bottom-graphs">graphs</div>
             <div className="history-bottom-data">
-              {filterType === "month" && (
-                <div>
+              {state.historyFilterType === "month" && (
+                 <div>
                   <button type="submit" onClick={handleLastMoth}>
                     {"<<"}
                   </button>
@@ -153,9 +155,9 @@ function History() {
                   <button type="submit" onClick={handleNextMonth}>
                     {">>"}
                   </button>
-                </div>
-              )}
-              <div>
+                </div>)}
+              
+              {<div>
                 {monthExp?.map((exp) => {
                   return (
                     <div className="expData">
@@ -165,7 +167,7 @@ function History() {
                     </div>
                   );
                 })}
-              </div>
+              </div>}
               <div className="expData total">
                 Total<p>{total}</p>
               </div>

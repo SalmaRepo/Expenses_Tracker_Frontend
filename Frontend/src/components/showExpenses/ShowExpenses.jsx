@@ -104,6 +104,7 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
         <h3>Category</h3>
         <h3>Amount</h3>
         <h3>Time</h3>
+        <h3>Reciept</h3>
       </div>
       {state.expenses
         ?  state.expenses?.map((expense) => {
@@ -114,6 +115,7 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
                 <p>{new Date(expense?.date).toLocaleString()}</p>
                 <button type="button" onClick={()=>deleteExpense(expense?._id)}>Delete</button>
                 <button type="button" onClick={()=>editExpense(expense?._id)}>Edit</button>
+                <img src={expense.reciept.includes("undefined")?"images/no-image.jpg":`${BASE_URL}/${expense.reciept}`} alt="no-img" style={{width:"20px",height:"20px"}} />
               </div>
             );
           }).reverse()
@@ -125,6 +127,7 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
                 <p>{new Date(expense?.date).toLocaleString()}</p>
                 <button type="button" onClick={()=>deleteExpense(expense?._id)}>Delete</button>
                 <button type="button" onClick={()=>editExpense(expense?._id)}>Edit</button>
+                <img src={expense.reciept.includes("undefined")?"images/no-image.jpg":`${BASE_URL}/${expense.reciept}`} alt="no-img" style={{width:"20px",height:"20px"}} />
               </div>
             );
           }).reverse() }

@@ -42,6 +42,7 @@ function ShowExpensesHome() {
                   </p>
                   <p>{expense?.amount}<span>{curr}</span></p>
                   <p>{new Date(expense?.date).toLocaleString()}</p>
+                  <img src={expense.reciept.includes("undefined")?"images/no-image.jpg":`${BASE_URL}/${expense.reciept}`} alt="no-img" style={{width:"20px",height:"20px"}} />
                 </div>
               );
             }).reverse().slice(0,5)
@@ -56,6 +57,7 @@ function ShowExpensesHome() {
                   </p>
                   <p>{expense?.amount}<span>{curr}</span></p>
                   <p>{new Date(expense?.date).toLocaleString()}</p>
+                  <img src={`${BASE_URL}/${expense.reciept}`} alt="no-img" style={{width:"50px",height:"50px"}} />
                 </div>
               );
             })

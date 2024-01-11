@@ -7,7 +7,7 @@ import Balance from "../balance/Balance";
 export default function Profile() {
   const { state, dispatch } = useContext(context); 
   
-/*   console.log(state.user) */
+ console.log(state.user)
   
   const userName = state.user ? state.user.firstName : "N/A";
   const email = state.user ? state.user.email : "N/A";
