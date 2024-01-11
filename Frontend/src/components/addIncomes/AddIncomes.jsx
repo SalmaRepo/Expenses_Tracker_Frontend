@@ -164,7 +164,9 @@ export default function AddIncomes() {
           <div className="displayEnteredIncome">
             <h2>Added Incomes</h2>
             <ul>
+
               {state.user?.incomes?.map((income, index) => (
+
                 <li key={index}>
                   Date: {new Date(income.date).toLocaleDateString()}| Category: {income.category}| Amount: {income.amount} 
                   <button

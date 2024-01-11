@@ -1,34 +1,49 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Profile from "../profile/Profile";
 import SideMenu from "../sideMenu/SideMenu";
 import "./Settings.css";
 import { useNavigate } from "react-router-dom";
 import { context } from "../../context/context";
+import UpdateUserDetails from "../UpdateUserDetails/UpdateUserDetails";
+import Help from "../Help/Help";
+import SelectCurrency from "../selectCurrency/SelectCurrency";
 
 export default function Settings() {
   const navigate = useNavigate();
   const currencySelector = useRef();
   const { darkMode, setDarkMode, state, dispatch } = useContext(context);
+  const [isUpdateUserDetails, setIsUpdateUserDetails] = useState(false);
+  const [isHelpShow, setIsHelpShow] = useState(false);
+  const [isSelectCurrency, setIsSelectCurrency] = useState(false);
+  const [isDarkLight, setIsDarkLight] = useState(false);
+
   console.log(darkMode);
 
 
   
   function showHelp() {
-    navigate("/help");
+    // navigate("/help");
+    setIsHelpShow(!isHelpShow);
+    setIsUpdateUserDetails(false);
+    setIsSelectCurrency(false);
   }
 
   function showUpdateUserDetails() {
-    navigate("/UpdateUserDetails");
+    setIsUpdateUserDetails(!isUpdateUserDetails);
+    setIsHelpShow(false);
+    setIsSelectCurrency(false);
   }
-
 
   function toogleDarkMode() {
     setDarkMode(!darkMode);
+    setIsDarkLight(!isDarkLight)
   }
 
 
   const handleChageCurrency = () => {
-    navigate("/selectCurrency")
+    setIsSelectCurrency(!isSelectCurrency);
+    setIsUpdateUserDetails(false);
+    setIsHelpShow(false);
   };
 
   return (
@@ -46,7 +61,9 @@ export default function Settings() {
             <button>Change Profile Picture</button>
           </li>
           <li>
-            <button onClick={showUpdateUserDetails}>Update Profile Details</button>
+            <button onClick={showUpdateUserDetails}>
+              Update Profile Details
+            </button>
           </li>
           <li>
             {/* <label for="dropdown">Currency:</label>
@@ -70,11 +87,15 @@ export default function Settings() {
             <button onClick={showHelp}>Help/FAQ</button>
           </li>
           <li>
-            <button onClick={toogleDarkMode}>Dark Mode</button>
+          <button onClick={toogleDarkMode}>{isDarkLight? "Light Mode" : "Dark Mode" }</button>
           </li>
         </ul>
+        {/* <div>{isUpdateUserDetails? <UpdateUserDetails/>: <div><p>nothing</p></div>}</div> */}
+        <div>{isUpdateUserDetails && <UpdateUserDetails />}</div>
+        <div>{isHelpShow && <Help />}</div>
+        <div>{isSelectCurrency && <SelectCurrency />}</div>
       </div>
-      <Profile/>
+      <Profile />
     </div>
   );
 }

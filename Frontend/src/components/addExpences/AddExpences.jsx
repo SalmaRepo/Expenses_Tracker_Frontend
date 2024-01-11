@@ -140,7 +140,7 @@ console.log(state.expenses)
                 className="expensesAmount"
                 ref={expAmount}
               />
-              <p>{state.user?.currency.slice(3)}s</p>
+              <p>{state.user?.currency?.slice(3)}s</p>
               </div>
               
               <select name="category" ref={expCategory}>
