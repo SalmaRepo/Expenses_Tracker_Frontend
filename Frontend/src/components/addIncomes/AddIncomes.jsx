@@ -4,7 +4,7 @@ import SideMenu from "../sideMenu/SideMenu";
 import "react-calendar/dist/Calendar.css";
 import BASE_URL from "../../config/urlConfig";
 import "./addIncomes.css";
-import History from "../history/History";
+// import History from "../history/History";
 import { context } from "../../context/context";
 import Profile from "../profile/Profile";
 
