@@ -9,9 +9,27 @@ import BASE_URL from '../../config/urlConfig';
 
 
 function UpdateUserDetails() {
-    const {state, dispatch} = useContext(context)
+const {state, dispatch} = useContext(context)
 const [firstName, setFirstName] = useState(state.user?.firstName)
 const [lastName, setLastName] = useState(state.user?.lastName)
+const getUserById=()=>{
+  if(state.user){
+    const token = localStorage.getItem("token");
+    fetch(`${BASE_URL}/api/users/getUserById/${state.user?._id}`, {
+      method: "GET",
+      headers: {
+        token: token,
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => dispatch({ type: "setUser", payload: result.data }))
+      .catch((err) => console.log(err));
+  
+  }
+}
+/* useEffect(()=>{
+  getUserById()
+},[]) */
 const UpdateDetails =  ()=>{
     const newData = {
         ...state.user,firstName:firstName,lastName:lastName
@@ -19,11 +37,12 @@ const UpdateDetails =  ()=>{
     }
     const token=localStorage.getItem("token")
     axios.patch(`${BASE_URL}/api/users/updateUserDetailsById`, newData,{headers:{token:token}})
-    .then(response=>dispatch({type:"setUser",payload:response.data}) )
+    .then(response=>console.log("updated") )
     .catch(err => console.log(err))
-    dispatch({type:"setUpdateUser", payload:true})
+   /*  dispatch({type:"setUpdateUser", payload:true}) */
+    getUserById()
 }
-console.log(state.user)
+/* console.log(state.user) */
 
   return (
     <div className="UpdateDetails">

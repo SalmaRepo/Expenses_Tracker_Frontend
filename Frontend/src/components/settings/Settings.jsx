@@ -11,6 +11,7 @@ export default function Settings() {
   const { darkMode, setDarkMode, state, dispatch } = useContext(context);
   console.log(darkMode);
 
+  
   function showHelp() {
     navigate("/help");
   }

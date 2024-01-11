@@ -24,7 +24,23 @@ export default function AddExpences() {
   const token=localStorage.getItem("token");
   const [expenses,setExpenses]=useState({})
 
+  const getUserById=()=>{
+    if(state.user){
+      const token = localStorage.getItem("token");
+      fetch(`${BASE_URL}/api/users/getUserById/${state.user?._id}`, {
+        method: "GET",
+        headers: {
+          token: token,
+        },
+      })
+        .then((res) => res.json())
+        .then((result) => dispatch({ type: "setUser", payload: result.data }))
+        .catch((err) => console.log(err));
+    
+    }
+    
   
+}
   const grabImage = (e) => {
     /* const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]); 
@@ -81,9 +97,9 @@ export default function AddExpences() {
     axios.post(`${BASE_URL}/api/expenses/createExpense`,data,
     {headers:{"token":token,"Content-Type": "multipart/form-data"}})
     .then(result=>{
-      console.log(result)
+      /* console.log(result) */
       dispatch({type:"setExpenses",payload:result.data.data.expenses})
-      dispatch({type:"setUser",payload:result.data.data})
+      dispatch({type:"setUser",payload:result.data.data}) 
     })
 
     expAmount.current.value=0;

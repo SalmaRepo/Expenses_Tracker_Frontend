@@ -6,6 +6,7 @@ import BASE_URL from "../../config/urlConfig";
 import "./addIncomes.css";
 import History from "../history/History";
 import { context } from "../../context/context";
+import Profile from "../profile/Profile";
 
 
 export default function AddIncomes() {
@@ -13,9 +14,29 @@ export default function AddIncomes() {
   const [calDate, setCalDate] = useState(new Date());
   const incomeCategory = useRef();
   const incomeAmount = useRef();
+  
+//calling this in useEffect so that state.user gets updated every time when there is a change in application
+  const getUserById=()=>{
+    if(state.user){
+      const token = localStorage.getItem("token");
+      fetch(`${BASE_URL}/api/users/getUserById/${state.user?._id}`, {
+        method: "GET",
+        headers: {
+          token: token,
+        },
+      })
+        .then((res) => res.json())
+        .then((result) => dispatch({ type: "setUser", payload: result.data }))
+        .catch((err) => console.log(err));
+    
+    }
+    
+  
+}
 
   useEffect(() => {
     fetchIncomes();
+    getUserById()
   }, []);
 
 // Get incomes by user
@@ -69,6 +90,7 @@ export default function AddIncomes() {
       console.error("Error while adding income", error.message);
     }
     fetchIncomes();
+    getUserById()
   };
 
   function onChange(calDate) {
@@ -96,6 +118,7 @@ export default function AddIncomes() {
         }
       );
       fetchIncomes();
+      getUserById()
       if (response.ok) {
         console.log("deleted income");
       } else {
@@ -141,7 +164,7 @@ export default function AddIncomes() {
           <div className="displayEnteredIncome">
             <h2>Added Incomes</h2>
             <ul>
-              {state.enteredIncomes.map((income, index) => (
+              {state.user?.incomes?.map((income, index) => (
                 <li key={index}>
                   Date: {new Date(income.date).toLocaleDateString()}| Category: {income.category}| Amount: {income.amount} 
                   <button
@@ -157,6 +180,7 @@ export default function AddIncomes() {
           </div>
         </form>
       </div>
+      <Profile/>
     </div>
   );
 }

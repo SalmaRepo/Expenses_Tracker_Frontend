@@ -5,6 +5,7 @@ import { context } from "../../context/context";
 
 const Balance = ({ userId }) => {
   const { state, dispatch } = useContext(context);
+  
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -62,7 +63,7 @@ const Balance = ({ userId }) => {
     };
 
     fetchBalance();
-  }, [userId]);
+  }, [state.user]);
 
   return (
     <div>
