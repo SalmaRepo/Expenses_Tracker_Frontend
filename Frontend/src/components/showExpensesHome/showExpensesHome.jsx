@@ -8,7 +8,7 @@ import "./showExpensesHome.css"
 function ShowExpensesHome() {
 
   const { state, dispatch } = useContext(context);
-  let curr=state.user?.currency.slice(3)+"s";
+  let curr=state.user?.currency?.slice(3)+"s";
   useEffect(() => {
     const token = localStorage.getItem("token");
     fetch(`${BASE_URL}/api/expenses/getExpensesByUser`, {

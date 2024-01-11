@@ -4,7 +4,7 @@ import SideMenu from "../sideMenu/SideMenu";
 import "react-calendar/dist/Calendar.css";
 import BASE_URL from "../../config/urlConfig";
 import "./addIncomes.css";
-import History from "../history/History";
+// import History from "../history/History";
 import { context } from "../../context/context";
 import Profile from "../profile/Profile";
 
@@ -164,7 +164,9 @@ export default function AddIncomes() {
           <div className="displayEnteredIncome">
             <h2>Added Incomes</h2>
             <ul>
+
               {state.user?.incomes?.map((income, index) => (
+
                 <li key={index}>
                   Date: {new Date(income.date).toLocaleDateString()}| Category: {income.category}| Amount: {income.amount} 
                   <button
