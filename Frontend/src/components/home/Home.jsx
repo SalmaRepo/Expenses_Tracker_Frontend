@@ -45,7 +45,7 @@ export default function Home() {
       <div className="homeHero">
         <h1>Home</h1>
         <div className="homeHeroTop">
-          <ExpensesHomeGraph expenses={state.expenses}/>
+          <ExpensesHomeGraph/>
         </div>
         <div className="homeHeroMiddle">
         {state.expenses?<ShowExpensesHome/>:<p className="homeExpensesDisplay">No Expenses to Show</p>}

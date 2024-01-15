@@ -27,7 +27,7 @@ export default function LandingPage() {
     } 
   }
 
-  console.log(state.user)
+ /*  console.log(state.user) */
   return (
     <div className='landingPage'>
       <LandNavBar/>

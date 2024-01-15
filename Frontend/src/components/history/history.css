@@ -7,9 +7,10 @@
     width: 70%;
     border: 1px solid;
     display: flex;
-    flex-wrap: wrap;
+   
     flex-direction: column;
     justify-content: space-around;
+    position: relative;
     
 }
 
@@ -62,10 +63,8 @@
 
 .history-bottom-graphs{
     display: flex;
-    justify-content: center;
-    align-items: center;
     border: 1px solid;
-    padding: 5rem;
+    width: 100%;
 }
 
 .history-bottom-data{
@@ -73,19 +72,64 @@
     flex-direction: column;
     border: 1px solid;
    height: 50vh;
+position: relative;
+}
+
+.expData-container{
+    height: 50%;
+    overflow: auto;
+    border: 2px solid;
+    padding: 1rem 0;
+    border: 1px solid;
 }
 
 .expData{
-    display: flex;
-    gap: 2rem;
-    justify-content: space-between;
+    display: flex; 
+    height: 30%; 
+    justify-content: space-around;
+
 }
 
 .total{
     position: absolute;
+    bottom: 0;
     bottom: 2rem;
     display: flex;
-    justify-content: space-between;
+    width: 30%;
+    justify-content: space-around;
+}
+
+.reciept-container{
+   position: absolute;
+   height: 70%;
+   z-index: 3;
+   left: 5rem;
+   width: 80%;
+   border: 2px solid;
+   background-color: black;
+   color: white;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   padding: 2rem;
+}
+
+.closeImage{
+    font-size: 3rem;
+    width: 10%;
+    margin-left: auto;
+}
+
+.selectReciept{
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    border: 2px solid;
+}
+
+.reciept-details{
+    display: flex;
+    justify-content: space-around;
 }
 
 .history-bottom-right{
@@ -101,6 +145,15 @@
 .expensesTotal,.incomesTotal,.displayReport{
     padding: 3rem;
     border: 1px solid;
+}
+
+.history-bottom-data .calendar{
+    width: 40%;
+    height: 0%;
+    border: none;
+   
+
+
 }
 
 

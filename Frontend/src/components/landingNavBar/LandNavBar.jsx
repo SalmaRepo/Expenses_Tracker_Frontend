@@ -9,7 +9,7 @@ import LogOut from '../logout/Logout'
 
 export default function LandNavBar() {
   const {state, dispatch}= useContext(context)
-  console.log(state)
+/*   console.log(state) */
   return (
     <div className='landingNavBar'>
        <Link to="/"><img className='logo' src="images/logoWhite.png" alt="logo of the project" /></Link>

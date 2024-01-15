@@ -35,8 +35,10 @@ export default function Settings() {
   }
 
   function toogleDarkMode() {
-    setDarkMode(!darkMode);
+    const newDarkMode=!darkMode;
+    setDarkMode(newDarkMode);
     setIsDarkLight(!isDarkLight)
+    localStorage.setItem("darkMode", newDarkMode.toString());
   }
 
 

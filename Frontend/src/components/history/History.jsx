@@ -4,17 +4,29 @@ import SideMenu from "../sideMenu/SideMenu";
 import { context } from "../../context/context";
 import "./history.css";
 import BASE_URL from "../../config/urlConfig";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import HistoryBarGraph from "../graph/HistoryBarGraph";
 
 function History() {
   const { state, dispatch } = useContext(context);
   const [filteredExpenses, setFilteredExpenses] = useState([]);
-  const [selectedDuration, setSelectedDuration] = useState("");
+  const [selectedDuration, setSelectedDuration] = useState("month");
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
   const [day, setDay] = useState(new Date().getDate()); //! added
-  const [weekStart, setWeekStart] = useState(new Date().getDate() - new Date().getDay() - 6)
-  const [weekLast, setWeekLast]= useState(new Date().getDate() - new Date().getDay() )
+  const [calDate, setCalDate] = useState(new Date());
+  const [recieptCategory, setRecieptCategory] = useState("");
 
+  const [weekStart, setWeekStart] = useState(
+    new Date().getDate() - new Date().getDay() - 6
+  );
+  const [weekLast, setWeekLast] = useState(
+    new Date().getDate() - new Date().getDay()
+  );
+  const [isRecieptView, setIsRecieptView] = useState(false);
+  const [recieptUrl, setRecieptUrl] = useState("");
+  const [recieptDate,setRecieptDate]=useState(null)
   const months = [
     "January",
     "February",
@@ -72,29 +84,35 @@ function History() {
     setSelectedDuration("week");
     getUserById();
     const currentDate = new Date();
-    const lastWeekStartDate = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      currentDate.getDate() - currentDate.getDay() - 6
-    );
-    const lastWeekEndDate = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      currentDate.getDate() - currentDate.getDay()
-    );
-    const lastWeekExpenses = state.user?.expenses.filter(
-      (exp) =>
-        new Date(exp.date) >= lastWeekStartDate &&
-        new Date(exp.date) <= lastWeekEndDate
-    );
-    const summary = summeriseExpenses(lastWeekExpenses);
-    setFilteredExpenses(summary);
+   
+      const currentWeekStartDate = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate() -  currentDate.getDay()-6
+      );
+      console.log(currentWeekStartDate)
+      const currentWeekEndDate = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate()- currentDate.getDay()
+      );
+      console.log(currentWeekEndDate)
+      const lastWeekExpenses = state.user?.expenses.filter(
+        (exp) =>
+          new Date(exp.date).getDate() >= new Date(currentWeekStartDate).getDate() &&
+          new Date(exp.date).getDate() <= new Date(currentWeekEndDate).getDate()
+      );
+      const summary = summeriseExpenses(lastWeekExpenses);
+      setFilteredExpenses(summary);
+    
+    
+    
   };
 
   // HANDLE MONTH
   const handleMonth = () => {
     setSelectedDuration("month");
-    setFilteredExpenses([]); 
+    setFilteredExpenses([]);
     getUserById();
     const currentMonthExpenses = state.user?.expenses.filter(
       (exp) =>
@@ -117,21 +135,29 @@ function History() {
     setFilteredExpenses(summary);
   };
 
-
-// HANDLE DAY  //! added
-const handleDay = () => {
-  setSelectedDuration("day");
-  setFilteredExpenses([]);
-  getUserById();
-  const currentDayExpenses = state.user?.expenses.filter(
-    (exp) =>
-      new Date(exp.date).getDate() === day &&
+  // HANDLE DAY  //! added
+  const selectedDate = (calDate) => {
+    setCalDate(calDate);
+    handleDay();
+  };
+  const handleDay = () => {
+    setSelectedDuration("day");
+    setFilteredExpenses([]);
+    getUserById();
+    /* console.log(calDate); */
+    const currentDayExpenses = state.user?.expenses.filter(
+      (exp) => new Date(exp.date).getDate() === new Date(calDate).getDate() &&
+      new Date(exp.date).getMonth() === new Date(calDate).getMonth() &&
+      new Date(exp.date).getFullYear() === new Date(calDate).getFullYear()
+      /*  new Date(exp.date).getDate() === day &&
       new Date(exp.date).getMonth() === month &&
-      new Date(exp.date).getFullYear() === year
-  );
-  const summary = summeriseExpenses(currentDayExpenses);
-  setFilteredExpenses(summary);
-};
+      new Date(exp.date).getFullYear() === year */
+    );
+    /*  const summary = summeriseExpenses(currentDayExpenses); */
+    setFilteredExpenses(currentDayExpenses);
+  };
+/* 
+  console.log(filteredExpenses); */
 
   // // HANDLE 6 MONTHS
   // const handleSixMonths = () => {
@@ -157,7 +183,6 @@ const handleDay = () => {
   //   setFilteredExpenses(summary);
   // };
 
-
   // HANDLE LAST AND NEXT MONTH
   const handleLastMoth = () => {
     if (month >= 1 && month <= 11) {
@@ -178,22 +203,24 @@ const handleDay = () => {
     handleMonth();
   };
 
-
-
   // HANDLE LAST AND NEXT YEAR
   const handleLastYear = () => {
-   setYear(year - 1); 
-  }
-  const handleNextYear = () => { 
-      setYear(year + 1);
-  }
+    setYear(year - 1);
+  };
+  const handleNextYear = () => {
+    setYear(year + 1);
+  };
 
-  
   useEffect(() => {
     getUserById();
   }, []);
 
-
+  const handleReciept = (url,date,category) => {
+    setIsRecieptView(true);
+    setRecieptUrl(url);
+    setRecieptDate(date)
+    setRecieptCategory(category)
+  };
 
   // CASE
   useEffect(() => {
@@ -206,16 +233,20 @@ const handleDay = () => {
         break;
       // case "6 months":
       //   break;
-      case "day":  //! added
+      case "day": //! added
         handleDay();
-        break; 
+        break;
       case "year":
         handleYear();
         break;
       default:
         break;
     }
-  }, [selectedDuration, month, year]);
+  }, [selectedDuration, month, year, calDate]);
+
+  const handleCloseImg=()=>{
+    setIsRecieptView(false)
+  }
 
   const total = filteredExpenses.reduce((acc, exp) => {
     acc += exp.amount;
@@ -227,9 +258,25 @@ const handleDay = () => {
       <SideMenu />
 
       <div className="historyHero">
+        {isRecieptView && (
+          <div className="reciept-container">
+            <button onClick={handleCloseImg} className="closeImage">close</button>
+            <img src={recieptUrl} alt="no-img" className="selectReciept" />
+            <div className="reciept-details">
+            <p>{new Date(recieptDate).toLocaleDateString()}</p>
+            <p>{recieptCategory}</p>
+            </div>
+           
+          </div>
+        )}
         <div className="historyTop">
           <h3>Select the duration to view the history of spendings</h3>
           <ul className="historyTop-options">
+            <li>
+              <button type="submit" onClick={handleDay}>
+                Day
+              </button>
+            </li>
             <li>
               <button type="submit" onClick={handleWeek}>
                 Week
@@ -245,11 +292,7 @@ const handleDay = () => {
                 6 Months
               </button>
             </li> */}
-            <li>
-              <button type="submit" onClick={handleDay}>
-               Day
-              </button>
-            </li>
+
             <li>
               <button type="submit" onClick={handleYear}>
                 Year
@@ -260,7 +303,9 @@ const handleDay = () => {
 
         <div className="historyBottom">
           <div className="history-bottom-left">
-            <div className="history-bottom-graphs">graphs</div>
+            <div className="history-bottom-graphs">
+              <HistoryBarGraph selectedDuration={selectedDuration} year={year} month={month}/>
+            </div>
             <div className="history-bottom-data">
               {selectedDuration === "month" && (
                 <div>
@@ -291,19 +336,54 @@ const handleDay = () => {
                 </div>
               )}
 
-              <div>
+              {selectedDuration === "day" && (
+                <div>
+                  <Calendar
+                    onChange={selectedDate}
+                    value={calDate}
+                    name="calendar"
+                    className="calendar"
+                  />
+                </div>
+              )}
+
+              <div className="expData-container">
                 {filteredExpenses?.map((exp) => (
                   <div className="expData" key={`${exp.category}-${exp.date}`}>
-                    <p>{exp.category}</p>
-                    <p>{exp.amount}</p>
+                    <p>{exp?.category.charAt(0).toUpperCase()+exp?.category.slice(1)}</p>
+                    <p>{exp?.amount}</p>
                     {/* <p>{new Date(exp.date).toLocaleDateString()}</p> */}
+                    {selectedDuration === "day" && (
+                      <img
+                        src={
+                          exp.reciept.includes("undefined")
+                            ? "images/no-image.jpg"
+                            : `${BASE_URL}/${exp.reciept}`
+                        }
+                        alt="no-img"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          border: "1px solid",
+                        }}
+                        onClick={() =>
+                          handleReciept(
+                            exp.reciept.includes("undefined")
+                              ? "images/no-image.jpg"
+                              : `${BASE_URL}/${exp.reciept}`,exp.date,exp.category
+                          )
+                        }
+                      />
+                    )}
                   </div>
                 ))}
               </div>
-              <div className="expData total">
+            </div>
+            {selectedDuration !== "day" && (
+              <div className="total">
                 Total<p>{total}</p>
               </div>
-            </div>
+            )}
           </div>
 
           <div className="history-bottom-right">

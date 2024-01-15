@@ -1,14 +1,13 @@
 import React from "react";
-import { useContext,useEffect } from "react";
+import { useContext, useEffect } from "react";
 import BASE_URL from "../../config/urlConfig";
 import { context } from "../../context/context";
 import ShowExpenses from "../showExpenses/ShowExpenses";
-import "./showExpensesHome.css"
+import "./showExpensesHome.css";
 
 function ShowExpensesHome() {
-
   const { state, dispatch } = useContext(context);
-  let curr=state.user?.currency?.slice(3)+"s";
+  let curr = state.user?.currency?.slice(3) + "s";
   useEffect(() => {
     const token = localStorage.getItem("token");
     fetch(`${BASE_URL}/api/expenses/getExpensesByUser`, {
@@ -20,19 +19,16 @@ function ShowExpensesHome() {
       .then((res) => res.json())
       .then((result) => dispatch({ type: "setExpenses", payload: result.data }))
       .catch((err) => console.log(err));
-  },[]);
+  }, []);
 
   //console.log(state.expenses)
 
- 
-
   return (
     <div>
-        <h1>Your Most Recent Expenses</h1>
-      { state.expenses?.length > 3
+      <h1>Your Most Recent Expenses</h1>
+      {state.expenses?.length > 3
         ? state.expenses
-       
-            
+
             .map((expense) => {
               return (
                 <div key={expense._id} className="showExpenses">
@@ -40,14 +36,26 @@ function ShowExpensesHome() {
                     {expense?.category?.charAt(0).toUpperCase() +
                       expense?.category.slice(1)}
                   </p>
-                  <p>{expense?.amount}<span>{curr}</span></p>
+                  <p>
+                    {expense?.amount}
+                    <span>{curr}</span>
+                  </p>
                   <p>{new Date(expense?.date).toLocaleString()}</p>
-                  <img src={expense.reciept.includes("undefined")?"images/no-image.jpg":`${BASE_URL}/${expense.reciept}`} alt="no-img" style={{width:"20px",height:"20px"}} />
+                  <img
+                    src={
+                      expense.reciept.includes("undefined")
+                        ? "images/no-image.jpg"
+                        : `${BASE_URL}/${expense.reciept}`
+                    }
+                    alt="no-img"
+                    style={{ width: "20px", height: "20px" }}
+                  />
                 </div>
               );
-            }).reverse().slice(0,5)
-            
-        :  state.expenses
+            })
+            .reverse()
+            .slice(0, 5)
+        : state.expenses
             .map((expense) => {
               return (
                 <div key={expense?._id} className="showExpenses">
@@ -55,9 +63,20 @@ function ShowExpensesHome() {
                     {expense?.category?.charAt(0).toUpperCase() +
                       expense?.category.slice(1)}
                   </p>
-                  <p>{expense?.amount}<span>{curr}</span></p>
+                  <p>
+                    {expense?.amount}
+                    <span>{curr}</span>
+                  </p>
                   <p>{new Date(expense?.date).toLocaleString()}</p>
-                  <img src={`${BASE_URL}/${expense.reciept}`} alt="no-img" style={{width:"50px",height:"50px"}} />
+                  <img
+                    src={
+                      expense.reciept.includes("undefined")
+                        ? "images/no-image.jpg"
+                        : `${BASE_URL}/${expense.reciept}`
+                    }
+                    alt="no-img"
+                    style={{ width: "20px", height: "20px" }}
+                  />
                 </div>
               );
             })
