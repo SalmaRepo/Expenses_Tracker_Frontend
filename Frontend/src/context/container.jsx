@@ -35,7 +35,8 @@ export default function Container({children}){
     useEffect(() => {
         //on load
         const token = localStorage.getItem("token")
-    
+        const savedDarkMode = localStorage.getItem("darkMode") === "true"; //!
+        setDarkMode(savedDarkMode); 
         if (token) {
           fetch(`${BASE_URL}/api/users/verifytoken`, {
             method: "GET",

@@ -5,13 +5,11 @@ import { context } from "../../context/context";
 
 const Balance = ({ userId }) => {
   const { state, dispatch } = useContext(context);
-  
 
   useEffect(() => {
     const fetchBalance = async () => {
       const token = localStorage.getItem("token");
       try {
-       
         // Fetch user data with incomes and expenses populated
         const userResponse = await axios.get(
           `${BASE_URL}/api/users/getUserById/${userId}`,
@@ -31,8 +29,8 @@ const Balance = ({ userId }) => {
         }
 
         //?console.log("User", user.data);
-        
-        // Calculate total incomes 
+
+        // Calculate total incomes
         let totalIncomes = 0;
         if (user.data.incomes) {
           for (let i = 0; i < user.data.incomes.length; i++) {
@@ -40,9 +38,8 @@ const Balance = ({ userId }) => {
             totalIncomes += income.amount;
           }
         }
-        
 
-        // Calculate total expenses 
+        // Calculate total expenses
         let totalExpenses = 0;
         if (user.data.expenses) {
           for (let i = 0; i < user.data.expenses.length; i++) {
@@ -50,26 +47,26 @@ const Balance = ({ userId }) => {
             totalExpenses += expense.amount;
           }
         }
-       
 
         // Balance calc
         const currentBalance = totalIncomes - totalExpenses;
         dispatch({ type: "setBalance", payload: currentBalance });
-        
-
       } catch (err) {
         console.error("Error retrieving balance data ", err);
       }
     };
 
     fetchBalance();
-
   }, [state.user]);
-
 
   return (
     <div>
-      <h2>Your Balance is {state.balance} </h2>
+      <h2>
+        Your Balance is{" "}
+        {typeof state.balance === "number"
+          ? state.balance.toFixed(2)
+          : state.balance}{" "}
+      </h2>
     </div>
   );
 };

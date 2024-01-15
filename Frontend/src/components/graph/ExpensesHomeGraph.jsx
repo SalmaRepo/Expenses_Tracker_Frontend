@@ -22,31 +22,45 @@ function ExpensesHomeGraph() {
       .catch((err) => console.log(err));
   }, []);
 
+  console.log(state.user?.expenses);
+
   //summing up similar categories
   const expensesSummary = [];
   let addedCategories = {};
-  state.user?.expenses?.map((exp) => {
-    const { category, amount,date } = exp;
 
-    if (addedCategories[category] && new Date(addedCategories[date]).getMonth+1===new Date().getMonth+1) {
+  const monthlyExpenses = state.user?.expenses?.filter(
+    (exp) =>
+      new Date(exp.date).getMonth() === new Date().getMonth() &&
+      new Date(exp.date).getFullYear() === new Date().getFullYear()
+  );
+
+  console.log(monthlyExpenses);
+
+  monthlyExpenses?.map((exp) => {
+    const { amount, category } = exp;
+    if (addedCategories[category]) {
       addedCategories[category] += amount;
     } else {
       addedCategories[category] = amount;
     }
   });
+
+  console.log(addedCategories);
+
   for (const category in addedCategories) {
     expensesSummary.push({ category, amount: addedCategories[category] });
   }
-  /* console.log(expensesSummary); */
-
-
+  console.log(expensesSummary);
 
   const [chartData, setChartData] = useState({
-    labels: expensesSummary?.map((expense) => expense.category),
+    labels: expensesSummary?.map(
+      (expense) =>
+        expense?.category?.charAt(0).toUpperCase() + expense?.category.slice(1)
+    ),
     datasets: [
       {
         label: "Amount Spent ",
-        data: expensesSummary?.map((expense) => expense.amount),
+        data: expensesSummary?.map((expense) => expense?.amount),
         backgroundColor: [
           "#e5d193",
           "#f5ea50",
@@ -59,6 +73,8 @@ function ExpensesHomeGraph() {
       },
     ],
   });
+
+  console.log(chartData);
   return (
     <div>
       <DoughnutChart chartData={chartData} />

@@ -68,14 +68,14 @@ export default function AddExpences() {
    console.log(preview)
 
   data.append('file',preview);
-  data.append('amount',parseFloat(expAmount.current.value));
+  data.append('amount',expAmount.current.value);
   data.append("category",expCategory.current.value);
   data.append("date",calDate);
   data.append("userId",state.user._id)
    
    //console.log(data)
     setExpenses({
-      amount: parseFloat(expAmount.current.value),
+      amount: expAmount.current.value,
       category: expCategory.current.value,
       date: calDate,
       reciept:preview
@@ -104,7 +104,7 @@ export default function AddExpences() {
       dispatch({type:"setUser",payload:result.data.data}) 
     })
 
-    console.log(state.user.expenses)
+    /* console.log(state.user.expenses) */
     expAmount.current.value=0;
     expCategory.current.value="food";
     setPreview("")
@@ -112,7 +112,7 @@ export default function AddExpences() {
     dispatch({type:"setIsUploadImageSelect",payload:false})
   };
   
-console.log(state.expenses)
+
     function onChange(calDate) {
       // change results based on calendar date click
       setCalDate(calDate);
@@ -150,6 +150,7 @@ console.log(state.expenses)
                 <option value="food">Food</option>
                 <option value="fuel">Fuel</option>
                 <option value="shopping">Shopping</option>
+                <option value="entertainment">Entertainment</option>
                 <option value="telephone">Tele-Phone</option>
                 <option value="pets">Pets</option>
                 <option value="kids">Kids</option>

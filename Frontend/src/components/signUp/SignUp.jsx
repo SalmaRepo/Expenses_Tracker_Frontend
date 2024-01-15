@@ -12,7 +12,7 @@ export default function Signup() {
   const [showImg,setShowImg]=useState("");
   const navigate=useNavigate()
 
-  export default function Signup() {
+  
   const {state,dispatch}=useContext(context)
   
    
@@ -26,12 +26,12 @@ export default function Signup() {
   const signupUser = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    const user = {
+  /*   const user = {
       firstName: e.target.firstname.value,
       lastName: e.target.lastname.value,
       email: e.target.email.value,
       password: e.target.password.value,
-    };
+    }; */
     const data=new FormData();
     data.append('userImage',preview);
     data.append('firstName',e.target.firstname.value),
@@ -66,7 +66,8 @@ export default function Signup() {
           toast.error(JSON.stringify(result.errors));
         } else {
           e.target.reset();
-          toast.success("You successfully signed up!"); // pop-up message
+          toast.success("You successfully signed up!"); 
+          dispatch({type:"setIsSignUp",payload:true})
           setTimeout(() => {
            navigate("/login");
           }, 1500);
