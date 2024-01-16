@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { context } from "../../context/context";
 import "./profile.css";
 import BASE_URL from "../../config/urlConfig";
@@ -8,7 +8,6 @@ export default function Profile() {
   const { state, dispatch } = useContext(context);
   const userName = state.user ? state.user.firstName : "N/A";
   const email = state.user ? state.user.email : "N/A";
-  //console.log("User data:", state.user );
 
   return (
     <>
