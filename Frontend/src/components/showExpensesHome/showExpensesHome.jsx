@@ -26,22 +26,33 @@ function ShowExpensesHome() {
   return (
     <div>
       <h1>Your Most Recent Expenses</h1>
-      {state.expenses?.length > 3
+      <table>
+        <thead>
+          <tr>
+           <th>Date</th>
+           <th>Category</th>
+           <th>Amount</th>
+           <th>Reciept</th>
+          </tr>
+        </thead>
+        <tbody>
+        {state.expenses?.length > 3
         ? state.expenses
 
             .map((expense) => {
               return (
-                <div key={expense._id} className="showExpenses">
-                  <p>
+                <tr key={expense._id} className="showExpenses">
+                 <td>{new Date(expense?.date).toLocaleDateString()}</td>
+                  <td>
                     {expense?.category?.charAt(0).toUpperCase() +
                       expense?.category.slice(1)}
-                  </p>
-                  <p>
+                  </td>
+                  <td>
                     {expense?.amount}
                     <span>{curr}</span>
-                  </p>
-                  <p>{new Date(expense?.date).toLocaleString()}</p>
-                  <img
+                  </td>
+                 
+                  <td><img
                     src={
                       expense.reciept.includes("undefined")
                         ? "images/no-image.jpg"
@@ -49,25 +60,27 @@ function ShowExpensesHome() {
                     }
                     alt="no-img"
                     style={{ width: "20px", height: "20px" }}
-                  />
-                </div>
+                  /></td>
+                </tr>
               );
             })
             .reverse()
-            .slice(0, 5)
+            .slice(0, 6)
         : state.expenses
             .map((expense) => {
               return (
-                <div key={expense?._id} className="showExpenses">
-                  <p>
+                <tr key={expense?._id} className="showExpenses">
+                  <td>{new Date(expense?.date).toLocaleDateString()}</td>
+                  <td>
                     {expense?.category?.charAt(0).toUpperCase() +
                       expense?.category.slice(1)}
-                  </p>
-                  <p>
+                  </td>
+                  <td>
                     {expense?.amount}
                     <span>{curr}</span>
-                  </p>
-                  <p>{new Date(expense?.date).toLocaleString()}</p>
+                  </td>
+                 
+                  <td>
                   <img
                     src={
                       expense.reciept.includes("undefined")
@@ -77,10 +90,14 @@ function ShowExpensesHome() {
                     alt="no-img"
                     style={{ width: "20px", height: "20px" }}
                   />
-                </div>
+                    </td>
+                </tr>
               );
             })
             .reverse()}
+        </tbody>
+      </table>
+     
     </div>
   );
 }
