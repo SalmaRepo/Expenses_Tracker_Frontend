@@ -78,18 +78,32 @@ position: relative;
 .expData-container{
     height: 50%;
     overflow: auto;
-    border: 2px solid;
-    padding: 1rem 0;
+    width: 60%;
+    margin: 0 auto;
     border: 1px solid;
+    position: relative;
 }
 
-.expData{
+.expData-container table th{
+    position: sticky;
+    top: 0;
+}
+/* .expData{
+
     display: flex; 
     height: 30%; 
     justify-content: space-around;
 
-}
+} */
 
+.history-timeTravel{
+    display: flex;
+    padding: 1rem;
+    width: 40%;
+    margin: 0 auto;
+    justify-content: space-between;
+
+}
 .total{
     position: absolute;
     bottom: 0;
@@ -149,11 +163,8 @@ position: relative;
 
 .history-bottom-data .calendar{
     width: 40%;
-    height: 0%;
-    border: none;
-   
-
-
+   height: fit-content;
+   margin-bottom: 1rem;
 }
 
 

@@ -71,7 +71,7 @@ export default function AddExpences() {
   data.append('amount',expAmount.current.value);
   data.append("category",expCategory.current.value);
   // data.append("date",calDate);
-  data.append("date", calDate.toLocaleDateString());
+  data.append("date", calDate);
   data.append("userId",state.user._id)
    
    //console.log(data)
