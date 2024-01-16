@@ -70,8 +70,7 @@ export default function AddExpences() {
   data.append('file',preview);
   data.append('amount',expAmount.current.value);
   data.append("category",expCategory.current.value);
-  // data.append("date",calDate);
-  data.append("date", calDate.toLocaleDateString());
+  data.append("date", calDate); //! to localDataString ???
   data.append("userId",state.user._id)
    
    //console.log(data)
