@@ -9,9 +9,6 @@ export default function Profile() {
   const userName = state.user ? state.user.firstName : "N/A";
   const email = state.user ? state.user.email : "N/A";
 
-  
-  /* console.log(state.user); */
-
   return (
     <>
       {state.user && (

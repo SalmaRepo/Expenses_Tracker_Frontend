@@ -28,8 +28,12 @@ export function reducer(state,action){
     case "setBalance" : {
       return {...state,balance:action.payload}
     }
+
     case "setChangeImage" :{
       return {...state,changeImage:action.payload}
+    }
+    case "setIncomes" : {
+      return {...state,incomes:action.payload}
     }
 
   }
@@ -47,5 +51,7 @@ export const initialState={
     isSignUp:false,
     enteredIncomes:[], 
     balance:0,
-    changeImage:""
+    changeImage:"",
+    incomes:null
+
 }
