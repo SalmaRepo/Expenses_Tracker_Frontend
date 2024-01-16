@@ -4,20 +4,18 @@ import SideMenu from "../sideMenu/SideMenu";
 import "react-calendar/dist/Calendar.css";
 import BASE_URL from "../../config/urlConfig";
 import "./addIncomes.css";
-// import History from "../history/History";
 import { context } from "../../context/context";
 import Profile from "../profile/Profile";
 
-
 export default function AddIncomes() {
-  const {state,dispatch}=useContext(context) 
+  const { state, dispatch } = useContext(context);
   const [calDate, setCalDate] = useState(new Date());
   const incomeCategory = useRef();
   const incomeAmount = useRef();
+
   
-//calling this in useEffect so that state.user gets updated every time when there is a change in application
-  const getUserById=()=>{
-    if(state.user){
+  const getUserById = () => {
+    if (state.user) {
       const token = localStorage.getItem("token");
       fetch(`${BASE_URL}/api/users/getUserById/${state.user?._id}`, {
         method: "GET",
@@ -28,18 +26,14 @@ export default function AddIncomes() {
         .then((res) => res.json())
         .then((result) => dispatch({ type: "setUser", payload: result.data }))
         .catch((err) => console.log(err));
-    
     }
-    
-  
-}
-
+  };
   useEffect(() => {
     fetchIncomes();
-    getUserById()
+    getUserById();
   }, []);
 
-// Get incomes by user
+  // Get incomes by user
   const fetchIncomes = async () => {
     const token = localStorage.getItem("token");
     try {
@@ -52,7 +46,7 @@ export default function AddIncomes() {
       });
       if (response.ok) {
         const incomesData = await response.json();
-        dispatch({type:"setEnteredIncomes",payload:incomesData.data})
+        dispatch({ type: "setEnteredIncomes", payload: incomesData.data });
       } else {
         console.error("Error while retrieving income:", response.statusText);
       }
@@ -61,7 +55,7 @@ export default function AddIncomes() {
     }
   };
 
- // Create and add income
+  // Create and add income
   const incomesUpdate = async (e) => {
     const token = localStorage.getItem("token");
     e.preventDefault();
@@ -80,7 +74,12 @@ export default function AddIncomes() {
         body: JSON.stringify(newIncome),
       });
       if (response.ok) {
-        dispatch({ type: "setEnteredIncomes", payload: [newIncome, ...state.enteredIncomes] });
+        const updatedIncomes = [newIncome, ...state.enteredIncomes];//!
+        dispatch({
+          type: "setEnteredIncomes",
+          // payload: [newIncome, ...state.enteredIncomes],
+          payload: updatedIncomes,//!
+        });
         incomeAmount.current.value = "";
         incomeCategory.current.value = "Salary";
       } else {
@@ -90,9 +89,8 @@ export default function AddIncomes() {
       console.error("Error while adding income", error.message);
     }
     fetchIncomes();
-    getUserById()
+    getUserById();
   };
-
   function onChange(calDate) {
     setCalDate(calDate);
   }
@@ -101,11 +99,9 @@ export default function AddIncomes() {
   const handleDelete = (id, index) => {
     deleteIncome(id, index);
   };
-
   const deleteIncome = async (id, index) => {
     console.log(id, index);
     const token = localStorage.getItem("token");
-
     try {
       const response = await fetch(
         `${BASE_URL}/api/incomes/deleteIncome/${id}`,
@@ -118,7 +114,7 @@ export default function AddIncomes() {
         }
       );
       fetchIncomes();
-      getUserById()
+      getUserById();
       if (response.ok) {
         console.log("deleted income");
       } else {
@@ -129,7 +125,6 @@ export default function AddIncomes() {
     }
   };
 
-
   return (
     <div className="addIncome">
       <SideMenu />
@@ -137,14 +132,13 @@ export default function AddIncomes() {
         <form className="incomeForm">
           <Calendar onChange={onChange} value={calDate} className="calendar" />
 
-          <div className="incomeEnterSection">
+          <section className="incomeEnterSection">
             <input
               type="number"
               placeholder="Enter the Amount"
               className="incomeAmount"
               ref={incomeAmount}
             />
-
             <select name="category" ref={incomeCategory}>
               <option value="Salary">Salary</option>
               <option value="Family-Allowance">Family-Allowance</option>
@@ -155,20 +149,59 @@ export default function AddIncomes() {
               <option value="Gifts">Gifts</option>
               <option value="Others">Others</option>
             </select>
-
             <button type="button" onClick={incomesUpdate}>
               Confirm Income
             </button>
-          </div>
+          </section>
 
-          <div className="displayEnteredIncome">
+          <h2>Added Incomes</h2>
+
+          <section className="displayEnteredIncome">
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Category</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                {state.user?.incomes?.map((income, index) => (
+                  <tr key={index}>
+                    <td>{new Date(income.date).toLocaleDateString()}</td>
+                    <td>{income.category}</td>
+                    <td>{income.amount}</td>
+                    <td>
+                      <button
+                        type="button"
+                        className="delete"
+                        onClick={() => handleDelete(income._id, index)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>  
+
+        </form>
+      </div>
+      <Profile />
+    </div>
+  );
+}
+
+
+
+  {/* <div className="displayEnteredIncome">
             <h2>Added Incomes</h2>
             <ul>
-
               {state.user?.incomes?.map((income, index) => (
-
                 <li key={index}>
-                  Date: {new Date(income.date).toLocaleDateString()}| Category: {income.category}| Amount: {income.amount} 
+                  Date: {new Date(income.date).toLocaleDateString()}| Category: {income.category}| Amount: {income.amount}
                   <button
                     type="button"
                     className="delete"
@@ -179,10 +212,122 @@ export default function AddIncomes() {
                 </li>
               ))}
             </ul>
-          </div>
-        </form>
-      </div>
-      <Profile/>
-    </div>
-  );
-}
+          </div> */}
+
+
+// import React, { useState, useRef, useContext } from "react";
+// import Calendar from "react-calendar";
+// import SideMenu from "../sideMenu/SideMenu";
+// import "react-calendar/dist/Calendar.css";
+// import BASE_URL from "../../config/urlConfig";
+// import "./addIncomes.css";
+// import { context } from "../../context/context";
+// import Profile from "../profile/Profile";
+// import ShowIncomes from "../showIncomes/ShowIncomes";
+// import axios from "axios"
+
+// export default function AddIncomes() {
+//   const { state, dispatch } = useContext(context);
+//   const [calDate, setCalDate] = useState(new Date());
+//   const incomeCategory = useRef();
+//   const incomeAmount = useRef();
+//   const [incomes, setIncomes] = useState({});
+
+//   const incomesUpdate = (e) => {
+//     e.stopPropagation();
+//     e.preventDefault();
+
+//      const token=localStorage.getItem("token")
+
+//     const newIncome =
+//     {
+//       amount: incomeAmount.current.value,
+//       category: incomeCategory.current.value,
+//       date: calDate
+//     }
+
+//     // data.append('amount',incomeAmount.current.value);
+//     // data.append("category",incomeCategory.current.value);
+//     // // data.append("date",calDate);
+//     // data.append("date", calDate.toLocaleDateString());
+//     // data.append("userId",state.user._id)
+
+//      //console.log(data)
+
+//       // setIncomes({
+//       //   amount: incomeAmount.current.value,
+//       //   category: incomeCategory.current.value,
+//       //   date: calDate
+//       // });
+
+//       // dispatch({type:"setIsUpdateIncome",payload:true})
+//       // dispatch({type:"setIncomesFormData",payload:incomes})
+
+//       axios.post(`${BASE_URL}/api/incomes/createIncome`,newIncome,
+//       {headers:{"token":token,"Content-Type": "application/json"}})
+//       .then(result=>{
+//        // dispatch({type:"setIncomes",payload:result.data.data.incomes})
+//          //dispatch({type:"setIncomes",payload:[newIncome,...state.incomes]})
+//         console.log("susssssesfully ")
+//       })
+
+//       incomeAmount.current.value=0;
+//       incomeCategory.current.value="Salary";
+//     };
+
+// console.log(state.incomes)
+// console.log(state.user)
+
+//   function onChange(calDate) {
+//     setCalDate(calDate);
+//   }
+
+//   return (
+//     <div className="addIncome">
+//       <SideMenu />
+//       <div className="addIncomesHero">
+//         <form
+//            action="expForm"
+//            className="expForm"
+//            onSubmit={incomesUpdate}
+//            method="post"
+//         >
+//           <Calendar onChange={onChange} value={calDate} className="calendar" />
+
+//           <div className="incomeEnterSection">
+//             <input
+//               type="number"
+//                //type="text"
+//               placeholder="Enter the Amount"
+//               className="incomesAmount"
+//               ref={incomeAmount}
+//             />
+//             {/* <p>{state.user&&state.user?.currency?.slice(3)}</p> */}
+
+//             <select name="category" ref={incomeCategory}>
+//               <option value="Salary">Salary</option>
+//               <option value="Family-Allowance">Family-Allowance</option>
+//               <option value="Refunds">Refunds</option>
+//               <option value="Sales">Sales</option>
+//               <option value="Shares">Shares</option>
+//               <option value="Properties-Rent">Properties-Rent</option>
+//               <option value="Gifts">Gifts</option>
+//               <option value="Others">Others</option>
+//             </select>
+
+//             <button type="submit"> Confirm Income</button>
+
+//           </div>
+
+//           <div className="displayIncomesArea">
+//             <div className="displayEnteredIncomes">
+//               <ShowIncomes />
+//             </div>
+//           </div>
+
+//         </form>
+//       </div>
+//       <Profile />
+//     </div>
+//   );
+// }

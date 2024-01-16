@@ -62,11 +62,12 @@ const Balance = ({ userId }) => {
   return (
     <div>
       <h2>
-        Your Balance is{" "}
+        Your Balance is
         {typeof state.balance === "number"
           ? state.balance.toFixed(2)
-          : state.balance}{" "}
-      </h2>
+          : state.balance}
+          <span>{state.user?.currency?.slice(3)}</span>
+      </h2> 
     </div>
   );
 };

@@ -28,7 +28,9 @@ export function reducer(state,action){
     case "setBalance" : {
       return {...state,balance:action.payload}
     }
-
+    case "setIncomes" : {
+      return {...state,incomes:action.payload}
+    }
   }
 }
 
@@ -43,5 +45,6 @@ export const initialState={
     isUploadImageSelect:false,
     isSignUp:false,
     enteredIncomes:[], 
-    balance:0
+    balance:0,
+    incomes:null
 }

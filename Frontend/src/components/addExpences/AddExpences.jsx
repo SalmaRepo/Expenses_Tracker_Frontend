@@ -37,10 +37,10 @@ export default function AddExpences() {
         .then((result) => dispatch({ type: "setUser", payload: result.data }))
         .catch((err) => console.log(err));
     
-    }
-    
-  
+    }  
 }
+
+
   const grabImage = (e) => {
     /* const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]); 
@@ -70,7 +70,8 @@ export default function AddExpences() {
   data.append('file',preview);
   data.append('amount',expAmount.current.value);
   data.append("category",expCategory.current.value);
-  data.append("date",calDate);
+  // data.append("date",calDate);
+  data.append("date", calDate.toLocaleDateString());
   data.append("userId",state.user._id)
    
    //console.log(data)
@@ -83,19 +84,7 @@ export default function AddExpences() {
 
     dispatch({type:"setIsUpdateExpense",payload:true})
     dispatch({type:"setExpensesFormData",payload:expenses})
-    /* fetch(`${BASE_URL}/api/expenses/createExpense`,{
-      method:"POST",
-      headers:{"token":token,"Content-Type": "multipart/form-data"},
-      body:data
-    })
-    .then((res)=>{
-      console.log(res.json())
-      return res.json()}
-      )
-    .then((result)=>{
-      console.log(result)
-    }).catch((err)=>console.log(err)) */
-
+   
     axios.post(`${BASE_URL}/api/expenses/createExpense`,data,
     {headers:{"token":token,"Content-Type": "multipart/form-data"}})
     .then(result=>{
@@ -144,7 +133,7 @@ export default function AddExpences() {
                 className="expensesAmount"
                 ref={expAmount}
               />
-              <p>{state.user?.currency?.slice(3)}s</p>
+              <p>{state.user?.currency?.slice(3)}</p>
               </div>
               
               <select name="category" ref={expCategory}>
@@ -168,6 +157,7 @@ export default function AddExpences() {
               </div>
               <button type="submit">Confirm Expenses</button>
             </div>
+            
             <div className="displayExpArea">
               <div className="displayEnteredExp">
            <ShowExpenses expenses={expenses} setExpenses={setExpenses}/>
