@@ -11,10 +11,11 @@ import HistoryBarGraph from "../graph/HistoryBarGraph";
 function History() {
   const { state, dispatch } = useContext(context);
   const [filteredExpenses, setFilteredExpenses] = useState([]);
+  const [filteredIncomes, setFilteredIncomes] = useState([]); //! added
   const [selectedDuration, setSelectedDuration] = useState("month");
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
-  const [day, setDay] = useState(new Date().getDate()); //! added
+  const [day, setDay] = useState(new Date().getDate());
   const [calDate, setCalDate] = useState(new Date());
   const [recieptCategory, setRecieptCategory] = useState("");
   const [weekDay, setWeekDay] = useState(new Date());
@@ -33,6 +34,7 @@ function History() {
   const [recieptUrl, setRecieptUrl] = useState("");
   const [recieptDate, setRecieptDate] = useState(null);
   const curr = state.user?.currency?.slice(3);
+
   const months = [
     "January",
     "February",
@@ -73,7 +75,7 @@ function History() {
   };
 
   // EXPENSES SUMMARY
-  const summeriseExpenses = (filterExpenses) => {
+  const summariseExpenses = (filterExpenses) => {
     const expensesSummary = [];
     let addedCategories = {};
     filterExpenses?.map((exp) => {
@@ -93,23 +95,33 @@ function History() {
     return expensesSummary;
   };
 
+  // INCOMES SUMMARY //! added
+  const summariseIncomes = (filterIncomes) => {
+    const incomesSummary = [];
+    let addedCategories = {};
+    filterIncomes?.map((inc) => {
+      const { category, amount, date } = inc;
+      if (
+        addedCategories[category] 
+        //new Date(addedCategories[date]).getMonth() === month
+      ) {
+        addedCategories[category] += amount;
+      } else {
+        addedCategories[category] = amount;
+      }
+    });
+    for (const category in addedCategories) {
+      incomesSummary.push({ category, amount: addedCategories[category] });
+    }
+    return incomesSummary;
+  };
+
   // HANDLE LAST WEEK
   const handleWeek = () => {
     setSelectedDuration("week");
     getUserById();
-    /*     const currentDate = new Date();
 
-    const currentWeekStartDate = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      currentDate.getDate() - currentDate.getDay() - 6
-    );
-    console.log(currentWeekStartDate);
-    const currentWeekEndDate = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      currentDate.getDate() - currentDate.getDay()
-    );
+
     console.log(currentWeekEndDate); */
     const currentWeekExpenses = state.user?.expenses.filter(
       (exp) =>
@@ -124,36 +136,53 @@ function History() {
   const handleMonth = () => {
     setSelectedDuration("month");
     setFilteredExpenses([]);
+    setFilteredIncomes([]);
     getUserById();
     const currentMonthExpenses = state.user?.expenses.filter(
       (exp) =>
         new Date(exp.date).getMonth() === month &&
         new Date(exp.date).getFullYear() === year
     );
-    const summary = summeriseExpenses(currentMonthExpenses);
-    setFilteredExpenses(summary);
+    const currentMonthIncomes = state.user?.incomes.filter(
+      (inc) =>
+        new Date(inc.date).getMonth() === month &&
+        new Date(inc.date).getFullYear() === year
+    );
+    const expensesSummary = summariseExpenses(currentMonthExpenses);
+    const incomesSummary = summariseIncomes(currentMonthIncomes);
+    setFilteredExpenses(expensesSummary);
+    setFilteredIncomes(incomesSummary);
   };
 
   // HANDLE YEAR
   const handleYear = () => {
     setSelectedDuration("year");
     setFilteredExpenses([]);
+    setFilteredIncomes([]);
     getUserById();
     const yearlyExpenses = state.user?.expenses.filter(
       (exp) => new Date(exp.date).getFullYear() === year
     );
-    const summary = summeriseExpenses(yearlyExpenses);
-    setFilteredExpenses(summary);
+    const yearlyIncomes = state.user?.incomes.filter(
+      (inc) => new Date(inc.date).getFullYear() === year
+    );
+    const expensesSummary = summariseExpenses(yearlyExpenses);
+    const incomesSummary = summariseIncomes(yearlyIncomes);
+    setFilteredExpenses(expensesSummary);
+    setFilteredIncomes(incomesSummary);
   };
 
-  // HANDLE DAY  //! added
+  // SELECTED DATE
   const selectedDate = (calDate) => {
     setCalDate(calDate);
     handleDay();
   };
+
+  // HANDLE DAY
   const handleDay = () => {
     setSelectedDuration("day");
     setFilteredExpenses([]);
+    setFilteredIncomes([]); //!
     getUserById();
     /* console.log(calDate); */
     const currentDayExpenses = state.user?.expenses.filter(
@@ -161,41 +190,22 @@ function History() {
         new Date(exp.date).getDate() === new Date(calDate).getDate() &&
         new Date(exp.date).getMonth() === new Date(calDate).getMonth() &&
         new Date(exp.date).getFullYear() === new Date(calDate).getFullYear()
-      /*  new Date(exp.date).getDate() === day &&
-      new Date(exp.date).getMonth() === month &&
-      new Date(exp.date).getFullYear() === year */
+
     );
-    /*  const summary = summeriseExpenses(currentDayExpenses); */
+    const currentDayIncomes = state.user?.incomes.filter( //!   
+      (inc) =>
+        new Date(inc.date).getDate() === new Date(calDate).getDate() &&
+        new Date(inc.date).getMonth() === new Date(calDate).getMonth() &&
+        new Date(inc.date).getFullYear() === new Date(calDate).getFullYear()
+
+    );
     setFilteredExpenses(currentDayExpenses);
+    setFilteredIncomes(currentDayIncomes); //!
   };
-  /* 
-  console.log(filteredExpenses); */
 
-  // // HANDLE 6 MONTHS
-  // const handleSixMonths = () => {
-  //   setSelectedDuration("6 months");
-  //   getUserById();
-  //   const currentDate = new Date();
-  //   const lastSixMonthsStartDate = new Date(
-  //     currentDate.getFullYear(),
-  //     currentDate.getMonth() - 5,
-  //     1
-  //   );
-  //   const lastSixMonthsEndDate = new Date(
-  //     currentDate.getFullYear(),
-  //     currentDate.getMonth() + 1,
-  //     0
-  //   );
-  //   const lastSixMonthsExpenses = state.user?.expenses.filter(
-  //     (exp) =>
-  //       new Date(exp.date) >= lastSixMonthsStartDate &&
-  //       new Date(exp.date) <= lastSixMonthsEndDate
-  //   );
-  //   const summary = summeriseExpenses(lastSixMonthsExpenses);
-  //   setFilteredExpenses(summary);
-  // };
 
-  // HANDLE LAST AND NEXT MONTH
+
+  // HANDLE LAST MONTH
   const handleLastMoth = () => {
     if (month >= 1 && month <= 11) {
       setMonth(month - 1);
@@ -205,6 +215,7 @@ function History() {
     }
   };
 
+  // HANDLE NEXT MONTH
   const handleNextMonth = () => {
     if (month >= 0 && month <= 10) {
       setMonth(month + 1);
@@ -215,10 +226,12 @@ function History() {
     handleMonth();
   };
 
-  // HANDLE LAST AND NEXT YEAR
+  // HANDLE LAST YEAR
   const handleLastYear = () => {
     setYear(year - 1);
   };
+
+  // HANDLE NEXT YEAR
   const handleNextYear = () => {
     setYear(year + 1);
   };
@@ -255,6 +268,9 @@ function History() {
     getUserById();
   }, []);
 
+
+  // HANDLE RECIEPT
+
   const handleReciept = (url, date, category) => {
     setIsRecieptView(true);
     setRecieptUrl(url);
@@ -271,9 +287,7 @@ function History() {
       case "month":
         handleMonth();
         break;
-      // case "6 months":
-      //   break;
-      case "day": //! added
+      case "day":
         handleDay();
         break;
       case "year":
@@ -288,15 +302,26 @@ function History() {
     setIsRecieptView(false);
   };
 
-  const total = filteredExpenses.reduce((acc, exp) => {
+  // Total expenses
+  const totalExpenses = filteredExpenses.reduce((acc, exp) => {
     acc += exp.amount;
     return acc;
   }, 0);
+
+  // Total incomes
+  const totalIncomes = filteredIncomes.reduce((acc, inc) => {
+    acc += inc.amount;
+    return acc;
+  }, 0);
+
+  // Total balance
+  const totalBalance = totalIncomes - totalExpenses;
 
   return (
     <div className="history">
       <SideMenu />
 
+      {/* HERO  */}
       <div className="historyHero">
         {isRecieptView && (
           <div className="reciept-container">
@@ -328,12 +353,6 @@ function History() {
                 Month
               </button>
             </li>
-            {/* <li>
-              <button type="submit" onClick={handleSixMonths}>
-                6 Months
-              </button>
-            </li> */}
-
             <li>
               <button type="submit" onClick={handleYear}>
                 Year
@@ -353,11 +372,17 @@ function History() {
                 weekStart={weekStart}
                 weekLast={weekLast}
                 weekDay={weekDay}
+
               />
             </div>
+
+            {/* SELECT MONTH YEAR DAY */}
             <div className="history-bottom-data">
+
               {selectedDuration === "month" && (
+
                 <div className="history-timeTravel">
+
                   <button type="submit" onClick={handleLastMoth}>
                     {"<<"}
                   </button>
@@ -414,7 +439,10 @@ function History() {
                 </div>
               )}
 
+              {/* SHOW EXPENSES */}
+              <h2>Expenses</h2>
               <div className="expData-container">
+
                 <table>
                   <thead>
                     <tr>
@@ -467,19 +495,37 @@ function History() {
                     ))}
                   </tbody>
                 </table>
+
               </div>
             </div>
-            {selectedDuration !== "day" && (
-              <div className="total">
-                Total<p>{total}</p>
-              </div>
-            )}
+
+            {/* SHOW INCOMES */} {/* !! added  !! */}
+            <h2>Incomes</h2>
+            <div className="incData-container">
+              {filteredIncomes?.map((inc) => (
+                <div className="incData" key={`${inc.category}-${inc.date}`}>
+                  <p>
+                    {inc?.category.charAt(0).toUpperCase() +
+                      inc?.category.slice(1)}
+                  </p>
+                  <p>{inc?.amount}</p>
+                </div>
+              ))}
+            </div>
+
           </div>
 
+          {/* side right */} {/* !! added total  !! */}
           <div className="history-bottom-right">
-            <div className="expensesTotal">expenses</div>
-            <div className="incomesTotal">income</div>
-            <div className="displayReport">high/low</div>
+            <div className="expensesTotal">
+              Expenses of the selected date: {totalExpenses}
+            </div>
+            <div className="incomesTotal">
+              Income of the selected date: {totalIncomes}
+            </div>
+            <div className="displayReport">
+              Balance of the selected date:{totalBalance}
+            </div>
           </div>
         </div>
       </div>
