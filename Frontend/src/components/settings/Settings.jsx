@@ -7,6 +7,7 @@ import { context } from "../../context/context";
 import UpdateUserDetails from "../UpdateUserDetails/UpdateUserDetails";
 import Help from "../Help/Help";
 import SelectCurrency from "../selectCurrency/SelectCurrency";
+import ChangeProfileImg from "../changeProfileImg/ChangeProfileImg";
 
 export default function Settings() {
   const navigate = useNavigate();
@@ -16,51 +17,51 @@ export default function Settings() {
   const [isHelpShow, setIsHelpShow] = useState(false);
   const [isSelectCurrency, setIsSelectCurrency] = useState(false);
   const [isDarkLight, setIsDarkLight] = useState(false);
-
+  const [isChangeImg, setIsChangeImg] = useState(false);
   console.log(darkMode);
-
-
-  
+  function changProfilePic() {
+    setIsChangeImg(!isChangeImg);
+    setIsUpdateUserDetails(false);
+    setIsSelectCurrency(false);
+  }
   function showHelp() {
     // navigate("/help");
     setIsHelpShow(!isHelpShow);
     setIsUpdateUserDetails(false);
     setIsSelectCurrency(false);
+    setIsChangeImg(false);
   }
 
   function showUpdateUserDetails() {
     setIsUpdateUserDetails(!isUpdateUserDetails);
     setIsHelpShow(false);
     setIsSelectCurrency(false);
+    setIsChangeImg(false);
   }
-
+  
   function toogleDarkMode() {
-    const newDarkMode=!darkMode;
+    const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
-    setIsDarkLight(!isDarkLight)
+    setIsDarkLight(!isDarkLight);
     localStorage.setItem("darkMode", newDarkMode.toString());
   }
-
-
   const handleChageCurrency = () => {
     setIsSelectCurrency(!isSelectCurrency);
     setIsUpdateUserDetails(false);
     setIsHelpShow(false);
+    setIsChangeImg(false);
   };
-
   return (
     <div className="Settings">
       <SideMenu />
-
       <div className="SettingHero">
         <h1>Settings</h1>
-
         <ul className="SettingsMiddle">
           <li>
             <button>Change Password</button>
           </li>
           <li>
-            <button>Change Profile Picture</button>
+            <button onClick={changProfilePic}> Change Profile Picture</button>
           </li>
           <li>
             <button onClick={showUpdateUserDetails}>
@@ -84,18 +85,20 @@ export default function Settings() {
               <button type="submit">Submit</button>
             </form>
           )}
-
           <li>
             <button onClick={showHelp}>Help/FAQ</button>
           </li>
           <li>
-          <button onClick={toogleDarkMode}>{isDarkLight? "Light Mode" : "Dark Mode" }</button>
+            <button onClick={toogleDarkMode}>
+              {isDarkLight ? "Light Mode" : "Dark Mode"}
+            </button>
           </li>
         </ul>
         {/* <div>{isUpdateUserDetails? <UpdateUserDetails/>: <div><p>nothing</p></div>}</div> */}
         <div>{isUpdateUserDetails && <UpdateUserDetails />}</div>
         <div>{isHelpShow && <Help />}</div>
         <div>{isSelectCurrency && <SelectCurrency />}</div>
+        <div>{isChangeImg && <ChangeProfileImg />}</div>
       </div>
       <Profile />
     </div>
