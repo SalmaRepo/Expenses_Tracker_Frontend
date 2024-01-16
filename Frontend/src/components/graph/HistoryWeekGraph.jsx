@@ -1,28 +1,25 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { context } from "../../context/context";
-import BarDayGraph from "./BarDayGraph";
+
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
+import BarWeekGraph from "./BarWeekGraph";
 Chart.register(CategoryScale);
 
-function HistoryDayGraph({ day, month, year }) {
-  console.log(day);
-  const { state, dispatch } = useContext(context);
-  const expensesSummary = [];
+function HistoryWeekGraph({weekStart,weekLast}) {
+ const { state, dispatch } = useContext(context);
+ const expensesSummary = [];
   let addedCategories = {};
-
-  const dayExpenses = state.user?.expenses?.filter(
+ const weeklyExpenses = state.user?.expenses?.filter(
     (exp) =>
-      new Date(exp.date).getDate() === new Date(day).getDate() &&
-      new Date(exp.date).getMonth() === month &&
-      new Date(exp.date).getFullYear() === year
+    new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
+    new Date(exp.date).getDate() <= new Date(weekLast).getDate()
   );
 
-  /*  console.log(monthlyExpenses); */
+ /*  console.log(monthlyExpenses); */
 
-  dayExpenses?.map((exp) => {
+ weeklyExpenses?.map((exp) => {
     const { amount, category } = exp;
-    console.log(amount)
     if (addedCategories[category]) {
       addedCategories[category] += amount;
     } else {
@@ -35,10 +32,13 @@ function HistoryDayGraph({ day, month, year }) {
   for (const category in addedCategories) {
     expensesSummary.push({ category, amount: addedCategories[category] });
   }
-  console.log(expensesSummary);
+  /* console.log(expensesSummary); */
 
   const [chartData, setChartData] = useState({
-    labels: expensesSummary?expensesSummary.map((expense) => expense?.category):[],
+    labels: expensesSummary?.map(
+      (expense) =>
+        expense?.category?.charAt(0).toUpperCase() + expense?.category.slice(1)
+    ),
     datasets: [
       {
         label: "Amount Spent ",
@@ -53,12 +53,12 @@ function HistoryDayGraph({ day, month, year }) {
 
   useEffect(() => {
     setChartData({
-      labels: expensesSummary?expensesSummary.map((expense) => expense?.category):[],
+      labels: expensesSummary?.map((expense) => expense?.category),
       datasets: [
         {
           label: "Amount Spent ",
           data: expensesSummary?.map((expense) => expense?.amount),
-          backgroundColor: [
+          backgroundColor: [ 
             "#2a71d0",
             "#35d02a",
             "#d02aa9",
@@ -72,16 +72,12 @@ function HistoryDayGraph({ day, month, year }) {
         },
       ],
     });
-
-    console.log(chartData)
-  }, [day , month , year]);
-
-console.log(chartData)
+  }, [weekStart,weekLast]);
   return (
     <div>
-      {chartData ?<BarDayGraph chartData={chartData} day={day} month={month} year={year} />:"hello"}
+        <BarWeekGraph chartData={chartData} weekLast={weekLast} weekStart={weekStart}/>
     </div>
-  );
+  )
 }
 
-export default HistoryDayGraph;
+export default HistoryWeekGraph

@@ -2,11 +2,11 @@ import React, { useContext, useEffect } from "react";
 import BASE_URL from "../../config/urlConfig";
 import { context } from "../../context/context";
 import "./showExpenses.css";
-import toast, { Toaster } from "react-hot-toast"
+import toast, { Toaster } from "react-hot-toast";
 
 function ShowExpenses(/* {expenses,setExpenses} */) {
   const { state, dispatch } = useContext(context);
-  const curr=state.user?.currency?.slice(3)
+  const curr = state.user?.currency?.slice(3);
 
   //console.log(state.expenses);
   //console.log(state.user);
@@ -26,54 +26,51 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
   };
 
   //calling this in useEffect so that state.user gets updated every time when there is a change in application
-  const getUserById=()=>{
-      if(state.user){
-        const token = localStorage.getItem("token");
-        fetch(`${BASE_URL}/api/users/getUserById/${state.user?._id}`, {
-          method: "GET",
-          headers: {
-            token: token,
-          },
-        })
-          .then((res) => res.json())
-          .then((result) => dispatch({ type: "setUser", payload: result.data }))
-          .catch((err) => console.log(err));
-      
-      }
-      
-    
-  }
-
-  useEffect(() => {
-    getExpenseByUser()
-    getUserById()
-    
-  },[]);
-
-  const deleteExpense=(id)=>{
-   const token=localStorage.getItem("token");
-   if(id){
-    fetch(`${BASE_URL}/api/expenses/delteExpense/${id}`,{
-      method: "DELETE",
+  const getUserById = () => {
+    if (state.user) {
+      const token = localStorage.getItem("token");
+      fetch(`${BASE_URL}/api/users/getUserById/${state.user?._id}`, {
+        method: "GET",
         headers: {
           token: token,
         },
-        
-      body:JSON.stringify({userId:id}) 
-     }).then(res=>res.json())
-     .then(result=>{
-      toast.success("expenses Deleted")
-      console.log(state.user)})
-     .catch(err=>console.log(err))
-   }
+      })
+        .then((res) => res.json())
+        .then((result) => dispatch({ type: "setUser", payload: result.data }))
+        .catch((err) => console.log(err));
+    }
+  };
 
-   getExpenseByUser()
-   getUserById()
-   
-  }
+  useEffect(() => {
+    getExpenseByUser();
+    getUserById();
+  }, []);
 
-  const editExpense=(id)=>{
-    toast.error("Click on delete to edit")
+  const deleteExpense = (id) => {
+    const token = localStorage.getItem("token");
+    if (id) {
+      fetch(`${BASE_URL}/api/expenses/delteExpense/${id}`, {
+        method: "DELETE",
+        headers: {
+          token: token,
+        },
+
+        body: JSON.stringify({ userId: id }),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          toast.success("expenses Deleted");
+          console.log(state.user);
+        })
+        .catch((err) => console.log(err));
+    }
+
+    getExpenseByUser();
+    getUserById();
+  };
+
+  const editExpense = (id) => {
+    toast.error("Click on delete to edit");
 
     //willbe handled later
     /* const token=localStorage.getItem("token");
@@ -92,45 +89,112 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
       console.log(result.data)})
      .catch(err=>console.log(err))
    } */
-
-  }
-
-
+  };
 
   return (
     <div>
-       <Toaster position="top-center" />
+      <Toaster position="top-center" />
       <div className="showExpenses">
-        <h3>Category</h3>
-        <h3>Amount</h3>
-        <h3>Date</h3>
-        <h3>Reciept</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Reciept</th>
+            </tr>
+          </thead>
+          <tbody>
+            {state.expenses
+              ? state.expenses
+                  ?.map((expense) => {
+                    return (
+                      <tr key={expense?._id} className="showExpenses">
+                        <td>{new Date(expense?.date).toLocaleDateString()}</td>
+                        <td>
+                          {expense?.category?.charAt(0)?.toUpperCase() +
+                            expense?.category?.slice(1)}
+                        </td>
+                        <td>
+                          {expense?.amount}
+                          <span>{curr}</span>
+                        </td>
+                        
+                        <td>
+                          {" "}
+                          <img
+                            src={
+                              expense.reciept.includes("undefined")
+                                ? "images/no-image.jpg"
+                                : `${BASE_URL}/${expense.reciept}`
+                            }
+                            alt="no-img"
+                            style={{ width: "30px", height: "30px" }}
+                          />
+                        </td>
+
+                        <button
+                          type="button"
+                          onClick={() => deleteExpense(expense?._id)}
+                        >
+                          Delete
+                        </button>
+                       {/*  <button
+                          type="button"
+                          onClick={() => editExpense(expense?._id)}
+                        >
+                          Edit
+                        </button> */}
+                      </tr>
+                    );
+                  })
+                  .reverse()
+              : state.user?.expenses
+                  ?.map((expense) => {
+                    return (
+                      <tr key={expense._id} className="showExpenses">
+                        <td>{new Date(expense?.date).toLocaleDateString()}</td>
+                        <td>
+                          {expense?.category?.charAt(0)?.toUpperCase() +
+                            expense?.category?.slice(1)}
+                        </td>
+                        <td>
+                          {expense?.amount}
+                          <span>{curr}</span>
+                        </td>
+                       
+                        <td>
+                          {" "}
+                          <img
+                            src={
+                              expense.reciept.includes("undefined")
+                                ? "images/no-image.jpg"
+                                : `${BASE_URL}/${expense.reciept}`
+                            }
+                            alt="no-img"
+                            style={{ width: "30px", height: "30px" }}
+                          />
+                        </td>
+
+                        <button
+                          type="button"
+                          onClick={() => deleteExpense(expense?._id)}
+                        >
+                          Delete
+                        </button>
+                     {/*    <button
+                          type="button"
+                          onClick={() => editExpense(expense?._id)}
+                        >
+                          Edit
+                        </button> */}
+                      </tr>
+                    );
+                  })
+                  .reverse()}
+          </tbody>
+        </table>
       </div>
-      {state.expenses
-        ?  state.expenses?.map((expense) => {
-            return (
-              <div key={expense?._id} className="showExpenses">
-                <p>{expense?.category?.charAt(0)?.toUpperCase()+expense?.category?.slice(1)}</p>
-                <p>{expense?.amount}<span>{curr}</span></p>
-                <p>{new Date(expense?.date).toLocaleDateString()}</p>
-                <button type="button" onClick={()=>deleteExpense(expense?._id)}>Delete</button>
-                <button type="button" onClick={()=>editExpense(expense?._id)}>Edit</button>
-                <img src={expense.reciept.includes("undefined")?"images/no-image.jpg":`${BASE_URL}/${expense.reciept}`} alt="no-img" style={{width:"20px",height:"20px"}} />
-              </div>
-            );
-          }).reverse()
-         : state.user?.expenses?.map((expense) => {
-            return (
-              <div key={expense._id} className="showExpenses">
-                <p>{expense?.category?.charAt(0)?.toUpperCase()+expense?.category?.slice(1)}</p>
-                <p>{expense?.amount}<span>{curr}</span></p>
-                <p>{new Date(expense?.date).toLocaleDateString()}</p>
-                <button type="button" onClick={()=>deleteExpense(expense?._id)}>Delete</button>
-                <button type="button" onClick={()=>editExpense(expense?._id)}>Edit</button>
-                <img src={expense.reciept.includes("undefined")?"images/no-image.jpg":`${BASE_URL}/${expense.reciept}`} alt="no-img" style={{width:"20px",height:"20px"}} />
-              </div>
-            );
-          }).reverse() }
     </div>
   );
 }

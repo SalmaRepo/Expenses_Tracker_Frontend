@@ -67,26 +67,47 @@
 .select-data-button{
     display: flex;
 }
-.history-bottom-data {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid;
-  height: 50vh;
-  position: relative;
+
+
+.expData-container{
+    height: 50%;
+    overflow: auto;
+    width: 60%;
+    margin: 0 auto;
+    border: 1px solid;
+    position: relative;
 }
 
-.expData-container {
-  height: 50%;
-  overflow: auto;
-  border: 2px solid;
-  padding: 1rem 0;
-  border: 1px solid;
-}
+.expData-container table th{
+    position: sticky;
+    top: 0;
 
-.expData {
-  display: flex;
-  height: 30%;
-  justify-content: space-around;
+}
+/* .expData{
+
+
+    display: flex; 
+    height: 30%; 
+    justify-content: space-around;
+
+} */
+
+.history-timeTravel{
+    display: flex;
+    padding: 1rem;
+    width: 40%;
+    margin: 0 auto;
+    justify-content: space-between;
+
+}
+.total{
+    position: absolute;
+    bottom: 0;
+    bottom: 2rem;
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+
 }
 
 .incData-container {
@@ -145,13 +166,12 @@
   justify-content: space-around;
 }
 
-.history-bottom-right {
-  display: column;
-  border: 1px solid;
-  gap: 1rem 2rem;
-  align-items: center;
-  justify-content: center;
-  width: 30%;
+
+.history-bottom-data .calendar{
+    width: 40%;
+   height: fit-content;
+   margin-bottom: 1rem;
+
 }
 
 .expensesTotal,
