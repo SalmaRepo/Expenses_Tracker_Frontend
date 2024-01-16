@@ -1,25 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { context } from "../../context/context";
-import BarMonthChart from "./BarMonthGraph";
+import BarDayGraph from "./BarDayGraph";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 Chart.register(CategoryScale);
 
-function HistoryMonthGraph({ month, year }) {
+function HistoryDayGraph({ day, month, year }) {
+  console.log(day);
   const { state, dispatch } = useContext(context);
   const expensesSummary = [];
   let addedCategories = {};
 
-  const monthlyExpenses = state.user?.expenses?.filter(
+  const dayExpenses = state.user?.expenses?.filter(
     (exp) =>
+      new Date(exp.date).getDate() === new Date(day).getDate() &&
       new Date(exp.date).getMonth() === month &&
       new Date(exp.date).getFullYear() === year
   );
 
- /*  console.log(monthlyExpenses); */
+  /*  console.log(monthlyExpenses); */
 
-  monthlyExpenses?.map((exp) => {
+  dayExpenses?.map((exp) => {
     const { amount, category } = exp;
+    console.log(amount)
     if (addedCategories[category]) {
       addedCategories[category] += amount;
     } else {
@@ -32,13 +35,10 @@ function HistoryMonthGraph({ month, year }) {
   for (const category in addedCategories) {
     expensesSummary.push({ category, amount: addedCategories[category] });
   }
-  /* console.log(expensesSummary); */
+  console.log(expensesSummary);
 
   const [chartData, setChartData] = useState({
-    labels: expensesSummary?.map(
-      (expense) =>
-        expense?.category?.charAt(0).toUpperCase() + expense?.category.slice(1)
-    ),
+    labels: expensesSummary?expensesSummary.map((expense) => expense?.category):[],
     datasets: [
       {
         label: "Amount Spent ",
@@ -53,7 +53,7 @@ function HistoryMonthGraph({ month, year }) {
 
   useEffect(() => {
     setChartData({
-      labels: expensesSummary?.map((expense) => expense?.category),
+      labels: expensesSummary?expensesSummary.map((expense) => expense?.category):[],
       datasets: [
         {
           label: "Amount Spent ",
@@ -70,12 +70,16 @@ function HistoryMonthGraph({ month, year }) {
         },
       ],
     });
-  }, [year, month]);
+
+    console.log(chartData)
+  }, [day , month , year]);
+
+console.log(chartData)
   return (
     <div>
-      <BarMonthChart chartData={chartData} month={month} year={year} />
+      {chartData ?<BarDayGraph chartData={chartData} day={day} month={month} year={year} />:"hello"}
     </div>
   );
 }
 
-export default HistoryMonthGraph;
+export default HistoryDayGraph;

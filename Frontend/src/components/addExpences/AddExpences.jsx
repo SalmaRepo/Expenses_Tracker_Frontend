@@ -76,7 +76,7 @@ export default function AddExpences() {
    
    //console.log(data)
     setExpenses({
-      amount: expAmount.current.value,
+      amount:expAmount.current.value,
       category: expCategory.current.value,
       date: calDate,
       reciept:preview
@@ -127,6 +127,7 @@ export default function AddExpences() {
               <div className="expensesAmountContainer">
               <input
                 type="number"
+                step="any"
                 name="amount"
                 placeholder="Enter the Amount"
                 className="expensesAmount"
