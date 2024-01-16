@@ -304,7 +304,7 @@ function History() {
         <div className="historyBottom">
           <div className="history-bottom-left">
             <div className="history-bottom-graphs">
-              <HistoryBarGraph selectedDuration={selectedDuration} year={year} month={month}/>
+              <HistoryBarGraph selectedDuration={selectedDuration} year={year} month={month} day={calDate}/>
             </div>
             <div className="history-bottom-data">
               {selectedDuration === "month" && (
