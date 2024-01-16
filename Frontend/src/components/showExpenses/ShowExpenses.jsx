@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast"
 
 function ShowExpenses(/* {expenses,setExpenses} */) {
   const { state, dispatch } = useContext(context);
-  const curr=state.user?.currency?.slice(3)+"s"
+  const curr=state.user?.currency?.slice(3)
 
   //console.log(state.expenses);
   //console.log(state.user);
@@ -103,7 +103,7 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
       <div className="showExpenses">
         <h3>Category</h3>
         <h3>Amount</h3>
-        <h3>Time</h3>
+        <h3>Date</h3>
         <h3>Reciept</h3>
       </div>
       {state.expenses
@@ -112,7 +112,7 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
               <div key={expense?._id} className="showExpenses">
                 <p>{expense?.category?.charAt(0)?.toUpperCase()+expense?.category?.slice(1)}</p>
                 <p>{expense?.amount}<span>{curr}</span></p>
-                <p>{new Date(expense?.date).toLocaleString()}</p>
+                <p>{new Date(expense?.date).toLocaleDateString()}</p>
                 <button type="button" onClick={()=>deleteExpense(expense?._id)}>Delete</button>
                 <button type="button" onClick={()=>editExpense(expense?._id)}>Edit</button>
                 <img src={expense.reciept.includes("undefined")?"images/no-image.jpg":`${BASE_URL}/${expense.reciept}`} alt="no-img" style={{width:"20px",height:"20px"}} />
@@ -124,7 +124,7 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
               <div key={expense._id} className="showExpenses">
                 <p>{expense?.category?.charAt(0)?.toUpperCase()+expense?.category?.slice(1)}</p>
                 <p>{expense?.amount}<span>{curr}</span></p>
-                <p>{new Date(expense?.date).toLocaleString()}</p>
+                <p>{new Date(expense?.date).toLocaleDateString()}</p>
                 <button type="button" onClick={()=>deleteExpense(expense?._id)}>Delete</button>
                 <button type="button" onClick={()=>editExpense(expense?._id)}>Edit</button>
                 <img src={expense.reciept.includes("undefined")?"images/no-image.jpg":`${BASE_URL}/${expense.reciept}`} alt="no-img" style={{width:"20px",height:"20px"}} />
