@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./components/landingPage/LandingPage";
-import About from "./components/about/About";
 import Login from "./components/login/Login";
 import SignUp from "./components/signUp/SignUp";
 import Home from "./components/home/Home";
@@ -17,9 +16,9 @@ import History from "./components/history/History";
 import SelectCurrency from "./components/selectCurrency/SelectCurrency";
 
 function App() {
-  const {darkMode,setDarkMode} = useContext(context)
+  const { darkMode, setDarkMode } = useContext(context);
   return (
-    <div className={darkMode?"darkMode":"lightMode"}>
+    <div className={darkMode ? "darkMode" : "lightMode"}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -28,12 +27,12 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/addExpenses" element={<AddExpences />} />
           <Route path="/addIncomes" element={<AddIncomes />} />
-          <Route path="/history" element={<History/>} />
+          <Route path="/history" element={<History />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/help" element={<Help />} />
           <Route path="/UpdateUserDetails" element={<UpdateUserDetails />} />
-          <Route path="/selectCurrency" element={<SelectCurrency/>}/>
+          <Route path="/selectCurrency" element={<SelectCurrency />} />
         </Routes>
       </BrowserRouter>
     </div>
