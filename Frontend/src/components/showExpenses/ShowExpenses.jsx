@@ -4,14 +4,11 @@ import { context } from "../../context/context";
 import "./showExpenses.css";
 import toast, { Toaster } from "react-hot-toast";
 
-function ShowExpenses(/* {expenses,setExpenses} */) {
+function ShowExpenses() {
   const { state, dispatch } = useContext(context);
   const curr = state.user?.currency?.slice(3);
 
-  //console.log(state.expenses);
-  //console.log(state.user);
-  //console.log(expenses)
-
+  // Fetch user expenses from the server
   const getExpenseByUser = () => {
     const token = localStorage.getItem("token");
     fetch(`${BASE_URL}/api/expenses/getExpensesByUser`, {
@@ -25,7 +22,7 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
       .catch((err) => console.log(err));
   };
 
-  //calling this in useEffect so that state.user gets updated every time when there is a change in application
+  // Fetch user information by ID
   const getUserById = () => {
     if (state.user) {
       const token = localStorage.getItem("token");
@@ -41,15 +38,17 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
     }
   };
 
+  // Fetch expenses and user information on component mount
   useEffect(() => {
     getExpenseByUser();
     getUserById();
   }, []);
 
+  // Delete expense by ID
   const deleteExpense = (id) => {
     const token = localStorage.getItem("token");
     if (id) {
-      fetch(`${BASE_URL}/api/expenses/delteExpense/${id}`, {
+      fetch(`${BASE_URL}/api/expenses/deleteExpense/${id}`, {
         method: "DELETE",
         headers: {
           token: token,
@@ -65,38 +64,19 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
         .catch((err) => console.log(err));
     }
 
+    // Refresh expenses and user information after deletion
     getExpenseByUser();
     getUserById();
-  };
-
-  const editExpense = (id) => {
-    toast.error("Click on delete to edit");
-
-    //willbe handled later
-    /* const token=localStorage.getItem("token");
-   
-   if(id){
-    fetch(`${BASE_URL}/api/expenses/updateExpense/${id}`,{
-      method: "PATCH",
-        headers: {
-          token: token,
-        },
-        
-      body:JSON.stringify(expenses) 
-     }).then(res=>res.json())
-     .then(result=>{
-      
-      console.log(result.data)})
-     .catch(err=>console.log(err))
-   } */
   };
 
   return (
     <div>
       <Toaster position="top-center" />
+      {/* Main container for displaying expenses */}
       <div className="showExpenses">
         <table>
           <thead>
+            {/* Table header */}
             <tr>
               <th>Date</th>
               <th>Category</th>
@@ -105,10 +85,12 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
             </tr>
           </thead>
           <tbody>
+            {/* Map through expenses and render rows */}
             {state.expenses
               ? state.expenses
                   ?.map((expense) => {
                     return (
+                      /* Display expense details */
                       <tr key={expense?._id} className="showExpenses">
                         <td>{new Date(expense?.date).toLocaleDateString()}</td>
                         <td>
@@ -119,9 +101,9 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
                           {expense?.amount}
                           <span>{curr}</span>
                         </td>
-                        
+
+                        {/* Display receipt image */}
                         <td>
-                          {" "}
                           <img
                             src={
                               expense.reciept.includes("undefined")
@@ -132,19 +114,13 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
                             style={{ width: "30px", height: "30px" }}
                           />
                         </td>
-
+                        {/* Delete button */}
                         <button
                           type="button"
                           onClick={() => deleteExpense(expense?._id)}
                         >
                           Delete
                         </button>
-                       {/*  <button
-                          type="button"
-                          onClick={() => editExpense(expense?._id)}
-                        >
-                          Edit
-                        </button> */}
                       </tr>
                     );
                   })
@@ -162,7 +138,7 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
                           {expense?.amount}
                           <span>{curr}</span>
                         </td>
-                       
+
                         <td>
                           {" "}
                           <img
@@ -182,12 +158,6 @@ function ShowExpenses(/* {expenses,setExpenses} */) {
                         >
                           Delete
                         </button>
-                     {/*    <button
-                          type="button"
-                          onClick={() => editExpense(expense?._id)}
-                        >
-                          Edit
-                        </button> */}
                       </tr>
                     );
                   })

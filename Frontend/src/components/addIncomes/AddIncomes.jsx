@@ -10,10 +10,12 @@ import Profile from "../profile/Profile";
 export default function AddIncomes() {
   const { state, dispatch } = useContext(context);
   const [calDate, setCalDate] = useState(new Date());
+
+  // Refs for input fields
   const incomeCategory = useRef();
   const incomeAmount = useRef();
 
-  
+  // Fetch user details by ID
   const getUserById = () => {
     if (state.user) {
       const token = localStorage.getItem("token");
@@ -28,12 +30,14 @@ export default function AddIncomes() {
         .catch((err) => console.log(err));
     }
   };
+
+  // Fetch user incomes and user details on component mount
   useEffect(() => {
     fetchIncomes();
     getUserById();
   }, []);
 
-  // Get incomes by user
+  // Fetch incomes by user
   const fetchIncomes = async () => {
     const token = localStorage.getItem("token");
     try {
@@ -77,7 +81,6 @@ export default function AddIncomes() {
         const updatedIncomes = [newIncome, ...state.enteredIncomes];
         dispatch({
           type: "setEnteredIncomes",
-          // payload: [newIncome, ...state.enteredIncomes],
           payload: updatedIncomes,
         });
         incomeAmount.current.value = "";
@@ -91,14 +94,18 @@ export default function AddIncomes() {
     fetchIncomes();
     getUserById();
   };
+
+  // Callback function for calendar date change
   function onChange(calDate) {
     setCalDate(calDate);
   }
 
-  // Delete income
+  // Handle Delete
   const handleDelete = (id, index) => {
     deleteIncome(id, index);
   };
+
+  // Delete income by ID
   const deleteIncome = async (id, index) => {
     console.log(id, index);
     const token = localStorage.getItem("token");
@@ -132,6 +139,7 @@ export default function AddIncomes() {
         <form className="incomeForm">
           <Calendar onChange={onChange} value={calDate} className="calendar" />
 
+          {/* Entering income details */}
           <section className="incomeEnterSection">
             <input
               type="number"
@@ -154,10 +162,9 @@ export default function AddIncomes() {
             </button>
           </section>
 
+          {/* Section for added incomes */}
           <h2>Added Incomes</h2>
-
           <section className="displayEnteredIncome">
-            
             <table>
               <thead>
                 <tr>
@@ -185,8 +192,7 @@ export default function AddIncomes() {
                 ))}
               </tbody>
             </table>
-          </section>  
-
+          </section>
         </form>
       </div>
       <Profile />

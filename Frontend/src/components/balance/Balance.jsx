@@ -28,8 +28,6 @@ const Balance = ({ userId }) => {
           return;
         }
 
-        //?console.log("User", user.data);
-
         // Calculate total incomes
         let totalIncomes = 0;
         if (user.data.incomes) {
@@ -66,8 +64,8 @@ const Balance = ({ userId }) => {
         {typeof state.balance === "number"
           ? state.balance.toFixed(2)
           : state.balance}
-          <span>{state.user?.currency?.slice(3)}</span>
-      </h2> 
+        <span>{state.user?.currency?.slice(3)}</span>
+      </h2>
     </div>
   );
 };
