@@ -15,24 +15,18 @@ export default function About() {
       </p>
        
       <div className="offer-cards">
+        
         {/* Card-1 */}
         <div className="offer-card">
           <h2>Track your Expenses</h2>
           <img className='imgOne' src="images/alexander-mils-lCPhGxs7pww-unsplash.jpg" alt="holding money"/>
           <p>You can track and manage your expenses with ease using our expense tracking app.</p>
-
         </div>
 
         {/* Card-2 */}
         <div className="offer-card">
           <h2>Track Income with Graphs</h2>
           <LineChart /> 
-          <br />
-          <br />
-          <br />
-          <br />
-         
-
           <p>Visualize your income over time with interactive graphs and charts for better financial insights.</p>
         </div>
 

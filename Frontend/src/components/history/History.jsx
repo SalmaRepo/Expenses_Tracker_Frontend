@@ -16,7 +16,6 @@ import {
   summariseExpenses,
   summariseIncomes,
 } from "./HistoryHelpers";
-
 function History() {
   const { state, dispatch } = useContext(context);
   const [filteredExpenses, setFilteredExpenses] = useState([]);
@@ -28,7 +27,6 @@ function History() {
   const [calDate, setCalDate] = useState(new Date());
   const [recieptCategory, setRecieptCategory] = useState("");
   const [weekDay, setWeekDay] = useState(new Date());
-
   const [weekStart, setWeekStart] = useState(
     new Date(
       weekDay.setDate(
@@ -43,7 +41,6 @@ function History() {
   const [recieptUrl, setRecieptUrl] = useState("");
   const [recieptDate, setRecieptDate] = useState(null);
   const curr = state.user?.currency?.slice(3);
-
   const getUserById = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -72,7 +69,6 @@ function History() {
     const day = localStorage.getItem("historyDate") || calDate;
     setCalDate(day);
   }, []);
-
   // CASE
   useEffect(() => {
     switch (selectedDuration) {
@@ -92,7 +88,6 @@ function History() {
         break;
     }
   }, [selectedDuration, month, year, calDate, weekStart, weekLast, state.user]);
-
   // HANDLE LAST WEEK
   const handleWeek = () => {
     setSelectedDuration("week");
@@ -102,7 +97,6 @@ function History() {
         new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
         new Date(exp.date).getDate() <= new Date(weekLast).getDate()
     );
-
     const currentWeekIncomes = state.user?.incomes.filter(
       (inc) =>
         new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
@@ -113,7 +107,6 @@ function History() {
     const incomesSummary = summariseIncomes(currentWeekIncomes);
     setFilteredIncomes(incomesSummary);
   };
-
   // HANDLE MONTH
   const handleMonth = () => {
     setSelectedDuration("month");
@@ -123,7 +116,6 @@ function History() {
         new Date(exp.date).getMonth() === month &&
         new Date(exp.date).getFullYear() === year
     );
-
     const currentMonthIncomes = state.user?.incomes.filter(
       (inc) =>
         new Date(inc.date).getMonth() === month &&
@@ -134,7 +126,6 @@ function History() {
     setFilteredExpenses(expensesSummary);
     setFilteredIncomes(incomesSummary);
   };
-
   // HANDLE YEAR
   const handleYear = () => {
     setSelectedDuration("year");
@@ -152,14 +143,12 @@ function History() {
     setFilteredExpenses(expensesSummary);
     setFilteredIncomes(incomesSummary);
   };
-
   // SELECTED DATE
   const selectedDate = (calDate) => {
     setCalDate(calDate);
     handleDay();
     localStorage.setItem("historyDate", calDate);
   };
-
   // HANDLE DAY
   const handleDay = () => {
     setSelectedDuration("day");
@@ -180,7 +169,6 @@ function History() {
     setFilteredExpenses(currentDayExpenses);
     setFilteredIncomes(currentDayIncomes); //!
   };
-
   // HANDLE LAST MONTH
   const handleLastMoth = () => {
     if (month >= 1 && month <= 11) {
@@ -192,7 +180,6 @@ function History() {
     /*  localStorage.setItem("historyMonth", month);
     localStorage.setItem("historyYear", year); */
   };
-
   // HANDLE NEXT MONTH
   const handleNextMonth = () => {
     if (month >= 0 && month <= 10) {
@@ -202,20 +189,15 @@ function History() {
       setYear(year + 1);
     }
   };
-
   // HANDLE LAST YEAR
   const handleLastYear = () => {
     setYear(year - 1);
   };
-
   // HANDLE NEXT YEAR
   const handleNextYear = () => {
     setYear(year + 1);
     localStorage.setItem("historyYear", year);
   };
-
-
-
   const handleLastWeek = () => {
     const lastWeekStart = setToStartOfWeek(
       new Date(weekDay.setDate(weekDay.getDate() - 7))
@@ -223,7 +205,6 @@ function History() {
     setWeekStart(lastWeekStart);
     setWeekLast(setToEndOfWeek(new Date(lastWeekStart)));
   };
-
   const handleNextWeek = () => {
     const nextWeekStart = setToStartOfWeek(
       new Date(weekDay.setDate(weekDay.getDate() + 7))
@@ -231,39 +212,32 @@ function History() {
     setWeekStart(nextWeekStart);
     setWeekLast(setToEndOfWeek(new Date(nextWeekStart)));
   };
-
   // HANDLE RECIEPT
-
   const handleReciept = (url, date, category) => {
     setIsRecieptView(true);
     setRecieptUrl(url);
     setRecieptDate(date);
     setRecieptCategory(category);
   };
-
   const handleCloseImg = () => {
     setIsRecieptView(false);
   };
-
   // Total expenses
   const totalExpenses = filteredExpenses?.reduce((acc, exp) => {
     acc += exp.amount;
     return acc;
   }, 0);
-
   // Total incomes
   const totalIncomes = filteredIncomes?.reduce((acc, inc) => {
     acc += inc.amount;
     return acc;
   }, 0);
-
   // Total balance
   const totalBalance = totalIncomes - totalExpenses;
 
   return (
     <div className="history">
       <SideMenu />
-
       {/* HERO  */}
       <div className="historyHero">
         {isRecieptView && (
@@ -347,7 +321,6 @@ function History() {
                   </button>
                 </div>
               )}
-
               {selectedDuration === "year" && (
                 <div className="history-timeTravel">
                   <button type="submit" onClick={handleLastYear}>
@@ -361,7 +334,6 @@ function History() {
                   </button>
                 </div>
               )}
-
               {selectedDuration === "week" && (
                 <div className="history-timeTravel">
                   <button type="submit" onClick={handleLastWeek}>
@@ -379,7 +351,6 @@ function History() {
                   </button>
                 </div>
               )}
-
               {/* SHOW EXPENSES */}
               <div className="data-container">
                 {selectedDuration === "day" && (
@@ -472,7 +443,7 @@ function History() {
                 </div>
               </div>
             </div>
-            {/* SHOW INCOMES */} {/* !! added  !! */}
+            {/* SHOW INCOMES */} 
           </div>
           <div className="history-bottom-right">
             <div className="expensesTotal">
@@ -488,10 +459,9 @@ function History() {
         </div>
         {/* side right */} {/* !! added total  !! */}
       </div>
-
       <Profile />
     </div>
   );
 }
-
 export default History;
+  

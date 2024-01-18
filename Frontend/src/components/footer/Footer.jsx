@@ -40,7 +40,6 @@ function Footer() {
               alt="logo of the project"
             />{" "}
           </a>
-          {/* <div className="thanks"> Thanks for Ordering</div> */}
         </div>
       </li>
       <li>

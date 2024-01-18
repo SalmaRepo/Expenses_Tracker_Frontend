@@ -1,11 +1,12 @@
-import React from 'react'
-import "./sideMenu.css"
-import {Link} from "react-router-dom"
-import LogOut from '../logout/Logout'
+import React from "react";
+import "./sideMenu.css";
+import { Link } from "react-router-dom";
+import LogOut from "../logout/Logout";
 
 export default function SideMenu() {
   return (
     <div className="sideBar">
+
         <div className="sideBarTop">
         <Link to="/"><img className='logo' src="images/logoWhite.png" alt="logo of the project" /></Link>
           <ul>
@@ -38,6 +39,6 @@ export default function SideMenu() {
             </li>
           </ul>
         </div>
-      </div>
-  )
+    </div>
+  );
 }

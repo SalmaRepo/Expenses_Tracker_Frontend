@@ -1,0 +1,96 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0
+}
+
+.signup{
+    display: flex;   
+   
+}
+
+.left{   
+    width: 60%;
+    margin: 6rem;
+    border: solid black 2px;
+    background-image: url("") no-repeat fixed;
+    background-size: cover;
+}
+
+.right{
+    width: 40%;
+    padding: 20px;
+}
+
+.mainDiv{
+    width: 100%;
+    margin:0 auto;
+    padding: 20px; 
+}
+
+.form{
+    
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    
+}
+
+h1 {
+    margin-top: 5rem;
+}
+
+label{
+    margin-bottom: 5px;
+}
+
+input{
+    margin-bottom: 2px;
+    padding: 4px;
+    width: 70%;
+    border: none;
+    border-bottom: 1px solid black;
+    background: none; /* Remove background */
+    outline: none; 
+}
+
+h3{
+    margin-top: 15px;
+}
+
+button {
+    width: 20%;
+    padding: 10px;
+    background-color: #533bdb;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin:1rem 0 1rem 4rem;
+  }
+
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+  .footer {
+    margin-top: 4rem;
+    padding: 10px;
+    text-align: center;
+  }
+
+.chooseFile{
+    margin: 10px;
+    padding: 10px;
+    border: none;
+   
+}
+
+.profileImg{
+    display:flex;
+    width:200px;
+    height:200px;
+    border:2px solid black;
+    justify-content:center;
+    margin: 1rem;
+}

@@ -8,7 +8,7 @@ function Help() {
     <div className="Help">
        <SideMenu /> 
       <div className="HelpHero">
-      
+     
         <h1>FAQs</h1>
         <p>
           <h3> Q1 How to carry forward previous month balance? </h3>
