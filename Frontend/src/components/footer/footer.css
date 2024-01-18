@@ -1,25 +1,38 @@
-.footer {
+.footerUL {
   list-style-type: none;
-  margin-top: 4rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   color: #242e30;
-  height: 14rem;
+  padding: 5rem;
+  /* height: 14rem; */
+  /* border: 2px solid red; */
+
 }
 
-.imageHolder {
+/* .imageHolder {
   max-width: 100%;
-  width: 400px;
-  height: 400px;
+  width: 200px;
+  height: 200px;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .logoFooter {
-  width: 400px;
-  height: 400px;
+  width: 100px;
+  height: 100px;
+padding-top: 15%;
+
+}
+
+.ulLeft, .ulRight {
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+width: 40%;
+
 }
 
 .gitHubLogo {
@@ -36,3 +49,23 @@ a {
     flex-direction: row;
     align-items: center;
 }
+
+@media screen and (max-width:700px) {
+  .footer{
+      width: 100%;
+      /* border: 1px solid orange; */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      padding: 1rem;
+   
+gap: 10px;
+  }
+
+ .ulRight, .ulLeft {
+      flex-direction: column;
+  }
+
+
+
+}    

@@ -3,8 +3,9 @@ import "./footer.css";
 
 function Footer() {
   return (
-    <ul className="footer">
-      <li>
+    <ul className="footerUL">
+      <div className="ulLeft">
+          <li>
         {" "}
         <a
           className="eachPerson"
@@ -28,9 +29,10 @@ function Footer() {
           Salma Sheik
         </a>
       </li>
+      </div>
       <li>
         {" "}
-        <div className="imageHolder">
+        {/* <div className="imageHolder"> */}
           {" "}
           <a href="" target="_blank">
             {" "}
@@ -41,8 +43,9 @@ function Footer() {
             />{" "}
           </a>
           {/* <div className="thanks"> Thanks for Ordering</div> */}
-        </div>
+        {/* </div> */}
       </li>
+      <div className="ulRight">
       <li>
         {" "}
         <a
@@ -67,6 +70,7 @@ function Footer() {
           Thulasi Sushma{" "}
         </a>
       </li>
+      </div>
     </ul>
   );
 }

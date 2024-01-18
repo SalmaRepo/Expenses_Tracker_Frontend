@@ -57,9 +57,9 @@ export default function Settings() {
       <div className="SettingHero">
         <h1>Settings</h1>
         <ul className="SettingsMiddle">
-          <li>
+          {/* <li>
             <button>Change Password</button>
-          </li>
+          </li> */}
           <li>
             <button onClick={changProfilePic}> Change Profile Picture</button>
           </li>

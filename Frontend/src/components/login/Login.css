@@ -1,0 +1,100 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid red; */
+  height: 100vh;
+  width: 100%;
+}
+
+.loginHero {
+  width: 100%;
+  /* border: 1px solid; */
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  /* justify-content: space-around; */
+  /* padding: 100px; */
+  height: 100vh;
+}
+
+
+
+.loginLeft {
+  /* border: 2px solid blue; */
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonLeft {
+  padding: 0.5em 2.5em;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.loginForm input {
+    border-radius: 10px;
+    padding: 5px;
+    width: 50%;
+}
+
+.loginForm {
+  /* text-align: center; */
+  margin: 0 auto;
+/* border: 2px solid green; */
+  width: 80%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginRight {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+gap: 1.5rem;
+justify-content: center;
+  align-items: center;
+  /* border: 2px solid blue; */
+  padding: 20px;
+  background-color: aqua;
+padding-bottom: 5rem;
+}
+
+/* .loginRight h2 {
+padding-bottom: 4.5rem;
+} */
+
+.buttonClick {
+  padding: 0.5rem 2.5rem;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+
+@media screen and (max-width:700px) {
+    .loginHero{
+        width: 100%;
+        /* border: 1px solid orange; */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 1rem;
+     
+gap: 10px;
+    }
+
+.loginLeft, .loginRight {
+    width: 100%;
+}
+.loginLeft h2 {
+padding: 30px;
+
+}
+
+
+}    
