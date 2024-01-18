@@ -22,7 +22,7 @@ function ShowExpensesHome() {
       .then((res) => res.json())
       .then((result) => dispatch({ type: "setExpenses", payload: result.data }))
       .catch((err) => console.log(err));
-  }, []);
+  }, [state.user]);
 
   return (
     <div>

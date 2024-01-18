@@ -6,7 +6,7 @@ import ShowExpensesHome from "../showExpensesHome/showExpensesHome";
 import SideMenu from "../sideMenu/SideMenu";
 import "./home.css";
 import Profile from "../profile/Profile";
-import ExpensesHomeGraph from "../graph/ExpensesHomeGraph";
+import ExpensesHomeGraph from "../graph/HomeGraphs/ExpensesHomeGraph";
 
 export default function Home() {
   const { state, dispatch } = useContext(context);
@@ -26,17 +26,19 @@ export default function Home() {
       .then((res) => res.json())
       .then((result) => dispatch({ type: "setExpenses", payload: result.data }))
       .catch((err) => console.log(err));
-  }, []);
+  }, [  ]);
 
   // Navigate to Add Expenses
   const homeAddNewExp = () => {
     navigate("/addExpenses");
   };
 
+
   // Navigate to Add Incomes
   const homeAddNewInc = () => {
     navigate("/addIncomes");
   };
+
 
   return (
     <div className="home">

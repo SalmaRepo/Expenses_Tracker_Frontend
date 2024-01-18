@@ -1,13 +1,20 @@
-import React, { useState, useContext } from "react";
+
+import React, { useState, useContext, useRef } from "react";
+import SideMenu from "../sideMenu/SideMenu";
+import Profile from "../profile/Profile";
 import "./UpdateUserDetails.css";
 import { context } from "../../context/context";
 import axios from "axios";
 import BASE_URL from "../../config/urlConfig";
 
 function UpdateUserDetails() {
-  const { state, dispatch } = useContext(context);
-  const [firstName, setFirstName] = useState(state.user?.firstName);
-  const [lastName, setLastName] = useState(state.user?.lastName);
+  const first=useRef()
+  const last=useRef()
+
+const {state, dispatch} = useContext(context)
+const [firstName, setFirstName] = useState("")
+const [lastName, setLastName] = useState("")
+
 
   // Fetch user details by ID from the server
   const getUserById = () => {
@@ -34,6 +41,7 @@ function UpdateUserDetails() {
       firstName: firstName,
       lastName: lastName,
     };
+
     const token = localStorage.getItem("token");
 
     //PATCH request to update user details
@@ -44,29 +52,53 @@ function UpdateUserDetails() {
       .then((response) => console.log("updated"))
       .catch((err) => console.log(err));
 
-    // Fetch and update the user details after the update
-    getUserById();
-  };
+  
+  }
+}
+
+const UpdateDetails =  ()=>{
+    const newData = {
+        ...state.user,firstName:firstName,lastName:lastName
+       
+    }
+    const token=localStorage.getItem("token")
+    axios.patch(`${BASE_URL}/api/users/updateUserDetailsById`, newData,{headers:{token:token}})
+    .then(response=>console.log("updated") )
+    .catch(err => console.log(err))
+   /*  dispatch({type:"setUpdateUser", payload:true}) */
+   first.current.value="";
+   last.current.value=""
+    getUserById()
+   
+
+}
+/* console.log(state.user) */
 
   return (
     <div className="UpdateDetails">
       <div className="UpdateDetailsHero">
         <h1>Update User Details</h1>
-        <label htmlFor="First Name"> First Name:</label>
-        <input
-          type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-        <label htmlFor="Last Name"> Last Name:</label>
-        <input
-          type="text"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <button type="button" onClick={UpdateDetails}>
-          Update
-        </button>
+
+        
+          <label htmlFor="First Name"> First Name:</label>
+          <input
+            type="text"
+            
+            ref={first}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+
+          <label htmlFor="Last Name"> Last Name:</label>
+          <input
+            type="text"
+            
+            ref={last}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <button type="button" onClick={UpdateDetails}>
+            Update
+          </button>
+        
       </div>
     </div>
   );

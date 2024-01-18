@@ -6,7 +6,9 @@ import "./help.css";
 function Help() {
   return (
     <div className="Help">
+       <SideMenu /> 
       <div className="HelpHero">
+     
         <h1>FAQs</h1>
         <p>
           <h3> Q1 How to carry forward previous month balance? </h3>
@@ -117,6 +119,7 @@ function Help() {
           categorizing it into the food category.
         </p>
       </div>
+ <Profile/> 
     </div>
   );
 }
