@@ -9,12 +9,12 @@
 }
 
 :root {
-  /* colors palette dark mode */
+  /*example colors palette dark mode */
   --primary-color: #202048;
   --secondary-color: #3f3f8d;
 
-  --text-color: #c1c1c1;
-  --background-color: #1e1e1e;
+  --text-color: #d0cfcf;
+  --background-color: #2e2e2e;
 
   --border-color: #292929;
 
@@ -25,20 +25,23 @@
   --incomes: #03dac6;
 }
 
+/* NOTE: use the variables for the colors like in this example */
 .darkMode {
   background-color: var(--background-color);
   color: var(--text-color);
+}
+.darkmodeExpenses{
+  background-color: var(--expenses);
+  color: var(--primary-color);
+}
+
+.darkmodeIncomes{
+  background-color: var(--incomes);
+  color: var(--primary-color);
 }
 
 .darkMode ul li a {
   color: var(--text-color);
 }
 
-.lightMode {
-  background-color: #fffbfb;
-  color: #0e0e0e;
-}
 
-.lightMode ul li a {
-  color: #0d0d0d;
-}

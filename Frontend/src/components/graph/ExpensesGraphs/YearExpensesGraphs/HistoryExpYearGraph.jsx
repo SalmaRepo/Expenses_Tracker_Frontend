@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { context } from "../../context/context";
+import { context } from "../../../../context/context";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
-import LineYearChart from "./LineYearChart";
+/* import LineYearChart from "./LineExpYearChart";
+import LineExpxYearChart from "./LineExpYearChart"; */
+import LineExpYearChart from "./LineExpYearChart";
 Chart.register(CategoryScale);
 
-function HistoryYearGraph({ year }) {
+function HistoryExpYearGraph({ year }) {
   const { state, dispatch } = useContext(context);
   /* console.log(year) */
   const months = [
@@ -38,7 +40,7 @@ function HistoryYearGraph({ year }) {
     December: 0,
   };
 
-  state.user.expenses?.map((exp) => {
+  state.user?.expenses?.map((exp) => {
     const { amount } = exp;
     for (let i = 0; i < months.length; i++) {
      /*  console.log(addedCategories); */
@@ -101,13 +103,13 @@ function HistoryYearGraph({ year }) {
         },
       ],
     })
-   },[year])
+   },[year,state.user])
 
   return (
     <div>
-      <LineYearChart chartData={chartData} year={year}/>
+      <LineExpYearChart chartData={chartData} year={year}/>
     </div>
   );
 }
 
-export default HistoryYearGraph;
+export default HistoryExpYearGraph;

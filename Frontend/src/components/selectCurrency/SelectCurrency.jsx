@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BASE_URL from "../../config/urlConfig";
 import { context } from "../../context/context";
@@ -6,32 +6,23 @@ import "./selectCurrency.css";
 
 function SelectCurrency() {
   const { state, dispatch } = useContext(context);
-  console.log(state.user);
   const currenySearch = useRef();
   const navigate = useNavigate();
   const selectedCurr = useRef();
   const [all, setAll] = useState(null);
-  /*   const [searchValue, setSearchValue] = useState(""); */
   const [filter, setFilter] = useState(null);
   const [curr, setCurr] = useState(null);
 
-  /*  useEffect(() => {
-    fetch("https://openexchangerates.org/api/currencies.json")
-      .then((res) => res.json())
-      .then((result) => setAll(result))
-      .catch((err) => console.log(err));
-  }, []); */
-
   let res = all && [...Object.entries(all)];
   all && console.log(Object.entries(all));
-  console.log(res);
+
+  // Fetching all currencies and handling search input
   const handleSearch = (e) => {
     fetch("https://openexchangerates.org/api/currencies.json")
       .then((res) => res.json())
       .then((result) => setAll(result))
       .catch((err) => console.log(err));
-    console.log(currenySearch.current.value);
-    /* setSearchValue(currenySearch.current.value); */
+
     let searchValue = currenySearch.current.value;
     setFilter(
       res?.filter((val) => {
@@ -42,23 +33,20 @@ function SelectCurrency() {
     );
   };
 
-  console.log(filter);
-
+  // Handling selection of a currency
   const handleSelectedCurr = (value) => {
     setCurr(value);
     currenySearch.current.value = value;
     setFilter(null);
   };
 
-  console.log(curr);
-  console.log(typeof curr);
-
+  // Handling form submission
   const handleSubmit = () => {
     const token = localStorage.getItem("token");
-    console.log(curr);
     const user = { ...state.user, currency: curr };
-    console.log(user);
+
     if (curr) {
+      // Updating user's currency on the server
       fetch(`${BASE_URL}/api/users/updateCurrencyById/${state.user?._id}`, {
         method: "PATCH",
         headers: { token: token, "Content-Type": "application/json" },
@@ -75,19 +63,11 @@ function SelectCurrency() {
     }
   };
 
-  console.log(state.user);
-
   return (
     <div className="selectCurr">
       <div className="curr-Left">
+        {/* Input for currency search */}
         <label htmlFor="dropdown">Currency:</label>
-        {/* <select id="dropdown" name="dropdown" ref={currenySelector}>
-              <option value="Euros">Euros</option>
-              <option value="Dollars">Dollars</option>
-              <option value="Pesos">Pesos</option>
-              <option value="Yuan">Yuan</option>
-              <option value="Other">Other</option>
-            </select> */}
         <input
           type="search"
           className="currencySearch"
@@ -95,6 +75,7 @@ function SelectCurrency() {
           ref={currenySearch}
           onInput={handleSearch}
         />
+        {/* Displaying filtered currencies */}
         {filter && (
           <div className="alllistCurrencies">
             {filter?.map((re) => {
@@ -112,7 +93,7 @@ function SelectCurrency() {
             })}
           </div>
         )}
-
+        {/* Button for submitting the selected currency */}
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>

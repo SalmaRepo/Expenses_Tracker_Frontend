@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react'
 import { Bar } from "react-chartjs-2";
 
-function BarDayGraph({ chartData, day, month, year }) {
+
+function BarIncDayGraph({ chartData, day}) {
   const months = [
     "January",
     "February",
@@ -25,7 +26,7 @@ function BarDayGraph({ chartData, day, month, year }) {
           plugins: {
             title: {
               display: true,
-              text: `Expenses of ${new Date(day).getDate()} ${
+              text: `Incomes of ${new Date(day).getDate()} ${
                 months[new Date(day).getMonth()]
               } ${new Date(day).getFullYear()}`,
             },
@@ -44,4 +45,4 @@ function BarDayGraph({ chartData, day, month, year }) {
   );
 }
 
-export default BarDayGraph;
+export default BarIncDayGraph

@@ -1,25 +1,9 @@
 import React from 'react'
 import { Bar } from "react-chartjs-2";
 
-function BarMonthChart({chartData,month,year}) {
-/*     console.log(year) */
-
-    const months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-      ];
-    return (
-        <div className="chart-container">
+function BarExpWeekGraph({chartData,weekStart,weekLast}) {
+  return (
+    <div className="chart-container">
           <Bar
           style={{height:"16rem",width:"100%"}}
             data={chartData}
@@ -27,7 +11,11 @@ function BarMonthChart({chartData,month,year}) {
               plugins: {
                 title: {
                   display: true,
-                  text: `Expenses of ${months[month]} ${year}`
+                  text: `Expenses of ${new Date(
+                    weekStart
+                  ).toLocaleDateString()} - ${new Date(
+                    weekLast
+                  ).toLocaleDateString()}`
                 },
                 legend: {
                   display: true
@@ -41,7 +29,7 @@ function BarMonthChart({chartData,month,year}) {
             }}
           />
         </div>
-      );
+  )
 }
 
-export default BarMonthChart
+export default BarExpWeekGraph

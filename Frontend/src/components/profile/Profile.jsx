@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { context } from "../../context/context";
 import "./profile.css";
 import BASE_URL from "../../config/urlConfig";
@@ -12,9 +12,8 @@ export default function Profile() {
   return (
     <>
       {state.user && (
-        <div className="profile">
+        <section className="profile">
           <div className="page">
-            {/*  <div className="profile-image-container"></div> */}
             <div className="profile-image-container">
               <img 
                 src={
@@ -22,17 +21,20 @@ export default function Profile() {
                     ? "images/profilePic.jpg"
                     : `${BASE_URL}/${state.user?.userImage}`
                 }
+
                 alt="noImg"
                 className="profile-img"
               />
             </div>
-            <p>{userName}</p>
+
+            <p>{userName} </p>
+
             <p>{email}</p>
           </div>
           <div className="balance">
             <Balance userId={state.user._id} />
           </div>
-        </div>
+        </section>
       )}
     </>
   );

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Bar } from "react-chartjs-2";
-
-function BarWeekGraph({chartData,weekStart,weekLast}) {
+function BarIncWeekGraph({chartData,weekStart,weekLast}) {
   return (
     <div className="chart-container">
           <Bar
@@ -11,7 +10,7 @@ function BarWeekGraph({chartData,weekStart,weekLast}) {
               plugins: {
                 title: {
                   display: true,
-                  text: `Expenses of ${new Date(
+                  text: `Incomes of ${new Date(
                     weekStart
                   ).toLocaleDateString()} - ${new Date(
                     weekLast
@@ -32,4 +31,4 @@ function BarWeekGraph({chartData,weekStart,weekLast}) {
   )
 }
 
-export default BarWeekGraph
+export default BarIncWeekGraph
