@@ -1,36 +1,30 @@
 import React from 'react'
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
-function BarMonthChart({chartData,month,year}) {
-/*     console.log(year) */
-
-    const months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-      ];
+function LineExpYearChart({chartData,year}) {
     return (
         <div className="chart-container">
-          <Bar
+          <Line
           style={{height:"16rem",width:"100%"}}
             data={chartData}
             options={{
               plugins: {
                 title: {
                   display: true,
-                  text: `Expenses of ${months[month]} ${year}`
+                  text: `Expenses of ${year}`
                 },
                 legend: {
-                  display: true
+                  display: false
+                },
+                
+              },
+              animations: {
+                tension: {
+                  duration: 1500,
+                  easing: 'linear',
+                  from: 1,
+                  to: 0,
+                  loop: true
                 }
               },
               layout:{
@@ -38,10 +32,11 @@ function BarMonthChart({chartData,month,year}) {
                   x:20
                 }
               }
+
             }}
           />
         </div>
       );
 }
 
-export default BarMonthChart
+export default LineExpYearChart

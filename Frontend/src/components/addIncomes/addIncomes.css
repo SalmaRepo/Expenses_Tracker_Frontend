@@ -18,7 +18,7 @@
   gap: 1rem;
 }
 
-.calendar {
+.addIncome .calendar {
   width: 60%;
   height: 40%;
   margin: 0 auto;
@@ -57,7 +57,6 @@
 /* TABLE added incomes*/
 .displayEnteredIncome {
   margin: 20px;
-
   overflow: auto; 
 }
 
@@ -70,27 +69,28 @@ table {
 th, td {
   padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #5e5d5d;
 }
 
-th {
+/* th {
   background-color: #f2f2f2;
   margin-top: 20px;
-}
+} */
 
-tr:hover {
+/* tr:hover {
   background-color: #f5f5f5;
-}
+} */
 
 .delete {
+  
   background-color: #f44336;
-  color: white;
+  color: var(--text-color);
   border: none;
-  padding: 8px 12px;
+  padding: 5px 8px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
+  /* display: inline-block; */
+  /* font-size: 14px; */
   cursor: pointer;
   border-radius: 4px;
 }

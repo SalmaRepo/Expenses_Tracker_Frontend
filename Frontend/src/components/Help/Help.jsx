@@ -6,8 +6,9 @@ import "./help.css";
 function Help() {
   return (
     <div className="Help">
-      {/* <SideMenu /> */}
+       <SideMenu /> 
       <div className="HelpHero">
+     
         <h1>FAQs</h1>
         <p>
           <h3> Q1 How to check my previous entries? </h3>
@@ -26,7 +27,7 @@ function Help() {
           upload your receipt as an image.
         </p>
       </div>
-      {/* <Profile/> */}
+ <Profile/> 
     </div>
   );
 }

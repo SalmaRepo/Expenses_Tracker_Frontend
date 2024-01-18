@@ -1,9 +1,9 @@
 import React from 'react'
 import { Line } from "react-chartjs-2";
 
-function LineYearChart({chartData,year}) {
-    return (
-        <div className="chart-container">
+function LineIncYearGraph({chartData,year}) {
+  return (
+    <div className="chart-container">
           <Line
           style={{height:"16rem",width:"100%"}}
             data={chartData}
@@ -11,7 +11,7 @@ function LineYearChart({chartData,year}) {
               plugins: {
                 title: {
                   display: true,
-                  text: `Expenses of ${year}`
+                  text: `Incomes of ${year}`
                 },
                 legend: {
                   display: false
@@ -36,7 +36,7 @@ function LineYearChart({chartData,year}) {
             }}
           />
         </div>
-      );
+  )
 }
 
-export default LineYearChart
+export default LineIncYearGraph

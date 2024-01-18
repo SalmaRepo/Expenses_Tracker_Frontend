@@ -6,6 +6,7 @@ import LandNavBar from "../landingNavBar/LandNavBar";
 import Footer from "../footer/Footer";
 import axios from "axios"
 import { context } from "../../context/context";
+import "./SignUp.css";
 
 export default function Signup() {
   const [preview, setPreview] = useState("");
@@ -95,12 +96,16 @@ export default function Signup() {
   
   return (
     <div>
+    <div className="signup">
+      <div className="left"></div>
+      <div className="right">
+      <div className="mainDiv">
       <LandNavBar/>
       <h1>Signup</h1>
       <Toaster position="top-center" /> {/* toast position*/}
       
       
-      <form onSubmit={signupUser}>
+      <form onSubmit={signupUser} className="form">
         <label htmlFor="firstname">First Name: </label>
         <input type="text" id="firstname" name="firstname" /> <br />
         <label htmlFor="lastname">Last Name: </label>
@@ -111,13 +116,16 @@ export default function Signup() {
         <input type="password" id="password" name="password" /> <br />
 
         <h3>Upload your Image</h3>
-        <input type="file" name="file" onChange={grabImage} />   
-      <div style={{display:"flex", width:"200px", height:"200px", border:"2px solid black", justifyContent:"center"}}>
-        <img src= {showImg} alt=""  width="100%"/>
+        <input className="chooseFile" type="file" name="file" onChange={grabImage} />   
+      <div className="profileImg" >
+        <img  src= {showImg} alt=""  width="100%"/>
       </div>
         <button>SignUp</button>
       </form>
-      <Footer/>
+      </div>
+      </div>
+      </div>
+      <Footer/>   
     </div>
   );
 }

@@ -1,24 +1,25 @@
 import React, { useContext, useEffect, useState } from "react";
-import { context } from "../../context/context";
-import BarMonthChart from "./BarMonthGraph";
+import { context } from "../../../../context/context";
+
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
+/* import BarWeekGraph from "./BarExpWeekGraph"; */
+import BarExpWeekGraph from "./BarExpWeekGraph";
 Chart.register(CategoryScale);
 
-function HistoryMonthGraph({ month, year }) {
-  const { state, dispatch } = useContext(context);
-  const expensesSummary = [];
+function HistoryExpWeekGraph({weekStart,weekLast}) {
+ const { state, dispatch } = useContext(context);
+ const expensesSummary = [];
   let addedCategories = {};
-
-  const monthlyExpenses = state.user?.expenses?.filter(
+ const weeklyExpenses = state.user?.expenses?.filter(
     (exp) =>
-      new Date(exp.date).getMonth() === month &&
-      new Date(exp.date).getFullYear() === year
+    new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
+    new Date(exp.date).getDate() <= new Date(weekLast).getDate()
   );
 
  /*  console.log(monthlyExpenses); */
 
-  monthlyExpenses?.map((exp) => {
+ weeklyExpenses?.map((exp) => {
     const { amount, category } = exp;
     if (addedCategories[category]) {
       addedCategories[category] += amount;
@@ -58,24 +59,26 @@ function HistoryMonthGraph({ month, year }) {
         {
           label: "Amount Spent ",
           data: expensesSummary?.map((expense) => expense?.amount),
-          backgroundColor: [
-            "#e5d193",
-            "#f5ea50",
-            "#b9e49e",
-            "#f3ba2f",
+          backgroundColor: [ 
             "#2a71d0",
+            "#35d02a",
+            "#d02aa9",
+            "#d0a12a",
+            "#d02a3b",
+            "#2ad0cb",
+            "#97dd73",
           ],
           borderColor: "black",
           borderWidth: 0,
         },
       ],
     });
-  }, [year, month]);
+  }, [weekStart,weekLast,state.user]);
   return (
     <div>
-      <BarMonthChart chartData={chartData} month={month} year={year} />
+        <BarExpWeekGraph chartData={chartData} weekLast={weekLast} weekStart={weekStart}/>
     </div>
-  );
+  )
 }
 
-export default HistoryMonthGraph;
+export default HistoryExpWeekGraph

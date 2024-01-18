@@ -1,25 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Open+Sans&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Open+Sans&display=swap");
+/* need to change the font */
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
+:root {
+  /*example colors palette dark mode */
+  --primary-color: #202048;
+  --secondary-color: #3f3f8d;
+
+  --text-color: #d0cfcf;
+  --background-color: #2e2e2e;
+
+  --border-color: #292929;
+
+  --link-color: #0066cc;
+  --hover-color: #4a7bf5;
+
+  --expenses: #c63968;
+  --incomes: #03dac6;
+}
+
+/* NOTE: use the variables for the colors like in this example */
 .darkMode {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  }
-  
-  .darkMode ul li a{
-    color: #ffffff;
-  }
-  
-  .lightMode {
-    background-color: #fffbfb;
-    color: #0e0e0e;
-    }
-    
-    .lightMode ul li a{
-      color: #0d0d0d;
-    }
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+.darkmodeExpenses{
+  background-color: var(--expenses);
+  color: var(--primary-color);
+}
+
+.darkmodeIncomes{
+  background-color: var(--incomes);
+  color: var(--primary-color);
+}
+
+.darkMode ul li a {
+  color: var(--text-color);
+}
+
+

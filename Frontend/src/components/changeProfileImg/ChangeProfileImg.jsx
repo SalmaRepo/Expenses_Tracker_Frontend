@@ -8,18 +8,20 @@ export default function ChangeProfileImg() {
   const { state, dispatch } = useContext(context);
   const [preview, setPreview] = useState("");
  
-
   function grabImage(e) {
     e.stopPropagation();
     dispatch({type:"setChangeImage", payload:e.target.files[0]})
     setPreview(URL.createObjectURL(e.target.files[0]));
   }
   
+  // Handle grabbing the selected image and updating the preview
   function handleChangeImg(e) {
     const token = localStorage.getItem("token");
     e.preventDefault();
     const upLoad = new FormData();
     upLoad.append("userImage", state.changeImage);
+
+    // PATCH request to change the user's profile image
     axios
       .patch(`${BASE_URL}/api/users/changeProfileImg`, upLoad, {
         headers: { token: token },
@@ -35,7 +37,6 @@ export default function ChangeProfileImg() {
       });
   }
 
-/*   console.log(state.user) */
   return (
     <div>
       Profile Image
