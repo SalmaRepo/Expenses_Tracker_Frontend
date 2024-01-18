@@ -3,91 +3,92 @@ import { useNavigate } from "react-router-dom";
 import BASE_URL from "../../config/urlConfig";
 import toast, { Toaster } from "react-hot-toast";
 import { context } from "../../context/context";
-import Footer from "../footer/Footer";
+// import Footer from "../footer/Footer";
 import LandNavBar from "../landingNavBar/LandNavBar";
-
+import "./Login.css";
 
 export default function Login() {
-  const {state,dispatch}=useContext(context)
+  const { state, dispatch } = useContext(context);
 
   const navigate = useNavigate();
 
-  function showSignUp(){
-    navigate("/signUp")
+  function showSignUp() {
+    navigate("/signUp");
   }
 
   const loginUser = (e) => {
     e.preventDefault();
     fetch(`${BASE_URL}/api/users/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: e.target.email.value,
         password: e.target.password.value,
       }),
     })
       .then((res) => {
-        const token = res.headers.get('token');
+        const token = res.headers.get("token");
         if (token) {
-          localStorage.setItem('token', token);
+          localStorage.setItem("token", token);
         }
         return res.json();
       })
       .then((result) => {
-        console.log(result)
+        console.log(result);
 
-       
-        /* 
+        /*
           navigate("/home"); */
-          if (result.success) {
-            dispatch({ type: "setUser", payload: result.data});
-            e.target.reset();
-            toast.success("You successfully logged in!"); // pop-up message
-            setTimeout(() => {
-              if(state.isSignUp){
-                navigate("/selectCurrency")
-              }else{
-                navigate("/home");
-              }
-           
-            }, 1500);
-                  
-          } else {
-            toast.error(JSON.stringify(result.message));
-          }  
-
+        if (result.success) {
+          dispatch({ type: "setUser", payload: result.data });
+          e.target.reset();
+          toast.success("You successfully logged in!"); // pop-up message
+          setTimeout(() => {
+            if (state.isSignUp) {
+              navigate("/selectCurrency");
+            } else {
+              navigate("/home");
+            }
+          }, 1500);
+        } else {
+          toast.error(JSON.stringify(result.message));
+        }
       })
-      .catch((err) => console.log(err)); 
+      .catch((err) => console.log(err));
   };
 
-  
-
-  console.log(state.user)
-
+  console.log(state.user);
 
   return (
     <>
-    <LandNavBar/>
+      <LandNavBar />
       <div className="login">
-        <LandNavBar/>
-        <h1>Login</h1>
-        <Toaster position="top-center" />
-        <form onSubmit={loginUser}>
-          <label htmlFor="email">E-mail:</label>
-          <br />
-          <input type="email" id="email" name="email"></input>
-          <br />
-          <label htmlFor="password">Password:</label>
-          <br />
-          <input type="password" id="password" name="password"></input>
-          <br />
-          <button>Login</button> 
-        </form>
-        <p>Don't have an account? </p>
-        <button onClick={showSignUp}>create an account!</button>
-      <Footer/>
+
+        <div className="loginHero">
+          <div className="loginLeft">
+            <h1>Login to Your Account</h1>
+            <Toaster position="top-center" />
+            <form className="loginForm" onSubmit={loginUser}>
+              {/* <label htmlFor="email">E-mail:</label> */}
+              <br />
+              <input type="email" id="email" name="email" placeholder="Email"></input>
+              <br />
+              {/* <label htmlFor="password">Password:</label> */}
+              <br />
+              <input type="password" id="password" name="password" placeholder="Password"></input>
+              <br />
+              <button className="buttonLeft">Login</button>
+            </form>
+          </div>
+          <div className="loginRight">
+            <h2>Don't have an account? </h2>
+            <p>Sign up and discover a great </p>
+            <p> amount of new opportunities</p>
+            <button className="buttonClick" onClick={showSignUp}>create an account!</button>
+          </div>
+        </div>
+
       </div>
+      {/* <Footer/> */}
     </>
   );
 }
-
