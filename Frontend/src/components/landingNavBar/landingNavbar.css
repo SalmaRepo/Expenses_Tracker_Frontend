@@ -1,42 +1,59 @@
 .landingNavBar {
-  height: 5rem;
-  padding: 1rem;
-  width: 80%;
-  margin: 0 auto;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 0.5px solid black;
-  top: 0;
-  left: 10rem;
-  position: fixed;
-
+  padding: 5px 50px;
+  background-color: var(--accent-100);  
+ 
 }
 
 .landingNavList {
   display: flex;
   list-style: none;
-  width: 80%;
+  width: 60%;
   justify-content: space-between;
 }
 
 .landingNavBar a {
   text-decoration: none;
   font-size: 1.5rem;
-  color: black;
+  font-weight: bold;
+  color: var(--text-100);
+  transition: color 0.3s ease;
 }
 .landingNavBar a:hover {
-  border-bottom: 2px solid black;
+  color:aqua;
 }
 
 .landingNavBar a:first-child:hover {
-    border-bottom: none;
+  border-bottom: none;
 }
 
-.logo {
-  width: 100%;
-  height: 100px;
-padding-top: 20px;
+.logo-NavBar {
+  max-width: 100%; 
+  height: auto;
+ padding: 10px;
+}
+
+.anchorLogo{
+  width: 100px;
 }
 
 
+
+/* Mobile  */
+
+@media screen and (max-width: 768px) {
+
+  .landingNavBar{
+    padding: 5px 10px;
+  }
+
+  .landingNavList {
+    width: 80%;
+  }
+
+}

@@ -107,7 +107,6 @@ export default function AddIncomes() {
 
   // Delete income by ID
   const deleteIncome = async (id, index) => {
-    console.log(id, index);
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(

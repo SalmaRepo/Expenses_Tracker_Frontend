@@ -33,12 +33,17 @@ export default function LandingPage() {
   return (
     <div className="landingPage">
       <LandNavBar />
+
       <div className="landingPage-Hero">
-        <h1>Welcome to Expenses-Tracker</h1>
+
+        <h1 className="landTitle">Welcome to Expenses-Tracker</h1>
+
         <button onClick={() => getStarted()} className="getStarted">
           Get Started
         </button>
+        
       </div>
+
       <About />
       <Footer />
     </div>

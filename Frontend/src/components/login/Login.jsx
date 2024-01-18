@@ -69,7 +69,6 @@ export default function Login() {
     <>
     <LandNavBar/>
       <div className="login">
-        <LandNavBar/>
         <h1>Login</h1>
         <Toaster position="top-center" />
         <form onSubmit={loginUser}>
@@ -84,9 +83,9 @@ export default function Login() {
           <button>Login</button> 
         </form>
         <p>Don't have an account? </p>
-        <button onClick={showSignUp}>create an account!</button>
-      <Footer/>
+        <button onClick={showSignUp}>create an account!</button>      
       </div>
+      <Footer/>
     </>
   );
 }

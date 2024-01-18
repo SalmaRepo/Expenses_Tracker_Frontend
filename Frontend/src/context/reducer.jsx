@@ -28,7 +28,6 @@ export function reducer(state,action){
     case "setBalance" : {
       return {...state,balance:action.payload}
     }
-
     case "setChangeImage" :{
       return {...state,changeImage:action.payload}
     }
@@ -53,5 +52,4 @@ export const initialState={
     balance:0,
     changeImage:"",
     incomes:null
-
 }

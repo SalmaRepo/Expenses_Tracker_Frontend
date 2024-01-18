@@ -6,20 +6,19 @@
   justify-content: space-around;
   align-items: center;
   color: #242e30;
-  height: 14rem;
+  padding: 5rem;
 }
 
-.imageHolder {
-  max-width: 100%;
-  width: 400px;
-  height: 400px;
+/* .imageHolder {
+  width: 100px;
+  height: 100px;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .logoFooter {
-  width: 400px;
-  height: 400px;
+  width: 100px;
+  height: 100px;
 }
 
 .gitHubLogo {
