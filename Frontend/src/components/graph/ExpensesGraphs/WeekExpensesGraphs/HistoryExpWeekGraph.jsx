@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { context } from "../../context/context";
+import { context } from "../../../../context/context";
 
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
-import BarWeekGraph from "./BarWeekGraph";
+/* import BarWeekGraph from "./BarExpWeekGraph"; */
+import BarExpWeekGraph from "./BarExpWeekGraph";
 Chart.register(CategoryScale);
 
-function HistoryWeekGraph({weekStart,weekLast}) {
+function HistoryExpWeekGraph({weekStart,weekLast}) {
  const { state, dispatch } = useContext(context);
  const expensesSummary = [];
   let addedCategories = {};
@@ -72,12 +73,12 @@ function HistoryWeekGraph({weekStart,weekLast}) {
         },
       ],
     });
-  }, [weekStart,weekLast]);
+  }, [weekStart,weekLast,state.user]);
   return (
     <div>
-        <BarWeekGraph chartData={chartData} weekLast={weekLast} weekStart={weekStart}/>
+        <BarExpWeekGraph chartData={chartData} weekLast={weekLast} weekStart={weekStart}/>
     </div>
   )
 }
 
-export default HistoryWeekGraph
+export default HistoryExpWeekGraph

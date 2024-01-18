@@ -25,11 +25,16 @@ export default function SideMenu() {
         </div>
         <div className="sideBarBottom">
           <ul>
-            <li>
-              <Link to="/login"><LogOut/></Link>
-            </li>
+            
             <li>
               <Link to="/settings">Settings</Link>
+            </li>
+             
+            <li>
+              <Link to="/help">Help/FAQ</Link>
+            </li>
+            <li>
+              <Link to="/login"><LogOut/></Link>
             </li>
           </ul>
         </div>

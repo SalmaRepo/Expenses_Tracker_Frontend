@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import Profile from "../profile/Profile";
 import SideMenu from "../sideMenu/SideMenu";
 import { context } from "../../context/context";
@@ -6,13 +6,22 @@ import "./history.css";
 import BASE_URL from "../../config/urlConfig";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import HistoryBarGraph from "../graph/HistoryBarGraph";
+import HistoryBarExpGraph from "../graph/ExpensesGraphs/ExpensesMainGraph/HistoryExpMainGraph";
+import HistoryExpMainGraph from "../graph/ExpensesGraphs/ExpensesMainGraph/HistoryExpMainGraph";
+import IncomeMainGraph from "../graph/IncomesGraphs/IncomeMainGraph/IncomeMainGraph";
+import {
+  months,
+  setToEndOfWeek,
+  setToStartOfWeek,
+  summariseExpenses,
+  summariseIncomes,
+} from "./HistoryHelpers";
 
 function History() {
   const { state, dispatch } = useContext(context);
   const [filteredExpenses, setFilteredExpenses] = useState([]);
   const [filteredIncomes, setFilteredIncomes] = useState([]); //! added
-  const [selectedDuration, setSelectedDuration] = useState("month");
+  const [selectedDuration, setSelectedDuration] = useState("");
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
   const [day, setDay] = useState(new Date().getDate());
@@ -35,248 +44,34 @@ function History() {
   const [recieptDate, setRecieptDate] = useState(null);
   const curr = state.user?.currency?.slice(3);
 
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-/*   console.log(weekStart);
-  console.log(weekLast); */
-  /*  console.log(new Date(
-    weekStart.setDate(
-      weekStart.getDate() - weekStart.getDay() + (weekStart.getDay() === 0 ? 1 : -6)
-    )
-  )) */
-
-  // GET USER BY ID
-  const getUserById = () => {
-    if (state.user) {
+  const getUserById = async () => {
+    try {
       const token = localStorage.getItem("token");
-      fetch(`${BASE_URL}/api/users/getUserById/${state.user?._id}`, {
-        method: "GET",
-        headers: {
-          token: token,
-        },
-      })
-        .then((res) => res.json())
-        .then((result) => dispatch({ type: "setUser", payload: result.data }))
-        .catch((err) => console.log(err));
-    }
-  };
-
-  // EXPENSES SUMMARY
-  const summariseExpenses = (filterExpenses) => {
-    const expensesSummary = [];
-    let addedCategories = {};
-    filterExpenses?.map((exp) => {
-      const { category, amount, date } = exp;
-      if (
-        addedCategories[category]
-        //new Date(addedCategories[date]).getMonth() === month
-      ) {
-        addedCategories[category] += amount;
-      } else {
-        addedCategories[category] = amount;
+      if (state.user) {
+        const response = await fetch(
+          `${BASE_URL}/api/users/getUserById/${state.user?._id}`,
+          {
+            method: "GET",
+            headers: {
+              token: token,
+            },
+          }
+        );
+        const result = await response.json();
+        console.log(result);
+        dispatch({ type: "setUser", payload: result.data });
       }
-    });
-    for (const category in addedCategories) {
-      expensesSummary.push({ category, amount: addedCategories[category] });
-    }
-    return expensesSummary;
-  };
-
-  // INCOMES SUMMARY //! added
-  const summariseIncomes = (filterIncomes) => {
-    const incomesSummary = [];
-    let addedCategories = {};
-    filterIncomes?.map((inc) => {
-      const { category, amount, date } = inc;
-      if (
-        addedCategories[category] 
-        //new Date(addedCategories[date]).getMonth() === month
-      ) {
-        addedCategories[category] += amount;
-      } else {
-        addedCategories[category] = amount;
-      }
-    });
-    for (const category in addedCategories) {
-      incomesSummary.push({ category, amount: addedCategories[category] });
-    }
-    return incomesSummary;
-  };
-
-  // HANDLE LAST WEEK
-  const handleWeek = () => {
-    setSelectedDuration("week");
-    getUserById();
-
-
-    console.log(currentWeekEndDate); */
-    const currentWeekExpenses = state.user?.expenses.filter(
-      (exp) =>
-        new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
-        new Date(exp.date).getDate() <= new Date(weekLast).getDate()
-    );
-    const summary = summeriseExpenses(currentWeekExpenses);
-    setFilteredExpenses(summary);
-  };
-
-  // HANDLE MONTH
-  const handleMonth = () => {
-    setSelectedDuration("month");
-    setFilteredExpenses([]);
-    setFilteredIncomes([]);
-    getUserById();
-    const currentMonthExpenses = state.user?.expenses.filter(
-      (exp) =>
-        new Date(exp.date).getMonth() === month &&
-        new Date(exp.date).getFullYear() === year
-    );
-    const currentMonthIncomes = state.user?.incomes.filter(
-      (inc) =>
-        new Date(inc.date).getMonth() === month &&
-        new Date(inc.date).getFullYear() === year
-    );
-    const expensesSummary = summariseExpenses(currentMonthExpenses);
-    const incomesSummary = summariseIncomes(currentMonthIncomes);
-    setFilteredExpenses(expensesSummary);
-    setFilteredIncomes(incomesSummary);
-  };
-
-  // HANDLE YEAR
-  const handleYear = () => {
-    setSelectedDuration("year");
-    setFilteredExpenses([]);
-    setFilteredIncomes([]);
-    getUserById();
-    const yearlyExpenses = state.user?.expenses.filter(
-      (exp) => new Date(exp.date).getFullYear() === year
-    );
-    const yearlyIncomes = state.user?.incomes.filter(
-      (inc) => new Date(inc.date).getFullYear() === year
-    );
-    const expensesSummary = summariseExpenses(yearlyExpenses);
-    const incomesSummary = summariseIncomes(yearlyIncomes);
-    setFilteredExpenses(expensesSummary);
-    setFilteredIncomes(incomesSummary);
-  };
-
-  // SELECTED DATE
-  const selectedDate = (calDate) => {
-    setCalDate(calDate);
-    handleDay();
-  };
-
-  // HANDLE DAY
-  const handleDay = () => {
-    setSelectedDuration("day");
-    setFilteredExpenses([]);
-    setFilteredIncomes([]); //!
-    getUserById();
-    /* console.log(calDate); */
-    const currentDayExpenses = state.user?.expenses.filter(
-      (exp) =>
-        new Date(exp.date).getDate() === new Date(calDate).getDate() &&
-        new Date(exp.date).getMonth() === new Date(calDate).getMonth() &&
-        new Date(exp.date).getFullYear() === new Date(calDate).getFullYear()
-
-    );
-    const currentDayIncomes = state.user?.incomes.filter( //!   
-      (inc) =>
-        new Date(inc.date).getDate() === new Date(calDate).getDate() &&
-        new Date(inc.date).getMonth() === new Date(calDate).getMonth() &&
-        new Date(inc.date).getFullYear() === new Date(calDate).getFullYear()
-
-    );
-    setFilteredExpenses(currentDayExpenses);
-    setFilteredIncomes(currentDayIncomes); //!
-  };
-
-
-
-  // HANDLE LAST MONTH
-  const handleLastMoth = () => {
-    if (month >= 1 && month <= 11) {
-      setMonth(month - 1);
-    } else if (month === 0) {
-      setMonth(11);
-      setYear(year - 1);
+    } catch (error) {
+      console.log(error);
     }
   };
-
-  // HANDLE NEXT MONTH
-  const handleNextMonth = () => {
-    if (month >= 0 && month <= 10) {
-      setMonth(month + 1);
-    } else if (month === 11) {
-      setMonth(0);
-      setYear(year + 1);
-    }
-    handleMonth();
-  };
-
-  // HANDLE LAST YEAR
-  const handleLastYear = () => {
-    setYear(year - 1);
-  };
-
-  // HANDLE NEXT YEAR
-  const handleNextYear = () => {
-    setYear(year + 1);
-  };
-
-  const setToStartOfWeek = (date) => {
-    return new Date(
-      date.setDate(
-        date.getDate() - date.getDay() + (date.getDay() > 0 ? 1 : -6)
-      )
-    );
-  };
-
-  const setToEndOfWeek = (date) => {
-    return new Date(date.setDate(date.getDate() + 6));
-  };
-
-  const handleLastWeek = () => {
-    const lastWeekStart = setToStartOfWeek(
-      new Date(weekDay.setDate(weekDay.getDate() - 7))
-    );
-    setWeekStart(lastWeekStart);
-    setWeekLast(setToEndOfWeek(new Date(lastWeekStart)));
-  };
-
-  const handleNextWeek = () => {
-    const nextWeekStart = setToStartOfWeek(
-      new Date(weekDay.setDate(weekDay.getDate() + 7))
-    );
-    setWeekStart(nextWeekStart);
-    setWeekLast(setToEndOfWeek(new Date(nextWeekStart)));
-  };
-
   useEffect(() => {
+    const duration = localStorage.getItem("selectedDuration") || "month";
+    setSelectedDuration(duration);
     getUserById();
+    const day = localStorage.getItem("historyDate") || calDate;
+    setCalDate(day);
   }, []);
-
-
-  // HANDLE RECIEPT
-
-  const handleReciept = (url, date, category) => {
-    setIsRecieptView(true);
-    setRecieptUrl(url);
-    setRecieptDate(date);
-    setRecieptCategory(category);
-  };
 
   // CASE
   useEffect(() => {
@@ -296,20 +91,168 @@ function History() {
       default:
         break;
     }
-  }, [selectedDuration, month, year, calDate, weekStart, weekLast]);
+  }, [selectedDuration, month, year, calDate, weekStart, weekLast, state.user]);
+
+  // HANDLE LAST WEEK
+  const handleWeek = () => {
+    setSelectedDuration("week");
+    localStorage.setItem("selectedDuration", "week");
+    const currentWeekExpenses = state.user?.expenses.filter(
+      (exp) =>
+        new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
+        new Date(exp.date).getDate() <= new Date(weekLast).getDate()
+    );
+
+    const currentWeekIncomes = state.user?.incomes.filter(
+      (inc) =>
+        new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
+        new Date(inc.date).getDate() <= new Date(weekLast).getDate()
+    );
+    const expensesSummary = summariseExpenses(currentWeekExpenses);
+    setFilteredExpenses(expensesSummary);
+    const incomesSummary = summariseIncomes(currentWeekIncomes);
+    setFilteredIncomes(incomesSummary);
+  };
+
+  // HANDLE MONTH
+  const handleMonth = () => {
+    setSelectedDuration("month");
+    localStorage.setItem("selectedDuration", "month");
+    const currentMonthExpenses = state.user?.expenses.filter(
+      (exp) =>
+        new Date(exp.date).getMonth() === month &&
+        new Date(exp.date).getFullYear() === year
+    );
+
+    const currentMonthIncomes = state.user?.incomes.filter(
+      (inc) =>
+        new Date(inc.date).getMonth() === month &&
+        new Date(inc.date).getFullYear() === year
+    );
+    const expensesSummary = summariseExpenses(currentMonthExpenses);
+    const incomesSummary = summariseIncomes(currentMonthIncomes);
+    setFilteredExpenses(expensesSummary);
+    setFilteredIncomes(incomesSummary);
+  };
+
+  // HANDLE YEAR
+  const handleYear = () => {
+    setSelectedDuration("year");
+    localStorage.setItem("selectedDuration", "year");
+    /*  setFilteredExpenses([]);
+    setFilteredIncomes([]); */
+    const yearlyExpenses = state.user?.expenses.filter(
+      (exp) => new Date(exp.date).getFullYear() === year
+    );
+    const yearlyIncomes = state.user?.incomes.filter(
+      (inc) => new Date(inc.date).getFullYear() === year
+    );
+    const expensesSummary = summariseExpenses(yearlyExpenses);
+    const incomesSummary = summariseIncomes(yearlyIncomes);
+    setFilteredExpenses(expensesSummary);
+    setFilteredIncomes(incomesSummary);
+  };
+
+  // SELECTED DATE
+  const selectedDate = (calDate) => {
+    setCalDate(calDate);
+    handleDay();
+    localStorage.setItem("historyDate", calDate);
+  };
+
+  // HANDLE DAY
+  const handleDay = () => {
+    setSelectedDuration("day");
+    localStorage.setItem("selectedDuration", "day");
+    const currentDayExpenses = state.user?.expenses.filter(
+      (exp) =>
+        new Date(exp.date).getDate() === new Date(calDate).getDate() &&
+        new Date(exp.date).getMonth() === new Date(calDate).getMonth() &&
+        new Date(exp.date).getFullYear() === new Date(calDate).getFullYear()
+    );
+    const currentDayIncomes = state.user?.incomes.filter(
+      //!
+      (inc) =>
+        new Date(inc.date).getDate() === new Date(calDate).getDate() &&
+        new Date(inc.date).getMonth() === new Date(calDate).getMonth() &&
+        new Date(inc.date).getFullYear() === new Date(calDate).getFullYear()
+    );
+    setFilteredExpenses(currentDayExpenses);
+    setFilteredIncomes(currentDayIncomes); //!
+  };
+
+  // HANDLE LAST MONTH
+  const handleLastMoth = () => {
+    if (month >= 1 && month <= 11) {
+      setMonth(month - 1);
+    } else if (month === 0) {
+      setMonth(11);
+      setYear(year - 1);
+    }
+    /*  localStorage.setItem("historyMonth", month);
+    localStorage.setItem("historyYear", year); */
+  };
+
+  // HANDLE NEXT MONTH
+  const handleNextMonth = () => {
+    if (month >= 0 && month <= 10) {
+      setMonth(month + 1);
+    } else if (month === 11) {
+      setMonth(0);
+      setYear(year + 1);
+    }
+  };
+
+  // HANDLE LAST YEAR
+  const handleLastYear = () => {
+    setYear(year - 1);
+  };
+
+  // HANDLE NEXT YEAR
+  const handleNextYear = () => {
+    setYear(year + 1);
+    localStorage.setItem("historyYear", year);
+  };
+
+
+
+  const handleLastWeek = () => {
+    const lastWeekStart = setToStartOfWeek(
+      new Date(weekDay.setDate(weekDay.getDate() - 7))
+    );
+    setWeekStart(lastWeekStart);
+    setWeekLast(setToEndOfWeek(new Date(lastWeekStart)));
+  };
+
+  const handleNextWeek = () => {
+    const nextWeekStart = setToStartOfWeek(
+      new Date(weekDay.setDate(weekDay.getDate() + 7))
+    );
+    setWeekStart(nextWeekStart);
+    setWeekLast(setToEndOfWeek(new Date(nextWeekStart)));
+  };
+
+  // HANDLE RECIEPT
+
+  const handleReciept = (url, date, category) => {
+    setIsRecieptView(true);
+    setRecieptUrl(url);
+    setRecieptDate(date);
+    setRecieptCategory(category);
+  };
 
   const handleCloseImg = () => {
     setIsRecieptView(false);
   };
 
   // Total expenses
-  const totalExpenses = filteredExpenses.reduce((acc, exp) => {
+  const totalExpenses = filteredExpenses?.reduce((acc, exp) => {
     acc += exp.amount;
     return acc;
   }, 0);
 
   // Total incomes
-  const totalIncomes = filteredIncomes.reduce((acc, inc) => {
+  const totalIncomes = filteredIncomes?.reduce((acc, inc) => {
     acc += inc.amount;
     return acc;
   }, 0);
@@ -360,11 +303,11 @@ function History() {
             </li>
           </ul>
         </div>
-
         <div className="historyBottom">
-          <div className="history-bottom-left">
-            <div className="history-bottom-graphs">
-              <HistoryBarGraph
+          <div className="history-bottom-top">
+            <div className="history-bottom-expenses-graphs">
+              <h4 className="history-graph-title">Expenses</h4>
+              <HistoryExpMainGraph
                 selectedDuration={selectedDuration}
                 year={year}
                 month={month}
@@ -372,17 +315,26 @@ function History() {
                 weekStart={weekStart}
                 weekLast={weekLast}
                 weekDay={weekDay}
-
               />
             </div>
-
+            <div className="history-bottom-incomes-graphs">
+              <h4 className="history-graph-title">Incomes</h4>
+              <IncomeMainGraph
+                selectedDuration={selectedDuration}
+                year={year}
+                month={month}
+                day={calDate}
+                weekStart={weekStart}
+                weekLast={weekLast}
+                weekDay={weekDay}
+              />
+            </div>
+          </div>
+          <div className="history-bottom-left">
             {/* SELECT MONTH YEAR DAY */}
             <div className="history-bottom-data">
-
               {selectedDuration === "month" && (
-
                 <div className="history-timeTravel">
-
                   <button type="submit" onClick={handleLastMoth}>
                     {"<<"}
                   </button>
@@ -428,94 +380,100 @@ function History() {
                 </div>
               )}
 
-              {selectedDuration === "day" && (
-                <div>
-                  <Calendar
-                    onChange={selectedDate}
-                    value={calDate}
-                    name="calendar"
-                    className="calendar"
-                  />
-                </div>
-              )}
-
               {/* SHOW EXPENSES */}
-              <h2>Expenses</h2>
-              <div className="expData-container">
-
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Category</th>
-                      <th>Amount</th>
-                      {selectedDuration === "day" && <th>Reciept</th>}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredExpenses?.map((exp) => (
-                      <tr
-                        className="expData"
-                        key={`${exp.category}-${exp.date}`}
-                      >
-                        <td>
-                          {exp?.category.charAt(0).toUpperCase() +
-                            exp?.category.slice(1)}
-                        </td>
-                        <td>
-                          {exp?.amount} <span>{curr}</span>
-                        </td>
-                        {/* <p>{new Date(exp.date).toLocaleDateString()}</p> */}
-                        {selectedDuration === "day" && (
+              <div className="data-container">
+                {selectedDuration === "day" && (
+                  <div>
+                    <Calendar
+                      onChange={selectedDate}
+                      value={calDate}
+                      name="calendar"
+                      className="calendar"
+                    />
+                  </div>
+                )}
+                <div className="expData-container">
+                  <table className="exp-table">
+                    <caption>Expenses</caption>
+                    <thead>
+                      <tr>
+                        <th>Category</th>
+                        <th>{`Amount in ${curr}`}</th>
+                        {selectedDuration === "day" && <th>Reciept</th>}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredExpenses?.map((exp) => (
+                        <tr
+                          className="expData"
+                          key={`${exp.category}-${exp.date}`}
+                        >
                           <td>
-                            <img
-                              src={
-                                exp.reciept.includes("undefined")
-                                  ? "images/no-image.jpg"
-                                  : `${BASE_URL}/${exp.reciept}`
-                              }
-                              alt="no-img"
-                              style={{
-                                width: "40px",
-                                height: "40px",
-                                border: "1px solid",
-                              }}
-                              onClick={() =>
-                                handleReciept(
+                            {exp?.category.charAt(0).toUpperCase() +
+                              exp?.category.slice(1)}
+                          </td>
+                          <td>{exp?.amount}</td>
+                          {/* <p>{new Date(exp.date).toLocaleDateString()}</p> */}
+                          {selectedDuration === "day" && (
+                            <td>
+                              <img
+                                src={
                                   exp.reciept.includes("undefined")
                                     ? "images/no-image.jpg"
-                                    : `${BASE_URL}/${exp.reciept}`,
-                                  exp.date,
-                                  exp.category
-                                )
-                              }
-                            />
-                          </td>
-                        )}
+                                    : `${BASE_URL}/${exp.reciept}`
+                                }
+                                alt="no-img"
+                                style={{
+                                  width: "40px",
+                                  height: "40px",
+                                  border: "1px solid",
+                                }}
+                                onClick={() =>
+                                  handleReciept(
+                                    exp.reciept.includes("undefined")
+                                      ? "images/no-image.jpg"
+                                      : `${BASE_URL}/${exp.reciept}`,
+                                    exp.date,
+                                    exp.category
+                                  )
+                                }
+                              />
+                            </td>
+                          )}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="incData-container">
+                  <table>
+                    <caption>Incomes</caption>
+                    <thead>
+                      <tr>
+                        <th>Category</th>
+                        <th>{`Amount in ${curr}`}</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-
+                    </thead>
+                    <tbody>
+                      {filteredIncomes?.map((inc) => (
+                        <tr
+                          className="incData"
+                          key={`${inc.category}-${inc.date}`}
+                        >
+                          <td>
+                            {inc?.category.charAt(0).toUpperCase() +
+                              inc?.category.slice(1)}
+                          </td>
+                          <td>{inc?.amount}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-
             {/* SHOW INCOMES */} {/* !! added  !! */}
-            <h2>Incomes</h2>
-            <div className="incData-container">
-              {filteredIncomes?.map((inc) => (
-                <div className="incData" key={`${inc.category}-${inc.date}`}>
-                  <p>
-                    {inc?.category.charAt(0).toUpperCase() +
-                      inc?.category.slice(1)}
-                  </p>
-                  <p>{inc?.amount}</p>
-                </div>
-              ))}
-            </div>
-
           </div>
-
-          {/* side right */} {/* !! added total  !! */}
           <div className="history-bottom-right">
             <div className="expensesTotal">
               Expenses of the selected date: {totalExpenses}
@@ -528,6 +486,7 @@ function History() {
             </div>
           </div>
         </div>
+        {/* side right */} {/* !! added total  !! */}
       </div>
 
       <Profile />

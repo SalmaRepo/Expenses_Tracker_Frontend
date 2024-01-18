@@ -1,7 +1,7 @@
 import React from 'react'
 import { Line } from "react-chartjs-2";
 
-function LineYearChart({chartData,year}) {
+function LineExpYearChart({chartData,year}) {
     return (
         <div className="chart-container">
           <Line
@@ -39,4 +39,4 @@ function LineYearChart({chartData,year}) {
       );
 }
 
-export default LineYearChart
+export default LineExpYearChart

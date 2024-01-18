@@ -12,7 +12,7 @@ export default function AddIncomes() {
   const [calDate, setCalDate] = useState(new Date());
   const incomeCategory = useRef();
   const incomeAmount = useRef();
-
+  const curr = state.user?.currency?.slice(3);
   
   const getUserById = () => {
     if (state.user) {
@@ -139,6 +139,7 @@ export default function AddIncomes() {
               className="incomeAmount"
               ref={incomeAmount}
             />
+            <p>{curr}</p>
             <select name="category" ref={incomeCategory}>
               <option value="Salary">Salary</option>
               <option value="Family-Allowance">Family-Allowance</option>
@@ -171,7 +172,7 @@ export default function AddIncomes() {
                   <tr key={index}>
                     <td>{new Date(income.date).toLocaleDateString()}</td>
                     <td>{income.category}</td>
-                    <td>{income.amount}</td>
+                    <td>{income.amount} <span>{curr}</span></td>
                     <td>
                       <button
                         type="button"

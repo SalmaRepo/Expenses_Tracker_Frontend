@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import SideMenu from "../sideMenu/SideMenu";
 import Profile from "../profile/Profile";
 import "./UpdateUserDetails.css";
@@ -7,10 +7,12 @@ import axios from "axios";
 import BASE_URL from "../../config/urlConfig";
 
 function UpdateUserDetails() {
+  const first=useRef()
+  const last=useRef()
 
 const {state, dispatch} = useContext(context)
-const [firstName, setFirstName] = useState(state.user?.firstName)
-const [lastName, setLastName] = useState(state.user?.lastName)
+const [firstName, setFirstName] = useState("")
+const [lastName, setLastName] = useState("")
 const getUserById=()=>{
   if(state.user){
     const token = localStorage.getItem("token");
@@ -39,7 +41,11 @@ const UpdateDetails =  ()=>{
     .then(response=>console.log("updated") )
     .catch(err => console.log(err))
    /*  dispatch({type:"setUpdateUser", payload:true}) */
+   first.current.value="";
+   last.current.value=""
     getUserById()
+   
+
 }
 /* console.log(state.user) */
 
@@ -53,14 +59,16 @@ const UpdateDetails =  ()=>{
           <label htmlFor="First Name"> First Name:</label>
           <input
             type="text"
-            value={firstName}
+            
+            ref={first}
             onChange={(e) => setFirstName(e.target.value)}
           />
 
           <label htmlFor="Last Name"> Last Name:</label>
           <input
             type="text"
-            value={lastName}
+            
+            ref={last}
             onChange={(e) => setLastName(e.target.value)}
           />
           <button type="button" onClick={UpdateDetails}>
