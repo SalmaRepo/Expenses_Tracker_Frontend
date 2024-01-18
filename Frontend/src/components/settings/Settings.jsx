@@ -74,6 +74,7 @@ export default function Settings() {
           <li>
             <button onClick={handleChageCurrency}>Change Currency</button>
           </li>
+
           <li>
             <button onClick={showHelp}>Help/FAQ</button>
           </li>

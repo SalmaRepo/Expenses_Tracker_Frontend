@@ -91,12 +91,15 @@ function History() {
   // HANDLE LAST WEEK
   const handleWeek = () => {
     setSelectedDuration("week");
+
     localStorage.setItem("selectedDuration", "week");
+
     const currentWeekExpenses = state.user?.expenses.filter(
       (exp) =>
         new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
         new Date(exp.date).getDate() <= new Date(weekLast).getDate()
     );
+
     const currentWeekIncomes = state.user?.incomes.filter(
       (inc) =>
         new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
@@ -106,6 +109,7 @@ function History() {
     setFilteredExpenses(expensesSummary);
     const incomesSummary = summariseIncomes(currentWeekIncomes);
     setFilteredIncomes(incomesSummary);
+
   };
   // HANDLE MONTH
   const handleMonth = () => {

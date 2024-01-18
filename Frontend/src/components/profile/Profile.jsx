@@ -15,18 +15,20 @@ export default function Profile() {
         <section className="profile">
           <div className="page">
             <div className="profile-image-container">
-              <img
+              <img 
                 src={
                   !state.user?.userImage
                     ? "images/profilePic.jpg"
                     : `${BASE_URL}/${state.user?.userImage}`
                 }
-                // todo delete style from here and add in css
-                style={{ width: "100px", height: "100px" }}
+
                 alt="noImg"
+                className="profile-img"
               />
             </div>
+
             <p>{userName} </p>
+
             <p>{email}</p>
           </div>
           <div className="balance">
