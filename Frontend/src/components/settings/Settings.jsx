@@ -81,7 +81,7 @@ export default function Settings() {
           </li>
           {state.currency === "Other" && (
             <form action="" onSubmit={handleOtherCurrency}>
-              <input type="text" name="otherCurrency" />
+              <input type="text" name="otherCurrency"/>
               <button type="submit">Submit</button>
             </form>
           )}

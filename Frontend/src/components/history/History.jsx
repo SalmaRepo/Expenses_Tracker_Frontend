@@ -122,13 +122,12 @@ function History() {
     getUserById();
 
 
-    console.log(currentWeekEndDate); */
     const currentWeekExpenses = state.user?.expenses.filter(
       (exp) =>
         new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
         new Date(exp.date).getDate() <= new Date(weekLast).getDate()
     );
-    const summary = summeriseExpenses(currentWeekExpenses);
+    const summary = summariseExpenses(currentWeekExpenses);
     setFilteredExpenses(summary);
   };
 

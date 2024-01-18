@@ -107,20 +107,27 @@ export default function Signup() {
       
       <form onSubmit={signupUser} className="form">
         <label htmlFor="firstname">First Name: </label>
-        <input type="text" id="firstname" name="firstname" /> <br />
+        <input className="inputs" type="text" id="firstname" name="firstname" /> <br />
         <label htmlFor="lastname">Last Name: </label>
-        <input type="text" id="lastname" name="lastname" /> <br />
+        <input className="inputs" type="text" id="lastname" name="lastname" /> <br />
         <label htmlFor="email">Email :</label>
-        <input type="email" id="email" name="email" /> <br />
+        <input className="inputs" type="email" id="email" name="email" /> <br />
         <label htmlFor="password">Password : </label>
-        <input type="password" id="password" name="password" /> <br />
-
+        <input className="inputs" type="password" id="password" name="password" /> <br />
+        <div className="second-half">
         <h3>Upload your Image</h3>
-        <input className="chooseFile" type="file" name="file" onChange={grabImage} />   
+        <div class="file-input-container">
+        <input type="file" name="file" id="file" onChange={grabImage} />  
+
+        {/* added this extra line of label for the CSS pupose */}
+        <label htmlFor="file" className="chooseFile-label">Choose File</label> 
+        
+        </div>
       <div className="profileImg" >
         <img  src= {showImg} alt=""  width="100%"/>
       </div>
-        <button>SignUp</button>
+        <button className="signup-btn">SignUp</button>
+        </div>
       </form>
       </div>
       </div>

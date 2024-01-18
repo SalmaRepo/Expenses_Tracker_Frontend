@@ -18,7 +18,7 @@ export default function About() {
         {/* Card-1 */}
         <div className="offer-card">
           <h2>Track your Expenses</h2>
-          <img className='imgOne' src="images/alexander-mils-lCPhGxs7pww-unsplash.jpg" alt="holding money"/>
+          <img className='imgOne' src="images/alexander-mils-lCPhGxs7pww-unsplash (1).jpg" alt="holding money"/>
           <p>You can track and manage your expenses with ease using our expense tracking app.</p>
 
         </div>
