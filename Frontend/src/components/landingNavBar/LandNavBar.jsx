@@ -9,25 +9,27 @@ export default function LandNavBar() {
   const { state, dispatch } = useContext(context);
 
   return (
-    <div className="landingNavBar">
-      <Link to="/">
-        <img
-          className="logo"
-          src="images/logoWhite.png"
-          alt="logo of the project"
-        />
-      </Link>
+    <nav className="landingNavBar">
+      <div>
+        <Link to="/" className="anchorLogo">
+          <img
+            className="logo-NavBar"
+            src="images/LOGO.png"
+            alt="logo of the project"
+          />
+        </Link>
+      </div>
       <ul className="landingNavList">
         <li>
-          <Link href="#about"> About </Link>
-        </li>
-        <li>
-          <Link to="/login">{state.user ? <LogOut /> : "Login"}</Link>
+          <a href="#about"> About </a>
         </li>
         <li>
           <Link to="/SignUp">Sign-Up</Link>
         </li>
+        <li>
+          <Link to="/login">{state.user ? <LogOut /> : "Login"}</Link>
+        </li>
       </ul>
-    </div>
+    </nav>
   );
 }

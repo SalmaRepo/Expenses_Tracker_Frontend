@@ -1,6 +1,6 @@
 import React from "react"; // Importing the React library
 
-import Chart from "chart.js/auto"; // Importing the Chart.js library
+//import Chart from "chart.js/auto"; // Importing the Chart.js library
 
 import { Line } from "react-chartjs-2"; // Importing the Line component from the react-chartjs-2 library
 
@@ -12,10 +12,10 @@ const data = {
   labels: labels,
   datasets: [
     {
-      label: "My First dataset", // Setting up the label for the dataset
-      backgroundColor: "rgb(255, 99, 132)", // Setting up the background color for the dataset
-      borderColor: "rgb(255, 99, 132)", // Setting up the border color for the dataset
-      data: [0, 10, 5, 2, 20, 30, 45], // Setting up the data for the dataset
+      label: "Expenses for the year", // Setting up the label for the dataset      
+      backgroundColor: "rgb(33, 150, 243)", // Setting up the background color for the dataset
+      borderColor: "rgb(33, 150, 243)", // Setting up the border color for the dataset
+      data: [0, 1000, 5, 450, 5, 700, 45], // Setting up the data for the dataset
     },
   ],
 };
@@ -23,7 +23,7 @@ const data = {
 // Defining the LineChart component
 const LineChart = () => {
   return (
-    <div>
+    <div className="graph-container">
       <Line data={data} /> 
     </div>
   );
