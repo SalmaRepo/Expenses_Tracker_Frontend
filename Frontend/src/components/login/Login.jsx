@@ -64,9 +64,11 @@ export default function Login() {
       <div className="login">
 
         <div className="loginHero">
+
           <div className="loginLeft">
             <h1>Login to Your Account</h1>
             <Toaster position="top-center" />
+
             <form className="loginForm" onSubmit={loginUser}>
               {/* <label htmlFor="email">E-mail:</label> */}
               <br />
@@ -78,17 +80,17 @@ export default function Login() {
               <br />
               <button className="buttonLeft">Login</button>
             </form>
+
           </div>
+
           <div className="loginRight">
             <h2>Don't have an account? </h2>
-            <p>Sign up and discover a great </p>
-            <p> amount of new opportunities</p>
+            <p>Signup and start using this amazing app!</p>
             <button className="buttonClick" onClick={showSignUp}>create an account!</button>
           </div>
         </div>
 
       </div>
-      {/* <Footer/> */}
     </>
   );
 }

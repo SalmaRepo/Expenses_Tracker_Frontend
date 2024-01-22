@@ -12,7 +12,6 @@
     var(--accent-100)
   );
 }
-
 .sideBarTop {
   display: flex;
   flex-direction: column;
@@ -28,20 +27,16 @@
   margin: 0;
   padding: 0;
 }
-
 .sideBarTop .sideBar-logo-container span {
   display: flex;
-
   color: rgb(90, 37, 206);
   text-shadow: 1px 0.5px;
 }
-
 .sideBarBottom {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-
 .sideBarTop ul,
 .sideBarBottom ul {
   list-style: none;
@@ -49,18 +44,15 @@
   flex-direction: column;
   width: 100%;
 }
-
 .sideBarTop ul li,
 .sideBarBottom ul li {
   width: 100%;
   text-align: center;
   padding: 0.8rem;
 }
-
 .sideBarBottom ul li:first-child {
   padding: 1rem;
 }
-
 .sideBarBottom ul li:last-child {
   border-bottom: none;
 }
@@ -71,7 +63,6 @@
   font-weight: 300;
   color: var(--text-100);
 }
-
 .sideBarTop ul li:hover,
 .sideBarBottom ul li:hover {
   background-color: rgb(246, 237, 237);
@@ -79,7 +70,6 @@
   width: 90%;
   border-radius: 0.5rem;
 }
-
 .sideBar .sideNav-Link {
   width: 80%;
   margin: 0 auto;
@@ -94,7 +84,6 @@
   color: rgb(3, 69, 92);
   font-size: 1.2rem;
 }
-
 .sideBar .sideNav-Link.active {
   background-color: var(--bg-100);
   margin: 0 auto;
@@ -107,18 +96,13 @@
   padding: 0.5rem;
   padding: 0.8rem;
 }
-
 .sideBar .sideNav-Link.active:hover {
   background-color: none;
 }
-
 @media (max-width: 760px) {
   .sideBar {
     width: 20%;
-  
-  
   }
-
   .sideBarTop a .logo {
     width: 80%;
     height: 6rem;
@@ -127,15 +111,9 @@
     margin: 0;
     padding: 0;
   }
-
-
-
   .sideBarTop .sideBar-logo-container span {
     display: none;
   }
-
- 
-
   .sideBar .sideNav-Link span{
     display: none;
   }

@@ -3,75 +3,85 @@ import "./footer.css";
 
 function Footer() {
   return (
-    <ul className="footerUL">
-      <div className="ulLeft">
+    <footer>
+      <ul className="footerUL">
+        {/* left */}
+        <div className="ulLeft">
           <li>
-        {" "}
-        <a
-          className="eachPerson"
-          href="https://github.com/BarbaraPapa"
-          target="_blank"
-        >
-          {" "}
-          <img className="gitHubLogo" src="images/gitHubLogo.png" alt="" />{" "}
-          Barbara Papa
-        </a>
-      </li>
-      <li>
-        {" "}
-        <a
-          className="eachPerson"
-          href="https://github.com/SalmaRepo"
-          target="_blank"
-        >
-          {" "}
-          <img className="gitHubLogo" src="images/gitHubLogo.png" alt="" />{" "}
-          Salma Sheik
-        </a>
-      </li>
-      </div>
-      <li>
-        {" "}
-        {/* <div className="imageHolder"> */}
-          {" "}
-          <a href="" target="_blank">
-            {" "}
+            <a
+              className="eachPerson"
+              href="https://github.com/BarbaraPapa"
+              target="_blank"
+            >
+              <img
+                className="gitHubLogo"
+                src="images/GitHub.png"
+                alt="GitHub logo"
+              />
+              Barbara Papa
+            </a>
+          </li>
+          <li>
+            <a
+              className="eachPerson"
+              href="https://github.com/SalmaRepo"
+              target="_blank"
+            >
+              <img
+                className="gitHubLogo  mobile"
+                src="images/GitHub.png"
+                alt="GitHub logo"
+              />
+              Salma Sheik
+            </a>
+          </li>
+        </div>
+
+        {/* logo */}
+        <li>
+          <a href="">
             <img
               className="logoFooter"
-              src="images/logoWhite.png"
+              src="images/LOGO.png"
               alt="logo of the project"
-            />{" "}
+            />
           </a>
-        
+        </li>
 
-      </li>
-      <div className="ulRight">
-      <li>
-        {" "}
-        <a
-          className="eachPerson"
-          href="https://github.com/LLDieg"
-          target="_blank"
-        >
-          {" "}
-          <img className="gitHubLogo" src="images/gitHubLogo.png" alt="" />{" "}
-          Diego LLerena
-        </a>
-      </li>
-      <li>
-        {" "}
-        <a
-          className="eachPerson"
-          href="https://github.com/ThulasiSushma"
-          target="_blank"
-        >
-          {" "}
-          <img className="gitHubLogo" src="images/gitHubLogo.png" alt="" />{" "}
-          Thulasi Sushma{" "}
-        </a>
-      </li>
-      </div>
-    </ul>
+
+        {/* right */}
+        <div className="ulRight">
+          <li>
+            <a
+              className="eachPerson"
+              href="https://github.com/LLDieg"
+              target="_blank"
+            >
+              <img
+                className="gitHubLogo"
+                src="images/GitHub.png"
+                alt="GitHub logo"
+              />
+              Diego LLerena
+            </a>
+          </li>
+          <li>
+            <a
+              className="eachPerson"
+              href="https://github.com/ThulasiSushma"
+              target="_blank"
+            >
+              <img
+                className="gitHubLogo  mobile"
+                src="images/GitHub.png"
+                alt="GitHub logo"
+              />
+              Thulasi Sushma
+            </a>
+          </li>
+        </div>
+      </ul>
+    </footer>
   );
 }
 
