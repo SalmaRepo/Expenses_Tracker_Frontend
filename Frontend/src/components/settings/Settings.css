@@ -1,14 +1,64 @@
-.Settings{
-    display: flex;
+.Settings {
+  display: flex;
+  height: 100vh;
 }
 
+.SettingHero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-top: 5rem;
+}
 
-.SettingHero{
-    width: 65%;
-    border: 1px solid;
-    display: flex;
+.SettingHero h1 {
+  text-align: center;
+}
+
+.mainSettings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5rem;
+  margin-left: 2rem;
+}
+
+.SettingHero ul {
+  list-style-type: none;
+}
+
+.SettingHero button {
+  border: none;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: var(--primary-100);
+  color: var(--bg-200);
+  font-size: 1.2rem;
+  border-radius: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.SettingHero button:hover {
+  background-color: rgb(0, 255, 255);
+  color: var(--text-100);
+}
+
+@media screen and (max-width: 700px) {
+  .SettingHero {
     flex-direction: column;
-    align-items: center;
-    
-}
+    gap: 3rem;
+    padding-top: 3rem;
+  }
 
+  .mainSettings {
+    flex-direction: column;
+    padding: 0rem;
+    margin-left: 0rem;
+  }
+
+  .SettingHero button {
+    padding: 0.8rem;
+    margin: 0.5rem;
+    font-size: 1rem;
+  }
+}

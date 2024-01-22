@@ -138,18 +138,21 @@ export default function AddIncomes() {
     <div className="addIncome">
       <SideMenu />
       <div className="addIncomesHero">
+
         <form className="incomeForm">
           <Calendar onChange={onChange} value={calDate} className="calendar" />
 
           {/* Entering income details */}
           <section className="incomeEnterSection">
-            <input
+            <div>
+               <input
               type="number"
               placeholder="Enter the Amount"
               className="incomeAmount"
               ref={incomeAmount}
             />
-            <p>{curr}</p>
+            <span>{curr}</span> 
+            </div>
             <select name="category" ref={incomeCategory}>
               <option value="Salary">Salary</option>
               <option value="Family-Allowance">Family-Allowance</option>
@@ -166,7 +169,7 @@ export default function AddIncomes() {
           </section>
 
           {/* Section for added incomes */}
-          <h2>Added Incomes</h2>
+          {/* <h2>Added Incomes</h2> */}
           <section className="displayEnteredIncome">
             <table>
               <thead>

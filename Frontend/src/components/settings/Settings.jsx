@@ -15,12 +15,13 @@ export default function Settings() {
   const [isSelectCurrency, setIsSelectCurrency] = useState(false);
   const [isDarkLight, setIsDarkLight] = useState(false);
   const [isChangeImg, setIsChangeImg] = useState(true);
- 
+
   // Toggle the visibility of the profile picture change section
   function changProfilePic() {
     setIsChangeImg(!isChangeImg);
     setIsUpdateUserDetails(false);
     setIsSelectCurrency(false);
+    setIsHelpShow(false);
   }
 
   // Toggle the visibility of the help section
@@ -38,7 +39,7 @@ export default function Settings() {
     setIsSelectCurrency(false);
     setIsChangeImg(false);
   }
-  
+
   // Toggle between dark and light mode
   function toogleDarkMode() {
     const newDarkMode = !darkMode;
@@ -59,38 +60,36 @@ export default function Settings() {
       <SideMenu />
       <div className="SettingHero">
         <h1>Settings</h1>
-        <ul className="SettingsMiddle">
-          {/* <li>
-            <button>Change Password</button>
-          </li> */}
-          <li>
-            <button onClick={changProfilePic}> Change Profile Picture</button>
-          </li>
-          <li>
-            <button onClick={showUpdateUserDetails}>
-              Update Profile Details
-            </button>
-          </li>
-          <li>
-            <button onClick={handleChageCurrency}>Change Currency</button>
-          </li>
-
-          <li>
-            <button onClick={showHelp}>Help/FAQ</button>
-          </li>
-          <li>
-            <button onClick={toogleDarkMode}>
-              {isDarkLight ? "Light Mode" : "Dark Mode"}
-            </button>
-          </li>
-        </ul>
-       
-       {/* Render the corresponding components based on state */}
-        <div>{isUpdateUserDetails && <UpdateUserDetails />}</div>
-        <div>{isHelpShow && <Help />}</div>
-        <div>{isSelectCurrency && <SelectCurrency />}</div>
-        <div>{isChangeImg && <ChangeProfileImg />}</div>
+        <main className="mainSettings">
+          <ul>
+            <li>
+              <button onClick={changProfilePic}> Change Profile Picture</button>
+            </li>
+            <li>
+              <button onClick={showUpdateUserDetails}>
+                Update Profile Details
+              </button>
+            </li>
+            <li>
+              <button onClick={handleChageCurrency}>Change Currency</button>
+            </li>
+            <li>
+              <button onClick={showHelp}>Help/FAQ</button>
+            </li>
+            <li>
+              <button onClick={toogleDarkMode}>
+                {isDarkLight ? "Light Mode" : "Dark Mode"}
+              </button>
+            </li>
+          </ul>
+          {/* Render the corresponding components based on state */}
+          <div>{isUpdateUserDetails && <UpdateUserDetails />}</div>
+          <div>{isHelpShow && <Help />}</div>
+          <div>{isSelectCurrency && <SelectCurrency />}</div>
+          <div>{isChangeImg && <ChangeProfileImg />}</div>
+        </main>
       </div>
+
       <Profile />
     </div>
   );
