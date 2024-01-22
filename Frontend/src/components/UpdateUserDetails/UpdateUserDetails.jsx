@@ -35,7 +35,7 @@ const [lastName, setLastName] = useState("")
   };
 
   // Update user details on the server
-  const UpdateDetails = () => {
+/*   const UpdateDetails = () => {
     const newData = {
       ...state.user,
       firstName: firstName,
@@ -54,7 +54,7 @@ const [lastName, setLastName] = useState("")
 
   
   }
-}
+} */
 
 const UpdateDetails =  ()=>{
     const newData = {
@@ -68,9 +68,8 @@ const UpdateDetails =  ()=>{
    /*  dispatch({type:"setUpdateUser", payload:true}) */
    first.current.value="";
    last.current.value=""
-    getUserById()
+   getUserById()
    
-
 }
 /* console.log(state.user) */
 

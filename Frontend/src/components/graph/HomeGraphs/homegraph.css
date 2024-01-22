@@ -1,0 +1,13 @@
+.home-chart-container{
+    width:350px;
+    height: 350px;
+}
+
+@media (max-width:750px){
+    .home-chart-container{
+        width:200px;
+        height:200px;
+        
+    }
+
+}

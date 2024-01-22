@@ -25,9 +25,9 @@ function ShowExpensesHome() {
   }, [state.user]);
 
   return (
-    <div>
-      <h1>Your Most Recent Expenses</h1>
-      <table>
+    <div className="showExpensesHome">
+      <h4>Your Most Recent Expenses</h4>
+      <table className="expenses-home-table"> 
         <thead>
           <tr>
             <th>Date</th>

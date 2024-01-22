@@ -10,6 +10,7 @@ import ShowExpenses from "../showExpenses/ShowExpenses";
 import Profile from "../profile/Profile";
 import axios from "axios";
 
+
 export default function AddExpences() {
   // State variables for managing calendar date, image preview, and expenses data
   const { state, dispatch } = useContext(context);
@@ -125,18 +126,18 @@ export default function AddExpences() {
 
             {/* Dropdown for selecting expense category */}
             <select name="category" ref={expCategory}>
-              <option value="food">Food</option>
-              <option value="fuel">Fuel</option>
-              <option value="shopping">Shopping</option>
-              <option value="entertainment">Entertainment</option>
-              <option value="telephone">Tele-Phone</option>
-              <option value="pets">Pets</option>
-              <option value="kids">Kids</option>
-              <option value="insurance">Insurance</option>
-              <option value="energy">Energy</option>
-              <option value="rent">Rent</option>
-              <option value="holidays">Holidays</option>
-              <option value="others">Others</option>
+              <option value="food" className="expOption">Food</option>
+              <option value="fuel" className="expOption">Fuel</option>
+              <option value="shopping" className="expOption">Shopping</option>
+              <option value="entertainment" className="expOption">Entertainment</option>
+              <option value="telephone" className="expOption">Tele-Phone</option>
+              <option value="pets" className="expOption">Pets</option>
+              <option value="kids" className="expOption">Kids</option>
+              <option value="insurance" className="expOption">Insurance</option>
+              <option value="energy" className="expOption">Energy</option>
+              <option value="rent" className="expOption">Rent</option>
+              <option value="holidays" className="expOption">Holidays</option>
+              <option value="others" className="expOption">Others</option>
             </select>
 
             {/* Adding receipt image */}

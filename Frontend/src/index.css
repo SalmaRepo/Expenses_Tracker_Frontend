@@ -12,36 +12,42 @@
   /*example colors palette dark mode */
   --primary-color: #202048;
   --secondary-color: #3f3f8d;
-
   --text-color: #d0cfcf;
   --background-color: #2e2e2e;
-
   --border-color: #292929;
-
   --link-color: #0066cc;
   --hover-color: #4a7bf5;
-
   --expenses: #c63968;
   --incomes: #03dac6;
+  --primary-100: #3f51b5;
+  --primary-200: #757de8;
+  --primary-300: #dedeff;
+  --accent-100: #2196f3;
+  --accent-200: #003f8f;
+  --text-100: #333333;
+  --text-200: #5c5c5c;
+  --bg-100: #ffffff;
+  --bg-200: #f5f5f5;
+  --bg-300: #cccccc;
+  
 }
+
 
 /* NOTE: use the variables for the colors like in this example */
 .darkMode {
   background-color: var(--background-color);
   color: var(--text-color);
 }
-.darkmodeExpenses{
+/* .darkmodeExpenses {
   background-color: var(--expenses);
   color: var(--primary-color);
 }
 
-.darkmodeIncomes{
+.darkmodeIncomes {
   background-color: var(--incomes);
   color: var(--primary-color);
-}
+} */
 
 .darkMode ul li a {
   color: var(--text-color);
 }
-
-

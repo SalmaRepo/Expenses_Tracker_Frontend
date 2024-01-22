@@ -115,12 +115,15 @@ function ShowExpenses() {
                           />
                         </td>
                         {/* Delete button */}
+                        <td>
                         <button
                           type="button"
                           onClick={() => deleteExpense(expense?._id)}
                         >
                           Delete
                         </button>
+                        </td>
+                        
                       </tr>
                     );
                   })
@@ -151,13 +154,16 @@ function ShowExpenses() {
                             style={{ width: "30px", height: "30px" }}
                           />
                         </td>
-
+                        <td>
                         <button
                           type="button"
                           onClick={() => deleteExpense(expense?._id)}
                         >
                           Delete
                         </button>
+                        </td>
+
+                       
                       </tr>
                     );
                   })

@@ -63,7 +63,13 @@ function ExpensesHomeGraph() {
         borderColor: "black",
         borderWidth: 0,
       },
+  
     ],
+    options: {
+      legend: {
+          maxWidth: 10, // Adjust the maxWidth according to your needs
+      }
+  }
   });
 
  
@@ -80,11 +86,11 @@ function ExpensesHomeGraph() {
       label: "Amount Spent ",
       data: expensesSummary?.map((expense) => expense?.amount),
       backgroundColor: [
-        "#2a71d0",
-        "#35d02a",
-        "#d02aa9",
+        "#86a8d5",
+        "#98e693",
+        "#eb90d6",
         "#d0a12a",
-        "#d02a3b",
+        "#eee2a6",
         "#2ad0cb",
         "#97dd73",
       ],

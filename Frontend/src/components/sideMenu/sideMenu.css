@@ -1,68 +1,142 @@
-.sideBar{
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 15%;
-    border-right: 1px solid black;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  border-right: 1px solid rgb(249, 235, 235);
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  background: linear-gradient(
+    to right bottom,
+    var(--bg-100),
+    var(--accent-100)
+  );
 }
 
-.sideBarTop{
-    display: flex;
-    flex-direction: column;
-    height: 40%;
-    gap: 1rem;
-    width: 100%;
+.sideBarTop {
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  gap: 1rem;
+  width: 100%;
 }
-
-.sideBarBottom{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.sideBarTop ul,.sideBarBottom ul{
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.sideBarTop ul li,.sideBarBottom ul li{
-    border-bottom: 1px solid;
-    width: 100%;
-    text-align: center;
-    padding: 1rem;
-
-}
-
-.sideBarBottom ul li:first-child{
-    padding: 1rem;
-    border-top:1px solid;;
-}
-
-.sideBarBottom ul li:last-child{
-    border-bottom: none;
-}
-.sideBarTop ul li a,.sideBarBottom ul li a{
-    text-decoration: none;
-    font-weight: bold;
-    color: black;
-
-
-}
-
-.sideBarTop ul li:hover, .sideBarBottom ul li:hover{
-    background-color: blanchedalmond;
-    
-}
-.logo {
-    width: 40%;
-    height: 5rem;
+.sideBarTop a .logo {
+  width: 40%;
+  height: 6rem;
   padding-top: 20px;
   object-fit: cover;
-  }
+  margin: 0;
+  padding: 0;
+}
+
+.sideBarTop .sideBar-logo-container span {
+  display: flex;
+
+  color: rgb(90, 37, 206);
+  text-shadow: 1px 0.5px;
+}
+
+.sideBarBottom {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sideBarTop ul,
+.sideBarBottom ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sideBarTop ul li,
+.sideBarBottom ul li {
+  width: 100%;
+  text-align: center;
+  padding: 0.8rem;
+}
+
+.sideBarBottom ul li:first-child {
+  padding: 1rem;
+}
+
+.sideBarBottom ul li:last-child {
+  border-bottom: none;
+}
+.sideBarTop ul li a,
+.sideBarBottom ul li a,
+.sideBar .sideBarTop a {
+  text-decoration: none;
+  font-weight: 300;
+  color: var(--text-100);
+}
+
+.sideBarTop ul li:hover,
+.sideBarBottom ul li:hover {
+  background-color: rgb(246, 237, 237);
+  margin: 0 auto;
+  width: 90%;
+  border-radius: 0.5rem;
+}
+
+.sideBar .sideNav-Link {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+.sideBarTop i,
+.sideBarBottom i {
+  color: rgb(3, 69, 92);
+  font-size: 1.2rem;
+}
+
+.sideBar .sideNav-Link.active {
+  background-color: var(--bg-100);
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  padding: 0.8rem;
+}
+
+.sideBar .sideNav-Link.active:hover {
+  background-color: none;
+}
+
+@media (max-width: 760px) {
+  .sideBar {
+    width: 20%;
   
+  
+  }
+
+  .sideBarTop a .logo {
+    width: 80%;
+    height: 6rem;
+    padding-top: 20px;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+  }
+
+
+
+  .sideBarTop .sideBar-logo-container span {
+    display: none;
+  }
+
+ 
+
+  .sideBar .sideNav-Link span{
+    display: none;
+  }
+}
