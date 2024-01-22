@@ -12,6 +12,7 @@ function SelectCurrency() {
   const [all, setAll] = useState(null);
   const [filter, setFilter] = useState(null);
   const [curr, setCurr] = useState(null);
+  const [isupdatecurrency, setIsUpdateCurrency] = useState(false);
 
   let res = all && [...Object.entries(all)];
   all && console.log(Object.entries(all));
@@ -67,7 +68,7 @@ function SelectCurrency() {
     <div className="selectCurr">
       <div className="curr-Left">
         {/* Input for currency search */}
-        <label htmlFor="dropdown">Currency:</label>
+        <label className="currency-label" htmlFor="dropdown">Currency:</label>
         <input
           type="search"
           className="currencySearch"
@@ -76,12 +77,16 @@ function SelectCurrency() {
           onInput={handleSearch}
         />
         {/* Displaying filtered currencies */}
-        {filter && (
+
+        {/* added this code to hide the dropdown */}
+        
+        {filter && filter.length > 0 && (
           <div className="alllistCurrencies">
             {filter?.map((re) => {
               return (
                 <div className="singleCurrList">
                   <button
+                    className="curr-btn"
                     type="button"
                     ref={selectedCurr}
                     onClick={() => handleSelectedCurr(re[0] + " " + re[1])}
@@ -94,12 +99,15 @@ function SelectCurrency() {
           </div>
         )}
         {/* Button for submitting the selected currency */}
-        <button type="submit" onClick={handleSubmit}>
+        <div className="div-submit">
+        <button className="curr-submit" type="submit" onClick={handleSubmit}>
           Submit
         </button>
+        </div>
       </div>
       <div>
-        <h1>Expenses Tracker</h1>
+      {/* {!isupdatecurrency && <h1>Expenses Tracker</h1>}  */}
+      <h1>Expenses Tracker</h1>
       </div>
     </div>
   );

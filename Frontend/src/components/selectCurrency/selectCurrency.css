@@ -1,23 +1,93 @@
-.selectCurr{
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    align-items: center;
-    padding: 2rem;
-}
-.curr-Left{
-    width: 60%;
-}
-.alllistCurrencies{
-    height: 10rem;
-    overflow-y: auto;
-    border: 2px solid;
-    width: 20%;
-}
-.singleCurrList{
-    border: 1px solid;
+.selectCurr {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  margin: 1rem;
+  padding: 2rem;
 }
 
-.currencySearch{
-    width: 20%;
+.curr-Left {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px;
+  padding: 20px;
+  background-color: #e5f4ff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+.currency-label {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.currencySearch {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+  border: 2px solid #5cb6f2;
+  border-radius: 10px;
+}
+
+.alllistCurrencies {
+  max-height: 10rem;
+  overflow-y: auto;
+  border: 2px solid;
+  width: 100%;
+}
+
+.singleCurrList {
+  border-bottom: 1px solid #999a9b; /* Add a bottom border to separate items */
+}
+
+
+.singleCurrList:last-child {
+  border-bottom: none; /* Remove bottom border for the last item */
+}
+
+.curr-btn {
+  padding: 8px 16px;
+  width: 100%;
+  /* text-align: left; */
+  font-size: 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.curr-btn:hover{
+  background: linear-gradient(to right, #85c0e8, #0077cc);
+}
+
+
+.div-submit {
+  display: flex;
+  justify-content: center;
+}
+
+.curr-submit {
+  background-color: #3498db;
+  color: #fff;
+  margin: 12px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.curr-submit:hover {
+  background-color: #2077b3;
+}
+
+.selectCurr h1{
+    margin-top: 15px;
+}
+

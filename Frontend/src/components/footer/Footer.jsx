@@ -42,7 +42,7 @@ function Footer() {
               alt="logo of the project"
             />{" "}
           </a>
-        </div>
+  
 
       </li>
       <div className="ulRight">

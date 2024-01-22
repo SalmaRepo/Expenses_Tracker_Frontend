@@ -1,12 +1,9 @@
 import React from "react";
-import SideMenu from "../sideMenu/SideMenu";
-import Profile from "../profile/Profile";
 import "./help.css";
 
 function Help() {
   return (
     <div className="Help">
-       <SideMenu /> 
       <div className="HelpHero">
      
         <h1>FAQs</h1>
@@ -27,7 +24,6 @@ function Help() {
           upload your receipt as an image.
         </p>
       </div>
- <Profile/> 
     </div>
   );
 }

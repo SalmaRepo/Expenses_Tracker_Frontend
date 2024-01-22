@@ -97,8 +97,8 @@ export default function Signup() {
   return (
     <div>
     <div className="signup">
-      <div className="left"></div>
-      <div className="right">
+      <div className="signup-left"></div>
+      <div className="signup-right">
       <div className="mainDiv">
       <LandNavBar/>
       <h1>Signup</h1>
@@ -119,7 +119,7 @@ export default function Signup() {
         <div class="file-input-container">
         <input type="file" name="file" id="file" onChange={grabImage} />  
 
-        {/* added this extra line of label for the CSS pupose */}
+        {/* added this extra line of label for the CSS purpose */}
         <label htmlFor="file" className="chooseFile-label">Choose File</label> 
         
         </div>

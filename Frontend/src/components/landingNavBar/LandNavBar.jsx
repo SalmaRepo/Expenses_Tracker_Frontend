@@ -19,7 +19,7 @@ export default function LandNavBar() {
       </Link>
       <ul className="landingNavList">
         <li>
-          <Link href="#about"> About </Link>
+          <a href="#about"> About </a>
         </li>
         <li>
           <Link to="/login">{state.user ? <LogOut /> : "Login"}</Link>

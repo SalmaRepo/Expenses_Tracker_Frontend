@@ -2,18 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import BASE_URL from "../../config/urlConfig";
 import { context } from "../../context/context";
-
+import "./ChangeProfileImg.css";
 
 export default function ChangeProfileImg() {
   const { state, dispatch } = useContext(context);
   const [preview, setPreview] = useState("");
- 
+
   function grabImage(e) {
     e.stopPropagation();
-    dispatch({type:"setChangeImage", payload:e.target.files[0]})
+    dispatch({ type: "setChangeImage", payload: e.target.files[0] });
     setPreview(URL.createObjectURL(e.target.files[0]));
   }
-  
+
   // Handle grabbing the selected image and updating the preview
   function handleChangeImg(e) {
     const token = localStorage.getItem("token");
@@ -26,7 +26,7 @@ export default function ChangeProfileImg() {
       .patch(`${BASE_URL}/api/users/changeProfileImg`, upLoad, {
         headers: { token: token },
       })
-      .then(result  => 
+      .then((result) =>
         dispatch({
           type: "setUser",
           payload: result.data.data,
@@ -38,12 +38,22 @@ export default function ChangeProfileImg() {
   }
 
   return (
-    <div>
-      Profile Image
-      <form action="" onSubmit={handleChangeImg}>
-        <input type="file" name="file" onChange={grabImage} />
-        <img src={preview} alt="" style={{ height: "100px", width: "100px" }} />
-        <button>Submit</button>
+    <div className="change-profile">
+      <h2 className="profile-h2">Profile Image</h2>
+      <form className="profile-form" action="" onSubmit={handleChangeImg}>
+
+        <div className="profile-input-container">
+
+      {/* added this extra line of label for the CSS purpose */}    
+      <label htmlFor="file" className="profile-label">Choose File</label> 
+        <input 
+        type="file" 
+        name="file" 
+        id="file"
+        onChange={grabImage} />
+        </div>
+        <img src={preview} alt="" className="form-img"/>
+        <button className="profile-btn">Submit</button>
       </form>
     </div>
   );

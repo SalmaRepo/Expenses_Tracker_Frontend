@@ -13,8 +13,8 @@ export default function Profile() {
     <>
       {state.user && (
         <section className="profile">
-          <div className="page">
-            <div className="profile-image-container">
+          <div>
+            <div>
               <img 
                 src={
                   !state.user?.userImage
@@ -31,7 +31,7 @@ export default function Profile() {
 
             <p>{email}</p>
           </div>
-          <div className="balance">
+          <div className="profile-balance">
             <Balance userId={state.user._id} />
           </div>
         </section>
