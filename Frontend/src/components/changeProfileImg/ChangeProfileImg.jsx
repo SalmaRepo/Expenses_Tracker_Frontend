@@ -8,6 +8,26 @@ export default function ChangeProfileImg() {
   const { state, dispatch } = useContext(context);
   const [preview, setPreview] = useState("");
 
+
+
+  const getUserById = () => {
+    if (state.user) {
+      const token = localStorage.getItem("token");
+
+      // Fetch user details using the user's ID
+      fetch(`${BASE_URL}/api/users/getUserById/${state.user?._id}`, {
+        method: "GET",
+        headers: {
+          token: token,
+        },
+      })
+        .then((res) => res.json())
+        .then((result) => dispatch({ type: "setUser", payload: result.data }))
+        .catch((err) => console.log(err));
+    }
+  };
+
+
   function grabImage(e) {
     e.stopPropagation();
     dispatch({ type: "setChangeImage", payload: e.target.files[0] });
@@ -35,6 +55,7 @@ export default function ChangeProfileImg() {
       .catch((error) => {
         console.log(error);
       });
+      getUserById()
   }
 
   return (

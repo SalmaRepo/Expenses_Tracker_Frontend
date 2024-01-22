@@ -6,22 +6,23 @@ import Balance from "../balance/Balance";
 
 export default function Profile() {
   const { state, dispatch } = useContext(context);
-  const userName = state.user ? `${state.user.firstName} ${state.user.lastName}` : "N/A";
+  const userName = state.user
+    ? `${state.user.firstName} ${state.user.lastName}`
+    : "N/A";
   const email = state.user ? state.user.email : "N/A";
 
   return (
     <>
       {state.user && (
         <section className="profile">
-          <div>
-            <div>
-              <img 
+          <div className="page">
+            <div className="profile-image-container">
+              <img
                 src={
                   !state.user?.userImage
                     ? "images/profilePic.jpg"
                     : `${BASE_URL}/${state.user?.userImage}`
                 }
-
                 alt="noImg"
                 className="profile-img"
               />
@@ -31,8 +32,13 @@ export default function Profile() {
 
             <p>{email}</p>
           </div>
-          <div className="profile-balance">
-            <Balance userId={state.user._id} />
+
+          <div className="profile-balance-container">
+            <h1 className="profile-balance-title">Balance</h1>
+            <div className="balance">
+              <Balance userId={state.user._id} />
+            </div>
+
           </div>
         </section>
       )}

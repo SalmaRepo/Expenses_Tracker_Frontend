@@ -14,7 +14,7 @@ export default function Settings() {
   const [isHelpShow, setIsHelpShow] = useState(false);
   const [isSelectCurrency, setIsSelectCurrency] = useState(false);
   const [isDarkLight, setIsDarkLight] = useState(false);
-  const [isChangeImg, setIsChangeImg] = useState(false);
+  const [isChangeImg, setIsChangeImg] = useState(true);
  
   // Toggle the visibility of the profile picture change section
   function changProfilePic() {

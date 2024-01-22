@@ -1,0 +1,57 @@
+.showExpensesHome{
+    width: 80%;
+    margin: 0 auto;
+    background-color: var(--bg-100); 
+    color: var(--text-200);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.showExpensesHome h4{
+    text-align: center;
+    color: var(--primary-100);
+    padding-bottom: 1rem;
+}
+
+.showExpensesHome .expenses-home-table{
+    border-radius: 1rem;
+    border:1px solid rgb(241, 237, 237);
+}
+
+.showExpensesHome .expenses-home-table tbody tr td{
+    border:0;
+    text-align: center;
+}
+
+.expenses-home-table thead th{
+    border: 0;
+    text-align: center;
+    color: var(--primary-100);
+}
+
+@media (max-width:760px){
+    .showExpensesHome{
+        width: 100%;
+       
+        
+       
+    }
+
+    .showExpensesHome h4{
+        font-size: 0.8rem;
+        margin-top: 2rem;
+    }
+
+    .showExpensesHome .expenses-home-table{
+        width: 100%;
+        font-size: 0.8rem;
+        border: 1px solid;
+        border-radius: 1rem;
+        box-shadow: 1px -1px 10px 5px rgba(128, 128, 128, 0.224);
+        overflow-y: auto;
+    }
+
+    .showExpensesHome .expenses-home-table td{
+        padding: 0.5rem;
+    }
+}

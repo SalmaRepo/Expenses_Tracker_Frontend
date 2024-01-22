@@ -1,7 +1,5 @@
 
 import React, { useState, useContext, useRef } from "react";
-import SideMenu from "../sideMenu/SideMenu";
-import Profile from "../profile/Profile";
 import "./UpdateUserDetails.css";
 import { context } from "../../context/context";
 import axios from "axios";
@@ -34,27 +32,7 @@ const [lastName, setLastName] = useState("")
     }
   };
 
-  // Update user details on the server
-//   const UpdateDetails = () => {
-//     const newData = {
-//       ...state.user,
-//       firstName: firstName,
-//       lastName: lastName,
-//     };
 
-//     const token = localStorage.getItem("token");
-
-//     //PATCH request to update user details
-//     axios
-//       .patch(`${BASE_URL}/api/users/updateUserDetailsById`, newData, {
-//         headers: { token: token },
-//       })
-//       .then((response) => console.log("updated"))
-//       .catch((err) => console.log(err));
-
-  
-//   }
-// }
 
 const UpdateDetails =  ()=>{
     const newData = {
@@ -68,9 +46,8 @@ const UpdateDetails =  ()=>{
    /*  dispatch({type:"setUpdateUser", payload:true}) */
    first.current.value="";
    last.current.value=""
-    getUserById()
+   getUserById()
    
-
 }
 /* console.log(state.user) */
 
