@@ -3,7 +3,7 @@ import "./help.css";
 
 function Help() {
   return (
-    <div className="Help"> 
+    <div className="Help">
       <div className="HelpHero">
      
         <h1>FAQs</h1>

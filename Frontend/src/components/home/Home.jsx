@@ -82,7 +82,7 @@ export default function Home() {
           </div>}
         <div className="homeHeroMiddle">
          
-          {state.expenses ? (
+          {state.expenses?.length>0 ? (
             <ShowExpensesHome />
           ) : (
             <p className="homeExpensesDisplay">No Expenses to Show</p>

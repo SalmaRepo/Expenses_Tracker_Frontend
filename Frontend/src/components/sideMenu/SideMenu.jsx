@@ -36,7 +36,7 @@ export default function SideMenu() {
           </li>
           <li>
             <NavLink to="/history" className="sideNav-Link">
-            <i class="fa-solid fa-chart-area"></i><span>Dashboard</span>
+            <i class="fa-solid fa-chart-area"></i><span>History</span>
             </NavLink>
           </li>
         </ul>

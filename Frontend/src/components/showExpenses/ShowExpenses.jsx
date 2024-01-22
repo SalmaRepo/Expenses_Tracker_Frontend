@@ -74,14 +74,15 @@ function ShowExpenses() {
       <Toaster position="top-center" />
       {/* Main container for displaying expenses */}
       <div className="showExpenses">
-        <table>
+        <table className="showExpTable">
           <thead>
             {/* Table header */}
             <tr>
-              <th>Date</th>
-              <th>Category</th>
-              <th>Amount</th>
-              <th>Reciept</th>
+              <th className="expTableHead">Date</th>
+              <th className="expTableHead">Category</th>
+              <th className="expTableHead">Amount</th>
+              <th className="expTableHead">Reciept</th>
+              <th className="expTableHead"></th>
             </tr>
           </thead>
           <tbody>
@@ -127,7 +128,7 @@ function ShowExpenses() {
                       </tr>
                     );
                   })
-                  .reverse()
+                  .reverse().slice(0,20)
               : state.user?.expenses
                   ?.map((expense) => {
                     return (
@@ -167,7 +168,7 @@ function ShowExpenses() {
                       </tr>
                     );
                   })
-                  .reverse()}
+                  .reverse().slice(0,20)}
           </tbody>
         </table>
       </div>

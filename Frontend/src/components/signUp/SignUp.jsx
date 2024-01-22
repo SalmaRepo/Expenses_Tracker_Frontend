@@ -52,6 +52,7 @@ export default function Signup() {
   };
 
   return (
+
     <>
       <LandNavBar />
       <div className="signup">
@@ -118,6 +119,7 @@ export default function Signup() {
 
                 <button className="signup-btn">SignUp</button>
               </section>
+
         
             </form>
           </main>

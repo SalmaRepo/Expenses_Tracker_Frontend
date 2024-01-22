@@ -1,14 +1,57 @@
 .UpdateDetails{
     display: flex;
     width: 100%;
+    text-align: center;
+    margin-top: 4rem;
 }
 
 
 .UpdateDetailsHero{
     width: 100%;
-    border: 1px solid;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    background-color: #e5f4ff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+.UpdateDetails label{
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+.UpdateDetails input{
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0 15px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.UpdateDetails .update-btn{
+    width: 35%;
+    padding: 5px;
+    background-color:#3498db;;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s;
+}
+
+.UpdateDetails .update-btn:hover{
+    background-color: #2077b3;
+}
+
+@media (max-width: 768px) {
+    .UpdateDetailsHero {
+      width: 100%; 
+      border-left: none;
+    }
+  }
