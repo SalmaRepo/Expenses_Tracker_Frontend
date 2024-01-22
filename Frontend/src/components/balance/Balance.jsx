@@ -60,7 +60,7 @@ const Balance = ({ userId }) => {
   return (
     <div>
       <h2>
-        Your Balance is <span></span>  
+        <span></span>  
         {typeof state.balance === "number"
           ? state.balance.toFixed(2)
           : state.balance}

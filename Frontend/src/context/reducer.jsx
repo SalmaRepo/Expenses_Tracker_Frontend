@@ -52,6 +52,6 @@ export const initialState={
     enteredIncomes:[], 
     balance:0,
     changeImage:"",
-    incomes:null
+    incomes:null,  
 
 }

@@ -109,7 +109,6 @@ function History() {
     setFilteredExpenses(expensesSummary);
     const incomesSummary = summariseIncomes(currentWeekIncomes);
     setFilteredIncomes(incomesSummary);
-
   };
   // HANDLE MONTH
   const handleMonth = () => {
@@ -238,6 +237,46 @@ function History() {
   }, 0);
   // Total balance
   const totalBalance = totalIncomes - totalExpenses;
+  //download expenses function
+  const downloadData = () => {
+    let durationLabel;
+    switch (selectedDuration) {
+      case "day":
+        durationLabel = `${new Date(calDate).toLocaleDateString()}`;
+        break;
+      case "week":
+        durationLabel = `${weekStart.toLocaleDateString()}-${weekLast.toLocaleDateString()}`;
+        break;
+      case "month":
+        durationLabel = `${months[month]} ${year}`;
+        break;
+      case "year":
+        durationLabel = `${year}`;
+        break;
+      default:
+        durationLabel = "All";
+        break;
+    };
+  
+    const csvContent =
+    `Duration${durationLabel}\n`+ `Category,Amount,Receipt\n`  +
+      filteredExpenses
+        .map(
+          (expense) =>
+            `${expense.category},${expense.amount},${BASE_URL}/${expense.reciept}`
+        )
+        .join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "expenses.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <div className="history">
@@ -447,9 +486,14 @@ function History() {
                 </div>
               </div>
             </div>
-            {/* SHOW INCOMES */} 
+            {/* SHOW INCOMES */}
           </div>
           <div className="history-bottom-right">
+            
+              <button type="button" onClick={downloadData}>
+                Download Expenses
+              </button>
+            
             <div className="expensesTotal">
               Expenses of the selected date: {totalExpenses}
             </div>
@@ -468,4 +512,3 @@ function History() {
   );
 }
 export default History;
-  

@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.left {
+.signup .left {
   width: 50%;
   height: 100vh;
   background: linear-gradient(-107deg, #2195f3a7 0, #3458f75f 100%),
@@ -11,7 +11,7 @@
   background-position: center;
 }
 
-.right {
+.signup .right {
   width: 50%;
   margin: 0 0 6rem 0;
   padding: 6px;
@@ -37,7 +37,7 @@
   text-align: center;
 }
 
-.inputs {
+.signup .inputs {
   margin-bottom: 1.3rem;
   padding: 4px;
   width: 80%;
@@ -117,11 +117,15 @@
 
 /*-- mobile --*/
 @media screen and (max-width: 700px) {
-  .left {
+  .signup .left {
     display: none;
   }
 
-  .right {
+  .signup .right {
+    width: 100%;
+  }
+
+  .signup .inputs{
     width: 100%;
   }
 }

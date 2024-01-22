@@ -45,9 +45,8 @@ const UpdateDetails =  ()=>{
    /*  dispatch({type:"setUpdateUser", payload:true}) */
    first.current.value="";
    last.current.value=""
-    getUserById()
+   getUserById()
    
-
 }
 /* console.log(state.user) */
 
