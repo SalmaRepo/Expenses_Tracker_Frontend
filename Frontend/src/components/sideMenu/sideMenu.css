@@ -101,7 +101,8 @@
 }
 @media (max-width: 760px) {
   .sideBar {
-    width: 20%;
+    width: 18%;
+    height:100vh;
   }
   .sideBarTop a .logo {
     width: 80%;

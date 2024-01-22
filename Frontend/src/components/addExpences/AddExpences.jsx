@@ -117,27 +117,27 @@ export default function AddExpences() {
                 type="number"
                 step="any"
                 name="amount"
-                placeholder="Enter the Amount"
+                placeholder="Amount"
                 className="expensesAmount"
                 ref={expAmount}
               />
-              <p>{state.user?.currency?.slice(3)}</p>
+              <p className="expCurrency">{state.user?.currency?.slice(3)}</p>
             </div>
 
             {/* Dropdown for selecting expense category */}
             <select name="category" ref={expCategory}>
-              <option value="food" className="expOption">Food</option>
-              <option value="fuel" className="expOption">Fuel</option>
-              <option value="shopping" className="expOption">Shopping</option>
-              <option value="entertainment" className="expOption">Entertainment</option>
-              <option value="telephone" className="expOption">Tele-Phone</option>
-              <option value="pets" className="expOption">Pets</option>
-              <option value="kids" className="expOption">Kids</option>
-              <option value="insurance" className="expOption">Insurance</option>
-              <option value="energy" className="expOption">Energy</option>
-              <option value="rent" className="expOption">Rent</option>
-              <option value="holidays" className="expOption">Holidays</option>
-              <option value="others" className="expOption">Others</option>
+              <option value="food">Food</option>
+              <option value="fuel">Fuel</option>
+              <option value="shopping">Shopping</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="telephone">Tele-Phone</option>
+              <option value="pets">Pets</option>
+              <option value="kids">Kids</option>
+              <option value="insurance">Insurance</option>
+              <option value="energy">Energy</option>
+              <option value="rent">Rent</option>
+              <option value="holidays">Holidays</option>
+              <option value="others">Others</option>
             </select>
 
             {/* Adding receipt image */}
@@ -148,33 +148,35 @@ export default function AddExpences() {
                 onClick={() => isUploadImageSelect()}
                 className="isUploadButton"
               >
-                +
+               <i className='fa-solid fa-circle-plus'></i>
               </button>
 
               {/* Render file input if image upload is selected */}
-              {state.isUploadImageSelect && (
+              {state.isUploadImageSelect && 
                 <input
                   type="file"
                   name="file"
+                  accept="image/png, image/jpeg"
                   onChange={grabImage}
                   ref={expImg}
-                />
-              )}
+                  className="addRecieptFile"
+                />   
+              }
             </div>
 
-            <button type="submit">Confirm Expenses</button>
+            <button type="submit" className="submitExpButton">Confirm Expenses</button>
           </section>
 
           {/* Displaying entered expenses and receipt image */}
           <section className="displayExpArea">
             <div className="displayEnteredExp">
-              <ShowExpenses expenses={expenses} setExpenses={setExpenses} />
+              {state.user?.expenses?.length>0&&<ShowExpenses expenses={expenses} setExpenses={setExpenses} />}
             </div>
             {state.isUploadImageSelect && (
               <div className="showReciept">
                 <img
                   src={state.reciept}
-                  alt="recipet"
+                  alt=""
                   className="recieptImage"
                 />
               </div>

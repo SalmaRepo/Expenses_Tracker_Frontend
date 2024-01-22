@@ -14,8 +14,11 @@
 }
 
 .showExpensesHome .expenses-home-table{
+    width: 100%;
     border-radius: 1rem;
+    padding:1rem;
     border:1px solid rgb(241, 237, 237);
+    border-collapse: collapse;
 }
 
 .showExpensesHome .expenses-home-table tbody tr td{
@@ -23,10 +26,13 @@
     text-align: center;
 }
 
+
 .expenses-home-table thead th{
     border: 0;
     text-align: center;
     color: var(--primary-100);
+    background-color: var(--primary-300);
+    padding: 1rem;
 }
 
 @media (max-width:760px){
