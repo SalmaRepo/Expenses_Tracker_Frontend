@@ -2,8 +2,9 @@
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    border-left: solid 1px;
+    border: solid 1px;
     text-align: center;
+padding: 2rem;
 }
 
 .change-profile .profile-h2{
@@ -13,7 +14,7 @@
 
 .change-profile .profile-form{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     margin: 1rem;
     padding: 1rem;
@@ -75,11 +76,10 @@
 
     .change-profile .profile-form {
         margin: 0.5rem; 
-        padding: 0.5rem; 
+        padding: 0.5rem; }
 
     .change-profile .form-img {
         max-width: 100%; 
         margin: 1rem 0; 
     }
-}
 }

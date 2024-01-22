@@ -107,7 +107,7 @@ function SelectCurrency() {
       </div>
       <div>
       {/* {!isupdatecurrency && <h1>Expenses Tracker</h1>}  */}
-      <h1>Expenses Tracker</h1>
+      {state.isSignUp? <h1>Expenses Tracker</h1>: ""}
       </div>
     </div>
   );
