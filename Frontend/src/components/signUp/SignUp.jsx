@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import BASE_URL from "../../config/urlConfig";
 import LandNavBar from "../landingNavBar/LandNavBar";
-import Footer from "../footer/Footer";
 import axios from "axios";
 import { context } from "../../context/context";
 import "./SignUp.css";
@@ -59,7 +58,6 @@ export default function Signup() {
         <div className="left"></div>
         <div className="right">
           <main className="mainDiv">
-            {/* <LandNavBar /> */}
             <h1>Signup</h1>
             <Toaster position="top-center" /> {/* toast position*/}
             <form onSubmit={signupUser}>
@@ -125,7 +123,6 @@ export default function Signup() {
           </main>
         </div>
       </div>
-      {/* <Footer /> */}
     </>
   );
 }
