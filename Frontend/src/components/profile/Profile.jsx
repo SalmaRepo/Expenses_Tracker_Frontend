@@ -32,11 +32,13 @@ export default function Profile() {
 
             <p>{email}</p>
           </div>
+
           <div className="profile-balance-container">
             <h1 className="profile-balance-title">Balance</h1>
             <div className="balance">
               <Balance userId={state.user._id} />
             </div>
+
           </div>
         </section>
       )}

@@ -46,7 +46,9 @@ function Footer() {
               alt="logo of the project"
             />
           </a>
+
         </li>
+
 
 
         {/* right */}

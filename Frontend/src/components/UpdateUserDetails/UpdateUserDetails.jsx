@@ -33,6 +33,7 @@ const [lastName, setLastName] = useState("")
   };
 
 
+
 const UpdateDetails =  ()=>{
     const newData = {
         ...state.user,firstName:firstName,lastName:lastName
@@ -51,27 +52,26 @@ const UpdateDetails =  ()=>{
 /* console.log(state.user) */
 
   return (
+    
     <div className="UpdateDetails">
       <div className="UpdateDetailsHero">
-        <h1>Update User Details</h1>
+        <h1 className="update-h1">Update User Details</h1>
 
         
           <label htmlFor="First Name"> First Name:</label>
           <input
             type="text"
-            
             ref={first}
             onChange={(e) => setFirstName(e.target.value)}
           />
 
-          <label htmlFor="Last Name"> Last Name:</label>
+          <label  htmlFor="Last Name"> Last Name:</label>
           <input
-            type="text"
-            
+            type="text"   
             ref={last}
             onChange={(e) => setLastName(e.target.value)}
           />
-          <button type="button" onClick={UpdateDetails}>
+          <button className="update-btn" type="button" onClick={UpdateDetails}>
             Update
           </button>
         
