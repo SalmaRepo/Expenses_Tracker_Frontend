@@ -45,19 +45,19 @@
   color: var(--D-text-200);
 }
 
-.darkmodeExpenses{
+/* .darkmodeExpenses{
   background-color: var(--expenses);
   color: var(--primary-color);
-}
+} */
 
-.darkmodeIncomes{
+/* .darkmodeIncomes{
   background-color: var(--incomes);
   color: var(--primary-color);
-}
+} */
 
-.darkMode ul li a {
+/* .darkMode ul li a {
   color: var(--text-color);
-}
+} */
 
 .darkMode input {
   background-color:transparent;
