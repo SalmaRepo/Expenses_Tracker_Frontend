@@ -16,7 +16,6 @@ export default function AddIncomes() {
   const incomeAmount = useRef();
   const curr = state.user?.currency?.slice(3);
 
-
   // Fetch user details by ID
   const getUserById = () => {
     if (state.user) {
@@ -138,20 +137,19 @@ export default function AddIncomes() {
     <div className="addIncome">
       <SideMenu />
       <div className="addIncomesHero">
-
         <form className="incomeForm">
           <Calendar onChange={onChange} value={calDate} className="calendar" />
 
           {/* Entering income details */}
           <section className="incomeEnterSection">
-            <div>
-               <input
-              type="number"
-              placeholder="Enter the Amount"
-              className="incomeAmount"
-              ref={incomeAmount}
-            />
-            <span>{curr}</span> 
+            <div className="incInputContainer">
+              <input
+                type="number"
+                placeholder="Amount"
+                className="incomeAmount"
+                ref={incomeAmount}
+              />
+              <span>{curr}</span>
             </div>
             <select name="category" ref={incomeCategory}>
               <option value="Salary">Salary</option>
@@ -163,13 +161,16 @@ export default function AddIncomes() {
               <option value="Gifts">Gifts</option>
               <option value="Others">Others</option>
             </select>
-            <button type="button" onClick={incomesUpdate}>
+            <button
+              type="button"
+              className="submitIncome"
+              onClick={incomesUpdate}
+            >
               Confirm Income
             </button>
           </section>
 
           {/* Section for added incomes */}
-          {/* <h2>Added Incomes</h2> */}
           <section className="displayEnteredIncome">
             <table>
               <thead>
@@ -177,6 +178,7 @@ export default function AddIncomes() {
                   <th>Date</th>
                   <th>Category</th>
                   <th>Amount</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -184,7 +186,9 @@ export default function AddIncomes() {
                   <tr key={index}>
                     <td>{new Date(income.date).toLocaleDateString()}</td>
                     <td>{income.category}</td>
-                    <td>{income.amount} <span>{curr}</span></td>
+                    <td>
+                      {income.amount} <span>{curr}</span>
+                    </td>
                     <td>
                       <button
                         type="button"
