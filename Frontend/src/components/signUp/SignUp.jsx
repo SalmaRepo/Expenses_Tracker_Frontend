@@ -15,6 +15,8 @@ export default function Signup() {
   const { state, dispatch } = useContext(context);
 
   const grabImage = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     const link = e.target.files[0];
     setPreview(link);
     setShowImg(URL.createObjectURL(link));
@@ -30,6 +32,7 @@ export default function Signup() {
       data.append("lastName", e.target.lastname.value),
       data.append("email", e.target.email.value),
       data.append("password", e.target.password.value);
+      console.log(data)
 
     axios
       .post(`${BASE_URL}/api/users/signUp`, data, {

@@ -15,7 +15,7 @@ function SelectCurrency() {
   const [isupdatecurrency, setIsUpdateCurrency] = useState(false);
 
   let res = all && [...Object.entries(all)];
-  all && console.log(Object.entries(all));
+/*   all && console.log(Object.entries(all)); */
 
   // Fetching all currencies and handling search input
   const handleSearch = (e) => {

@@ -8,8 +8,6 @@ export default function ChangeProfileImg() {
   const { state, dispatch } = useContext(context);
   const [preview, setPreview] = useState("");
 
-
-
   const getUserById = () => {
     if (state.user) {
       const token = localStorage.getItem("token");
@@ -26,7 +24,6 @@ export default function ChangeProfileImg() {
         .catch((err) => console.log(err));
     }
   };
-
 
   function grabImage(e) {
     e.stopPropagation();
@@ -55,26 +52,20 @@ export default function ChangeProfileImg() {
       .catch((error) => {
         console.log(error);
       });
-      getUserById()
+    getUserById();
   }
 
   return (
     <div className="change-profile">
-      <h2 className="profile-h2">Profile Image</h2>
+      <h1 className="profile-h1">Profile Image</h1>
       <form className="profile-form" action="" onSubmit={handleChangeImg}>
-
         <div className="profile-input-container">
-
-      {/* added this extra line of label for the CSS purpose */}    
-      <label htmlFor="file" className="profile-label">Choose File</label> 
-        <input 
-        type="file" 
-        name="file" 
-        id="file"
-        onChange={grabImage} />
+          {/* added this extra line of label for the CSS purpose */}
+          {/* <label htmlFor="file" className="profile-label">Choose File</label>  */}
+          <input type="file" name="file" onChange={grabImage} />
         </div>
-        <img src={preview} alt="" className="form-img"/>
-        <button className="profile-btn">Submit</button>
+        <img src={preview} alt="" className="form-img" />
+        <button className="profile-submit">Submit</button>
       </form>
     </div>
   );
