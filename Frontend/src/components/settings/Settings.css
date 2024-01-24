@@ -15,22 +15,30 @@
   text-align: center;
 }
 
+.mainSettings .settings-spacebtwn{
+  display: flex;
+}
+
+.mainSettings .sub-settings{
+  margin: 5rem 0 0 9rem ;
+}
+
+
 .mainSettings {
   display: flex;
-  /* justify-content: space-evenly; */
+  /* justify-content: space-evenly;  */
   align-items: center;
   padding: 5rem;
-  margin-left: 2rem;
-  gap: 3rem;
-  
+  margin-left: 3rem;
+  gap: 5rem;
+
 }
 
-.SettingHero ul {
+.SettingHero .settings-ul{
   list-style-type: none;
-  /* border: 2px solid red; */
 }
 
-.SettingHero button {
+.SettingHero .settings-btn {
   border: none;
   padding: 1rem;
   margin: 1rem;
@@ -41,9 +49,9 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.SettingHero button:hover {
-  background-color: rgb(0, 255, 255);
-  color: var(--text-100);
+.SettingHero .settings-btn:hover {
+  background-color:#2A3F8F;
+  color: var(--bg-200);
 }
 
 @media screen and (max-width: 700px) {
@@ -63,5 +71,9 @@
     padding: 0.8rem;
     margin: 0.5rem;
     font-size: 1rem;
+  }
+
+  .mainSettings .sub-settings{
+    margin: 4rem 1rem;
   }
 }
