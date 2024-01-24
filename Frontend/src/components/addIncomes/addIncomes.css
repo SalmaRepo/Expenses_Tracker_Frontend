@@ -8,6 +8,7 @@
   width: 100%;
   padding: 1rem;
   display: flex;
+  justify-content: center;
 }
 
 .incomeForm {
@@ -20,27 +21,26 @@
 
 .addIncome .calendar {
   width: 70%;
-  height: 30%;
+  min-height: 30%;
   margin: 0 auto;
-  box-shadow: 1px 1px 5px 2px rgb(181, 180, 180); /*! this works also for darkmode */
+  box-shadow: 1px 1px 5px 2px rgb(181, 180, 180); 
   border-radius: 1rem;
-  overflow: auto; /* added to prevent overflow in small screen */
+  overflow: auto; 
 }
 
 /*-- Enter income  --*/
 .incomeEnterSection {
   width: 70%;
-  height: 5rem;
+  min-height: 15%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin: 0 auto;
-  box-shadow: 1px 1px 5px 2px rgb(181, 180, 180);
+  box-shadow: 1px 1px 5px 2px rgb(142, 200, 244);
   border-radius: 1rem;
 }
 
 .incomeAmount {
-  /* font-family: inherit; */
   width: 50%;
   border: 0;
   border-bottom: 2px solid var(--accent-100);
@@ -61,7 +61,6 @@
   font: inherit;
   line-height: 1.5em;
   padding: 0.5em 3.5em 0.5em 1em;
-  /* box-shadow: 1px 1px 10px 2px rgb(181, 180, 180); */
   margin: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -79,18 +78,21 @@
 
 .addIncome .submitIncome {
   width: 20%;
-  border: none;
-  background-color: var(--primary-100);
-  color: var(--bg-200);
-  padding: 0.7rem;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 0;
+  background: linear-gradient(to left bottom,rgb(206, 206, 206),var(--primary-200));
+  padding: 1rem;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: white;
+  box-shadow: 1px 1px 10px 2px rgb(232, 228, 228);
 }
 
 .addIncome .submitIncome:hover {
-  background-color: #00ffff;
-  color: var(--text-100);
+  transition: transform 1s ease;
+  border:1px solid rgb(120, 234, 207);
+  background: linear-gradient(to left bottom,rgb(164, 244, 222),var(--primary-200));
+  cursor: pointer;
 }
 
 .displayEnteredIncome {
@@ -98,7 +100,7 @@
   box-shadow: 1px 1px 5px 2px rgb(181, 180, 180);
 }
 
-/* TABLE SHOW INCOMES*/
+/* table show incomes*/
 .displayEnteredIncome {
   width: 70%;
   margin: 0 auto;
@@ -114,7 +116,6 @@
 td {
   padding: 1rem;
   text-align: left;
-  border-bottom: 1px solid #5e5d5d;
 }
 
 .addIncome thead {
@@ -127,7 +128,7 @@ td {
 
 .addIncome .delete {
   background-color: #f37676;
-  color: white;
+  color:var(--bg-100);
   border: none;
   padding: 5px 8px;
   text-align: center;
@@ -143,13 +144,13 @@ td {
 /*--  MOBILE  --*/
 
 @media (max-width: 750px) {
+
   .incomeForm {
     width: 95%;
   }
 
   .addIncome .calendar {
     width: 98%;
-    min-height: 30%;
   }
 
   .incomeEnterSection {
@@ -163,7 +164,10 @@ td {
   }
 
   .addIncome .submitIncome {
-    width: 80%;
+    width: 81%;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
   }
 
   .incInputContainer {
@@ -191,8 +195,8 @@ td {
     border-radius: 50%;
     display: inline-block;
     line-height: 1.5;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     font-size: 1rem;
     position: relative; /* muss relative */
   }

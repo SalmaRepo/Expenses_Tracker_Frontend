@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Open+Sans&display=swap");
-/* need to change the font */
 
 * {
   margin: 0;
@@ -45,20 +43,11 @@
   color: var(--D-text-200);
 }
 
-/* .darkmodeExpenses{
-  background-color: var(--expenses);
-  color: var(--primary-color);
-} */
-
-/* .darkmodeIncomes{
-  background-color: var(--incomes);
-  color: var(--primary-color);
-} */
-
-/* .darkMode ul li a {
-  color: var(--text-color);
-} */
-
 .darkMode input {
   background-color:transparent;
+}
+
+/* landing page */
+.darkMode .first-line, .darkMode .second-line, .darkMode .reason {
+  color: black;
 }

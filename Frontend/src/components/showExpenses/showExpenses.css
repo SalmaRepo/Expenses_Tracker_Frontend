@@ -3,12 +3,18 @@
 }
 
 .showExpenses button {
-  background-color: rgb(243, 118, 118);
+  background-color: #f37676;
+  color:var(--bg-100);
   border: none;
-  padding: 0.5rem;
-  font-size: 1rem;
-  color: white;
-  border-radius: 0.5rem;
+  padding: 5px 8px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.showExpenses button:hover{
+  background-color: #d32f2f;
 }
 
 .showExpenses .showExpTable {
@@ -16,27 +22,25 @@
   border-radius: 1rem;
   border: 1px solid rgb(233, 226, 226);
   padding: 1rem;
-  color: var(--text-200);
   border-collapse: collapse;
-  font-size: 1.2rem;
   box-shadow: 1px 1px 10px 2px rgb(145, 142, 142);
 }
 
-.showExpenses .showExpTable thead .expTableHead {
-  width: 30%;
+
+.showExpenses .showExpTable thead{
+  position: sticky;
+  top: 0;
+  background-color: var(--primary-200);
+  color: var(--bg-100);
+  z-index: 1;
 }
 
+
 .showExpenses .showExpTable tbody tr td {
-  border: 0;
   text-align: center;
 }
 
-/* .showExpenses .showExpTable tbody tr td:hover{
-    transform: scale(1.1);
-    transition: transform 1s;
-    cursor: pointer;
-  } */
-  
+
 
 .showExpenses .showExpTable thead th {
   padding: 1rem;
@@ -49,6 +53,47 @@
   position: sticky;
   top: 0;
 }
+
+.showExpenses .expenseTableImage{
+  width: 30px;
+  height: 30px; 
+}
+
+
+/*-- MOBILE --*/
+@media (max-width: 760px) {
+  .showExpenses {
+    width: 80%;
+    margin: 0;
+  }
+  .showExpenses .showExpTable {
+    width: 80%;
+    font-size: 0.8rem;
+    border-collapse: collapse;
+    border-radius: 1rem;
+  }
+
+  .showExpenses .showExpTable thead .expTableHead {
+    width: 1rem;
+  }
+  .showExpenses .showExpTable thead th {
+    padding: 0.2rem;
+    border-collapse: collapse;
+    width: 1%;
+    color: var(--bg-100);
+    background-color: var(--primary-200);
+  }
+
+  .showExpenses .showExpTable td {
+    padding: 0.5rem 0.2rem 0.5rem 0.2rem;
+    /* border: 2px solid red; */
+  }
+
+  .showExpenses .expenseTableImage{
+    width: 30px;
+    height: 30px; 
+  }
+  
 
 
 @media (max-width:760px){
@@ -82,25 +127,35 @@
         padding: 0.2rem;
         
       }
-      .showExpenses button {
-        background-color: rgb(243, 118, 118);
-        border: none;
-        padding: 0.5rem;
-        color: rgb(243, 118, 118);
-        border-radius: 0.5rem;
-        font-size: 0;
-        border-radius: 50%;
-      }
+    .showExpenses .expenseTableImage{
+    width: 20px;
+    height: 20px; 
+  }
 
-      .showExpenses button:before{
-        content: "x";
-        border: none;
-        width: 1rem;
-        top: 0;
-        right: 1rem;
-        font-size: 1.2rem;
-        padding: 0.2rem;
-        color: rgb(241, 238, 238);
-        border-radius: 0.5rem;
-      }
+       .showExpenses button {
+    background-color: #f37676;
+    color: transparent;
+    border: none;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 50%;
+    display: inline-block;
+    line-height: 1.5;
+    width: 25px;
+    height: 25px;
+    font-size: 1rem;
+    position: relative; /* muss relative */
+  }
+
+  .showExpenses button:before {
+    content: "x";
+    color: white;
+    position: absolute; /* muss absolut */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
+
