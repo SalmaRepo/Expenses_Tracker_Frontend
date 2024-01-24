@@ -8,7 +8,7 @@ import HistoryExpWeekGraph from "../WeekExpensesGraphs/HistoryExpWeekGraph";
 /* import HistoryWeekGraph from "../WeekExpensesGraphs/HistoryExpWeekGraph"; */
 import HistoryExpYearGraph from "../YearExpensesGraphs/HistoryExpYearGraph";
 /* import HistoryYearGraph from "../YearExpensesGraphs/HistoryExpYearGraph"; */
-
+import '../../barChartStyle.css'
 function HistoryExpMainGraph({ selectedDuration, year, month, day,weekStart,weekLast }) {
   const { state, dispatch } = useContext(context);
   /*  console.log(state.user?.expenses) */

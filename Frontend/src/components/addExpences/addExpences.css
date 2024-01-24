@@ -103,10 +103,11 @@
 
 .displayEnteredExp {
   width: 100%;
-  overflow: auto;
+  overflow-y: auto;
   margin: 0 auto;
   box-shadow: 1px 1px 5px 2px rgb(181, 180, 180);
 }
+
 
 /*  show reciept  */
 .showReciept {
@@ -126,6 +127,8 @@
   position: absolute;
   padding: 0.5rem;
 }
+
+
 
 .recieptImage {
   width: 100%;

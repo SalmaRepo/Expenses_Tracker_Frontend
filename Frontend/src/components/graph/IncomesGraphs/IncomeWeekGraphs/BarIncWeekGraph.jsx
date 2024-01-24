@@ -1,10 +1,11 @@
 import React from 'react'
 import { Bar } from "react-chartjs-2";
+import '../../barChartStyle.css'
 function BarIncWeekGraph({chartData,weekStart,weekLast}) {
   return (
     <div className="chart-container">
           <Bar
-          style={{height:"16rem",width:"100%"}}
+          className='barChart'
             data={chartData}
             options={{
               plugins: {

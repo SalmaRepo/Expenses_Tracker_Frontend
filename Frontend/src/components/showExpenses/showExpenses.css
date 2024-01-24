@@ -41,6 +41,7 @@
 }
 
 
+
 .showExpenses .showExpTable thead th {
   padding: 1rem;
   text-align: center;
@@ -89,11 +90,49 @@
   }
 
   .showExpenses .expenseTableImage{
+    width: 30px;
+    height: 30px; 
+  }
+  
+
+
+@media (max-width:760px){
+    .showExpenses{
+        width: 80%;
+        margin: 0;
+        
+    
+    }
+    .showExpenses .showExpTable {
+        width: 80%;
+        font-size: 0.8rem;
+        border-collapse: collapse;
+        border-radius: 1rem;
+    }
+
+    .showExpenses .showExpTable thead .expTableHead {
+        width:1rem;
+      
+
+      }
+      .showExpenses .showExpTable thead th {
+        padding: 0.2rem;
+        border-collapse: collapse;
+        width: 1%;
+        color: var(--bg-100);
+        background-color: var(--primary-200);
+      }
+
+      .showExpenses .showExpTable td {
+        padding: 0.2rem;
+        
+      }
+    .showExpenses .expenseTableImage{
     width: 20px;
     height: 20px; 
   }
 
-  .showExpenses button {
+       .showExpenses button {
     background-color: #f37676;
     color: transparent;
     border: none;
@@ -118,5 +157,5 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  
 }
+

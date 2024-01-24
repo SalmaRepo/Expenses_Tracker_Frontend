@@ -10,13 +10,13 @@ import ShowExpenses from "../showExpenses/ShowExpenses";
 import Profile from "../profile/Profile";
 import axios from "axios";
 
-
 export default function AddExpences() {
   // State variables for managing calendar date, image preview, and expenses data
   const { state, dispatch } = useContext(context);
   const [calDate, setCalDate] = useState(new Date());
   const [preview, setPreview] = useState("");
   const [expenses, setExpenses] = useState({});
+  const [isUploaded, setIsUploaded] = useState(false);
 
   // Refs for input fields and image file
   const expCategory = useRef();
@@ -35,6 +35,7 @@ export default function AddExpences() {
       type: "setReciept",
       payload: URL.createObjectURL(e.target.files[0]),
     });
+    setIsUploaded(true);
   };
 
   // Toggle the state of image upload selection
@@ -85,6 +86,7 @@ export default function AddExpences() {
     setPreview("");
     dispatch({ type: "setReciept", payload: "images/no-image.jpg" });
     dispatch({ type: "setIsUploadImageSelect", payload: false });
+    setIsUploaded(false)
   };
 
   // Event handler for changing calendar date
@@ -148,37 +150,37 @@ export default function AddExpences() {
                 onClick={() => isUploadImageSelect()}
                 className="isUploadButton"
               >
-               <i className='fa-solid fa-circle-plus'></i>
+                <i className="fa-solid fa-circle-plus"></i>
               </button>
 
               {/* Render file input if image upload is selected */}
-              {state.isUploadImageSelect && 
+              {state.isUploadImageSelect && (
                 <input
                   type="file"
                   name="file"
-                  accept="image/png, image/jpeg"
+                  accept="image/png, image/jpeg, image/jpg"
                   onChange={grabImage}
                   ref={expImg}
                   className="addRecieptFile"
-                />   
-              }
+                />
+              )}
             </div>
 
-            <button type="submit" className="submitExpButton">Confirm Expenses</button>
+            <button type="submit" className="submitExpButton">
+              Confirm Expenses
+            </button>
           </section>
 
           {/* Displaying entered expenses and receipt image */}
           <section className="displayExpArea">            
             <div className="displayEnteredExp">
-              {state.user?.expenses?.length>0&&<ShowExpenses expenses={expenses} setExpenses={setExpenses} />}
+              {state.user?.expenses?.length > 0 && (
+                <ShowExpenses expenses={expenses} setExpenses={setExpenses} />
+              )}
             </div>
-            {state.isUploadImageSelect && (
+            {isUploaded && (
               <div className="showReciept">
-                <img
-                  src={state.reciept}
-                  alt=""
-                  className="recieptImage"
-                />
+                <img src={state.reciept} alt="" className="recieptImage" />
               </div>
             )}
           </section>

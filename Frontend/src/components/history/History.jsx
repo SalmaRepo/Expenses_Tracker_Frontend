@@ -16,6 +16,7 @@ import {
   summariseExpenses,
   summariseIncomes,
 } from "./HistoryHelpers";
+import Balance from "../balance/Balance";
 function History() {
   const { state, dispatch } = useContext(context);
   const [filteredExpenses, setFilteredExpenses] = useState([]);
@@ -69,6 +70,8 @@ function History() {
     const day = localStorage.getItem("historyDate") || calDate;
     setCalDate(day);
   }, []);
+  console.log(selectedDuration);
+  console.log(filteredExpenses);
   // CASE
   useEffect(() => {
     switch (selectedDuration) {
@@ -91,9 +94,7 @@ function History() {
   // HANDLE LAST WEEK
   const handleWeek = () => {
     setSelectedDuration("week");
-
     localStorage.setItem("selectedDuration", "week");
-
     const currentWeekExpenses = state.user?.expenses.filter(
       (exp) =>
         new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
@@ -180,8 +181,8 @@ function History() {
       setMonth(11);
       setYear(year - 1);
     }
-    /*  localStorage.setItem("historyMonth", month);
-    localStorage.setItem("historyYear", year); */
+    /*     localStorage.setItem("historyMonth", month);
+    localStorage.setItem("historyYear", year);  */
   };
   // HANDLE NEXT MONTH
   const handleNextMonth = () => {
@@ -238,28 +239,29 @@ function History() {
   // Total balance
   const totalBalance = totalIncomes - totalExpenses;
   //download expenses function
+  //switch case to display duration selected
+  let durationLabel;
+  switch (selectedDuration) {
+    case "day":
+      durationLabel = `${new Date(calDate).toLocaleDateString()}`;
+      break;
+    case "week":
+      durationLabel = `${weekStart.toLocaleDateString()} - ${weekLast.toLocaleDateString()}`;
+      break;
+    case "month":
+      durationLabel = `${months[month]} ${year}`;
+      break;
+    case "year":
+      durationLabel = `${year}`;
+      break;
+    default:
+      durationLabel = "All";
+      break;
+  }
   const downloadData = () => {
-    let durationLabel;
-    switch (selectedDuration) {
-      case "day":
-        durationLabel = `${new Date(calDate).toLocaleDateString()}`;
-        break;
-      case "week":
-        durationLabel = `${weekStart.toLocaleDateString()}-${weekLast.toLocaleDateString()}`;
-        break;
-      case "month":
-        durationLabel = `${months[month]} ${year}`;
-        break;
-      case "year":
-        durationLabel = `${year}`;
-        break;
-      default:
-        durationLabel = "All";
-        break;
-    };
-  
     const csvContent =
-    `Duration${durationLabel}\n`+ `Category,Amount,Receipt\n`  +
+      `Duration${durationLabel}\n` +
+      `Category,Amount,Receipt\n` +
       filteredExpenses
         .map(
           (expense) =>
@@ -286,42 +288,256 @@ function History() {
         {isRecieptView && (
           <div className="reciept-container">
             <button onClick={handleCloseImg} className="closeImage">
-              close
+              <i class="fa-solid fa-circle-xmark"></i>
             </button>
             <img src={recieptUrl} alt="no-img" className="selectReciept" />
             <div className="reciept-details">
-              <p>{new Date(recieptDate).toLocaleDateString()}</p>
-              <p>{recieptCategory}</p>
+              <p>
+                Category -{" "}
+                {recieptCategory.charAt(0).toUpperCase() +
+                  recieptCategory.slice(1)}
+              </p>
+              <p>Uploaded On - {new Date(recieptDate).toLocaleDateString()}</p>
             </div>
           </div>
         )}
         <div className="historyTop">
-          <h3>Select the duration to view the history of spendings</h3>
+          <h2>
+            Select the duration <span></span>
+            <i class="fa-solid fa-down-long"></i>{" "}
+          </h2>
           <ul className="historyTop-options">
             <li>
               <button type="submit" onClick={handleDay}>
-                Day
+                Daily
               </button>
             </li>
             <li>
               <button type="submit" onClick={handleWeek}>
-                Week
+                Weekly
               </button>
             </li>
             <li>
               <button type="submit" onClick={handleMonth}>
-                Month
+                Monthly
               </button>
             </li>
             <li>
               <button type="submit" onClick={handleYear}>
-                Year
+                Yearly
               </button>
             </li>
           </ul>
         </div>
         <div className="historyBottom">
-          <div className="history-bottom-top">
+          <h2>
+            Expenses and Incomes for the selected{" "}
+            <span className="durationDescTitle">{selectedDuration}</span>{" "}
+            <span className="durationTitle"> {durationLabel}</span>
+          </h2>
+
+          <div className="history-bottom-top-left">
+            {/* SELECT MONTH YEAR DAY */}
+            <div className="history-bottom-data">
+              <button
+                className="downloadExpBtn"
+                type="button"
+                onClick={downloadData}
+              >
+                Download Expenses<i className="fa-solid fa-file-arrow-down"></i>
+              </button>
+              {selectedDuration === "month" && (
+                <div className="history-timeTravel">
+                  <button
+                    type="submit"
+                    className="timeButton"
+                    onClick={handleLastMoth}
+                  >
+                    <i className="fa-solid fa-circle-chevron-left"></i>
+                  </button>
+                  <h3>
+                    {months[month]}
+                    <span> {year}</span>
+                  </h3>
+                  <button
+                    type="submit"
+                    className="timeButton"
+                    onClick={handleNextMonth}
+                  >
+                    <i className="fa-solid fa-circle-chevron-right"></i>
+                  </button>
+                </div>
+              )}
+              {selectedDuration === "year" && (
+                <div className="history-timeTravel">
+                  <button
+                    type="submit"
+                    className="timeButton"
+                    onClick={handleLastYear}
+                  >
+                    <i className="fa-solid fa-circle-chevron-left"></i>
+                  </button>
+                  <h3>
+                    <span>{year}</span>
+                  </h3>
+                  <button
+                    type="submit"
+                    className="timeButton"
+                    onClick={handleNextYear}
+                  >
+                    <i className="fa-solid fa-circle-chevron-right"></i>
+                  </button>
+                </div>
+              )}
+              {selectedDuration === "week" && (
+                <div className="history-timeTravel">
+                  <button
+                    type="submit"
+                    onClick={handleLastWeek}
+                    className="timeButton"
+                  >
+                    <i className="fa-solid fa-circle-chevron-left"></i>
+                  </button>
+                  <h3>
+                    <span>{`${new Date(
+                      weekStart
+                    ).toLocaleDateString()} - ${new Date(
+                      weekLast
+                    ).toLocaleDateString()} `}</span>
+                  </h3>
+                  <button
+                    type="submit"
+                    className="timeButton"
+                    onClick={handleNextWeek}
+                  >
+                    <i class="fa-solid fa-circle-chevron-right"></i>
+                  </button>
+                </div>
+              )}
+              {/* SHOW EXPENSES */}
+              <div className="data-container">
+                {selectedDuration === "day" && (
+                  <div className="historyCalendarContainer">
+                    {/*  <h4>Select the Date</h4> */}
+                    <Calendar
+                      onChange={selectedDate}
+                      value={calDate}
+                      name="calendar"
+                      className="calendar"
+                    />
+                  </div>
+                )}
+
+                <div className="expData-container">
+                  <h2>Expenses</h2>
+                  <table className="exp-table">
+                    <thead>
+                      <tr>
+                        <th>Category</th>
+                        <th>{`Amount-${curr}`}</th>
+                        {selectedDuration === "day" && (
+                          <th>
+                            Reciept
+                            <span className="viewRec">click to view</span>
+                          </th>
+                        )}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredExpenses?.map((exp, index) => (
+                        <tr
+                          className="expData"
+                          /* key={`${exp.date}`} */
+                          /*key={`${exp.category}-${exp.date}`}*/ //ran in to issues with this key
+                          key={index}
+                        >
+                          <td className="data">
+                            {exp?.category.charAt(0).toUpperCase() +
+                              exp?.category.slice(1)}
+                          </td>
+                          <td className="data">{exp?.amount}</td>
+                          {/* <p>{new Date(exp.date).toLocaleDateString()}</p> */}
+                          {selectedDuration === "day" && (
+                            <td className="data">
+                              <img
+                                src={
+                                  exp.reciept.includes("undefined")
+                                    ? "images/no-image.jpg"
+                                    : `${BASE_URL}/${exp.reciept}`
+                                }
+                                alt="no-img"
+                                style={{
+                                  width: "40px",
+                                  height: "40px",
+                                  border: "1px solid",
+                                  objectFit: "cover",
+                                }}
+                                onClick={() =>
+                                  handleReciept(
+                                    exp.reciept.includes("undefined")
+                                      ? "images/no-image.jpg"
+                                      : `${BASE_URL}/${exp.reciept}`,
+                                    exp.date,
+                                    exp.category
+                                  )
+                                }
+                              />
+                            </td>
+                          )}
+                        </tr>
+                      )).reverse()}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="incData-container">
+                  <h2>Incomes</h2>
+                  <table className="inc-table">
+                    <thead>
+                      <tr>
+                        <th>Category</th>
+                        <th>{`Amount in ${curr}`}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredIncomes?.map((inc) => (
+                        <tr
+                          className="incData"
+                          key={`${inc.category}-${inc.date}`}
+                        >
+                          <td className="data">
+                            {inc?.category.charAt(0).toUpperCase() +
+                              inc?.category.slice(1)}
+                          </td>
+                          <td className="data">{inc?.amount}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            {/* SHOW INCOMES */}
+          </div>
+          <div className="history-bottom-top-right">
+            <div className="expensesTotal total">
+              Expenses of the selected {selectedDuration}:{" "}
+              <span> {totalExpenses}</span>
+            </div>
+            <div className="incomesTotal total">
+              Income of the selected {selectedDuration}:
+              <span> {totalIncomes}</span>
+            </div>
+            <div
+              className={`displayReport total ${
+                totalBalance < 0 ? "negativeBal" : "positiveBal"
+              }`}
+            >
+              Balance of the selected {selectedDuration}:
+              <span> {totalBalance}</span>
+            </div>
+          </div>
+
+          <div className="history-bottom-bottom">
             <div className="history-bottom-expenses-graphs">
               <h4 className="history-graph-title">Expenses</h4>
               <HistoryExpMainGraph
@@ -345,163 +561,6 @@ function History() {
                 weekLast={weekLast}
                 weekDay={weekDay}
               />
-            </div>
-          </div>
-          <div className="history-bottom-left">
-            {/* SELECT MONTH YEAR DAY */}
-            <div className="history-bottom-data">
-              {selectedDuration === "month" && (
-                <div className="history-timeTravel">
-                  <button type="submit" onClick={handleLastMoth}>
-                    {"<<"}
-                  </button>
-                  <h3>
-                    {months[month]}
-                    <span>{year}</span>
-                  </h3>
-                  <button type="submit" onClick={handleNextMonth}>
-                    {">>"}
-                  </button>
-                </div>
-              )}
-              {selectedDuration === "year" && (
-                <div className="history-timeTravel">
-                  <button type="submit" onClick={handleLastYear}>
-                    {"<<"}
-                  </button>
-                  <h3>
-                    <span>{year}</span>
-                  </h3>
-                  <button type="submit" onClick={handleNextYear}>
-                    {">>"}
-                  </button>
-                </div>
-              )}
-              {selectedDuration === "week" && (
-                <div className="history-timeTravel">
-                  <button type="submit" onClick={handleLastWeek}>
-                    {"<<"}
-                  </button>
-                  <h3>
-                    <span>{`${new Date(
-                      weekStart
-                    ).toLocaleDateString()} - ${new Date(
-                      weekLast
-                    ).toLocaleDateString()} `}</span>
-                  </h3>
-                  <button type="submit" onClick={handleNextWeek}>
-                    {">>"}
-                  </button>
-                </div>
-              )}
-              {/* SHOW EXPENSES */}
-              <div className="data-container">
-                {selectedDuration === "day" && (
-                  <div>
-                    <Calendar
-                      onChange={selectedDate}
-                      value={calDate}
-                      name="calendar"
-                      className="calendar"
-                    />
-                  </div>
-                )}
-                <div className="expData-container">
-                  <table className="exp-table">
-                    <caption>Expenses</caption>
-                    <thead>
-                      <tr>
-                        <th>Category</th>
-                        <th>{`Amount in ${curr}`}</th>
-                        {selectedDuration === "day" && <th>Reciept</th>}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredExpenses?.map((exp) => (
-                        <tr
-                          className="expData"
-                          key={`${exp.category}-${exp.date}`}
-                        >
-                          <td>
-                            {exp?.category.charAt(0).toUpperCase() +
-                              exp?.category.slice(1)}
-                          </td>
-                          <td>{exp?.amount}</td>
-                          {/* <p>{new Date(exp.date).toLocaleDateString()}</p> */}
-                          {selectedDuration === "day" && (
-                            <td>
-                              <img
-                                src={
-                                  exp.reciept.includes("undefined")
-                                    ? "images/no-image.jpg"
-                                    : `${BASE_URL}/${exp.reciept}`
-                                }
-                                alt="no-img"
-                                style={{
-                                  width: "40px",
-                                  height: "40px",
-                                  border: "1px solid",
-                                }}
-                                onClick={() =>
-                                  handleReciept(
-                                    exp.reciept.includes("undefined")
-                                      ? "images/no-image.jpg"
-                                      : `${BASE_URL}/${exp.reciept}`,
-                                    exp.date,
-                                    exp.category
-                                  )
-                                }
-                              />
-                            </td>
-                          )}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <div className="incData-container">
-                  <table>
-                    <caption>Incomes</caption>
-                    <thead>
-                      <tr>
-                        <th>Category</th>
-                        <th>{`Amount in ${curr}`}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredIncomes?.map((inc) => (
-                        <tr
-                          className="incData"
-                          key={`${inc.category}-${inc.date}`}
-                        >
-                          <td>
-                            {inc?.category.charAt(0).toUpperCase() +
-                              inc?.category.slice(1)}
-                          </td>
-                          <td>{inc?.amount}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            {/* SHOW INCOMES */}
-          </div>
-          <div className="history-bottom-right">
-            
-              <button type="button" onClick={downloadData}>
-                Download Expenses
-              </button>
-            
-            <div className="expensesTotal">
-              Expenses of the selected date: {totalExpenses}
-            </div>
-            <div className="incomesTotal">
-              Income of the selected date: {totalIncomes}
-            </div>
-            <div className="displayReport">
-              Balance of the selected date:{totalBalance}
             </div>
           </div>
         </div>
