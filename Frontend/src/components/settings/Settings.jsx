@@ -4,7 +4,6 @@ import SideMenu from "../sideMenu/SideMenu";
 import "./Settings.css";
 import { context } from "../../context/context";
 import UpdateUserDetails from "../UpdateUserDetails/UpdateUserDetails";
-import Help from "../Help/Help";
 import SelectCurrency from "../selectCurrency/SelectCurrency";
 import ChangeProfileImg from "../changeProfileImg/ChangeProfileImg";
 
@@ -21,21 +20,21 @@ export default function Settings() {
     setIsChangeImg(!isChangeImg);
     setIsUpdateUserDetails(false);
     setIsSelectCurrency(false);
-    setIsHelpShow(false);
+    // setIsHelpShow(false);
   }
 
-  // Toggle the visibility of the help section
-  function showHelp() {
-    setIsHelpShow(!isHelpShow);
-    setIsUpdateUserDetails(false);
-    setIsSelectCurrency(false);
-    setIsChangeImg(false);
-  }
+  // // Toggle the visibility of the help section
+  // function showHelp() {
+  //   setIsHelpShow(!isHelpShow);
+  //   setIsUpdateUserDetails(false);
+  //   setIsSelectCurrency(false);
+  //   setIsChangeImg(false);
+  // }
 
   // Toggle the visibility of the profile details update section
   function showUpdateUserDetails() {
     setIsUpdateUserDetails(!isUpdateUserDetails);
-    setIsHelpShow(false);
+    // setIsHelpShow(false);
     setIsSelectCurrency(false);
     setIsChangeImg(false);
   }
@@ -52,7 +51,7 @@ export default function Settings() {
   const handleChageCurrency = () => {
     setIsSelectCurrency(!isSelectCurrency);
     setIsUpdateUserDetails(false);
-    setIsHelpShow(false);
+    // setIsHelpShow(false);
     setIsChangeImg(false);
   };
   return (
@@ -73,9 +72,7 @@ export default function Settings() {
             <li>
               <button onClick={handleChageCurrency}>Change Currency</button>
             </li>
-            <li>
-              <button onClick={showHelp}>Help/FAQ</button>
-            </li>
+
             <li>
               <button onClick={toogleDarkMode}>
                 {isDarkLight ? "Light Mode" : "Dark Mode"}
