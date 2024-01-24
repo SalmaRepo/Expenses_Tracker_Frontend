@@ -6,6 +6,7 @@ import { CategoryScale } from "chart.js";
 import BarExpMonthChart from "./BarExpMonthGraph";
 Chart.register(CategoryScale);
 
+
 function HistoryExpMonthGraph({ month, year }) {
   const { state, dispatch } = useContext(context);
   const expensesSummary = [];
