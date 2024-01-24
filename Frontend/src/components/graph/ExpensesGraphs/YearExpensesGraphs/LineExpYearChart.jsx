@@ -5,7 +5,7 @@ function LineExpYearChart({chartData,year}) {
     return (
         <div className="chart-container">
           <Line
-          style={{height:"16rem",width:"100%"}}
+       className='barChart'
             data={chartData}
             options={{
               plugins: {
@@ -18,7 +18,7 @@ function LineExpYearChart({chartData,year}) {
                 },
                 
               },
-              animations: {
+              /* animations: {
                 tension: {
                   duration: 1500,
                   easing: 'linear',
@@ -26,7 +26,7 @@ function LineExpYearChart({chartData,year}) {
                   to: 0,
                   loop: true
                 }
-              },
+              }, */
               layout:{
                 padding:{
                   x:20

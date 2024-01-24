@@ -98,7 +98,6 @@ function HistoryExpYearGraph({ year }) {
           ],
           fill: false,
           borderColor: 'rgb(75, 112, 192)',
-          tension: 0.5,
           borderWidth:3
         },
       ],

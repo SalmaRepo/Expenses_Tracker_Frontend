@@ -1,5 +1,6 @@
 .Help{
     display: flex;
+    height: 100vh;
 }
 
 
@@ -10,4 +11,18 @@
     flex-direction: column;
     align-items: center;
     padding: 5rem;
+}
+
+
+.questions {
+    width: 60%;
+margin-top: 5rem;
+display: flex;
+flex-direction: column;
+gap: .3rem;
+
+}
+
+.questions p {
+    padding-bottom: 1rem;
 }

@@ -4,7 +4,7 @@ import HistoryIncDayGraph from "../IncomeDayGraphs/HistoryIncDayGraph";
 import HistoryIncMonthGraph from "../IncomeMonthGraphs/HistoryIncMonthGraph";
 import HistoryIncWeekGraph from "../IncomeWeekGraphs/HistoryIncWeekGraph";
 import HistoryIncYearGraph from "../IncomeYearGraphs/HistoryIncYearGraph";
-
+import '../../barChartStyle.css'
 function IncomeMainGraph({
   selectedDuration,
   year,

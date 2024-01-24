@@ -4,7 +4,6 @@ import SideMenu from "../sideMenu/SideMenu";
 import "./Settings.css";
 import { context } from "../../context/context";
 import UpdateUserDetails from "../UpdateUserDetails/UpdateUserDetails";
-import Help from "../Help/Help";
 import SelectCurrency from "../selectCurrency/SelectCurrency";
 import ChangeProfileImg from "../changeProfileImg/ChangeProfileImg";
 
@@ -20,22 +19,13 @@ export default function Settings() {
   function changProfilePic() {
     setIsChangeImg(!isChangeImg);
     setIsUpdateUserDetails(false);
-    setIsSelectCurrency(false);
-    setIsHelpShow(false);
+    setIsSelectCurrency(false);  
   }
 
-  // Toggle the visibility of the help section
-  function showHelp() {
-    setIsHelpShow(!isHelpShow);
-    setIsUpdateUserDetails(false);
-    setIsSelectCurrency(false);
-    setIsChangeImg(false);
-  }
 
   // Toggle the visibility of the profile details update section
   function showUpdateUserDetails() {
     setIsUpdateUserDetails(!isUpdateUserDetails);
-    setIsHelpShow(false);
     setIsSelectCurrency(false);
     setIsChangeImg(false);
   }
@@ -52,7 +42,6 @@ export default function Settings() {
   const handleChageCurrency = () => {
     setIsSelectCurrency(!isSelectCurrency);
     setIsUpdateUserDetails(false);
-    setIsHelpShow(false);
     setIsChangeImg(false);
   };
   return (
@@ -61,6 +50,7 @@ export default function Settings() {
       <div className="SettingHero">
         <h1>Settings</h1>
         <main className="mainSettings">
+
           <div className="settings-spacebtwn">
             <div>
               <ul className="settings-ul">
@@ -86,11 +76,7 @@ export default function Settings() {
                     Change Currency
                   </button>
                 </li>
-                <li>
-                  <button className="settings-btn" onClick={showHelp}>
-                    Help/FAQ
-                  </button>
-                </li>
+        
                 <li>
                   <button className="settings-btn" onClick={toogleDarkMode}>
                     {isDarkLight ? "Light Mode" : "Dark Mode"}
@@ -107,6 +93,7 @@ export default function Settings() {
               <div>{isChangeImg && <ChangeProfileImg />}</div>
             </div>
           </div>
+
         </main>
       </div>
 
