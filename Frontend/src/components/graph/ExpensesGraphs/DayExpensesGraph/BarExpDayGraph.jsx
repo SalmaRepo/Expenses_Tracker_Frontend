@@ -1,6 +1,6 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
-
+import '../../barChartStyle.css'
 function BarExpDayGraph({ chartData, day}) {
   const months = [
     "January",
@@ -19,7 +19,7 @@ function BarExpDayGraph({ chartData, day}) {
   return (
     <div className="chart-container">
       <Bar
-        style={{ height: "16rem", width: "100%" }}
+       className='barChart'
         data={chartData}
         options={{
           plugins: {

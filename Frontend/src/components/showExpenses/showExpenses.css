@@ -31,11 +31,11 @@
   text-align: center;
 }
 
-.showExpenses .showExpTable tbody tr td:hover{
+/* .showExpenses .showExpTable tbody tr td:hover{
     transform: scale(1.1);
     transition: transform 1s;
     cursor: pointer;
-  }
+  } */
   
 
 .showExpenses .showExpTable thead th {
@@ -100,7 +100,6 @@
         right: 1rem;
         font-size: 1.2rem;
         padding: 0.2rem;
-        
         color: rgb(241, 238, 238);
         border-radius: 0.5rem;
       }

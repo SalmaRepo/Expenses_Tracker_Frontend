@@ -6,6 +6,7 @@ import { CategoryScale } from "chart.js";
 import BarExpDayGraph from "./BarExpDayGraph";
 Chart.register(CategoryScale);
 
+
 function HistoryExpDayGraph({ day, month, year }) {
   /* console.log(day); */
   const { state, dispatch } = useContext(context);

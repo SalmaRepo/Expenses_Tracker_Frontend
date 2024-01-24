@@ -7,6 +7,7 @@ import { CategoryScale } from "chart.js";
 import BarExpWeekGraph from "./BarExpWeekGraph";
 Chart.register(CategoryScale);
 
+
 function HistoryExpWeekGraph({weekStart,weekLast}) {
  const { state, dispatch } = useContext(context);
  const expensesSummary = [];
