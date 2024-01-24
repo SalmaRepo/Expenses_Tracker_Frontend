@@ -6,6 +6,7 @@ import LogOut from "../logout/Logout";
 export default function SideMenu() {
   return (
     <div className="sideBar">
+
       <div className="sideBarTop">
         <Link to="/" className="sideBar-logo-container">
           <img
@@ -41,6 +42,8 @@ export default function SideMenu() {
           </li>
         </ul>
       </div>
+
+
       <div className="sideBarBottom">
         <ul>
           <li>
@@ -62,6 +65,7 @@ export default function SideMenu() {
           </li>
         </ul>
       </div>
+      
     </div>
   );
 }

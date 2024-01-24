@@ -9,8 +9,8 @@
   text-align: center;
   margin: 0 auto;
   
-  border-left:1px solid rgb(183, 205, 144);
-  box-shadow: 1px -1px 10px 5px rgb(136, 135, 135);
+  /* border-left:1px solid rgb(183, 205, 144); */
+  box-shadow: 1px 1px 10px 2px rgb(136, 135, 135);
 }
 
 .profile .profile-img {
@@ -35,24 +35,26 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  color: var(--primary-color);
-  box-shadow: 1px 1px 8px 2px rgb(122, 119, 119);
-  border: 2px solid white;
+  /* color: var(--primary-color);*/ /*modify because of darkmode*/
+  color: var(--text-100);
+  box-shadow: 1px 2px 5px 2px rgb(181, 180, 180); /*! this works also for darkmode */
+  /* box-shadow: 1px 1px 8px 2px rgb(122, 119, 119); */
+  /* border: 2px solid white; */
   border-radius: 0.5rem;
   background: linear-gradient(
     to right top,
     white,
-    rgba(89, 184, 224, 0.309)
+   var(--accent-100)
   ); 
-  backdrop-filter: blur(1px);
+  /* backdrop-filter: blur(1px); */
 }
 
-.balance:hover{
+/*! if it's not clickable it shouldn't have a hover */
+/* .balance:hover{
   border: 2px solid rgb(160, 158, 158);
   transform: scale(1.1);
   transition: transform 0.5s ease-in;
-
-}
+} */
 
 
   

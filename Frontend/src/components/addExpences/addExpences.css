@@ -1,7 +1,7 @@
 .addExpenses {
   display: flex;
   height: 100vh;
-  color: var(--text-100);
+  /* color: var(--text-100); */ /*!deleted because of darkmode*/
   border: 1px solid;
 
 
@@ -154,6 +154,7 @@
   gap: 1rem;
   align-items: center;
   justify-content: center;
+  color: var(--D-text-200); /*! added because of darkmode  */
 }
 
 .addExpenses .isUploadButton {
