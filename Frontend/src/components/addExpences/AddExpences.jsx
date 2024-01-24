@@ -168,7 +168,7 @@ export default function AddExpences() {
           </section>
 
           {/* Displaying entered expenses and receipt image */}
-          <section className="displayExpArea">
+          <section className="displayExpArea">            
             <div className="displayEnteredExp">
               {state.user?.expenses?.length>0&&<ShowExpenses expenses={expenses} setExpenses={setExpenses} />}
             </div>
