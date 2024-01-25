@@ -5,17 +5,15 @@ import LineChart from '../graph/lineChart';
 export default function About() {
   return (
     <div id='about' className='about-container'>
-
       <section className='headline'>
         <h1 className='first-line'>Why should you</h1>
-        <h2 className='second-line'>use our Expenses-Tracker?</h2>
+        <h2 className='second-line'>use Expensify?</h2>
       </section>
-
       <img src="images/arrow.png" alt="arrow"  className='arrow-img' />
       <p className='reason'>
-      We'll give you 3 very good reasons…
+      We'll give you 3 very good reasons
       </p>
-       
+     
       <main className="cards-container">
         
         {/* Card-1 */}
