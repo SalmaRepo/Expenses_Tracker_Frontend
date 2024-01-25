@@ -84,7 +84,7 @@ export default function AddIncomes() {
           type: "setEnteredIncomes",
           payload: updatedIncomes,
         });
-        incomeAmount.current.value = "";
+        incomeAmount.current.value = 0;
         incomeCategory.current.value = "Salary";
       } else {
         console.error("Error while adding income", response.statusText);
@@ -92,8 +92,12 @@ export default function AddIncomes() {
     } catch (error) {
       console.error("Error while adding income", error.message);
     }
+  
     fetchIncomes();
     getUserById();
+    incomeAmount.current.value="";
+    incomeCategory.current.value="Salary"
+    
   };
 
   // Callback function for calendar date change
@@ -199,7 +203,7 @@ export default function AddIncomes() {
                       </button>
                     </td>
                   </tr>
-                ))}
+                )).slice(0,20).reverse()}
               </tbody>
             </table>
           </section>

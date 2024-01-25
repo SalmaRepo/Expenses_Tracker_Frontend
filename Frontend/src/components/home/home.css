@@ -9,7 +9,7 @@
 }
 
 .homeHero {
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -25,6 +25,8 @@
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
+  gap: 0.8rem;
+  border-radius: 1rem;
   box-shadow: 1px 1px 10px 1px rgb(159, 155, 155);
 }
 

@@ -65,7 +65,7 @@
   border-bottom: none;
 }
 .sideBar .themeSideNav,.sideBar .side-logout{
-  margin-left: 0;
+  margin-left: 1.1rem;
 }
 .sideBarTop ul li a,
 .sideBarBottom ul li a,
@@ -130,6 +130,10 @@
 
   .sideBar .sideNav-Link{
     justify-content: center;
+  }
+
+  .sideBar .themeSideNav, .sideBar .side-logout{
+    margin-left:0rem ;
   }
 
   .sideBar .themeSideNav i{

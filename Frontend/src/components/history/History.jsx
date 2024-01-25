@@ -228,15 +228,15 @@ function History() {
   // Total expenses
   const totalExpenses = filteredExpenses?.reduce((acc, exp) => {
     acc += exp.amount;
-    return acc;
+    return parseFloat(acc.toFixed(2));
   }, 0);
   // Total incomes
   const totalIncomes = filteredIncomes?.reduce((acc, inc) => {
     acc += inc.amount;
-    return acc;
+    return parseFloat(acc.toFixed(2));
   }, 0);
   // Total balance
-  const totalBalance = totalIncomes - totalExpenses;
+  const totalBalance = parseFloat((totalIncomes - totalExpenses).toFixed(2));
   //download expenses function
   //switch case to display duration selected
   let durationLabel;
@@ -455,7 +455,7 @@ function History() {
                               {exp?.category.charAt(0).toUpperCase() +
                                 exp?.category.slice(1)}
                             </td>
-                            <td className="data">{exp?.amount}</td>
+                            <td className="data">{exp?.amount.toFixed(2)}</td>
                             {/* <p>{new Date(exp.date).toLocaleDateString()}</p> */}
                             {selectedDuration === "day" && (
                               <td className="data">
@@ -509,7 +509,7 @@ function History() {
                             {inc?.category.charAt(0).toUpperCase() +
                               inc?.category.slice(1)}
                           </td>
-                          <td className="data">{inc?.amount}</td>
+                          <td className="data">{inc?.amount.toFixed(2)}</td>
                         </tr>
                       ))}
                     </tbody>

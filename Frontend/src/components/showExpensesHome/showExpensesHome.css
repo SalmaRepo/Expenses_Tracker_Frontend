@@ -5,6 +5,7 @@
     /* background-color: var(--bg-100);  */
     color: var(--text-200);
     overflow-y:auto;
+    border-radius: 1rem;/* added */
     box-shadow: 1px 1px 10px 2px rgb(145, 142, 142);
 }
 
@@ -15,7 +16,7 @@
     height: 60%;
     border-radius: 1rem;
     padding:1rem;
-
+    border-radius: 1rem;
  /*    border:1px solid rgb(241, 237, 237); */
     border-collapse: collapse;
    
@@ -41,8 +42,8 @@
 
 @media (max-width:760px){
     .showExpensesHome{
-        width: 100%;
-       
+        width: 95%;
+        
         
        
     }
@@ -55,6 +56,7 @@
 
     .showExpensesHome .expenses-home-table{
         width: 100%;
+        height: 100%;
         font-size: 0.8rem;
         border: 1px solid;
         border-radius: 1rem;
@@ -64,6 +66,9 @@
     }
 
     .showExpensesHome .expenses-home-table td{
-        padding: 0.5rem;
+        padding: 0.3rem;
+    }
+    .expenses-home-table thead th{
+        padding: 0.3rem;
     }
 }
