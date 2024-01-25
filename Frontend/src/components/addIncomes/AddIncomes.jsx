@@ -92,12 +92,11 @@ export default function AddIncomes() {
     } catch (error) {
       console.error("Error while adding income", error.message);
     }
-  
+
     fetchIncomes();
     getUserById();
-    incomeAmount.current.value="";
-    incomeCategory.current.value="Salary"
-    
+    incomeAmount.current.value = 0;
+    incomeCategory.current.value = "Salary";
   };
 
   // Callback function for calendar date change
@@ -186,24 +185,27 @@ export default function AddIncomes() {
                 </tr>
               </thead>
               <tbody>
-                {state.user?.incomes?.map((income, index) => (
-                  <tr key={index}>
-                    <td>{new Date(income.date).toLocaleDateString()}</td>
-                    <td>{income.category}</td>
-                    <td>
-                      {income.amount} <span>{curr}</span>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        className="delete"
-                        onClick={() => handleDelete(income._id, index)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                )).slice(0,20).reverse()}
+                {state.user?.incomes
+                  ?.map((income, index) => (
+                    <tr key={index}>
+                      <td>{new Date(income.date).toLocaleDateString()}</td>
+                      <td>{income.category}</td>
+                      <td>
+                        {income.amount} <span>{curr}</span>
+                      </td>
+                      <td>
+                        <button
+                          type="button"
+                          className="delete"
+                          onClick={() => handleDelete(income._id, index)}
+                        >
+                          {window.innerWidth < 760 ? "" : "Delete"}
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                  .slice(0, 20)
+                  .reverse()}
               </tbody>
             </table>
           </section>

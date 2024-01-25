@@ -81,7 +81,7 @@ export default function AddExpences() {
       });
 
     // Reset input values and states after submitting expenses
-    expAmount.current.value = "";
+    expAmount.current.value = 0;
     expCategory.current.value = "food";
     setPreview("");
     dispatch({ type: "setReciept", payload: "images/no-image.jpg" });

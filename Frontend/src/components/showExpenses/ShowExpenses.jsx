@@ -117,18 +117,18 @@ function ShowExpenses() {
                         </td>
                         {/* Delete button */}
                         <td>
-                        <button
-                          type="button"
-                          onClick={() => deleteExpense(expense?._id)}
-                        >
-                          Delete
-                        </button>
+                          <button
+                            type="button"
+                            onClick={() => deleteExpense(expense?._id)}
+                          >
+                            Delete
+                          </button>
                         </td>
-                        
                       </tr>
                     );
                   })
-                  .reverse().slice(0,20)
+                  .reverse()
+                  .slice(0, 20)
               : state.user?.expenses
                   ?.map((expense) => {
                     return (
@@ -146,7 +146,7 @@ function ShowExpenses() {
                         <td>
                           {" "}
                           <img
-                          className="expenseTableImage"
+                            className="expenseTableImage"
                             src={
                               expense.reciept.includes("undefined")
                                 ? "images/no-image.jpg"
@@ -157,19 +157,18 @@ function ShowExpenses() {
                         </td>
 
                         <td>
-                        <button
-                          type="button"
-                          onClick={() => deleteExpense(expense?._id)}
-                        >
-                          Delete
-                        </button>
+                          <button
+                            type="button"
+                            onClick={() => deleteExpense(expense?._id)}
+                          >
+                            {window.innerWidth < 760 ? "" : "Delete"}
+                          </button>
                         </td>
-
-                       
                       </tr>
                     );
                   })
-                  .reverse().slice(0,20)}
+                  .reverse()
+                  .slice(0, 20)}
           </tbody>
         </table>
       </section>
