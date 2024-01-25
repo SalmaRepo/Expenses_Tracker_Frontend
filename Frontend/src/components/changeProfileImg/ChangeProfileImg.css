@@ -1,6 +1,5 @@
 .change-profile{  
     width: 100%;
-    min-width: 300px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -23,7 +22,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    /* padding: 1rem; */
+    padding: 1rem;
 }
 
 .profile-input-container{
@@ -57,7 +56,7 @@
     position: relative;
   }
 
-.change-profile .profile-label:hover{
+.change-profile input[type="file"]::file-selector-button:hover{
     background-color: #2077b3;
 }
 
@@ -86,12 +85,31 @@
 }
 
 
-@media (max-width: 600px) {
+@media screen and (max-width: 700px){
     .change-profile {
-        flex-direction: column;     
+        flex-direction: column;  
+        width: 80%;   
   }
 
   .change-profile .profile-h1 {
-    margin: 25px 0 0 0; 
+    margin: 20px 0 0 0; 
+    font-size: 20px;
   }
+
+  .profile-input-container{
+    margin: 0;
+  }
+
+.change-profile input[type="file"]{
+    font-size: 12px;
+    margin-top: 0;
+}
+
+.change-profile .form-img{
+    max-width: 150px;
+}
+.change-profile .profile-submit{
+    font-size: 12px;
+    margin-bottom: 0;
+}
   }

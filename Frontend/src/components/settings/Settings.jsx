@@ -19,9 +19,8 @@ export default function Settings() {
   function changProfilePic() {
     setIsChangeImg(!isChangeImg);
     setIsUpdateUserDetails(false);
-    setIsSelectCurrency(false);  
+    setIsSelectCurrency(false);
   }
-
 
   // Toggle the visibility of the profile details update section
   function showUpdateUserDetails() {
@@ -50,7 +49,6 @@ export default function Settings() {
       <div className="SettingHero">
         <h1>Settings</h1>
         <main className="mainSettings">
-
           <div className="settings-spacebtwn">
             <div>
               <ul className="settings-ul">
@@ -76,7 +74,7 @@ export default function Settings() {
                     Change Currency
                   </button>
                 </li>
-        
+
                 <li>
                   <button className="settings-btn" onClick={toogleDarkMode}>
                     {isDarkLight ? "Light Mode" : "Dark Mode"}
@@ -89,11 +87,10 @@ export default function Settings() {
             <div className="sub-settings">
               <div>{isUpdateUserDetails && <UpdateUserDetails />}</div>
               <div>{isHelpShow && <Help />}</div>
-              <div>{isSelectCurrency && <SelectCurrency />}</div>
+              <div >{isSelectCurrency && <SelectCurrency />}</div>
               <div>{isChangeImg && <ChangeProfileImg />}</div>
             </div>
           </div>
-
         </main>
       </div>
 
