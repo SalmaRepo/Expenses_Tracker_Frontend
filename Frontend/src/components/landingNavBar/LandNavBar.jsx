@@ -7,24 +7,27 @@ import LogOut from "../logout/Logout";
 import ProfileImg from "../profile/profileImg";
 
 export default function LandNavBar() {
-  const { state, dispatch,darkMode,setDarkMode } = useContext(context);
-  
+  const { state, dispatch, darkMode, setDarkMode } = useContext(context);
 
   return (
     <nav className="landingNav">
       <div className="landingNavBar">
         <div>
-          <Link to="/" className="anchorLogo" onClick={() =>
-                dispatch({
-                  type: "setIsOnSignAndLogin",
-                  payload: false,
-                })}>
+          <Link
+            to="/"
+            className="anchorLogo"
+            onClick={() =>
+              dispatch({
+                type: "setIsOnSignAndLogin",
+                payload: false,
+              })
+            }
+          >
             <img
               className="logo-NavBar"
               src="images/LOGO.png"
               alt="logo of the project"
             />
-            
           </Link>
         </div>
         <ul className="landingNavList">
@@ -49,12 +52,17 @@ export default function LandNavBar() {
             </Link>
           </li>
           <li>
-            <Link to="/login" onClick={() =>
+            <Link
+              to="/login"
+              onClick={() =>
                 dispatch({
                   type: "setIsOnSignAndLogin",
                   payload: true,
                 })
-              }>{state.user ? <LogOut /> : "Login"}</Link>
+              }
+            >
+              {state.user ? <LogOut /> : "Login"}
+            </Link>
           </li>
           {window.innerWidth > 760 && (
             <li>
@@ -63,7 +71,11 @@ export default function LandNavBar() {
             </li>
           )}
           <li>
-            {darkMode?<i class="fa-solid fa-sun" onClick={()=>setDarkMode(false)}></i>:<i class="fa-solid fa-moon" onClick={()=>setDarkMode(true)}></i>}
+            {darkMode ? (
+              <i className="fa-solid fa-sun" onClick={() => setDarkMode(false)}></i>
+            ) : (
+              <i className="fa-solid fa-moon" onClick={() => setDarkMode(true)}></i>
+            )}
           </li>
         </ul>
       </div>

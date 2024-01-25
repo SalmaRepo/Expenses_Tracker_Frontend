@@ -1,5 +1,6 @@
 .showExpenses {
   width: 100%;
+ 
 }
 
 .showExpenses button {
@@ -20,11 +21,13 @@
 .showExpenses .showExpTable {
   width: 100%;
   border-radius: 1rem;
-  border: 1px solid rgb(233, 226, 226);
+/*   border: 1px solid rgb(233, 226, 226); */
   padding: 1rem;
   border-collapse: collapse;
   font-size: 1rem;
   box-shadow: 1px 1px 10px 2px rgb(145, 142, 142);
+  position: relative;
+/*  border: 1px solid; */
 }
 
 
@@ -62,7 +65,7 @@
 
 
 /*-- MOBILE --*/
-@media (max-width: 760px) {
+/* @media (max-width: 760px) {
   .showExpenses {
     width: 80%;
     margin: 0;
@@ -87,25 +90,26 @@
 
   .showExpenses .showExpTable td {
     padding: 0.5rem 0.2rem 0.5rem 0.2rem;
-    /* border: 2px solid red; */
+   
   }
 
   .showExpenses .expenseTableImage{
     width: 30px;
     height: 30px; 
-  }
+  } */
+
   
 
 
 @media (max-width:760px){
     .showExpenses{
-        width: 80%;
+        width: 100%;
         margin: 0;
         
     
     }
     .showExpenses .showExpTable {
-        width: 80%;
+        width: 100%;
         font-size: 0.8rem;
         border-collapse: collapse;
         border-radius: 1rem;
@@ -159,4 +163,3 @@
     transform: translate(-50%, -50%);
   }
 }
-
