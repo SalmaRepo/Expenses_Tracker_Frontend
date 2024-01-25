@@ -83,11 +83,14 @@ export default function Home() {
         )}
         <div className="homeHeroMiddle">
           <h4 className="homeExpTitle">Latest Entered Expenses</h4>
+          
           {state.expenses?.length > 0 ? (
             <ShowExpensesHome />
           ) : (
             <p className="homeExpensesDisplay">No Expenses to Show</p>
           )}
+        
+          
         </div>
         <div className="homeHeroBottom darkmode">
           <button

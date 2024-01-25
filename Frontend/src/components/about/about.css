@@ -21,7 +21,17 @@
 .arrow-img {
   width: 5rem;
   padding-bottom: 3rem;
+  /* animation:aboutShow 2s ease 0.5s infinite */;
 }
+
+/* @keyframes aboutShow{
+  0%{
+    transform: translateY(0.5rem);
+  }
+  100%{
+    transform: translateY(-1rem);
+  }
+} */
 
 .reason {
   font-size: 2rem;

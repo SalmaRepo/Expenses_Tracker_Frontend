@@ -46,6 +46,9 @@
   width: 100px;
 }
 
+.landingNavBar i{
+  font-size: 2rem;
+}
 /*-- Mobile --*/
 
 @media screen and (max-width: 768px) {

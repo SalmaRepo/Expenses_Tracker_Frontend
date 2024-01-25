@@ -59,16 +59,16 @@ export default function SideMenu() {
           <li>
             <Link>
             {darkMode ? (
-              <div onClick={() => setDarkMode(false)}>
+              <div onClick={() => setDarkMode(false)} className="themeSideNav">
                 <i
-                  class="fa-solid fa-sun"
-                  
+                  className="fa-solid fa-sun"
+      
                 ></i>
                 <span>Light Mode </span>
               </div>
             ) : (
-              <div onClick={() => setDarkMode(true)}>
-                <i class="fa-solid fa-moon" ></i>
+              <div onClick={() => setDarkMode(true)} className="themeSideNav">
+                <i className="fa-solid fa-moon" ></i>
                 <span>Dark Mode </span>
               </div>
               
@@ -84,7 +84,7 @@ export default function SideMenu() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/login" className="sideNav-Link">
+            <NavLink to="/login" className="sideNav-Link side-logout">
               <LogOut />
             </NavLink>
           </li>
