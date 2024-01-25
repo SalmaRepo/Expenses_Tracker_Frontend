@@ -1,24 +1,27 @@
 .showExpensesHome{
     width: 80%;
+    height: 80%;
     margin: 0 auto;
-    background-color: var(--bg-100); 
+    /* background-color: var(--bg-100);  */
     color: var(--text-200);
     border-radius: 1rem;
-    overflow: hidden;
+    overflow-y:auto;
 }
 
-.showExpensesHome h4{
+.showExpensesHome .homeExpTitle{
     text-align: center;
-    color: var(--primary-100);
+    color: var(--primary-200);
     padding-bottom: 1rem;
 }
 
 .showExpensesHome .expenses-home-table{
     width: 100%;
+    height: 60%;
     border-radius: 1rem;
     padding:1rem;
     border:1px solid rgb(241, 237, 237);
     border-collapse: collapse;
+    overflow-y: auto;
 }
 
 .showExpensesHome .expenses-home-table tbody tr td{
@@ -28,6 +31,9 @@
 
 
 .expenses-home-table thead th{
+    position: absolute;
+    position: sticky;
+    top: 0;
     border: 0;
     text-align: center;
     color: var(--primary-100);

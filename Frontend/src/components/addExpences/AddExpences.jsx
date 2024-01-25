@@ -98,7 +98,7 @@ export default function AddExpences() {
     <div className="addExpenses">
       <SideMenu />
 
-      <div className="addExpensesHero">
+      <section className="addExpensesHero">
         {/* Expense form */}
         <form
           action="expForm"
@@ -123,7 +123,7 @@ export default function AddExpences() {
                 className="expensesAmount"
                 ref={expAmount}
               />
-              <p className="expCurrency">{state.user?.currency?.slice(3)}</p>
+              <span className="expCurrency">{state.user?.currency?.slice(3)}</span>
             </div>
 
             {/* Dropdown for selecting expense category */}
@@ -185,7 +185,7 @@ export default function AddExpences() {
             )}
           </section>
         </form>
-      </div>
+      </section>
       <Profile />
     </div>
   );

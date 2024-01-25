@@ -14,6 +14,7 @@ import { useContext } from "react";
 import { context } from "./context/context";
 import History from "./components/history/History";
 import SelectCurrency from "./components/selectCurrency/SelectCurrency";
+import About from "./components/about/About";
 
 function App() {
   const { darkMode, setDarkMode } = useContext(context);
@@ -29,6 +30,7 @@ function App() {
           <Route path="/addIncomes" element={<AddIncomes />} />
           <Route path="/history" element={<History />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/about" element={<About/>}/>
           <Route path="/settings" element={<Settings />} />
           <Route path="/help" element={<Help />} />
           <Route path="/UpdateUserDetails" element={<UpdateUserDetails />} />

@@ -23,6 +23,7 @@
   border: 1px solid rgb(233, 226, 226);
   padding: 1rem;
   border-collapse: collapse;
+  font-size: 1rem;
   box-shadow: 1px 1px 10px 2px rgb(145, 142, 142);
 }
 

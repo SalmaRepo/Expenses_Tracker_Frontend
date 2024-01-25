@@ -19,7 +19,7 @@ function BarExpWeekGraph({chartData,weekStart,weekLast}) {
                   ).toLocaleDateString()}`
                 },
                 legend: {
-                  display: true
+                  display: false
                 }
               },
               layout:{
