@@ -42,9 +42,9 @@
   /* border: 2px solid white; */
   border-radius: 0.5rem;
   background: linear-gradient(
-    to right top,
-    white,
-   var(--accent-100)
+    to bottom right,
+    rgb(200, 200, 245),
+    white
   ); 
   /* backdrop-filter: blur(1px); */
 }

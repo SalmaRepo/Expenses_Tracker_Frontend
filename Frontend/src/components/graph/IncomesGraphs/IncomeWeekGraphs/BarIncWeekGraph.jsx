@@ -18,8 +18,8 @@ function BarIncWeekGraph({chartData,weekStart,weekLast}) {
                   ).toLocaleDateString()}`
                 },
                 legend: {
-                  display: true
-                }
+                  display: false
+                },
               },
               layout:{
                 padding:{

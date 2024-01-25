@@ -30,7 +30,7 @@ function BarExpDayGraph({ chartData, day}) {
               } ${new Date(day).getFullYear()}`,
             },
             legend: {
-              display: true,
+              display: false,
             },
           },
           layout: {

@@ -30,7 +30,7 @@ function BarExpMonthChart({chartData,month,year}) {
                   text: `Expenses of ${months[month]} ${year}`
                 },
                 legend: {
-                  display: true
+                  display: false
                 }
               },
               layout:{

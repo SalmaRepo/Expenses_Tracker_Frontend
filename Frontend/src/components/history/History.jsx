@@ -66,12 +66,11 @@ function History() {
   useEffect(() => {
     const duration = localStorage.getItem("selectedDuration") || "month";
     setSelectedDuration(duration);
-    getUserById();
+    /* getUserById(); */
     const day = localStorage.getItem("historyDate") || calDate;
     setCalDate(day);
   }, []);
-  console.log(selectedDuration);
-  console.log(filteredExpenses);
+
   // CASE
   useEffect(() => {
     switch (selectedDuration) {
@@ -444,48 +443,50 @@ function History() {
                       </tr>
                     </thead>
                     <tbody>
-                      {filteredExpenses?.map((exp, index) => (
-                        <tr
-                          className="expData"
-                          /* key={`${exp.date}`} */
-                          /*key={`${exp.category}-${exp.date}`}*/ //ran in to issues with this key
-                          key={index}
-                        >
-                          <td className="data">
-                            {exp?.category.charAt(0).toUpperCase() +
-                              exp?.category.slice(1)}
-                          </td>
-                          <td className="data">{exp?.amount}</td>
-                          {/* <p>{new Date(exp.date).toLocaleDateString()}</p> */}
-                          {selectedDuration === "day" && (
+                      {filteredExpenses
+                        ?.map((exp, index) => (
+                          <tr
+                            className="expData"
+                            /* key={`${exp.date}`} */
+                            /*key={`${exp.category}-${exp.date}`}*/ //ran in to issues with this key
+                            key={index}
+                          >
                             <td className="data">
-                              <img
-                                src={
-                                  exp.reciept.includes("undefined")
-                                    ? "images/no-image.jpg"
-                                    : `${BASE_URL}/${exp.reciept}`
-                                }
-                                alt="no-img"
-                                style={{
-                                  width: "40px",
-                                  height: "40px",
-                                  border: "1px solid",
-                                  objectFit: "cover",
-                                }}
-                                onClick={() =>
-                                  handleReciept(
+                              {exp?.category.charAt(0).toUpperCase() +
+                                exp?.category.slice(1)}
+                            </td>
+                            <td className="data">{exp?.amount}</td>
+                            {/* <p>{new Date(exp.date).toLocaleDateString()}</p> */}
+                            {selectedDuration === "day" && (
+                              <td className="data">
+                                <img
+                                  src={
                                     exp.reciept.includes("undefined")
                                       ? "images/no-image.jpg"
-                                      : `${BASE_URL}/${exp.reciept}`,
-                                    exp.date,
-                                    exp.category
-                                  )
-                                }
-                              />
-                            </td>
-                          )}
-                        </tr>
-                      )).reverse()}
+                                      : `${BASE_URL}/${exp.reciept}`
+                                  }
+                                  alt="no-img"
+                                  style={{
+                                    width: "40px",
+                                    height: "40px",
+                                    border: "1px solid",
+                                    objectFit: "cover",
+                                  }}
+                                  onClick={() =>
+                                    handleReciept(
+                                      exp.reciept.includes("undefined")
+                                        ? "images/no-image.jpg"
+                                        : `${BASE_URL}/${exp.reciept}`,
+                                      exp.date,
+                                      exp.category
+                                    )
+                                  }
+                                />
+                              </td>
+                            )}
+                          </tr>
+                        ))
+                        .reverse()}
                     </tbody>
                   </table>
                 </div>
@@ -520,11 +521,15 @@ function History() {
           </div>
           <div className="history-bottom-top-right">
             <div className="expensesTotal total">
-              Expenses of the selected {selectedDuration}:{" "}
+              {window.innerWidth < 760
+                ? `Expenses : ${totalExpenses}`
+                : `Expenses of the selected ${selectedDuration}`}
               <span> {totalExpenses}</span>
             </div>
             <div className="incomesTotal total">
-              Income of the selected {selectedDuration}:
+            {window.innerWidth < 760
+                ? `Incomes : ${totalIncomes}`
+                : `Incomes of the selected ${selectedDuration}`}
               <span> {totalIncomes}</span>
             </div>
             <div
@@ -532,7 +537,9 @@ function History() {
                 totalBalance < 0 ? "negativeBal" : "positiveBal"
               }`}
             >
-              Balance of the selected {selectedDuration}:
+              {window.innerWidth < 760
+                ? `Balance : ${totalBalance}`
+                : `Balanceof the selected ${selectedDuration}`}
               <span> {totalBalance}</span>
             </div>
           </div>
