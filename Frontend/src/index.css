@@ -57,3 +57,9 @@
 .darkMode .reason {
   color: black;
 }
+
+/* Help  */
+.darkMode .questions h2 {
+  color: var(--bg-300)
+
+}
