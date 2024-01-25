@@ -35,7 +35,10 @@ export default function LandingPage() {
       <LandNavBar />
       <div className="landingPage-Hero">
         <h1 className="landTitle">Welcome to Expensify</h1>
-        <h2 className="landSubTitle">an expenses tracker simple to use and usefull</h2>
+        <h2 className="landSubTitle">
+          {/* an expenses tracker simple to use and usefull, */}"Empower Your Finances:
+          Track, Budget, and Thrive with our Expenses Tracker App!"
+        </h2>
         <button onClick={() => getStarted()} className="getStarted">
           Get Started
         </button>

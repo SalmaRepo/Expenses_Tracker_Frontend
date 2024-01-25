@@ -167,7 +167,7 @@ export default function AddExpences() {
             </div>
 
             <button type="submit" className="submitExpButton">
-              Confirm Expenses
+              Confirm Expense
             </button>
           </section>
 

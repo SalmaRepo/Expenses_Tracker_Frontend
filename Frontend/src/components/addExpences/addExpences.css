@@ -9,6 +9,7 @@
   padding: 1rem;
   display: flex;
   justify-content: center;
+ padding: 2rem;
 }
 
 .addExpenses .expForm {
@@ -93,7 +94,7 @@
 
 .displayExpArea {
   display: flex;
-  align-items: center;
+ /*  align-items: center; */
   width: 70%;
   gap: 0.5rem;
   overflow: auto;
@@ -106,6 +107,7 @@
   overflow-y: auto;
   margin: 0 auto;
   box-shadow: 1px 1px 5px 2px rgb(181, 180, 180);
+  height: 100%;
 }
 
 
@@ -201,7 +203,7 @@
 }
 
 .addExpenses .submitExpButton{
-  width: 20%;
+  width: 25%;
   border: 0;
   background: linear-gradient(to left bottom,rgb(206, 206, 206),var(--primary-200));
   padding: 1rem;
@@ -220,7 +222,7 @@
 }
 
 .addExpenses .displayEnteredExp {
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
 }
 
 /*-- MOBILE --*/
@@ -232,6 +234,7 @@
   .addExpensesHero {
     height: 100vh;
     padding: 0;
+    padding: 3rem 0 3rem 0;
   }
 
   .addExpenses .expForm .calendar {

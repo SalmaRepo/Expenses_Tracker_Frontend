@@ -42,16 +42,18 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+ 
 }
 .sideBarTop ul,
 .sideBarBottom ul {
   list-style: none;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
   width: 100%;
 }
 .sideBarTop ul li,
-.sideBarBottom ul li {
+.sideBarBottom ul li{
   width: 100%;
   text-align: center;
   padding: 0.8rem;
@@ -61,6 +63,9 @@
 }
 .sideBarBottom ul li:last-child {
   border-bottom: none;
+}
+.sideBar .themeSideNav,.sideBar .side-logout{
+  margin-left: 0;
 }
 .sideBarTop ul li a,
 .sideBarBottom ul li a,
@@ -76,7 +81,7 @@
   width: 90%;
   border-radius: 0.5rem;
 }
-.sideBar .sideNav-Link {
+.sideBar .sideNav-Link, .sideBar a div {
   width: 80%;
   margin: 0 auto;
   display: flex;
@@ -118,9 +123,17 @@
     margin: 0;
     padding: 0;
   }
+  .sideBarBottom {
+  
+    margin-bottom: 3rem;
+  }
 
   .sideBar .sideNav-Link{
     justify-content: center;
+  }
+
+  .sideBar .themeSideNav i{
+   margin-left: 1rem;
   }
 
   .sideBarTop .sideBar-logo-container span {

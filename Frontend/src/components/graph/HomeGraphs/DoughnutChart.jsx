@@ -44,7 +44,7 @@ export const DoughnutChart = ({ chartData }) => {
                   
                   
               },
-              //  color:"#101011",
+
               },
               position:"bottom",
               align:"center",
