@@ -106,13 +106,13 @@ function ShowExpenses() {
                         {/* Display receipt image */}
                         <td>
                           <img
+                            className="expenseTableImage"
                             src={
                               expense.reciept.includes("undefined")
                                 ? "images/no-image.jpg"
                                 : `${BASE_URL}/${expense.reciept}`
                             }
                             alt="no-img"
-                            style={{ width: "30px", height: "30px" }}
                           />
                         </td>
                         {/* Delete button */}
@@ -146,15 +146,16 @@ function ShowExpenses() {
                         <td>
                           {" "}
                           <img
+                          className="expenseTableImage"
                             src={
                               expense.reciept.includes("undefined")
                                 ? "images/no-image.jpg"
                                 : `${BASE_URL}/${expense.reciept}`
                             }
                             alt="no-img"
-                            style={{ width: "30px", height: "30px" }}
                           />
                         </td>
+
                         <td>
                         <button
                           type="button"
