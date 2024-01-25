@@ -1,9 +1,6 @@
 .about-container {
   padding-top: 6rem;
   text-align: center;
-  /* background-color: var(--accent-100); */
-  
-  /*! test */
   background: linear-gradient(to bottom, var(--primary-300), var(--accent-100));
 }
 
@@ -76,6 +73,10 @@
 }
 
 @media screen and (max-width: 700px) {
+  .about-container {
+    padding-top: 3rem;
+  }
+
   .cards-container {
     flex-direction: column;
     align-items: center;
