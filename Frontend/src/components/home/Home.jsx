@@ -61,28 +61,29 @@ export default function Home() {
 
   return (
     <div className="home">
-      <div className="home-burgerMenu">
+     {/*  <div className="home-burgerMenu">
         <i class="fa-solid fa-bars" onClick={handleBurgerMenu}></i>
-      </div>
+      </div> */}
       <SideMenu />
       <div className="homeHero">
         <div className="homeHeroTop">
-        <h4>{`Expenses in ${
+          <h4>{`Expenses in ${
             months[new Date().getMonth()]
           } ${new Date().getFullYear()}`}</h4>
           <ExpensesHomeGraph />
         </div>
-        
-        {window.innerWidth<=700 &&   <div className="home-balance-container">
-            
+
+        {window.innerWidth <= 700 && (
+          <div className="home-balance-container">
             <div className="home-balance">
-            <h3 className="home-balance-title">Balance</h3>
+              <h3 className="home-balance-title">Balance</h3>
               <Balance userId={state.user?._id} />
             </div>
-          </div>}
+          </div>
+        )}
         <div className="homeHeroMiddle">
-         
-          {state.expenses?.length>0 ? (
+          <h4 className="homeExpTitle">Latest Entered Expenses</h4>
+          {state.expenses?.length > 0 ? (
             <ShowExpensesHome />
           ) : (
             <p className="homeExpensesDisplay">No Expenses to Show</p>
@@ -93,13 +94,19 @@ export default function Home() {
             className="homeAddExpButton darkmodeExpenses"
             onClick={() => homeAddNewExp()}
           >
-            Add Expenses<span><i class="fa-regular fa-square-plus"></i></span>
+            Add Expenses
+            <span>
+              <i class="fa-regular fa-square-plus"></i>
+            </span>
           </button>
           <button
             className="homeAddIncomeButton darkmodeIncomes"
             onClick={() => homeAddNewInc()}
           >
-            Add Incomes<span><i class="fa-regular fa-square-plus"></i></span>
+            Add Incomes
+            <span>
+              <i class="fa-regular fa-square-plus"></i>
+            </span>
           </button>
         </div>
       </div>

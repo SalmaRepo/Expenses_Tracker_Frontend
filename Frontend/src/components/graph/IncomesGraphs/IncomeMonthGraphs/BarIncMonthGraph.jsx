@@ -28,7 +28,7 @@ function BarIncMonthGraph({chartData,month,year}) {
             text: `Incomes of ${months[month]} ${year}`
           },
           legend: {
-            display: true
+            display: false
           }
         },
         layout:{

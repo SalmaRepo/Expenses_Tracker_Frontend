@@ -26,7 +26,7 @@ function ShowExpensesHome() {
 
   return (
     <div className="showExpensesHome">
-      <h4>Your Most Recent Expenses</h4>
+    
       <table className="expenses-home-table"> 
         <thead>
           <tr>

@@ -1,18 +1,23 @@
-.landingNavBar {
+.landingNav {
   position: sticky;
   top: 0;
   z-index: 100;
+  padding: 5px 50px;
+  background-color: var(--accent-100);
+}
+
+.landingNavBar{
+  width: 80%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 50px;
-  background-color: var(--accent-100);
 }
 
 .landingNavList {
   display: flex;
   list-style: none;
-  width: 60%;
+  width: 80%;
   justify-content: space-between;
 }
 
@@ -44,8 +49,15 @@
 /*-- Mobile --*/
 
 @media screen and (max-width: 768px) {
-  .landingNavBar {
+  .landingNav {
     padding: 5px 10px;
+  }
+
+  .landingNavBar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .landingNavBar a {

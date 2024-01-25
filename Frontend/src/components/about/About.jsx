@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./about.css"
 import LineChart from '../graph/lineChart';
+import LandNavBar from '../landingNavBar/LandNavBar';
+import { context } from '../../context/context';
 
 export default function About() {
+  const {state,dispatch}=useContext(context)
   return (
     <div id='about' className='about-container'>
+      {state.isOnSignAndLogin&&<LandNavBar/>}
 
       <section className='headline'>
         <h1 className='first-line'>Why should you</h1>

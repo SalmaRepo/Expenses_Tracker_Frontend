@@ -73,7 +73,7 @@ function ShowExpenses() {
     <div>
       <Toaster position="top-center" />
       {/* Main container for displaying expenses */}
-      <div className="showExpenses">
+      <section className="showExpenses">
         <table className="showExpTable">
           <thead>
             {/* Table header */}
@@ -171,7 +171,7 @@ function ShowExpenses() {
                   .reverse().slice(0,20)}
           </tbody>
         </table>
-      </div>
+      </section>
     </div>
   );
 }

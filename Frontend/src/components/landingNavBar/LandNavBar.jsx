@@ -4,32 +4,69 @@ import "./landingNavbar.css";
 import { useContext } from "react";
 import { context } from "../../context/context";
 import LogOut from "../logout/Logout";
+import ProfileImg from "../profile/profileImg";
 
 export default function LandNavBar() {
-  const { state, dispatch } = useContext(context);
+  const { state, dispatch,darkMode,setDarkMode } = useContext(context);
+  
 
   return (
-    <nav className="landingNavBar">
-      <div>
-        <Link to="/" className="anchorLogo">
-          <img
-            className="logo-NavBar"
-            src="images/LOGO.png"
-            alt="logo of the project"
-          />
-        </Link>
+    <nav className="landingNav">
+      <div className="landingNavBar">
+        <div>
+          <Link to="/" className="anchorLogo" onClick={() =>
+                dispatch({
+                  type: "setIsOnSignAndLogin",
+                  payload: false,
+                })}>
+            <img
+              className="logo-NavBar"
+              src="images/LOGO.png"
+              alt="logo of the project"
+            />
+            
+          </Link>
+        </div>
+        <ul className="landingNavList">
+          <li>
+            {state.isOnSignAndLogin ? (
+              <Link to="/about">About</Link>
+            ) : (
+              <a href="#about"> About </a>
+            )}
+          </li>
+          <li>
+            <Link
+              to="/SignUp"
+              onClick={() =>
+                dispatch({
+                  type: "setIsOnSignAndLogin",
+                  payload: true,
+                })
+              }
+            >
+              Sign-Up
+            </Link>
+          </li>
+          <li>
+            <Link to="/login" onClick={() =>
+                dispatch({
+                  type: "setIsOnSignAndLogin",
+                  payload: true,
+                })
+              }>{state.user ? <LogOut /> : "Login"}</Link>
+          </li>
+          {window.innerWidth > 760 && (
+            <li>
+              <ProfileImg />
+              {/* <p>Hi {state.user?.firstName?state.user?.firstName:'User'}</p> */}
+            </li>
+          )}
+          <li>
+            {darkMode?<i class="fa-solid fa-sun" onClick={()=>setDarkMode(false)}></i>:<i class="fa-solid fa-moon" onClick={()=>setDarkMode(true)}></i>}
+          </li>
+        </ul>
       </div>
-      <ul className="landingNavList">
-        <li>
-          <a href="#about"> About </a>
-        </li>
-        <li>
-          <Link to="/SignUp">Sign-Up</Link>
-        </li>
-        <li>
-          <Link to="/login">{state.user ? <LogOut /> : "Login"}</Link>
-        </li>
-      </ul>
     </nav>
   );
 }

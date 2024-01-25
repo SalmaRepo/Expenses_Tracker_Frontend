@@ -41,9 +41,11 @@
 
 /*-- DARK MODE --*/
 .darkMode {
-  background-color: var(--D-bg-200);
+  background: var(--D-bg-200);
   color: var(--D-text-200);
 }
+
+
 
 /* .darkmodeExpenses{
   background-color: var(--expenses);
@@ -61,4 +63,9 @@
 
 .darkMode input {
   background-color:transparent;
+  color: var(--D-text-200);
+}
+
+.darkMode button{
+  color: var(--D-text-200);
 }
