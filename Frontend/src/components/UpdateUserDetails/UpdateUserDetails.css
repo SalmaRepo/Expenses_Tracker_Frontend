@@ -54,9 +54,23 @@
     color: white;
 }
 
-@media (max-width: 768px) {
-    .UpdateDetailsHero {
-      width: 100%; 
-      border-left: none;
+@media screen and (max-width: 700px) {
+    .UpdateDetails{
+        justify-content: center;
     }
+
+    .UpdateDetails .update-h1{
+        margin-top: 0;
+    }
+
+    .UpdateDetailsHero {
+      width: 80%; 
+      border-left: none;
+      font-size: 12px;
+    }
+
+    .UpdateDetails .update-btn{
+        font-size: 12px;
+        margin-top: 0;
+    }    
   }

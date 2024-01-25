@@ -55,9 +55,9 @@
 @media screen and (max-width: 700px) {
   .SettingHero {
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
     padding-top: 3rem;
-    width: 80%;
+    width: 100%;
   }
 
   .settings-spacebtwn {
@@ -72,7 +72,7 @@
     height: 50%;
     align-items: center;
     justify-content: space-around;
-    gap: 1rem;
+    gap: 0.5rem;
     width: 80%;
     margin: 0 auto;
   }
@@ -85,14 +85,15 @@
   }
 
   .SettingHero .settings-btn {
-    font-size: 1rem;
+    font-size: 12px;
     margin: 0;
     padding: 0.8rem;
-    width: 5rem;
+    width: 7rem;
     border-radius: 0.5rem;
   }
 
   .mainSettings .sub-settings {
     margin: 4rem 1rem;
+    /* font-size: 12px; */
   }
 }
