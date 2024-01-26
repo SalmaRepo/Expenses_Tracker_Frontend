@@ -13,7 +13,6 @@
   width: 100px;
   height: 100px;
   margin: 0 3rem;
-
 }
 
 .ulLeft,
@@ -45,7 +44,7 @@
   color: var(--black);
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 760px) {
   .footer {
     width: 100%;
     display: flex;
@@ -60,8 +59,7 @@
     flex-direction: column;
   }
 
-  .mobile{
-   margin-top: 1rem;
+  .mobile {
+    margin-top: 1rem;
   }
-
 }

@@ -9,7 +9,7 @@
   padding: 1rem;
   display: flex;
   justify-content: center;
- padding: 2rem;
+  padding: 2rem;
 }
 
 .addExpenses .expForm {
@@ -35,7 +35,6 @@
   border-bottom: 2px solid var(--accent-100);
   outline: 0;
   font-size: 1.3rem;
-/*   color: rgb(19, 19, 19); */
   padding: 7px 0;
   text-align: center;
   background: transparent;
@@ -73,7 +72,6 @@
   border: thin solid blue;
   border-radius: 4px;
   display: inline-block;
-/*   color: var(--text-100); */
   font: inherit;
   line-height: 1.5em;
   padding: 0.5em 3.5em 0.5em 1em;
@@ -94,7 +92,6 @@
 
 .displayExpArea {
   display: flex;
- /*  align-items: center; */
   width: 70%;
   gap: 0.5rem;
   overflow: auto;
@@ -109,7 +106,6 @@
   box-shadow: 1px 1px 5px 2px rgb(181, 180, 180);
   height: 100%;
 }
-
 
 /*  show reciept  */
 .showReciept {
@@ -129,8 +125,6 @@
   position: absolute;
   padding: 0.5rem;
 }
-
-
 
 .recieptImage {
   width: 100%;
@@ -202,27 +196,31 @@
   z-index: 1;
 }
 
-.addExpenses .submitExpButton{
+.addExpenses .submitExpButton {
   width: 25%;
   border: 0;
-  background: linear-gradient(to left bottom,rgb(206, 206, 206),var(--primary-200));
+  background: linear-gradient(
+    to left bottom,
+    rgb(206, 206, 206),
+    var(--primary-200)
+  );
   padding: 1rem;
   border-radius: 1rem;
   font-size: 1.2rem;
   font-weight: 400;
   color: white;
   box-shadow: 1px 1px 10px 2px rgb(232, 228, 228);
-} 
-
-.addExpenses .submitExpButton:hover{
-  transition: transform 1s ease;
-  border:1px solid rgb(120, 234, 207);
-  background: linear-gradient(to left bottom,rgb(164, 244, 222),var(--primary-200));
-  cursor: pointer;
 }
 
-.addExpenses .displayEnteredExp {
-  /* border-radius: 1rem; */
+.addExpenses .submitExpButton:hover {
+  transition: transform 1s ease;
+  border: 1px solid rgb(120, 234, 207);
+  background: linear-gradient(
+    to left bottom,
+    rgb(164, 244, 222),
+    var(--primary-200)
+  );
+  cursor: pointer;
 }
 
 /*-- MOBILE --*/
@@ -231,10 +229,13 @@
     height: 100vh;
     overflow: hidden;
   }
+
   .addExpensesHero {
     height: 100vh;
-    padding: 0;
-    padding: 3rem 0 3rem 0;
+    padding: 0rem;
+  }
+
+  .addExpenses .expForm {
     width: 100%;
   }
 
@@ -266,26 +267,24 @@
     font-size: 1rem;
   }
 
-  /* -------------------------*/
   .expForm select {
     font-size: 0.9rem;
     overflow-y: auto;
   }
-  
+
   .expForm select option {
     margin-bottom: 0px;
     margin: 0;
     padding: 0;
     font-size: 0.8rem;
   }
-/*-----------------------------*/
-
 
   .addExpenses .submitExpButton {
     width: 70%;
     padding: 0.5rem;
     font-size: 0.8rem;
     border-radius: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   .addReciept {

@@ -36,30 +36,81 @@
 }
 
 /*-- DARK MODE --*/
+/* General */
 .darkMode {
   background: var(--D-bg-200);
   color: var(--D-text-200);
 }
 
 .darkMode input {
-  background-color:transparent;
+  background-color: transparent;
+}
+
+.darkMode button {
   color: var(--D-text-200);
 }
 
-.darkMode button{
-  color: var(--D-text-200);
+/* Landing navBar */
+.darkMode .landingNavList .fa-solid.fa-sun {
+  color: #fbf2b4;
 }
 
-/* landing page */
+/* Landing page */
 .darkMode .landSubTitle,
 .darkMode .first-line,
 .darkMode .second-line,
 .darkMode .reason {
   color: black;
 }
+.darkMode .getStarted {
+  color: var(--bg-200);
+}
+.darkMode .getStarted:hover {
+  color: var(--D-bg-100);
+}
 
-/* Help  */
+/* Sign-up */
+.darkMode .signup .inputs {
+  border: none;
+  border-bottom: 1px solid #514f4f;
+}
+
+/*  Login */
+.darkMode .loginRight h2,
+.darkMode .loginRight p,
+.darkMode .loginRight .buttonClick {
+  color: var(--bg-200);
+}
+.darkMode .loginLeft .buttonLeft {
+  color: var(--bg-200);
+}
+.darkMode .loginRight .buttonClick:hover,
+.darkMode .loginLeft .buttonLeft:hover {
+  color: var(--D-bg-100);
+}
+
+/* Home page */
+.darkMode .homeAddIncomeButton,
+.darkMode .homeAddExpButton {
+  box-shadow: 1px 2px 5px 0px rgb(174, 166, 166);
+}
+
+/* AddExpenses / AddIncoms */
+.darkMode .submitExpButton , .darkMode .submitIncome{
+  box-shadow: 1px 0px 4px 1px rgb(232, 228, 228);
+  color:var(--D-bg-100) ;
+  font-weight: bold;
+}
+
+/* Help */
 .darkMode .questions h2 {
-  color: var(--bg-300)
+  color: var(--bg-300);
+}
+.darkMode .HelpHero {
+  background-color: var(--D-bg-200);
+}
 
+/* History */
+.darkMode .closeImage {
+  color: rgb(240, 94, 94);
 }
