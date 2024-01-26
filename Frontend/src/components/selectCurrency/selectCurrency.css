@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* min-height: 100vh; */
   align-items: center;
   margin: 0 auto;
 }
@@ -43,18 +42,16 @@
 }
 
 .singleCurrList {
-  border-bottom: 1px solid #999a9b; /* Add a bottom border to separate items */
+  border-bottom: 1px solid #999a9b;
 }
 
-
 .singleCurrList:last-child {
-  border-bottom: none; /* Remove bottom border for the last item */
+  border-bottom: none;
 }
 
 .curr-btn {
   padding: 8px 16px;
   width: 100%;
-  /* text-align: left; */
   font-size: 16px;
   border: none;
   border-radius: 4px;
@@ -63,12 +60,11 @@
   background-color: #e5f4ff;
 }
 
-.curr-btn:hover{
+.curr-btn:hover {
   background: linear-gradient(to right, #85c0e8, #0077cc);
   color: var(--bg-200);
   font-weight: bold;
 }
-
 
 .div-submit {
   display: flex;
@@ -90,16 +86,17 @@
   background-color: #2077b3;
 }
 
-.selectCurr h1{
-    margin-top: 15px;
+.selectCurr h1 {
+  margin-top: 15px;
 }
 
+/*---Mobile ---*/
 @media screen and (max-width: 700px) {
-  .selectCurr{
+  .selectCurr {
     width: 80%;
   }
 
-  .currency-label{
+  .currency-label {
     font-size: 18px;
   }
 

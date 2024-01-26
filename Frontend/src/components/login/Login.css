@@ -87,18 +87,14 @@
   color: var(--black);
 }
 
-@media screen and (max-width: 700px) {
+/*--- Mobile ---*/
+@media screen and (max-width: 760px) {
   .loginHero {
-    /* width: 100%; */
-    /* display: flex; */
     flex-direction: column;
-    justify-content: space-between;
-    /* padding: 0rem 1rem ; */
-    /* gap: 10px; */
   }
 
   .loginForm {
-    padding-top: 8rem;
+    padding-top: 7rem;
   }
 
   .loginLeft,
@@ -107,8 +103,9 @@
   }
 
   .loginRight {
-    padding-bottom: 13rem;
+    padding-bottom: 10rem;
     padding-top: 2rem;
+    margin-top: 4rem;
   }
 
   .loginLeft h1 {

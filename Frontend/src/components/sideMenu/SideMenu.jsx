@@ -23,25 +23,25 @@ export default function SideMenu() {
         <ul>
           <li>
             <NavLink to="/home" className="sideNav-Link">
-              <i class="fa-solid fa-house"></i>
+              <i className="fa-solid fa-house"></i>
               <span>Home Page</span>
             </NavLink>
           </li>
           <li>
             <NavLink to="/addExpenses" className="sideNav-Link">
-              <i class="fa-solid fa-square-minus"></i>
+              <i className="fa-solid fa-square-minus"></i>
               <span>Add Expenses</span>
             </NavLink>
           </li>
           <li>
             <NavLink to="/addIncomes" className="sideNav-Link">
-              <i class="fa-solid fa-square-plus"></i>
+              <i className="fa-solid fa-square-plus"></i>
               <span>Add Incomes</span>
             </NavLink>
           </li>
           <li>
             <NavLink to="/history" className="sideNav-Link">
-              <i class="fa-solid fa-chart-area"></i>
+              <i className="fa-solid fa-chart-area"></i>
               <span>History</span>
             </NavLink>
           </li>
@@ -52,7 +52,7 @@ export default function SideMenu() {
         <ul>
           <li>
             <NavLink to="/settings" className="sideNav-Link">
-              <i class="fa-solid fa-gear"></i>
+              <i className="fa-solid fa-gear"></i>
               <span>Settings</span>
             </NavLink>
           </li>
@@ -73,13 +73,11 @@ export default function SideMenu() {
               </div>
               
             )}
-            </Link>
-            
+            </Link>            
           </li>
-
           <li>
             <NavLink to="/help" className="sideNav-Link">
-              <i class="fa-solid fa-circle-question"></i>
+              <i className="fa-solid fa-circle-question"></i>
               <span>Help/FAQ</span>
             </NavLink>
           </li>

@@ -5,11 +5,11 @@
 
 .HelpHero {
   width: 80%;
-  /* border: 1px solid; */
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 5rem;
+  background-color: var(--bg-200);
 }
 
 .questions {
@@ -24,21 +24,18 @@
   padding-bottom: 1rem;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 760px) {
   .HelpHero {
     padding: 0.5rem;
   }
-
   .questions {
     width: 90%;
     margin-top: 3rem;
   }
-.questions h2 {
-  font-size: 1rem;
-}
-.questions p {
-  font-size: .8rem;
-}
-
-
+  .questions h2 {
+    font-size: 1rem;
+  }
+  .questions p {
+    font-size: 0.8rem;
+  }
 }

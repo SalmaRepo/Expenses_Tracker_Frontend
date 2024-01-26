@@ -25,7 +25,6 @@
 
 .mainSettings {
   display: flex;
-  /* justify-content: space-evenly;  */
   align-items: center;
   padding: 5rem;
   margin-left: 3rem;
@@ -52,7 +51,8 @@
   color: var(--bg-200);
 }
 
-@media screen and (max-width: 700px) {
+/*--- Mobile ---*/
+@media screen and (max-width: 760px) {
   .SettingHero {
     flex-direction: column;
     gap: 2rem;
@@ -94,6 +94,5 @@
 
   .mainSettings .sub-settings {
     margin: 4rem 1rem;
-    /* font-size: 12px; */
   }
 }

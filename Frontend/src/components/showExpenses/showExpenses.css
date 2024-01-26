@@ -1,11 +1,10 @@
 .showExpenses {
   width: 100%;
- 
 }
 
 .showExpenses button {
   background-color: #f37676;
-  color:var(--bg-100);
+  color: var(--bg-100);
   border: none;
   padding: 5px 8px;
   text-align: center;
@@ -14,24 +13,21 @@
   border-radius: 5px;
 }
 
-.showExpenses button:hover{
+.showExpenses button:hover {
   background-color: #d32f2f;
 }
 
 .showExpenses .showExpTable {
   width: 100%;
   border-radius: 1rem;
-/*   border: 1px solid rgb(233, 226, 226); */
   padding: 1rem;
   border-collapse: collapse;
   font-size: 1rem;
   box-shadow: 1px 1px 10px 2px rgb(145, 142, 142);
   position: relative;
-/*  border: 1px solid; */
 }
 
-
-.showExpenses .showExpTable thead{
+.showExpenses .showExpTable thead {
   position: sticky;
   top: 0;
   background-color: var(--primary-200);
@@ -39,12 +35,9 @@
   z-index: 1;
 }
 
-
 .showExpenses .showExpTable tbody tr td {
   text-align: center;
 }
-
-
 
 .showExpenses .showExpTable thead th {
   padding: 1rem;
@@ -58,53 +51,44 @@
   top: 0;
 }
 
-.showExpenses .expenseTableImage{
+.showExpenses .expenseTableImage {
   width: 30px;
-  height: 30px; 
+  height: 30px;
 }
 
-
 /*-- MOBILE --*/
-
-
-
-@media (max-width:760px){
-    .showExpenses{
-        width: 100%;
-        margin: 0;
-        
-    
-    }
-    .showExpenses .showExpTable {
-        width: 100%;
-        font-size: 0.8rem;
-        border-collapse: collapse;
-        border-radius: 1rem;
-    }
-
-    .showExpenses .showExpTable thead .expTableHead {
-        width:1rem;
-      
-
-      }
-      .showExpenses .showExpTable thead th {
-        padding: 0.2rem;
-        border-collapse: collapse;
-        width: 1%;
-        color: var(--bg-100);
-        background-color: var(--primary-200);
-      }
-
-      .showExpenses .showExpTable td {
-        padding: 0.2rem;
-        
-      }
-    .showExpenses .expenseTableImage{
-    width: 20px;
-    height: 20px; 
+@media (max-width: 760px) {
+  .showExpenses {
+    width: 100%;
+    margin: 0;
+  }
+  .showExpenses .showExpTable {
+    width: 100%;
+    font-size: 0.8rem;
+    border-collapse: collapse;
+    border-radius: 1rem;
   }
 
-       .showExpenses button {
+  .showExpenses .showExpTable thead .expTableHead {
+    width: 1rem;
+  }
+  .showExpenses .showExpTable thead th {
+    padding: 0.2rem;
+    border-collapse: collapse;
+    width: 1%;
+    color: var(--bg-100);
+    background-color: var(--primary-200);
+  }
+
+  .showExpenses .showExpTable td {
+    padding: 0.2rem;
+  }
+  .showExpenses .expenseTableImage {
+    width: 20px;
+    height: 20px;
+  }
+
+  .showExpenses button {
     background-color: #f37676;
     color: transparent;
     border: none;
