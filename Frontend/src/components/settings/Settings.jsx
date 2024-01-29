@@ -17,14 +17,14 @@ export default function Settings() {
 
   // Toggle the visibility of the profile picture change section
   function changProfilePic() {
-    setIsChangeImg(!isChangeImg);
+    setIsChangeImg(true);
     setIsUpdateUserDetails(false);
     setIsSelectCurrency(false);
   }
 
   // Toggle the visibility of the profile details update section
   function showUpdateUserDetails() {
-    setIsUpdateUserDetails(!isUpdateUserDetails);
+    setIsUpdateUserDetails(true);
     setIsSelectCurrency(false);
     setIsChangeImg(false);
   }
@@ -39,7 +39,7 @@ export default function Settings() {
 
   // Handle the change of currency
   const handleChageCurrency = () => {
-    setIsSelectCurrency(!isSelectCurrency);
+    setIsSelectCurrency(true);
     setIsUpdateUserDetails(false);
     setIsChangeImg(false);
   };
