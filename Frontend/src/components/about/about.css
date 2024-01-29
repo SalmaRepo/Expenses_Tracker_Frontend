@@ -82,9 +82,9 @@
   margin-top: 10px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 760px) {
   .about-container {
-    padding-top: 3rem;
+    padding-top: 1rem;
   }
 
   .cards-container {

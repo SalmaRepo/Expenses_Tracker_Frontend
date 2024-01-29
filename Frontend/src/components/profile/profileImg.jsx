@@ -20,7 +20,7 @@ export default function ProfileImg() {
             height: "40px",
             borderRadius: "50%",
             backgroundColor: "#ccc",
-            marginLeft: "0.6rem",
+            marginLeft: "0.8rem",
           }}
           className="profile-img"
         />

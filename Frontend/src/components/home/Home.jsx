@@ -54,10 +54,10 @@ export default function Home() {
   const homeAddNewInc = () => {
     navigate("/addIncomes");
   };
-  const handleBurgerMenu = () => {
-    setShowSideMenu(!showSideMenu);
-    localStorage.setItem("sideMenuShow", showSideMenu);
-  };
+  // const handleBurgerMenu = () => {
+  //   setShowSideMenu(!showSideMenu);
+  //   localStorage.setItem("sideMenuShow", showSideMenu);
+  // };
 
   return (
     <div className="home">
@@ -99,7 +99,7 @@ export default function Home() {
           >
             Add Expenses
             <span>
-              <i class="fa-regular fa-square-plus"></i>
+              <i className="fa-regular fa-square-plus"></i>
             </span>
           </button>
           <button
@@ -108,7 +108,7 @@ export default function Home() {
           >
             Add Incomes
             <span>
-              <i class="fa-regular fa-square-plus"></i>
+              <i className="fa-regular fa-square-plus"></i>
             </span>
           </button>
         </div>

@@ -6,7 +6,7 @@
   background-color: var(--accent-100);
 }
 
-.landingNavBar{
+.landingNavBar {
   width: 80%;
   margin: 0 auto;
   display: flex;
@@ -46,17 +46,18 @@
   width: 100px;
 }
 
-.landingNavBar i{
+.landingNavBar i {
   font-size: 2rem;
+  margin-top: 0.2rem;
 }
-/*-- Mobile --*/
 
-@media screen and (max-width: 768px) {
+/*-- Mobile --*/
+@media screen and (max-width: 760px) {
   .landingNav {
     padding: 5px 10px;
   }
 
-  .landingNavBar{
+  .landingNavBar {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -75,4 +76,8 @@
     width: 80%;
   }
 
+  .landingNavBar i {
+    font-size: 1.5rem;
+    margin-top: 0rem;
+  }
 }

@@ -20,7 +20,7 @@ import Balance from "../balance/Balance";
 function History() {
   const { state, dispatch } = useContext(context);
   const [filteredExpenses, setFilteredExpenses] = useState([]);
-  const [filteredIncomes, setFilteredIncomes] = useState([]); //! added
+  const [filteredIncomes, setFilteredIncomes] = useState([]); 
   const [selectedDuration, setSelectedDuration] = useState("");
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
@@ -183,7 +183,6 @@ function History() {
         new Date(exp.date).getFullYear() === new Date(calDate).getFullYear()
     );
     const currentDayIncomes = state.user?.incomes.filter(
-      //!
       (inc) =>
         new Date(inc.date).getDate() === new Date(calDate).getDate() &&
         new Date(inc.date).getMonth() === new Date(calDate).getMonth() &&
@@ -191,7 +190,7 @@ function History() {
     );
     
     setFilteredExpenses(currentDayExpenses);
-    setFilteredIncomes(currentDayIncomes); //!
+    setFilteredIncomes(currentDayIncomes); 
   };
   // HANDLE LAST MONTH
   const handleLastMoth = () => {
@@ -331,7 +330,7 @@ function History() {
         <div className="historyTop">
           <h2>
             Select the duration <span></span>
-            <i class="fa-solid fa-down-long"></i>{" "}
+            <i className="fa-solid fa-down-long"></i>{" "}
           </h2>
           <ul className="historyTop-options">
             <li>
@@ -437,7 +436,7 @@ function History() {
                     className="timeButton"
                     onClick={handleNextWeek}
                   >
-                    <i class="fa-solid fa-circle-chevron-right"></i>
+                    <i className="fa-solid fa-circle-chevron-right"></i>
                   </button>
                 </div>
               )}
@@ -483,7 +482,7 @@ function History() {
                               {exp?.category.charAt(0).toUpperCase() +
                                 exp?.category.slice(1)}
                             </td>
-                            <td className="data">{exp?.amount.toFixed(2)}</td>
+                            <td className="data">{exp?.amount?.toFixed(2)}</td>
                             {/* <p>{new Date(exp.date).toLocaleDateString()}</p> */}
                             {selectedDuration === "day" && (
                               <td className="data">
