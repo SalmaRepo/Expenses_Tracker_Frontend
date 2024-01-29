@@ -19,7 +19,7 @@
   --bg-300: #cccccc;
   --black: #181818;
 
-  --LigthIcon:#fbf2b4;
+  --LigthIcon: #fbf2b4;
   --expenses: #c63968;
   --incomes: #03dac6;
 
@@ -35,8 +35,6 @@
   --D-bg-200: #2d2d2d;
   --D-bg-300: #454545;
 }
-
-
 
 /*-- DARK MODE --*/
 /* General */
@@ -55,7 +53,7 @@
   background-color: var(--D-bg-200);
   color: var(--D-text-200);
 }
-.darkMode .react-calendar button{
+.darkMode .react-calendar button {
   color: var(--D-text-200);
 }
 
@@ -65,17 +63,11 @@
 }
 
 /* Landing page */
-.darkMode .landSubTitle,
-.darkMode .first-line,
-.darkMode .second-line,
-.darkMode .reason {
-  color: var(--black);
-}
-.darkMode .getStarted {
-  color: var(--bg-200);
-}
-.darkMode .getStarted:hover {
-  color: var(--D-bg-100);
+.darkMode .landTitle {
+  background: linear-gradient(to right, var(--D-primary-100), #9ca3fe 50%);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-clip: text;
 }
 
 /* Sign-up */
@@ -105,9 +97,10 @@
 }
 
 /* AddExpenses / AddIncoms */
-.darkMode .submitExpButton , .darkMode .submitIncome{
+.darkMode .submitExpButton,
+.darkMode .submitIncome {
   box-shadow: 1px 0px 4px 1px rgb(232, 228, 228);
-  color:var(--D-bg-100) ;
+  color: var(--D-bg-100);
   font-weight: bold;
 }
 
@@ -127,11 +120,11 @@
   color: rgb(240, 94, 94);
 }
 .darkMode .history-bottom-data .downloadExpBtn {
- background-color: var(--primary-200);
- color: var(--bg-200);
- border: none;
+  background-color: var(--primary-200);
+  color: var(--bg-200);
+  border: none;
 }
-.darkMode .history-bottom-data .downloadExpBtn:hover{
+.darkMode .history-bottom-data .downloadExpBtn:hover {
   background-color: var(--D-primary-200);
   border: none;
 }
