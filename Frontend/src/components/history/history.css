@@ -690,6 +690,7 @@ border: 0;
     overflow-y: auto;
     border-radius: 0.5rem;
    /*  color: var(--text-100); */
+   font-size: 0.8rem;
   
   }
   
@@ -725,6 +726,7 @@ border: 0;
     box-shadow: 2px 2px 10px 2px gray;
     border-radius: 0.5rem;
     padding: 0rem;
+    font-size: 0.8rem;
   }
   
   

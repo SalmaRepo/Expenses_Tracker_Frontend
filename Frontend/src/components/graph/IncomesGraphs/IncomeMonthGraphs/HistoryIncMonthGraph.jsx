@@ -6,7 +6,7 @@ import { CategoryScale } from "chart.js";
 import BarIncMonthGraph from "./BarIncMonthGraph";
 Chart.register(CategoryScale);
 
-function HistoryIncMonthGraph({ month, year }) {
+function HistoryIncMonthGraph({ month, monthYear  }) {
     const { state, dispatch } = useContext(context);
     const incomesSummary = [];
     let addedCategories = {};
@@ -14,7 +14,7 @@ function HistoryIncMonthGraph({ month, year }) {
     const monthlyIncomes = state.user?.incomes?.filter(
       (exp) =>
         new Date(exp.date).getMonth() === month &&
-        new Date(exp.date).getFullYear() === year
+        new Date(exp.date).getFullYear() === monthYear 
     );
   
    /*  console.log(monthlyExpenses); */
@@ -42,7 +42,7 @@ function HistoryIncMonthGraph({ month, year }) {
       ),
       datasets: [
         {
-          label: "Amount Spent ",
+          label: "Amount Earned ",
           data:  incomesSummary?.map((income) => income?.amount),
           backgroundColor: ["#3e47ed", "#e49ec3", "#f3ba2f", "#2a71d0"],
           borderColor: "black",
@@ -57,7 +57,7 @@ function HistoryIncMonthGraph({ month, year }) {
         labels:  incomesSummary?.map((income) => income?.category),
         datasets: [
           {
-            label: "Amount Spent ",
+            label: "Amount Earned ",
             data:  incomesSummary?.map((income) => income?.amount),
             backgroundColor: [
               "#2a71d0",
@@ -73,10 +73,10 @@ function HistoryIncMonthGraph({ month, year }) {
           },
         ],
       });
-    }, [year, month,state.user]);
+    }, [monthYear, month,state.user]);
     return (
       <div>
-        <BarIncMonthGraph chartData={chartData} month={month} year={year} />
+        <BarIncMonthGraph chartData={chartData} month={month} monthYear ={monthYear} />
       </div>
     );
 }

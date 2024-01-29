@@ -7,7 +7,7 @@ import BarExpMonthChart from "./BarExpMonthGraph";
 Chart.register(CategoryScale);
 
 
-function HistoryExpMonthGraph({ month, year }) {
+function HistoryExpMonthGraph({ month, monthYear }) {
   const { state, dispatch } = useContext(context);
   const expensesSummary = [];
   let addedCategories = {};
@@ -15,7 +15,7 @@ function HistoryExpMonthGraph({ month, year }) {
   const monthlyExpenses = state.user?.expenses?.filter(
     (exp) =>
       new Date(exp.date).getMonth() === month &&
-      new Date(exp.date).getFullYear() === year
+      new Date(exp.date).getFullYear() === monthYear 
   );
 
  /*  console.log(monthlyExpenses); */
@@ -74,10 +74,10 @@ function HistoryExpMonthGraph({ month, year }) {
         },
       ],
     });
-  }, [year, month,state.user]);
+  }, [monthYear, month,state.user]);
   return (
     <div>
-      <BarExpMonthChart chartData={chartData} month={month} year={year} />
+      <BarExpMonthChart chartData={chartData} month={month} monthYear={monthYear} />
     </div>
   );
 }

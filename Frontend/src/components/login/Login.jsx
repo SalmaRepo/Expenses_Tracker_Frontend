@@ -53,7 +53,10 @@ export default function Login() {
           toast.error(JSON.stringify(result.message));
         }
       })
-      .catch((err) => console.log(err));
+
+      .catch((err) =>{
+        console.log(err)
+      } );
   };
 
   console.log(state.user);

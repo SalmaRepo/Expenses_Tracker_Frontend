@@ -16,8 +16,8 @@ function HistoryExpDayGraph({ day, month, year }) {
   const dayExpenses = state.user?.expenses?.filter(
     (exp) =>
       new Date(exp.date).getDate() === new Date(day).getDate() &&
-      new Date(exp.date).getMonth() === month &&
-      new Date(exp.date).getFullYear() === year
+      new Date(exp.date).getMonth() === new Date(day).getMonth() &&
+      new Date(exp.date).getFullYear() === new Date(day).getFullYear()
   );
 
   /*  console.log(monthlyExpenses); */
@@ -39,12 +39,13 @@ function HistoryExpDayGraph({ day, month, year }) {
   }
 /*   console.log(expensesSummary); */
 
+
   const [chartData, setChartData] = useState({
-    labels: expensesSummary?expensesSummary.map((expense) => expense?.category):[],
+    labels: [],
     datasets: [
       {
         label: "Amount Spent ",
-        data: expensesSummary?.map((expense) => expense?.amount),
+        data:[],
         backgroundColor: ["#3e47ed", "#e49ec3", "#f3ba2f", "#2a71d0"],
         borderColor: "black",
         borderWidth: 0,
@@ -71,17 +72,18 @@ function HistoryExpDayGraph({ day, month, year }) {
           ],
           borderColor: "black",
           borderWidth: 0,
+          barThickness: 30,
         },
       ],
     });
 
   /*   console.log(chartData) */
-  }, [day , month , year,state.user]);
+  }, [day ,state.user]);
 
 /* console.log(chartData) */
   return (
     <div>
-      {chartData &&<BarExpDayGraph chartData={chartData} day={day}  />}
+      {chartData?.datasets[0].data.length>0&&<BarExpDayGraph chartData={chartData} day={day}  />}
     </div>
   );
 }

@@ -91,14 +91,12 @@ function HistoryExpYearGraph({ year }) {
           label: "Amount Spent ",
           data: expensesSummary?.map((expense) => expense?.amount),
           backgroundColor: [
-            "rgba(75,192,192,1)",
-            "#50AF95",
-            "#d5c18e",
-            "#89a0be",
+            "#d9abbac9",
+            
           ],
-          fill: false,
-          borderColor: 'rgb(75, 112, 192)',
-          borderWidth:3
+          fill: true,
+          borderColor: '#c63968',
+          borderWidth:2
         },
       ],
     })

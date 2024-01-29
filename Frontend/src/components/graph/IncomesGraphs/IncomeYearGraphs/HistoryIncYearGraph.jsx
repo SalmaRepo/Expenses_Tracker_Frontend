@@ -66,7 +66,7 @@ function HistoryIncYearGraph({ year }) {
       labels: months?.map((month) => month),
       datasets: [
         {
-          label: "Amount Spent ",
+          label: "Amount Earned ",
           data: incomesSummary?.map((income) => income?.amount),
           backgroundColor: [
             "rgba(75,192,192,1)",
@@ -86,18 +86,15 @@ function HistoryIncYearGraph({ year }) {
         labels: months?.map((month) => month),
         datasets: [
           {
-            label: "Amount Spent ",
+            label: "Amount Earned ",
             data: incomesSummary?.map((income) => income?.amount),
             backgroundColor: [
-              "rgba(75,192,192,1)",
-              "#50AF95",
-              "#d5c18e",
-              "#89a0be",
+              "#b8f6f6",
+             
             ],
-            fill: false,
-            borderColor: 'rgb(75, 112, 192)',
-            tension: 0.5,
-            borderWidth:3,
+            fill: true,
+            borderColor: 'rgb(75, 184, 192)',
+            borderWidth:2,
           
             
           },

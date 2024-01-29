@@ -14,7 +14,11 @@ function HistoryIncWeekGraph({weekStart,weekLast}) {
  const weeklyIncomes= state.user?.incomes?.filter(
     (inc) =>
     new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
-    new Date(inc.date).getDate() <= new Date(weekLast).getDate()
+      new Date(inc.date).getMonth() >= new Date(weekStart).getMonth()&&
+      new Date(inc.date).getFullYear() >= new Date(weekStart).getFullYear()&&
+      new Date(inc.date).getDate() <= new Date(weekLast).getDate() &&
+      new Date(inc.date).getMonth() <= new Date(weekLast).getMonth()&&
+      new Date(inc.date).getFullYear() <= new Date(weekLast).getFullYear()
   );
 
  /*  console.log(monthlyExpenses); */
@@ -42,7 +46,7 @@ function HistoryIncWeekGraph({weekStart,weekLast}) {
     ),
     datasets: [
       {
-        label: "Amount Spent ",
+        label: "Amount Earned ",
         data: incomesSummary?.map((income) => income?.amount),
         backgroundColor: ["#3e47ed", "#e49ec3", "#f3ba2f", "#2a71d0"],
         borderColor: "black",
@@ -57,7 +61,7 @@ function HistoryIncWeekGraph({weekStart,weekLast}) {
       labels: incomesSummary?.map((income) => income?.category),
       datasets: [
         {
-          label: "Amount Spent ",
+          label: "Amount Earned",
           data: incomesSummary?.map((income) => income?.amount),
           backgroundColor: [ 
             "#2a71d0",
@@ -70,6 +74,7 @@ function HistoryIncWeekGraph({weekStart,weekLast}) {
           ],
           borderColor: "black",
           borderWidth: 0,
+          barThickness: 30,
         },
       ],
     });

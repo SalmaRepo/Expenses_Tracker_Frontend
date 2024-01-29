@@ -11,11 +11,13 @@ function LineExpYearChart({chartData,year}) {
               plugins: {
                 title: {
                   display: true,
-                  text: `Expenses of ${year}`
+                  text: `Expenses of ${year}`,
+                  
                 },
                 legend: {
                   display: false
                 },
+                
                 
               },
               /* animations: {

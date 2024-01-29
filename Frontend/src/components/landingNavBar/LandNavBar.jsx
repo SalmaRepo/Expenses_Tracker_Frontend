@@ -72,9 +72,15 @@ export default function LandNavBar() {
           )}
           <li>
             {darkMode ? (
-              <i className="fa-solid fa-sun" onClick={() => setDarkMode(false)}></i>
+              <i className="fa-solid fa-sun" onClick={() => {
+                setDarkMode(false)
+                localStorage.setItem("darkMode",false)
+              }}></i>
             ) : (
-              <i className="fa-solid fa-moon" onClick={() => setDarkMode(true)}></i>
+              <i className="fa-solid fa-moon" onClick={() => {
+                setDarkMode(true)
+                localStorage.setItem("darkMode",true)
+              }}></i>
             )}
           </li>
         </ul>

@@ -20,7 +20,7 @@ function BarExpDayGraph({ chartData, day}) {
     <div className="chart-container">
       <Bar
        className='barChart'
-        data={chartData}
+       data={chartData?chartData:[]}
         options={{
           plugins: {
             title: {

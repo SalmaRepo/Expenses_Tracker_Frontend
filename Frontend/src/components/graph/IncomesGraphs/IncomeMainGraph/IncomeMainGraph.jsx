@@ -4,7 +4,7 @@ import HistoryIncDayGraph from "../IncomeDayGraphs/HistoryIncDayGraph";
 import HistoryIncMonthGraph from "../IncomeMonthGraphs/HistoryIncMonthGraph";
 import HistoryIncWeekGraph from "../IncomeWeekGraphs/HistoryIncWeekGraph";
 import HistoryIncYearGraph from "../IncomeYearGraphs/HistoryIncYearGraph";
-import '../../barChartStyle.css'
+import "../../barChartStyle.css";
 function IncomeMainGraph({
   selectedDuration,
   year,
@@ -12,6 +12,7 @@ function IncomeMainGraph({
   day,
   weekStart,
   weekLast,
+  monthYear,
 }) {
   const { state, dispatch } = useContext(context);
   /*  console.log(state.user?.expenses) */
@@ -20,11 +21,9 @@ function IncomeMainGraph({
     <div>
       {selectedDuration === "year" && <HistoryIncYearGraph year={year} />}
       {selectedDuration === "month" && (
-        <HistoryIncMonthGraph month={month} year={year} />
+        <HistoryIncMonthGraph month={month} monthYear={monthYear} />
       )}
-      {selectedDuration === "day" && (
-        <HistoryIncDayGraph day={day} month={month} year={year} />
-      )}
+      {selectedDuration === "day" && <HistoryIncDayGraph day={day} />}
       {selectedDuration === "week" && (
         <HistoryIncWeekGraph weekStart={weekStart} weekLast={weekLast} />
       )}

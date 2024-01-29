@@ -59,7 +59,10 @@ export default function SideMenu() {
           <li>
             <Link>
             {darkMode ? (
-              <div onClick={() => setDarkMode(false)} className="themeSideNav">
+              <div onClick={() =>{
+                setDarkMode(false)
+                localStorage.setItem("darkMode",false)
+              } } className="themeSideNav">
                 <i
                   className="fa-solid fa-sun"
       
@@ -67,7 +70,10 @@ export default function SideMenu() {
                 <span>Light Mode </span>
               </div>
             ) : (
-              <div onClick={() => setDarkMode(true)} className="themeSideNav">
+              <div onClick={() =>{
+                setDarkMode(true);
+                localStorage.setItem("darkMode",true)
+              } } className="themeSideNav">
                 <i className="fa-solid fa-moon" ></i>
                 <span>Dark Mode </span>
               </div>
