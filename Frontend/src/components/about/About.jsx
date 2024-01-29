@@ -12,13 +12,13 @@ export default function About() {
       {state.isOnSignAndLogin&&<LandNavBar/>}
 
       <section className='headline'>
-        <h1 className='first-line'>Why should you</h1>
-        <h2 className='second-line'>use Expensify?</h2>
+      {/*   <h1 className='first-line'>Why should you</h1>
+        <h2 className='second-line'>use Expensify?</h2> */}
       </section>
-      <img id='about' src="images/arrow.png" alt="arrow"  className='arrow-img' />
-      <p className='reason'>
+     {/*  <img id='about' src="images/arrow.png" alt="arrow"  className='arrow-img' /> */}
+      {/* <p className='reason'>
       We'll give you 3 very good reasons
-      </p>
+      </p> */}
      
       <main className="cards-container">
         
