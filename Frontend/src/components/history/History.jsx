@@ -24,7 +24,8 @@ function History() {
   const [selectedDuration, setSelectedDuration] = useState("");
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
-  const [day, setDay] = useState(new Date().getDate());
+  const [monthYear, setMonthYear] = useState(new Date().getFullYear());
+  /*   const [day, setDay] = useState(new Date().getDate()); */
   const [calDate, setCalDate] = useState(new Date());
   const [recieptCategory, setRecieptCategory] = useState("");
   const [weekDay, setWeekDay] = useState(new Date());
@@ -56,7 +57,7 @@ function History() {
           }
         );
         const result = await response.json();
-        console.log(result);
+        /*  console.log(result); */
         dispatch({ type: "setUser", payload: result.data });
       }
     } catch (error) {
@@ -66,7 +67,7 @@ function History() {
   useEffect(() => {
     const duration = localStorage.getItem("selectedDuration") || "month";
     setSelectedDuration(duration);
-    /* getUserById(); */
+    getUserById();
     const day = localStorage.getItem("historyDate") || calDate;
     setCalDate(day);
   }, []);
@@ -89,7 +90,16 @@ function History() {
       default:
         break;
     }
-  }, [selectedDuration, month, year, calDate, weekStart, weekLast, state.user]);
+  }, [
+    selectedDuration,
+    month,
+    monthYear,
+    year,
+    calDate,
+    weekStart,
+    weekLast,
+    state.user,
+  ]);
   // HANDLE LAST WEEK
   const handleWeek = () => {
     setSelectedDuration("week");
@@ -97,14 +107,23 @@ function History() {
     const currentWeekExpenses = state.user?.expenses.filter(
       (exp) =>
         new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
-        new Date(exp.date).getDate() <= new Date(weekLast).getDate()
+        new Date(exp.date).getMonth() >= new Date(weekStart).getMonth() &&
+        new Date(exp.date).getFullYear() >= new Date(weekStart).getFullYear() &&
+        new Date(exp.date).getDate() <= new Date(weekLast).getDate() &&
+        new Date(exp.date).getMonth() <= new Date(weekLast).getMonth() &&
+        new Date(exp.date).getFullYear() <= new Date(weekLast).getFullYear()
     );
 
     const currentWeekIncomes = state.user?.incomes.filter(
       (inc) =>
         new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
-        new Date(inc.date).getDate() <= new Date(weekLast).getDate()
+        new Date(inc.date).getMonth() >= new Date(weekStart).getMonth() &&
+        new Date(inc.date).getFullYear() >= new Date(weekStart).getFullYear() &&
+        new Date(inc.date).getDate() <= new Date(weekLast).getDate() &&
+        new Date(inc.date).getMonth() <= new Date(weekLast).getMonth() &&
+        new Date(inc.date).getFullYear() <= new Date(weekLast).getFullYear()
     );
+
     const expensesSummary = summariseExpenses(currentWeekExpenses);
     setFilteredExpenses(expensesSummary);
     const incomesSummary = summariseIncomes(currentWeekIncomes);
@@ -117,12 +136,12 @@ function History() {
     const currentMonthExpenses = state.user?.expenses.filter(
       (exp) =>
         new Date(exp.date).getMonth() === month &&
-        new Date(exp.date).getFullYear() === year
+        new Date(exp.date).getFullYear() === monthYear
     );
     const currentMonthIncomes = state.user?.incomes.filter(
       (inc) =>
         new Date(inc.date).getMonth() === month &&
-        new Date(inc.date).getFullYear() === year
+        new Date(inc.date).getFullYear() === monthYear
     );
     const expensesSummary = summariseExpenses(currentMonthExpenses);
     const incomesSummary = summariseIncomes(currentMonthIncomes);
@@ -149,8 +168,9 @@ function History() {
   // SELECTED DATE
   const selectedDate = (calDate) => {
     setCalDate(calDate);
+    /*    getUserById() */
     handleDay();
-    localStorage.setItem("historyDate", calDate);
+    /*   localStorage.setItem("historyDate", calDate); */
   };
   // HANDLE DAY
   const handleDay = () => {
@@ -168,6 +188,7 @@ function History() {
         new Date(inc.date).getMonth() === new Date(calDate).getMonth() &&
         new Date(inc.date).getFullYear() === new Date(calDate).getFullYear()
     );
+    
     setFilteredExpenses(currentDayExpenses);
     setFilteredIncomes(currentDayIncomes); 
   };
@@ -177,10 +198,11 @@ function History() {
       setMonth(month - 1);
     } else if (month === 0) {
       setMonth(11);
-      setYear(year - 1);
+      setMonthYear(monthYear - 1);
     }
     /*     localStorage.setItem("historyMonth", month);
     localStorage.setItem("historyYear", year);  */
+    getUserById();
   };
   // HANDLE NEXT MONTH
   const handleNextMonth = () => {
@@ -188,17 +210,20 @@ function History() {
       setMonth(month + 1);
     } else if (month === 11) {
       setMonth(0);
-      setYear(year + 1);
+      setMonthYear(monthYear + 1);
     }
+    getUserById();
   };
   // HANDLE LAST YEAR
   const handleLastYear = () => {
     setYear(year - 1);
+    getUserById();
   };
   // HANDLE NEXT YEAR
   const handleNextYear = () => {
     setYear(year + 1);
     localStorage.setItem("historyYear", year);
+    getUserById();
   };
   const handleLastWeek = () => {
     const lastWeekStart = setToStartOfWeek(
@@ -206,6 +231,7 @@ function History() {
     );
     setWeekStart(lastWeekStart);
     setWeekLast(setToEndOfWeek(new Date(lastWeekStart)));
+    getUserById();
   };
   const handleNextWeek = () => {
     const nextWeekStart = setToStartOfWeek(
@@ -213,6 +239,7 @@ function History() {
     );
     setWeekStart(nextWeekStart);
     setWeekLast(setToEndOfWeek(new Date(nextWeekStart)));
+    getUserById();
   };
   // HANDLE RECIEPT
   const handleReciept = (url, date, category) => {
@@ -224,6 +251,7 @@ function History() {
   const handleCloseImg = () => {
     setIsRecieptView(false);
   };
+
   // Total expenses
   const totalExpenses = filteredExpenses?.reduce((acc, exp) => {
     acc += exp.amount;
@@ -247,7 +275,7 @@ function History() {
       durationLabel = `${weekStart.toLocaleDateString()} - ${weekLast.toLocaleDateString()}`;
       break;
     case "month":
-      durationLabel = `${months[month]} ${year}`;
+      durationLabel = `${months[month]} ${monthYear}`;
       break;
     case "year":
       durationLabel = `${year}`;
@@ -355,7 +383,7 @@ function History() {
                   </button>
                   <h3>
                     {months[month]}
-                    <span> {year}</span>
+                    <span> {monthYear}</span>
                   </h3>
                   <button
                     type="submit"
@@ -417,9 +445,9 @@ function History() {
                 {selectedDuration === "day" && (
                   <div className="historyCalendarContainer">
                     {/*  <h4>Select the Date</h4> */}
-                    <Calendar
-                      onChange={selectedDate}
+                    <Calendar  
                       value={calDate}
+                      onChange={selectedDate}
                       name="calendar"
                       className="calendar"
                     />
@@ -499,10 +527,11 @@ function History() {
                       </tr>
                     </thead>
                     <tbody>
-                      {filteredIncomes?.map((inc) => (
+                      {filteredIncomes?.map((inc, index) => (
                         <tr
                           className="incData"
-                          key={`${inc.category}-${inc.date}`}
+                          /* key={`${inc.category}-${inc.date}`} */
+                          key={index}
                         >
                           <td className="data">
                             {inc?.category.charAt(0).toUpperCase() +
@@ -526,7 +555,7 @@ function History() {
               <span> {totalExpenses}</span>
             </div>
             <div className="incomesTotal total">
-            {window.innerWidth < 760
+              {window.innerWidth < 760
                 ? `Incomes : ${totalIncomes}`
                 : `Incomes of the selected ${selectedDuration}`}
               <span> {totalIncomes}</span>
@@ -550,6 +579,7 @@ function History() {
                 selectedDuration={selectedDuration}
                 year={year}
                 month={month}
+                monthYear={monthYear}
                 day={calDate}
                 weekStart={weekStart}
                 weekLast={weekLast}
@@ -562,6 +592,7 @@ function History() {
                 selectedDuration={selectedDuration}
                 year={year}
                 month={month}
+                monthYear={monthYear}
                 day={calDate}
                 weekStart={weekStart}
                 weekLast={weekLast}

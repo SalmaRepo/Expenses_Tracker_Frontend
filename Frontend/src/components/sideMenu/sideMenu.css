@@ -50,6 +50,7 @@
   width: 100%;
   text-align: center;
   padding: 0.8rem;
+  margin-left: 0.2rem;
 }
 
 .sideBarBottom ul li:first-child {
@@ -74,7 +75,7 @@
 .sideBarTop ul li:hover,
 .sideBarBottom ul li:hover {
   background-color: rgb(246, 237, 237);
-  margin: 0 auto;
+ /*  margin: 0 auto;  */
   width: 90%;
   border-radius: 0.5rem;
 }

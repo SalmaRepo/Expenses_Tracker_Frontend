@@ -1,7 +1,7 @@
 import React from 'react'
 import { Bar } from "react-chartjs-2";
 import '../../barChartStyle.css'
-function BarExpMonthChart({chartData,month,year}) {
+function BarExpMonthChart({chartData,month,monthYear }) {
 /*     console.log(year) */
 
     const months = [
@@ -27,7 +27,7 @@ function BarExpMonthChart({chartData,month,year}) {
               plugins: {
                 title: {
                   display: true,
-                  text: `Expenses of ${months[month]} ${year}`
+                  text: `Expenses of ${months[month]} ${monthYear }`
                 },
                 legend: {
                   display: false

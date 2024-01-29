@@ -15,7 +15,11 @@ function HistoryExpWeekGraph({weekStart,weekLast}) {
  const weeklyExpenses = state.user?.expenses?.filter(
     (exp) =>
     new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
-    new Date(exp.date).getDate() <= new Date(weekLast).getDate()
+        new Date(exp.date).getMonth() >= new Date(weekStart).getMonth()&&
+        new Date(exp.date).getFullYear() >= new Date(weekStart).getFullYear()&&
+        new Date(exp.date).getDate() <= new Date(weekLast).getDate() &&
+        new Date(exp.date).getMonth() <= new Date(weekLast).getMonth()&&
+        new Date(exp.date).getFullYear() <= new Date(weekLast).getFullYear()
   );
 
  /*  console.log(monthlyExpenses); */

@@ -32,7 +32,13 @@ export default function Signup() {
       data.append("lastName", e.target.lastname.value),
       data.append("email", e.target.email.value),
       data.append("password", e.target.password.value);
-      console.log(data)
+    const user={
+      firstName:e.target.firstname.value,
+      lastName:e.target.lastname.value,
+      email: e.target.email.value,
+      password:e.target.password.value
+    }
+    console.log(user)
 
     axios
       .post(`${BASE_URL}/api/users/signUp`, data, {
@@ -48,10 +54,14 @@ export default function Signup() {
           dispatch({ type: "setIsSignUp", payload: true });
           setTimeout(() => {
             navigate("/login");
-          }, 1500);
+        }, 1500);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast.error(JSON.stringify(err.response.data.errors[0]["msg"]));
+        console.log(err)
+      }
+        );
   };
 
   return (
