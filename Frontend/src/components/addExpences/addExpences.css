@@ -6,15 +6,14 @@
 
 .addExpensesHero {
   width: 100%;
-  padding: 1rem;
+  padding: 1.2rem;
   display: flex;
   justify-content: center;
-  padding: 2rem;
+  /* padding: 2rem; */
 }
 
 .addExpenses .expForm {
   width: 100%;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,7 +61,7 @@
   justify-content: space-evenly;
   margin: 0 auto;
   border-radius: 1rem;
-  padding: 2rem 1rem;
+  padding: 0rem 1rem;
   box-shadow: 1px 1px 5px 2px rgb(142, 200, 244);
   color: var(--text-100);
 }
@@ -232,11 +231,12 @@
 
   .addExpensesHero {
     height: 100vh;
-    padding: 0rem;
+    padding: 1rem;
   }
 
   .addExpenses .expForm {
     width: 100%;
+    gap: 1rem;
   }
 
   .addExpenses .expForm .calendar {

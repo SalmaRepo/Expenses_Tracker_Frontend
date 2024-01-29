@@ -1,10 +1,10 @@
 .landingPage-Hero {
-  padding-top: 7rem;
+  padding-top: 12rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to bottom, var(--accent-100), var(--primary-300));
+  background: linear-gradient(to bottom, var(--accent-100)20%, var(--primary-300));
 }
 
 .landTitle {
@@ -39,7 +39,7 @@
 /*-- mobile --*/
 @media screen and (max-width: 760px) {
   .landingPage-Hero {
-    padding-top: 1rem;
+    padding-top: 6rem;
   }
 
   .landTitle {

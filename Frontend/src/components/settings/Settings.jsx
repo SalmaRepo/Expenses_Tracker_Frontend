@@ -76,7 +76,7 @@ export default function Settings() {
                 </li>
 
                 <li>
-                  <button className="settings-btn" onClick={toogleDarkMode}>
+                  <button className="settings-btn-dark-ligth" onClick={toogleDarkMode}>
                     {isDarkLight ? "Light Mode" : "Dark Mode"}
                   </button>
                 </li>

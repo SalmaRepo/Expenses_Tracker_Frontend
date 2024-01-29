@@ -6,6 +6,7 @@ import BASE_URL from "../../config/urlConfig";
 import "./addIncomes.css";
 import { context } from "../../context/context";
 import Profile from "../profile/Profile";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function AddIncomes() {
   const { state, dispatch } = useContext(context);
@@ -127,6 +128,7 @@ export default function AddIncomes() {
       fetchIncomes();
       getUserById();
       if (response.ok) {
+        toast.success("Income Deleted");
         console.log("deleted income");
       } else {
         console.error("Error while deleting income", response.statusText);
@@ -138,6 +140,7 @@ export default function AddIncomes() {
 
   return (
     <div className="addIncome">
+       <Toaster position="top-center" />
       <SideMenu />
       <div className="addIncomesHero">
         <form className="incomeForm">
@@ -174,7 +177,7 @@ export default function AddIncomes() {
           </section>
 
           {/* Section for added incomes */}
-          <section className="displayEnteredIncome">
+            <section className="displayEnteredIncome">
             <table>
               <thead>
                 <tr>
@@ -208,7 +211,7 @@ export default function AddIncomes() {
                   .reverse()}
               </tbody>
             </table>
-          </section>
+          </section>         
         </form>
       </div>
       <Profile />

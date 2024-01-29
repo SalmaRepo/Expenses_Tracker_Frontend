@@ -72,7 +72,7 @@ export default function Signup() {
         <div className="left"></div>
         <div className="right">
           <main className="mainDiv">
-            <h1>Signup</h1>
+            {/* <h1>Signup</h1> */}
             <Toaster position="top-center" /> {/* toast position*/}
             <form onSubmit={signupUser}>
               <section>
