@@ -19,6 +19,7 @@
   --bg-300: #cccccc;
   --black: #181818;
 
+  --LigthIcon:#fbf2b4;
   --expenses: #c63968;
   --incomes: #03dac6;
 
@@ -35,6 +36,8 @@
   --D-bg-300: #454545;
 }
 
+
+
 /*-- DARK MODE --*/
 /* General */
 .darkMode {
@@ -44,15 +47,21 @@
 
 .darkMode input {
   background-color: transparent;
+  color: var(--bg-100);
 }
 
-.darkMode button {
+/* Calendar*/
+.darkMode .react-calendar {
+  background-color: var(--D-bg-200);
+  color: var(--D-text-200);
+}
+.darkMode .react-calendar button{
   color: var(--D-text-200);
 }
 
 /* Landing navBar */
 .darkMode .landingNavList .fa-solid.fa-sun {
-  color: #fbf2b4;
+  color: var(--LigthIcon);
 }
 
 /* Landing page */
@@ -60,7 +69,7 @@
 .darkMode .first-line,
 .darkMode .second-line,
 .darkMode .reason {
-  color: black;
+  color: var(--black);
 }
 .darkMode .getStarted {
   color: var(--bg-200);
@@ -111,6 +120,18 @@
 }
 
 /* History */
+.darkMode .history button {
+  color: var(--D-text-200);
+}
 .darkMode .closeImage {
   color: rgb(240, 94, 94);
+}
+.darkMode .history-bottom-data .downloadExpBtn {
+ background-color: var(--primary-200);
+ color: var(--bg-200);
+ border: none;
+}
+.darkMode .history-bottom-data .downloadExpBtn:hover{
+  background-color: var(--D-primary-200);
+  border: none;
 }

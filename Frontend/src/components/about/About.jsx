@@ -7,7 +7,7 @@ import { context } from '../../context/context';
 export default function About() {
   const {state,dispatch}=useContext(context)
   return (
-    <div id='about' className='about-container'>
+    <div  className='about-container'>
 
       {state.isOnSignAndLogin&&<LandNavBar/>}
 
@@ -15,7 +15,7 @@ export default function About() {
         <h1 className='first-line'>Why should you</h1>
         <h2 className='second-line'>use Expensify?</h2>
       </section>
-      <img src="images/arrow.png" alt="arrow"  className='arrow-img' />
+      <img id='about' src="images/arrow.png" alt="arrow"  className='arrow-img' />
       <p className='reason'>
       We'll give you 3 very good reasons
       </p>
