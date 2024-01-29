@@ -34,15 +34,25 @@ export default function LandingPage() {
     <div className="landingPage">
       <LandNavBar />
       <div className="landingPage-Hero">
+        <div className="landing-text">
         <h1 className="landTitle">Welcome to Expensify</h1>
         <h2 className="landSubTitle">
           {/* an expenses tracker simple to use and usefull, */}"Empower Your Finances:
           Track, Budget, and Thrive with our Expenses Tracker App!"
         </h2>
+      
         <button onClick={() => getStarted()} className="getStarted">
           Get Started
         </button>
       </div>
+      <div className="land-images">
+      <img src="./images/ExpenseGraph.png" alt="graph" className="landingTop-Img"/>
+  <img src="./images/PieGraphLand.png" alt="graph" className="landingTop-Img" />
+  
+      </div>
+        
+      </div>
+      
       <About />
       <Footer />
     </div>
