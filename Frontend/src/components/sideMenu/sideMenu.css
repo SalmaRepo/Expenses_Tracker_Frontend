@@ -47,7 +47,7 @@
 
 .sideBarTop ul li,
 .sideBarBottom ul li {
-  width: 100%;
+  width: 90%;
   text-align: center;
   padding: 0.8rem;
   margin-left: 0.2rem;
@@ -72,12 +72,12 @@
   color: var(--text-100);
 }
 
-/* .sideBarTop ul li:hover,
+.sideBarTop ul li:hover,
 .sideBarBottom ul li:hover {
   background-color: rgb(246, 237, 237);
   width: 90%;
   border-radius: 0.5rem;
-} */
+}
 
 .sideBar .sideNav-Link,
 .sideBar a div {
@@ -98,19 +98,13 @@
 .sideBar .sideNav-Link.active {
   background-color: var(--bg-100);
   margin: 0 auto;
-  width: 100%;
+  width: 90%;
   border-radius: 0.5rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   padding: 0.5rem;
-  padding: 0.8rem;
 }
 
-
 .sideBar .sideNav-Link.active:hover {
-  background-color:none
-
+  background-color: none;
 }
 
 /* Mobile */

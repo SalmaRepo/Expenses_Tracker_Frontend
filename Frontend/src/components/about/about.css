@@ -1,7 +1,6 @@
 .about-container {
   padding-top: 6rem;
   text-align: center;
- /*  background: linear-gradient(to bottom, var(--primary-300), var(--accent-100)); */
 }
 
 .headline {
@@ -21,17 +20,7 @@
 .arrow-img {
   width: 5rem;
   padding-bottom: 3rem;
-  /* animation:aboutShow 2s ease 0.5s infinite */;
 }
-
-/* @keyframes aboutShow{
-  0%{
-    transform: translateY(0.5rem);
-  }
-  100%{
-    transform: translateY(-1rem);
-  }
-} */
 
 .reason {
   font-size: 2rem;
@@ -40,7 +29,7 @@
 }
 
 .cards-container {
-  max-width: 1250px;
+  max-width: 70%;
   display: flex;
   justify-content: space-around;
   margin: 0 auto;
@@ -82,6 +71,28 @@
   margin-top: 10px;
 }
 
+.about-app {
+  max-width: 100%;
+  margin: 0 auto;
+  margin-bottom: 8rem;
+  margin-top: 5rem;
+  padding: 5rem;
+  background-color: #d0fafa;
+}
+
+.about-app-title {
+  margin-bottom: 2rem;
+}
+
+.about-app-p {
+  max-width: 90ch;
+  text-align: left;
+  margin: 0 auto;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* Mobile */
 @media screen and (max-width: 760px) {
   .about-container {
     padding-top: 1rem;
