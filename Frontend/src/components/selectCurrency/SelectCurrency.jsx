@@ -17,13 +17,8 @@ function SelectCurrency() {
 
   useEffect(() => {
     console.log(state.isSignUp);
-  
-  
-      dispatch({type:"setIsSignUp",payload:true})
-   
-    
-   
-  
+
+    dispatch({ type: "setIsSignUp", payload: true });
   }, [state.isSignUp]);
 
   let res = all && [...Object.entries(all)];
@@ -94,65 +89,63 @@ function SelectCurrency() {
     getUserById();
   };
 
-
-
   return (
-
     <>
-    {state.isSignUp&&<LandNavBar/>}
-        <div className={state.isSignUp ? "signUp-Currency" : "selectCurr"}>
-      <div className="curr-Left">
-        {/* Input for currency search */}
-        <label className="currency-label" htmlFor="dropdown">
-          Currency:
-        </label>
-        <input
-          type="search"
-          className="currencySearch"
-          name="search"
-          ref={currenySearch}
-          onInput={handleSearch}
-        />
-        {/* Displaying filtered currencies */}
+      {state.isSignUp && <LandNavBar />}
+      <div className={state.isSignUp ? "signUp-Currency" : "selectCurr"}>
+        <div className="curr-Left">
+          {/* Input for currency search */}
+          <label className="currency-label" htmlFor="dropdown">
+            Currency:
+          </label>
+          <input
+            type="search"
+            className="currencySearch"
+            name="search"
+            ref={currenySearch}
+            onInput={handleSearch}
+          />
+          {/* Displaying filtered currencies */}
 
-        {/* added this code to hide the dropdown */}
+          {/* added this code to hide the dropdown */}
 
-        {filter && filter.length > 0 && (
-          <div className="alllistCurrencies">
-            {filter?.map((re) => {
-              return (
-                <div className="singleCurrList">
-                  <button
-                    className="curr-btn"
-                    type="button"
-                    ref={selectedCurr}
-                    onClick={() => handleSelectedCurr(re[0] + " " + re[1])}
-                  >
-                    {re[0] + " " + re[1]}
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        )}
-        {/* Button for submitting the selected currency */}
-        <div className="div-submit">
-          <button className="curr-submit" type="submit" onClick={handleSubmit}>
-            Submit
-          </button>
+          {filter && filter.length > 0 && (
+            <div className="alllistCurrencies">
+              {filter?.map((re) => {
+                return (
+                  <div className="singleCurrList">
+                    <button
+                      className="curr-btn"
+                      type="button"
+                      ref={selectedCurr}
+                      onClick={() => handleSelectedCurr(re[0] + " " + re[1])}
+                    >
+                      {re[0] + " " + re[1]}
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          {/* Button for submitting the selected currency */}
+          
+          {curr && <div className="div-submit">
+            <button
+              className="curr-submit"
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </div>}
+
         </div>
+        <div>{/* {!isupdatecurrency && <h1>Expenses Tracker</h1>}  */}</div>
       </div>
-      <div>
-        {/* {!isupdatecurrency && <h1>Expenses Tracker</h1>}  */}
-     
-      </div>
-    </div>
-    {state.isSignUp&&<Footer/>}
+      {state.isSignUp && <Footer />}
     </>
-    
-
-    
   );
 }
+
 
 export default SelectCurrency;
