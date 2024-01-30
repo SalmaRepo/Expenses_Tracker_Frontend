@@ -40,7 +40,7 @@
 /* General */
 .darkMode {
   background: var(--D-bg-200);
-  color: var(--D-text-200);
+  color: var(--bg-200);
 }
 
 .darkMode input {
@@ -51,10 +51,10 @@
 /* Calendar*/
 .darkMode .react-calendar {
   background-color: var(--D-bg-200);
-  color: var(--D-text-200);
+  color: var(--bg-200);
 }
-.darkMode .react-calendar button {
-  color: var(--D-text-200);
+.darkMode .react-calendar button{
+  color: var(--bg-200);
 }
 
 /* Landing navBar */
@@ -70,6 +70,15 @@
   background-clip: text;
 }
 
+.darkMode .about-app{
+  background-image: var(--D-bg-200);
+  color: white;
+}
+
+.darkMode .about-app span,
+.darkMode .about-app strong {
+  color: rgb(112, 237, 246);
+}
 /* Sign-up */
 .darkMode .signup .inputs {
   border: none;
@@ -94,6 +103,10 @@
 .darkMode .homeAddIncomeButton,
 .darkMode .homeAddExpButton {
   box-shadow: 1px 2px 5px 0px rgb(174, 166, 166);
+}
+
+.darkMode .expenses-home-table tr{
+  color: var(--bg-200);
 }
 
 /* AddExpenses / AddIncoms */
