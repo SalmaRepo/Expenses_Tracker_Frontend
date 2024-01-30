@@ -37,7 +37,7 @@ export function reducer(state,action){
     }
     case "setIsOnSignAndLogin":{
       return {...state,isOnSignAndLogin:action.payload}
-    }
+    }  
 
   }
 }
@@ -56,6 +56,6 @@ export const initialState={
     balance:0,
     changeImage:"",
     incomes:null,  
-    isOnSignAndLogin:false
+    isOnSignAndLogin:false,
 
 }

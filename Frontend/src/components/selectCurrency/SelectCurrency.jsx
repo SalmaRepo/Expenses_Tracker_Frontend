@@ -1,7 +1,9 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BASE_URL from "../../config/urlConfig";
 import { context } from "../../context/context";
+import Footer from "../footer/Footer";
+import LandNavBar from "../landingNavBar/LandNavBar";
 import "./selectCurrency.css";
 
 function SelectCurrency() {
@@ -12,27 +14,37 @@ function SelectCurrency() {
   const [all, setAll] = useState(null);
   const [filter, setFilter] = useState(null);
   const [curr, setCurr] = useState(null);
-  const [isupdatecurrency, setIsUpdateCurrency] = useState(false);
+
+  useEffect(() => {
+    console.log(state.isSignUp);
+  
+  
+      dispatch({type:"setIsSignUp",payload:true})
+   
+    
+   
+  
+  }, [state.isSignUp]);
 
   let res = all && [...Object.entries(all)];
-/*   all && console.log(Object.entries(all)); */
+  /*   all && console.log(Object.entries(all)); */
 
-const getUserById = () => {
-  if (state.user) {
-    const token = localStorage.getItem("token");
+  const getUserById = () => {
+    if (state.user) {
+      const token = localStorage.getItem("token");
 
-    // Fetch user details using the user's ID
-    fetch(`${BASE_URL}/api/users/getUserById/${state.user?._id}`, {
-      method: "GET",
-      headers: {
-        token: token,
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => dispatch({ type: "setUser", payload: result.data }))
-      .catch((err) => console.log(err));
-  }
-};
+      // Fetch user details using the user's ID
+      fetch(`${BASE_URL}/api/users/getUserById/${state.user?._id}`, {
+        method: "GET",
+        headers: {
+          token: token,
+        },
+      })
+        .then((res) => res.json())
+        .then((result) => dispatch({ type: "setUser", payload: result.data }))
+        .catch((err) => console.log(err));
+    }
+  };
 
   // Fetching all currencies and handling search input
   const handleSearch = (e) => {
@@ -79,14 +91,21 @@ const getUserById = () => {
         })
         .catch((err) => console.log(err));
     }
-    getUserById()
+    getUserById();
   };
 
+
+
   return (
-    <div className="selectCurr">
+
+    <>
+    {state.isSignUp&&<LandNavBar/>}
+        <div className={state.isSignUp ? "signUp-Currency" : "selectCurr"}>
       <div className="curr-Left">
         {/* Input for currency search */}
-        <label className="currency-label" htmlFor="dropdown">Currency:</label>
+        <label className="currency-label" htmlFor="dropdown">
+          Currency:
+        </label>
         <input
           type="search"
           className="currencySearch"
@@ -97,7 +116,7 @@ const getUserById = () => {
         {/* Displaying filtered currencies */}
 
         {/* added this code to hide the dropdown */}
-        
+
         {filter && filter.length > 0 && (
           <div className="alllistCurrencies">
             {filter?.map((re) => {
@@ -118,16 +137,21 @@ const getUserById = () => {
         )}
         {/* Button for submitting the selected currency */}
         <div className="div-submit">
-        <button className="curr-submit" type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
+          <button className="curr-submit" type="submit" onClick={handleSubmit}>
+            Submit
+          </button>
         </div>
       </div>
       <div>
-      {/* {!isupdatecurrency && <h1>Expenses Tracker</h1>}  */}
-      {state.isSignUp? <h1>Expenses Tracker</h1>: ""}
+        {/* {!isupdatecurrency && <h1>Expenses Tracker</h1>}  */}
+     
       </div>
     </div>
+    {state.isSignUp&&<Footer/>}
+    </>
+    
+
+    
   );
 }
 

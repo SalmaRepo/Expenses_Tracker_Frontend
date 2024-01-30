@@ -79,7 +79,7 @@ export default function AddExpences() {
         dispatch({ type: "setExpenses", payload: result.data.data.expenses });
         dispatch({ type: "setUser", payload: result.data.data });
       });
-
+  
     // Reset input values and states after submitting expenses
     expAmount.current.value = 0;
     expCategory.current.value = "food";
@@ -93,6 +93,7 @@ export default function AddExpences() {
   function onChange(calDate) {
     setCalDate(calDate);
   }
+  
 
   return (
     <div className="addExpenses">

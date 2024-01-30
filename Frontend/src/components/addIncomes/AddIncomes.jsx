@@ -177,7 +177,7 @@ export default function AddIncomes() {
           </section>
 
           {/* Section for added incomes */}
-            <section className="displayEnteredIncome">
+            {state.user?.incomes.length>0&&<section className="displayEnteredIncome">
             <table>
               <thead>
                 <tr>
@@ -211,7 +211,7 @@ export default function AddIncomes() {
                   .reverse()}
               </tbody>
             </table>
-          </section>         
+          </section>  }       
         </form>
       </div>
       <Profile />

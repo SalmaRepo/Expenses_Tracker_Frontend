@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import Profile from "../profile/Profile";
 import SideMenu from "../sideMenu/SideMenu";
 import "./Settings.css";
@@ -14,6 +14,12 @@ export default function Settings() {
   const [isSelectCurrency, setIsSelectCurrency] = useState(false);
   const [isDarkLight, setIsDarkLight] = useState(false);
   const [isChangeImg, setIsChangeImg] = useState(true);
+
+  useEffect(() => {
+    console.log(state.isSignUp);
+    dispatch({type:"setIsSignUp",payload:false})
+  
+  }, [state.isSignUp]);
 
   // Toggle the visibility of the profile picture change section
   function changProfilePic() {
@@ -39,6 +45,7 @@ export default function Settings() {
 
   // Handle the change of currency
   const handleChageCurrency = () => {
+    dispatch({type:"setIsSignUp",payload:false})
     setIsSelectCurrency(true);
     setIsUpdateUserDetails(false);
     setIsChangeImg(false);

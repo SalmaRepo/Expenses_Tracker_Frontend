@@ -73,7 +73,7 @@ function ShowExpenses() {
     <div>
       <Toaster position="top-center" />
       {/* Main container for displaying expenses */}
-      <section className="showExpenses">
+      {state.user?.expenses.length>0&&<section className="showExpenses">
         <table className="showExpTable">
           <thead>
             {/* Table header */}
@@ -171,7 +171,7 @@ function ShowExpenses() {
                   .slice(0, 20)}
           </tbody>
         </table>
-      </section>
+      </section>}
     </div>
   );
 }
