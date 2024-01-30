@@ -34,7 +34,7 @@ export default function Login() {
         return res.json();
       })
       .then((result) => {
-        console.log(result);
+      /*   console.log(result); */
 
         /*
           navigate("/home"); */
@@ -59,8 +59,8 @@ export default function Login() {
       } );
   };
 
-  console.log(state.user);
-
+  /* console.log(state.user);
+ */
   return (
     <>
       <LandNavBar />

@@ -6,7 +6,7 @@ import "./showExpensesHome.css";
 
 function ShowExpensesHome() {
   const { state, dispatch } = useContext(context);
-  let curr = state.user?.currency?.slice(3) + "s";
+  let curr = state.user?.currency?.slice(3) ;
 
   // Fetch user's expenses when the component mounts.
   useEffect(() => {

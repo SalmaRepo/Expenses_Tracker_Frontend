@@ -13,12 +13,23 @@ function HistoryIncWeekGraph({weekStart,weekLast}) {
   let addedCategories = {};
  const weeklyIncomes= state.user?.incomes?.filter(
     (inc) =>
-    new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
-      new Date(inc.date).getMonth() >= new Date(weekStart).getMonth()&&
-      new Date(inc.date).getFullYear() >= new Date(weekStart).getFullYear()&&
-      new Date(inc.date).getDate() <= new Date(weekLast).getDate() &&
-      new Date(inc.date).getMonth() <= new Date(weekLast).getMonth()&&
-      new Date(inc.date).getFullYear() <= new Date(weekLast).getFullYear()
+    {
+      if(new Date(weekStart).getMonth()===new Date(weekLast).getMonth()){
+        return new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
+        new Date(inc.date).getMonth() >= new Date(weekStart).getMonth() &&
+        new Date(inc.date).getFullYear() >= new Date(weekStart).getFullYear() &&
+        new Date(inc.date).getDate() <= new Date(weekLast).getDate() &&
+        new Date(inc.date).getMonth() <= new Date(weekLast).getMonth() &&
+        new Date(inc.date).getFullYear() <= new Date(weekLast).getFullYear()
+      }else if(new Date(weekStart).getMonth()<new Date(weekLast).getMonth()){
+        return (new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
+       new Date(inc.date).getMonth() >= new Date(weekStart).getMonth()&&
+        new Date(inc.date).getFullYear() >= new Date(weekStart).getFullYear() ) ||
+        (new Date(inc.date).getDate() <= new Date(weekLast).getDate() &&
+       new Date(inc.date).getMonth() <= new Date(weekLast).getMonth() && 
+        new Date(inc.date).getFullYear() <= new Date(weekLast).getFullYear())
+      }
+    }
   );
 
  /*  console.log(monthlyExpenses); */

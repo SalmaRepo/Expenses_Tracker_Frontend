@@ -38,7 +38,7 @@ export default function Signup() {
       email: e.target.email.value,
       password:e.target.password.value
     }
-    console.log(user)
+    /* console.log(user) */
 
     axios
       .post(`${BASE_URL}/api/users/signUp`, data, {

@@ -35,7 +35,7 @@ export default function Profile() {
 
           <div className="profile-balance-container">
             <h1 className="profile-balance-title">Balance</h1>
-            <div className="balance">
+            <div className={state.balance>0?"balance":"balance-minus"}>
               <Balance userId={state.user._id} />
             </div>
 

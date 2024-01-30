@@ -100,28 +100,53 @@ function History() {
     weekLast,
     state.user,
   ]);
+
   // HANDLE LAST WEEK
   const handleWeek = () => {
     setSelectedDuration("week");
     localStorage.setItem("selectedDuration", "week");
     const currentWeekExpenses = state.user?.expenses.filter(
-      (exp) =>
-        new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
-        new Date(exp.date).getMonth() >= new Date(weekStart).getMonth() &&
-        new Date(exp.date).getFullYear() >= new Date(weekStart).getFullYear() &&
-        new Date(exp.date).getDate() <= new Date(weekLast).getDate() &&
-        new Date(exp.date).getMonth() <= new Date(weekLast).getMonth() &&
-        new Date(exp.date).getFullYear() <= new Date(weekLast).getFullYear()
+      (exp) =>{
+        if(new Date(weekStart).getMonth()===new Date(weekLast).getMonth()){
+          return new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
+          new Date(exp.date).getMonth() >= new Date(weekStart).getMonth() &&
+          new Date(exp.date).getFullYear() >= new Date(weekStart).getFullYear() &&
+          new Date(exp.date).getDate() <= new Date(weekLast).getDate() &&
+          new Date(exp.date).getMonth() <= new Date(weekLast).getMonth() &&
+          new Date(exp.date).getFullYear() <= new Date(weekLast).getFullYear()
+        }else if(new Date(weekStart).getMonth()<new Date(weekLast).getMonth()){
+          return (new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
+         new Date(exp.date).getMonth() >= new Date(weekStart).getMonth()&&
+          new Date(exp.date).getFullYear() >= new Date(weekStart).getFullYear() ) ||
+          (new Date(exp.date).getDate() <= new Date(weekLast).getDate() &&
+         new Date(exp.date).getMonth() <= new Date(weekLast).getMonth() && 
+          new Date(exp.date).getFullYear() <= new Date(weekLast).getFullYear())
+        }
+      }
+    
+       
     );
+
 
     const currentWeekIncomes = state.user?.incomes.filter(
       (inc) =>
-        new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
-        new Date(inc.date).getMonth() >= new Date(weekStart).getMonth() &&
-        new Date(inc.date).getFullYear() >= new Date(weekStart).getFullYear() &&
-        new Date(inc.date).getDate() <= new Date(weekLast).getDate() &&
-        new Date(inc.date).getMonth() <= new Date(weekLast).getMonth() &&
-        new Date(inc.date).getFullYear() <= new Date(weekLast).getFullYear()
+      {
+        if(new Date(weekStart).getMonth()===new Date(weekLast).getMonth()){
+          return new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
+          new Date(inc.date).getMonth() >= new Date(weekStart).getMonth() &&
+          new Date(inc.date).getFullYear() >= new Date(weekStart).getFullYear() &&
+          new Date(inc.date).getDate() <= new Date(weekLast).getDate() &&
+          new Date(inc.date).getMonth() <= new Date(weekLast).getMonth() &&
+          new Date(inc.date).getFullYear() <= new Date(weekLast).getFullYear()
+        }else if(new Date(weekStart).getMonth()<new Date(weekLast).getMonth()){
+          return (new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
+         new Date(inc.date).getMonth() >= new Date(weekStart).getMonth()&&
+          new Date(inc.date).getFullYear() >= new Date(weekStart).getFullYear() ) ||
+          (new Date(inc.date).getDate() <= new Date(weekLast).getDate() &&
+         new Date(inc.date).getMonth() <= new Date(weekLast).getMonth() && 
+          new Date(inc.date).getFullYear() <= new Date(weekLast).getFullYear())
+        }
+      }
     );
 
     const expensesSummary = summariseExpenses(currentWeekExpenses);
