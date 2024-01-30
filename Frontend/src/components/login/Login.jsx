@@ -89,7 +89,7 @@ export default function Login() {
           <div className="loginRight">
             <h2>Don't have an account? </h2>
             <p>Signup and start using this amazing app!</p>
-            <button className="buttonClick" onClick={showSignUp}>Create an account!</button>
+            <button className="buttonClick" onClick={showSignUp}>Create Account</button>
           </div>
         </div>
 
