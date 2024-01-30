@@ -57,7 +57,7 @@ export default function About() {
         <p className="about-app-p">
         <strong>Easy to use:</strong> Track expenses on-the-go with categorization and logging.
         </p>
-        <p className="about-app-p"><strong>Budget Planning:</strong> Expense.fyi enables you to set budgets for different categories, helping you allocate funds wisely and avoid exceeding your financial limits.</p>
+        <p className="about-app-p"><strong>Budget Planning:</strong> Expensify enables you to set budgets for different categories, helping you allocate funds wisely and avoid exceeding your financial limits.</p>
         <p className="about-app-p">
         <strong>Data-driven insights:</strong> Expense tracker can provide valuable insights into your spending habits, allowing you to make more informed decisions.
         </p>
