@@ -119,11 +119,11 @@
   margin: 1rem;
 }
 
-.showReciept:after {
+/* .showReciept:after {
   content: "Upload to View";
   position: absolute;
   padding: 0.5rem;
-}
+} */
 
 .recieptImage {
   width: 100%;

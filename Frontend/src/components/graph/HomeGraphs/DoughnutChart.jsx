@@ -1,5 +1,5 @@
 import { Doughnut } from "react-chartjs-2";
-import './homegraph.css'
+import "./homegraph.css";
 
 
 export const DoughnutChart = ({ chartData }) => {
@@ -25,29 +25,25 @@ export const DoughnutChart = ({ chartData }) => {
           plugins: {
             title: {
               display: false,
-              
-             
+
               /* text: 
                 (`Your Expenses according to category for the month of ${
                   months[new Date().getMonth()]
                 } ${new Date().getFullYear()}`),
                */
-             
             },
             legend: {
               display: true,
-              maxWidth:10,
+              maxWidth: 10,
 
-              labels:{
+              labels: {
                 font: {
                   size: 10,
-                  
-              },
+     },
 
               },
-              position:"bottom",
-              align:"center",
-
+              position: "bottom",
+              align: "center",
             },
           },
         }}

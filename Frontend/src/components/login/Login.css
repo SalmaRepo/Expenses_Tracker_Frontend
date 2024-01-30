@@ -27,17 +27,21 @@
   border: none;
   background-color: var(--primary-100);
   color: var(--bg-100);
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .buttonLeft:hover {
   background-color: aqua;
   color: var(--black);
+  
 }
 
 .loginForm input {
   border-radius: 10px;
-  padding: 5px;
+  padding: 8px;
   width: 50%;
+  font-size: 18px;
 }
 
 .loginForm {
@@ -80,6 +84,8 @@
   cursor: pointer;
   background-color: var(--primary-100);
   color: var(--bg-100);
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .buttonClick:hover {

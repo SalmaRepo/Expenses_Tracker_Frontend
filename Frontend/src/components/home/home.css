@@ -99,7 +99,6 @@
   border: 0.5px solid rgb(216, 213, 213);
   padding: 5rem;
   border-radius: 1rem;
-  border: 1px solid red;
 }
 
 .home-balance-container {
@@ -116,7 +115,7 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  color: var(--primary-color);
+  /* color: var(--primary-color); */
   box-shadow: inset(1px -1px 10px 5px rgb(136, 135, 135));
   border-radius: 0.5rem;
   background: linear-gradient(
@@ -142,6 +141,7 @@
 
   .home-balance {
     margin: 1rem 0rem;
+    color: black;
   }
 
   .homeHeroMiddle {
