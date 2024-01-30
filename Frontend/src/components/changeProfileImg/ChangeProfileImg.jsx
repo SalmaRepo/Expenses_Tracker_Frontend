@@ -60,8 +60,6 @@ export default function ChangeProfileImg() {
       <h1 className="profile-h1">Profile Image</h1>
       <form className="profile-form" action="" onSubmit={handleChangeImg}>
         <div className="profile-input-container">
-          {/* added this extra line of label for the CSS purpose */}
-          {/* <label htmlFor="file" className="profile-label">Choose File</label>  */}
           <input type="file" name="file" onChange={grabImage} />
         </div>
         <img src={preview} alt="" className="form-img" />

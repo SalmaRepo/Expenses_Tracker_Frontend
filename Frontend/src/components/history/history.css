@@ -377,13 +377,11 @@
 
 .negativeBal {
   background: rgb(248, 144, 144);
-  color: white;
   border: none;
 }
 
 .positiveBal {
   background: rgb(101, 194, 241);
-  color: white;
   border: none;
 }
 

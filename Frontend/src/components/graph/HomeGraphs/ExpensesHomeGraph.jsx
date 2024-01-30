@@ -68,7 +68,7 @@ function ExpensesHomeGraph() {
     options: {
       legend: {
           maxWidth: 10, // Adjust the maxWidth according to your needs
-      }
+        }
   }
   });
 

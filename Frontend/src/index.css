@@ -53,8 +53,13 @@
   background-color: var(--D-bg-200);
   color: var(--bg-200);
 }
-.darkMode .react-calendar button{
+
+.darkMode .react-calendar button {
   color: var(--bg-200);
+}
+.darkMode .react-calendar button:enabled:hover {
+  color: var(--D-bg-200);
+
 }
 
 /* Landing navBar */
@@ -104,6 +109,9 @@
 .darkMode .homeAddExpButton {
   box-shadow: 1px 2px 5px 0px rgb(174, 166, 166);
 }
+.darkMode .expenses-home-table tr{
+  color: var(--bg-200);
+}
 
 .darkMode .expenses-home-table tr{
   color: var(--bg-200);
@@ -114,7 +122,18 @@
 .darkMode .submitIncome {
   box-shadow: 1px 0px 4px 1px rgb(232, 228, 228);
   color: var(--D-bg-100);
-  font-weight: bold;
+}
+.darkMode .expCurrency{
+  color:var(--bg-200) ;
+}
+
+.darkMode .expData-container .exp-table thead th,
+.darkMode .incData-container .inc-table thead th,
+.darkMode .expensesTotal,
+.darkMode .incomesTotal,
+.darkMode .positiveBal,
+.darkMode .negativeBal {
+  color: var(--black);
 }
 
 /* Help */
@@ -140,4 +159,13 @@
 .darkMode .history-bottom-data .downloadExpBtn:hover {
   background-color: var(--D-primary-200);
   border: none;
+}
+
+/* Settings */
+.darkMode .change-profile .profile-h1,
+.darkMode .UpdateDetails .update-h1,
+.darkMode .currency-label,
+.darkMode .UpdateDetails input,
+.darkMode .currencySearch {
+  color: var( --black);
 }
