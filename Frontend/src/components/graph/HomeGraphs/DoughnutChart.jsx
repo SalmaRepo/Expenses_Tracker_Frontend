@@ -1,6 +1,7 @@
 import { Doughnut } from "react-chartjs-2";
 import './homegraph.css'
 
+
 export const DoughnutChart = ({ chartData }) => {
   const months = [
     "January",
@@ -40,8 +41,6 @@ export const DoughnutChart = ({ chartData }) => {
               labels:{
                 font: {
                   size: 10,
-                  
-                  
                   
               },
 

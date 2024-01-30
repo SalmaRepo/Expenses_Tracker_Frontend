@@ -14,6 +14,7 @@ function SelectCurrency() {
   const [all, setAll] = useState(null);
   const [filter, setFilter] = useState(null);
   const [curr, setCurr] = useState(null);
+  console.log(curr)
 
   useEffect(() => {
     console.log(state.isSignUp);
@@ -136,11 +137,11 @@ function SelectCurrency() {
           </div>
         )}
         {/* Button for submitting the selected currency */}
-        <div className="div-submit">
+        {curr&&<div className="div-submit">
           <button className="curr-submit" type="submit" onClick={handleSubmit}>
             Submit
           </button>
-        </div>
+        </div>}
       </div>
       <div>
         {/* {!isupdatecurrency && <h1>Expenses Tracker</h1>}  */}
