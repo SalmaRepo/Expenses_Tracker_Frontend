@@ -7,6 +7,7 @@ import { DoughnutChart } from "./DoughnutChart.jsx";
 import BASE_URL from "../../../config/urlConfig";
 Chart.register(CategoryScale);
 
+
 function ExpensesHomeGraph() {
   const { state, dispatch } = useContext(context);
   

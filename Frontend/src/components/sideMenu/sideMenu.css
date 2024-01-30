@@ -74,7 +74,7 @@
 
 .sideBarTop ul li:hover,
 .sideBarBottom ul li:hover {
-  background-color: rgb(246, 237, 237);
+  background-color: rgba(240, 240, 240, 0.626);
   width: 90%;
   border-radius: 0.5rem;
 }
@@ -101,11 +101,17 @@
   width: 90%;
   border-radius: 0.5rem;
   padding: 0.5rem;
+  box-shadow: 2px 2px 10px 3px rgb(116, 114, 114);
 }
 
-.sideBar .sideNav-Link.active:hover {
-  background-color: none;
+.sideBar .sideNav-Link.active:hover{
+  background-color:none;
+  padding: 0.5rem;
+ 
+
 }
+
+
 
 /* Mobile */
 @media (max-width: 760px) {

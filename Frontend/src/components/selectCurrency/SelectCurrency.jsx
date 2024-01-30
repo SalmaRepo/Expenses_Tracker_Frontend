@@ -14,6 +14,7 @@ function SelectCurrency() {
   const [all, setAll] = useState(null);
   const [filter, setFilter] = useState(null);
   const [curr, setCurr] = useState(null);
+  console.log(curr)
 
   useEffect(() => {
     console.log(state.isSignUp);
