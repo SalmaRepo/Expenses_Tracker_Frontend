@@ -53,13 +53,11 @@
   background-color: var(--D-bg-200);
   color: var(--bg-200);
 }
-
 .darkMode .react-calendar button {
   color: var(--bg-200);
 }
 .darkMode .react-calendar button:enabled:hover {
   color: var(--D-bg-200);
-
 }
 
 /* Landing navBar */
