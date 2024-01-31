@@ -54,16 +54,9 @@ export default function Home() {
   const homeAddNewInc = () => {
     navigate("/addIncomes");
   };
-  // const handleBurgerMenu = () => {
-  //   setShowSideMenu(!showSideMenu);
-  //   localStorage.setItem("sideMenuShow", showSideMenu);
-  // };
 
   return (
     <div className="home">
-     {/*  <div className="home-burgerMenu">
-        <i class="fa-solid fa-bars" onClick={handleBurgerMenu}></i>
-      </div> */}
       <SideMenu />
       <div className="homeHero">
         <div className="homeHeroTop">
@@ -83,14 +76,12 @@ export default function Home() {
         )}
         <div className="homeHeroMiddle">
           <h4 className="homeExpTitle">Latest Entered Expenses</h4>
-          
+
           {state.expenses?.length > 0 ? (
             <ShowExpensesHome />
           ) : (
             <p className="homeExpensesDisplay">No Expenses to Show</p>
           )}
-        
-          
         </div>
         <div className="homeHeroBottom darkmode">
           <button

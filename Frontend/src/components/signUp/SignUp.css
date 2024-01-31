@@ -1,10 +1,10 @@
 .signup {
   display: flex;
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 .signup .left {
-  flex: 1; 
+  flex: 1;
   width: 50%;
   height: 100vh;
   background: linear-gradient(-107deg, #2195f3a7 0, #3458f75f 100%),
@@ -16,7 +16,6 @@
 .signup .right {
   flex: 1;
   width: 100%;
-  /* margin: 0 0 6rem 0; */
   padding: 6px;
   display: flex;
   flex-direction: column;

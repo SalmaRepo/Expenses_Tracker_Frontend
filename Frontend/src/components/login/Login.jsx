@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import BASE_URL from "../../config/urlConfig";
 import toast, { Toaster } from "react-hot-toast";
 import { context } from "../../context/context";
-// import Footer from "../footer/Footer";
 import LandNavBar from "../landingNavBar/LandNavBar";
 import "./Login.css";
 
@@ -34,14 +33,10 @@ export default function Login() {
         return res.json();
       })
       .then((result) => {
-      /*   console.log(result); */
-
-        /*
-          navigate("/home"); */
         if (result.success) {
           dispatch({ type: "setUser", payload: result.data });
           e.target.reset();
-          toast.success("You successfully logged in!"); // pop-up message
+          toast.success("You successfully logged in!");
           setTimeout(() => {
             if (state.isSignUp) {
               navigate("/selectCurrency");
@@ -54,45 +49,49 @@ export default function Login() {
         }
       })
 
-      .catch((err) =>{
-        console.log(err)
-      } );
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  /* console.log(state.user);
- */
   return (
     <>
       <LandNavBar />
       <div className="login">
-
         <div className="loginHero">
-
           <div className="loginLeft">
             <h1>Login to Your Account</h1>
             <Toaster position="top-center" />
 
             <form className="loginForm" onSubmit={loginUser}>
-              {/* <label htmlFor="email">E-mail:</label> */}
               <br />
-              <input type="email" id="email" name="email" placeholder="Email"></input>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+              ></input>
               <br />
-              {/* <label htmlFor="password">Password:</label> */}
               <br />
-              <input type="password" id="password" name="password" placeholder="Password"></input>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+              ></input>
               <br />
               <button className="buttonLeft">Login</button>
             </form>
-
           </div>
 
           <div className="loginRight">
             <h2>Don't have an account? </h2>
             <p>Signup and start using this amazing app!</p>
-            <button className="buttonClick" onClick={showSignUp}>Create Account</button>
+            <button className="buttonClick" onClick={showSignUp}>
+              Create Account
+            </button>
           </div>
         </div>
-
       </div>
     </>
   );

@@ -1,32 +1,26 @@
-import React from "react"; // Importing the React library
+import React from "react";
+import { Line } from "react-chartjs-2";
 
-//import Chart from "chart.js/auto"; // Importing the Chart.js library
-
-import { Line } from "react-chartjs-2"; // Importing the Line component from the react-chartjs-2 library
-
-// Setting up the labels for the x-axis of the chart
 const labels = ["January", "February", "March", "April", "May", "June"];
 
-// Setting up the data for the chart, including the labels and datasets
 const data = {
   labels: labels,
   datasets: [
     {
-      label: "Expenses for the year", // Setting up the label for the dataset      
-      backgroundColor: "rgb(33, 150, 243)", // Setting up the background color for the dataset
-      borderColor: "rgb(33, 150, 243)", // Setting up the border color for the dataset
-      data: [0, 1000, 5, 450, 5, 700, 45], // Setting up the data for the dataset
+      label: "Expenses for the year",
+      backgroundColor: "rgb(33, 150, 243)",
+      borderColor: "rgb(33, 150, 243)",
+      data: [0, 1000, 5, 450, 5, 700, 45],
     },
   ],
 };
 
-// Defining the LineChart component
 const LineChart = () => {
   return (
     <div className="graph-container">
-      <Line data={data} /> 
+      <Line data={data} />
     </div>
   );
 };
 
-export default LineChart; // Exporting the LineChart component as the default export of the module
+export default LineChart;

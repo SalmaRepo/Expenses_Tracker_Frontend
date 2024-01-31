@@ -77,13 +77,21 @@
   margin-bottom: 8rem;
   margin-top: 5rem;
   padding: 5rem;
-  /* background-color: #d0fafa; */
-  background-image: linear-gradient(to right, rgba(160, 208, 240, 0.34), #e0f2fe, hsla(0, 0%, 100%, 0), rgba(160, 208, 240, 0.34));
-  
+  background-image: linear-gradient(
+    to right,
+    rgba(160, 208, 240, 0.34),
+    #e0f2fe,
+    hsla(0, 0%, 100%, 0),
+    rgba(160, 208, 240, 0.34)
+  );
 }
 
-.about-app-title span{
-  background-image: linear-gradient(to right, rgba(12, 100, 242, 0.438), rgb(63, 81, 181));
+.about-app-title span {
+  background-image: linear-gradient(
+    to right,
+    rgba(12, 100, 242, 0.438),
+    rgb(63, 81, 181)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -104,7 +112,7 @@
 }
 
 .about-app-p strong {
-  color: #3F51B5;
+  color: #3f51b5;
 }
 
 /* Mobile */
@@ -131,8 +139,8 @@
   .card p {
     font-size: 1.1rem;
     line-height: 1.5;
-  } 
-  
+  }
+
   .imgOne {
     width: 90%;
   }
@@ -140,5 +148,4 @@
   .graph-container {
     height: 200px;
   }
-
 }

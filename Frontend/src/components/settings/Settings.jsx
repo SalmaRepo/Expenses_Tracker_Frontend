@@ -1,4 +1,4 @@
-import React, { useContext, useState,useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Profile from "../profile/Profile";
 import SideMenu from "../sideMenu/SideMenu";
 import "./Settings.css";
@@ -17,8 +17,7 @@ export default function Settings() {
 
   useEffect(() => {
     console.log(state.isSignUp);
-    dispatch({type:"setIsSignUp",payload:false})
-  
+    dispatch({ type: "setIsSignUp", payload: false });
   }, [state.isSignUp]);
 
   // Toggle the visibility of the profile picture change section
@@ -45,7 +44,7 @@ export default function Settings() {
 
   // Handle the change of currency
   const handleChageCurrency = () => {
-    dispatch({type:"setIsSignUp",payload:false})
+    dispatch({ type: "setIsSignUp", payload: false });
     setIsSelectCurrency(true);
     setIsUpdateUserDetails(false);
     setIsChangeImg(false);
@@ -83,7 +82,10 @@ export default function Settings() {
                 </li>
 
                 <li>
-                  <button className="settings-btn-dark-ligth" onClick={toogleDarkMode}>
+                  <button
+                    className="settings-btn-dark-ligth"
+                    onClick={toogleDarkMode}
+                  >
                     {isDarkLight ? "Light Mode" : "Dark Mode"}
                   </button>
                 </li>
@@ -94,7 +96,7 @@ export default function Settings() {
             <div className="sub-settings">
               <div>{isUpdateUserDetails && <UpdateUserDetails />}</div>
               <div>{isHelpShow && <Help />}</div>
-              <div >{isSelectCurrency && <SelectCurrency />}</div>
+              <div>{isSelectCurrency && <SelectCurrency />}</div>
               <div>{isChangeImg && <ChangeProfileImg />}</div>
             </div>
           </div>

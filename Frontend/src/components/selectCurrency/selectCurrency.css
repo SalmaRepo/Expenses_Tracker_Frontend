@@ -6,15 +6,15 @@
   margin: 0 auto;
 }
 
-.signUp-Currency{
-  width: 100%;  
+.signUp-Currency {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 80vh;
 }
 
-.signUp-Currency .curr-submit{
+.signUp-Currency .curr-submit {
   background-color: #3498db;
   color: #fff;
   margin-top: 18px;
@@ -72,7 +72,7 @@
   padding: 8px 16px;
   width: 100%;
   font-size: 16px;
-  border:transparent;
+  border: transparent;
   border-radius: 4px;
   cursor: pointer;
   transition: background 0.3s ease;

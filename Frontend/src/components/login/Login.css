@@ -34,7 +34,6 @@
 .buttonLeft:hover {
   background-color: aqua;
   color: var(--black);
-  
 }
 
 .loginForm input {
@@ -109,8 +108,7 @@
   }
 
   /* top */
-
-  .loginLeft{
+  .loginLeft {
     padding-top: 4rem;
   }
   .loginLeft h1 {

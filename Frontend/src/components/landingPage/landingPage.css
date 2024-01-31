@@ -1,4 +1,3 @@
-
 .landingPage-Hero {
   padding-top: 12rem;
   margin-left: 15rem;
@@ -64,10 +63,8 @@
   color: var(--text-100);
 }
 
-
 /*-- mobile --*/
 @media screen and (max-width: 760px) {
-  
   .landingPage-Hero {
     padding-top: 7rem;
     flex-direction: column;
@@ -79,7 +76,7 @@
     padding-bottom: none;
   }
 
-  .landing-text{
+  .landing-text {
     width: 100%;
   }
 
@@ -107,6 +104,5 @@
     position: absolute;
     bottom: -4rem;
     right: -0.8rem;
-}
-
+  }
 }

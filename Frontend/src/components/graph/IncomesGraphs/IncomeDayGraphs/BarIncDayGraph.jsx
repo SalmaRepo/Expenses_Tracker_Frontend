@@ -1,10 +1,7 @@
-import React, { useEffect,useState } from 'react'
 import { Bar } from "react-chartjs-2";
-import '../../barChartStyle.css'
+import "../../barChartStyle.css";
 
-
-function BarIncDayGraph({ chartData, day}) {
-
+function BarIncDayGraph({ chartData, day }) {
   const months = [
     "January",
     "February",
@@ -22,7 +19,7 @@ function BarIncDayGraph({ chartData, day}) {
   return (
     <div className="chart-container">
       <Bar
-     className='barChart'
+        className="barChart"
         data={chartData}
         options={{
           plugins: {
@@ -47,4 +44,4 @@ function BarIncDayGraph({ chartData, day}) {
   );
 }
 
-export default BarIncDayGraph
+export default BarIncDayGraph;

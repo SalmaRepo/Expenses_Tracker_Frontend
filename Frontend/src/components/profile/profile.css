@@ -26,7 +26,8 @@
   gap: 1rem;
 }
 
-.balance ,.balance-minus{
+.balance,
+.balance-minus {
   width: 200px;
   height: 200px;
   display: flex;
@@ -40,10 +41,9 @@
   background: linear-gradient(to bottom right, rgb(205, 245, 214), white);
 }
 
-.balance-minus{
+.balance-minus {
   background: linear-gradient(to bottom right, rgb(255, 218, 248), white);
 }
-
 
 /*--- Mobile ---*/
 @media (max-width: 760px) {

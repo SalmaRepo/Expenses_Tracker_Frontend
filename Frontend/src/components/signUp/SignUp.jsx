@@ -32,13 +32,12 @@ export default function Signup() {
       data.append("lastName", e.target.lastname.value),
       data.append("email", e.target.email.value),
       data.append("password", e.target.password.value);
-    const user={
-      firstName:e.target.firstname.value,
-      lastName:e.target.lastname.value,
+    const user = {
+      firstName: e.target.firstname.value,
+      lastName: e.target.lastname.value,
       email: e.target.email.value,
-      password:e.target.password.value
-    }
-    /* console.log(user) */
+      password: e.target.password.value,
+    };
 
     axios
       .post(`${BASE_URL}/api/users/signUp`, data, {
@@ -54,26 +53,23 @@ export default function Signup() {
           dispatch({ type: "setIsSignUp", payload: true });
           setTimeout(() => {
             navigate("/login");
-        }, 1500);
+          }, 1500);
         }
       })
       .catch((err) => {
         toast.error(JSON.stringify(err.response.data.errors[0]["msg"]));
-        console.log(err)
-      }
-        );
+        console.log(err);
+      });
   };
 
   return (
-
     <>
       <LandNavBar />
       <div className="signup">
         <div className="left"></div>
         <div className="right">
           <main className="mainDiv">
-            {/* <h1>Signup</h1> */}
-            <Toaster position="top-center" /> {/* toast position*/}
+            <Toaster position="top-center" />
             <form onSubmit={signupUser}>
               <section>
                 <label htmlFor="firstname">First Name: </label>
@@ -112,7 +108,6 @@ export default function Signup() {
               {/* upload img */}
               <section className="upload-section">
                 <h3>Upload your Image</h3>
-
                 <div className="file-input-container">
                   <input
                     type="file"
@@ -120,20 +115,15 @@ export default function Signup() {
                     id="file"
                     onChange={grabImage}
                   />
-                  {/* added this extra line of label for the CSS purpose */}
                   <label htmlFor="file" className="chooseFile-label">
                     Choose File
                   </label>
                 </div>
-
                 <div className="profileImg-container">
                   <img src={showImg} alt="" className="img-preview" />
                 </div>
-
                 <button className="signup-btn">SignUp</button>
               </section>
-
-        
             </form>
           </main>
         </div>

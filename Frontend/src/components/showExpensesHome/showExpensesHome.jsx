@@ -6,13 +6,13 @@ import "./showExpensesHome.css";
 
 function ShowExpensesHome() {
   const { state, dispatch } = useContext(context);
-  let curr = state.user?.currency?.slice(3) ;
+  let curr = state.user?.currency?.slice(3);
 
   // Fetch user's expenses when the component mounts.
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    // GET request to retrieve user's expenses 
+    // GET request to retrieve user's expenses
     fetch(`${BASE_URL}/api/expenses/getExpensesByUser`, {
       method: "GET",
       headers: {
@@ -26,8 +26,7 @@ function ShowExpensesHome() {
 
   return (
     <div className="showExpensesHome">
-    
-      <table className="expenses-home-table"> 
+      <table className="expenses-home-table">
         <thead>
           <tr>
             <th>Date</th>
@@ -64,7 +63,6 @@ function ShowExpensesHome() {
                               : `${BASE_URL}/${expense.reciept}`
                           }
                           alt="no-img"
-                          // todo -> delete style from here and add to css
                           style={{ width: "20px", height: "20px" }}
                         />
                       </td>
@@ -94,8 +92,7 @@ function ShowExpensesHome() {
                               ? "images/no-image.jpg"
                               : `${BASE_URL}/${expense.reciept}`
                           }
-                          alt="no-img"
-                          // todo -> delete style from here and add to css
+                          alt="no-img"                         
                           style={{ width: "20px", height: "20px" }}
                         />
                       </td>

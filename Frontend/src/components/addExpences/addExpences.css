@@ -9,7 +9,6 @@
   padding: 1.2rem;
   display: flex;
   justify-content: center;
-  /* padding: 2rem; */
 }
 
 .addExpenses .expForm {
@@ -106,7 +105,6 @@
   height: 100%;
 }
 
-/*  show reciept  */
 .showReciept {
   width: 50%;
   height: 80%;
@@ -118,12 +116,6 @@
   position: relative;
   margin: 1rem;
 }
-
-/* .showReciept:after {
-  content: "Upload to View";
-  position: absolute;
-  padding: 0.5rem;
-} */
 
 .recieptImage {
   width: 100%;
@@ -292,7 +284,6 @@
     gap: 0.5rem;
   }
 
-  /* input upload reciept */
   .addExpenses input[type="file"] {
     width: 40%;
   }

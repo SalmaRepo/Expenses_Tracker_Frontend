@@ -66,21 +66,26 @@ export default function LandNavBar() {
           </li>
           {window.innerWidth > 760 && (
             <li>
-              <ProfileImg />
-              {/* <p>Hi {state.user?.firstName?state.user?.firstName:'User'}</p> */}
+              <ProfileImg />             
             </li>
           )}
           <li>
             {darkMode ? (
-              <i className="fa-solid fa-sun" onClick={() => {
-                setDarkMode(false)
-                localStorage.setItem("darkMode",false)
-              }}></i>
+              <i
+                className="fa-solid fa-sun"
+                onClick={() => {
+                  setDarkMode(false);
+                  localStorage.setItem("darkMode", false);
+                }}
+              ></i>
             ) : (
-              <i className="fa-solid fa-moon" onClick={() => {
-                setDarkMode(true)
-                localStorage.setItem("darkMode",true)
-              }}></i>
+              <i
+                className="fa-solid fa-moon"
+                onClick={() => {
+                  setDarkMode(true);
+                  localStorage.setItem("darkMode", true);
+                }}
+              ></i>
             )}
           </li>
         </ul>
