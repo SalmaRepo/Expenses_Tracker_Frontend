@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext} from "react";
 import "./sideMenu.css";
 import { Link, NavLink } from "react-router-dom";
 import LogOut from "../logout/Logout";
@@ -58,28 +58,30 @@ export default function SideMenu() {
           </li>
           <li>
             <Link>
-            {darkMode ? (
-              <div onClick={() =>{
-                setDarkMode(false)
-                localStorage.setItem("darkMode",false)
-              } } className="themeSideNav">
-                <i
-                  className="fa-solid fa-sun"
-      
-                ></i>
-                <span>Light Mode </span>
-              </div>
-            ) : (
-              <div onClick={() =>{
-                setDarkMode(true);
-                localStorage.setItem("darkMode",true)
-              } } className="themeSideNav">
-                <i className="fa-solid fa-moon" ></i>
-                <span>Dark Mode </span>
-              </div>
-              
-            )}
-            </Link>            
+              {darkMode ? (
+                <div
+                  onClick={() => {
+                    setDarkMode(false);
+                    localStorage.setItem("darkMode", false);
+                  }}
+                  className="themeSideNav"
+                >
+                  <i className="fa-solid fa-sun"></i>
+                  <span>Light Mode </span>
+                </div>
+              ) : (
+                <div
+                  onClick={() => {
+                    setDarkMode(true);
+                    localStorage.setItem("darkMode", true);
+                  }}
+                  className="themeSideNav"
+                >
+                  <i className="fa-solid fa-moon"></i>
+                  <span>Dark Mode </span>
+                </div>
+              )}
+            </Link>
           </li>
           <li>
             <NavLink to="/help" className="sideNav-Link">

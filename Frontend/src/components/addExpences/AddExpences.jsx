@@ -79,21 +79,20 @@ export default function AddExpences() {
         dispatch({ type: "setExpenses", payload: result.data.data.expenses });
         dispatch({ type: "setUser", payload: result.data.data });
       });
-  
+
     // Reset input values and states after submitting expenses
     expAmount.current.value = 0;
     expCategory.current.value = "food";
     setPreview("");
     dispatch({ type: "setReciept", payload: "images/no-image.jpg" });
     dispatch({ type: "setIsUploadImageSelect", payload: false });
-    setIsUploaded(false)
+    setIsUploaded(false);
   };
 
   // Event handler for changing calendar date
   function onChange(calDate) {
     setCalDate(calDate);
   }
-  
 
   return (
     <div className="addExpenses">
@@ -124,7 +123,9 @@ export default function AddExpences() {
                 className="expensesAmount"
                 ref={expAmount}
               />
-              <span className="expCurrency">{state.user?.currency?.slice(3)}</span>
+              <span className="expCurrency">
+                {state.user?.currency?.slice(3)}
+              </span>
             </div>
 
             {/* Dropdown for selecting expense category */}
@@ -173,7 +174,7 @@ export default function AddExpences() {
           </section>
 
           {/* Displaying entered expenses and receipt image */}
-          <section className="displayExpArea">            
+          <section className="displayExpArea">
             <div className="displayEnteredExp">
               {state.user?.expenses?.length > 0 && (
                 <ShowExpenses expenses={expenses} setExpenses={setExpenses} />

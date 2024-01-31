@@ -1,24 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { context } from "../../../../context/context";
-/* import BarMonthChart from "./BarExpMonthGraph"; */
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import BarExpMonthChart from "./BarExpMonthGraph";
 Chart.register(CategoryScale);
 
-
 function HistoryExpMonthGraph({ month, monthYear }) {
   const { state, dispatch } = useContext(context);
   const expensesSummary = [];
   let addedCategories = {};
-
   const monthlyExpenses = state.user?.expenses?.filter(
     (exp) =>
       new Date(exp.date).getMonth() === month &&
-      new Date(exp.date).getFullYear() === monthYear 
+      new Date(exp.date).getFullYear() === monthYear
   );
-
- /*  console.log(monthlyExpenses); */
 
   monthlyExpenses?.map((exp) => {
     const { amount, category } = exp;
@@ -29,12 +24,9 @@ function HistoryExpMonthGraph({ month, monthYear }) {
     }
   });
 
-  /* console.log(addedCategories); */
-
   for (const category in addedCategories) {
     expensesSummary.push({ category, amount: addedCategories[category] });
   }
-  /* console.log(expensesSummary); */
 
   const [chartData, setChartData] = useState({
     labels: expensesSummary?.map(
@@ -74,10 +66,14 @@ function HistoryExpMonthGraph({ month, monthYear }) {
         },
       ],
     });
-  }, [monthYear, month,state.user]);
+  }, [monthYear, month, state.user]);
   return (
     <div>
-      <BarExpMonthChart chartData={chartData} month={month} monthYear={monthYear} />
+      <BarExpMonthChart
+        chartData={chartData}
+        month={month}
+        monthYear={monthYear}
+      />
     </div>
   );
 }

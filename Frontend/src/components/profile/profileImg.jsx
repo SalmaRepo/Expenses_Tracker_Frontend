@@ -10,7 +10,8 @@ export default function ProfileImg() {
       <div className="profile-image-container">
         <img
           src={
-            !state.user?.userImage || state.user?.userImage.includes("undefined")
+            !state.user?.userImage ||
+            state.user?.userImage.includes("undefined")
               ? "images/profilePic.jpg"
               : `${BASE_URL}/${state.user?.userImage}`
           }

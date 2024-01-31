@@ -30,7 +30,7 @@ function App() {
           <Route path="/addIncomes" element={<AddIncomes />} />
           <Route path="/history" element={<History />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/about" element={<About/>}/>
+          <Route path="/about" element={<About />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/help" element={<Help />} />
           <Route path="/UpdateUserDetails" element={<UpdateUserDetails />} />

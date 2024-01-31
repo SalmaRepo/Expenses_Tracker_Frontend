@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { context } from "../../../../context/context";
-
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import BarIncDayGraph from "./BarIncDayGraph";
@@ -8,10 +7,8 @@ import BarIncDayGraph from "./BarIncDayGraph";
 Chart.register(CategoryScale);
 
 function HistoryIncDayGraph({ day }) {
-  /*  console.log(day); */
   const { state, dispatch } = useContext(context);
   const incomesSummary = [];
-
   let addedCategories = {};
 
   const dayIncomes = state.user?.incomes?.filter(
@@ -23,7 +20,6 @@ function HistoryIncDayGraph({ day }) {
 
   dayIncomes?.map((income) => {
     const { amount, category } = income;
-
     if (addedCategories[category]) {
       addedCategories[category] += amount;
     } else {
@@ -41,7 +37,7 @@ function HistoryIncDayGraph({ day }) {
       {
         label: "Amount Earned ",
         data: [],
-        backgroundColor: [ "#3e47ed", "#e49ec3", "#f3ba2f", "#2a71d0" ],
+        backgroundColor: ["#3e47ed", "#e49ec3", "#f3ba2f", "#2a71d0"],
         borderColor: "black",
         borderWidth: 0,
         barThickness: 30,
@@ -77,7 +73,7 @@ function HistoryIncDayGraph({ day }) {
 
   return (
     <div>
-      {chartData?.datasets[0].data.length > 0 &&   (
+      {chartData?.datasets[0].data.length > 0 && (
         <BarIncDayGraph chartData={chartData} day={day} />
       )}
     </div>

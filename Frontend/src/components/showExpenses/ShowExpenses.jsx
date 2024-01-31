@@ -73,105 +73,111 @@ function ShowExpenses() {
     <div>
       <Toaster position="top-center" />
       {/* Main container for displaying expenses */}
-      {state.user?.expenses.length>0&&<section className="showExpenses">
-        <table className="showExpTable">
-          <thead>
-            {/* Table header */}
-            <tr>
-              <th className="expTableHead">Date</th>
-              <th className="expTableHead">Category</th>
-              <th className="expTableHead">Amount</th>
-              <th className="expTableHead">Reciept</th>
-              <th className="expTableHead"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* Map through expenses and render rows */}
-            {state.expenses
-              ? state.expenses
-                  ?.map((expense) => {
-                    return (
-                      /* Display expense details */
-                      <tr key={expense?._id} className="showExpenses">
-                        <td>{new Date(expense?.date).toLocaleDateString()}</td>
-                        <td>
-                          {expense?.category?.charAt(0)?.toUpperCase() +
-                            expense?.category?.slice(1)}
-                        </td>
-                        <td>
-                          {expense?.amount}
-                          <span>{curr}</span>
-                        </td>
+      {state.user?.expenses.length > 0 && (
+        <section className="showExpenses">
+          <table className="showExpTable">
+            <thead>
+              {/* Table header */}
+              <tr>
+                <th className="expTableHead">Date</th>
+                <th className="expTableHead">Category</th>
+                <th className="expTableHead">Amount</th>
+                <th className="expTableHead">Reciept</th>
+                <th className="expTableHead"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* Map through expenses and render rows */}
+              {state.expenses
+                ? state.expenses
+                    ?.map((expense) => {
+                      return (
+                        /* Display expense details */
+                        <tr key={expense?._id} className="showExpenses">
+                          <td>
+                            {new Date(expense?.date).toLocaleDateString()}
+                          </td>
+                          <td>
+                            {expense?.category?.charAt(0)?.toUpperCase() +
+                              expense?.category?.slice(1)}
+                          </td>
+                          <td>
+                            {expense?.amount}
+                            <span>{curr}</span>
+                          </td>
 
-                        {/* Display receipt image */}
-                        <td>
-                          <img
-                            className="expenseTableImage"
-                            src={
-                              expense.reciept.includes("undefined")
-                                ? "images/no-image.jpg"
-                                : `${BASE_URL}/${expense.reciept}`
-                            }
-                            alt="no-img"
-                          />
-                        </td>
-                        {/* Delete button */}
-                        <td>
-                          <button
-                            type="button"
-                            onClick={() => deleteExpense(expense?._id)}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })
-                  .reverse()
-                  .slice(0, 20)
-              : state.user?.expenses
-                  ?.map((expense) => {
-                    return (
-                      <tr key={expense._id} className="showExpenses">
-                        <td>{new Date(expense?.date).toLocaleDateString()}</td>
-                        <td>
-                          {expense?.category?.charAt(0)?.toUpperCase() +
-                            expense?.category?.slice(1)}
-                        </td>
-                        <td>
-                          {expense?.amount}
-                          <span>{curr}</span>
-                        </td>
+                          {/* Display receipt image */}
+                          <td>
+                            <img
+                              className="expenseTableImage"
+                              src={
+                                expense.reciept.includes("undefined")
+                                  ? "images/no-image.jpg"
+                                  : `${BASE_URL}/${expense.reciept}`
+                              }
+                              alt="no-img"
+                            />
+                          </td>
+                          {/* Delete button */}
+                          <td>
+                            <button
+                              type="button"
+                              onClick={() => deleteExpense(expense?._id)}
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })
+                    .reverse()
+                    .slice(0, 20)
+                : state.user?.expenses
+                    ?.map((expense) => {
+                      return (
+                        <tr key={expense._id} className="showExpenses">
+                          <td>
+                            {new Date(expense?.date).toLocaleDateString()}
+                          </td>
+                          <td>
+                            {expense?.category?.charAt(0)?.toUpperCase() +
+                              expense?.category?.slice(1)}
+                          </td>
+                          <td>
+                            {expense?.amount}
+                            <span>{curr}</span>
+                          </td>
 
-                        <td>
-                          {" "}
-                          <img
-                            className="expenseTableImage"
-                            src={
-                              expense.reciept.includes("undefined")
-                                ? "images/no-image.jpg"
-                                : `${BASE_URL}/${expense.reciept}`
-                            }
-                            alt="no-img"
-                          />
-                        </td>
+                          <td>
+                            {" "}
+                            <img
+                              className="expenseTableImage"
+                              src={
+                                expense.reciept.includes("undefined")
+                                  ? "images/no-image.jpg"
+                                  : `${BASE_URL}/${expense.reciept}`
+                              }
+                              alt="no-img"
+                            />
+                          </td>
 
-                        <td>
-                          <button
-                            type="button"
-                            onClick={() => deleteExpense(expense?._id)}
-                          >
-                            {window.innerWidth < 760 ? "" : "Delete"}
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })
-                  .reverse()
-                  .slice(0, 20)}
-          </tbody>
-        </table>
-      </section>}
+                          <td>
+                            <button
+                              type="button"
+                              onClick={() => deleteExpense(expense?._id)}
+                            >
+                              {window.innerWidth < 760 ? "" : "Delete"}
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })
+                    .reverse()
+                    .slice(0, 20)}
+            </tbody>
+          </table>
+        </section>
+      )}
     </div>
   );
 }

@@ -1,41 +1,38 @@
 import React, { useContext, useEffect, useState } from "react";
 import { context } from "../../../../context/context";
-
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
-/* import BarWeekGraph from "./BarExpWeekGraph"; */
 import BarExpWeekGraph from "./BarExpWeekGraph";
 Chart.register(CategoryScale);
 
-
-function HistoryExpWeekGraph({weekStart,weekLast}) {
- const { state, dispatch } = useContext(context);
- const expensesSummary = [];
+function HistoryExpWeekGraph({ weekStart, weekLast }) {
+  const { state, dispatch } = useContext(context);
+  const expensesSummary = [];
   let addedCategories = {};
- const weeklyExpenses = state.user?.expenses?.filter(
-    (exp) =>
-    {
-      if(new Date(weekStart).getMonth()===new Date(weekLast).getMonth()){
-        return new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
+  const weeklyExpenses = state.user?.expenses?.filter((exp) => {
+    if (new Date(weekStart).getMonth() === new Date(weekLast).getMonth()) {
+      return (
+        new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
         new Date(exp.date).getMonth() >= new Date(weekStart).getMonth() &&
         new Date(exp.date).getFullYear() >= new Date(weekStart).getFullYear() &&
         new Date(exp.date).getDate() <= new Date(weekLast).getDate() &&
         new Date(exp.date).getMonth() <= new Date(weekLast).getMonth() &&
         new Date(exp.date).getFullYear() <= new Date(weekLast).getFullYear()
-      }else if(new Date(weekStart).getMonth()<new Date(weekLast).getMonth()){
-        return (new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
-       new Date(exp.date).getMonth() >= new Date(weekStart).getMonth()&&
-        new Date(exp.date).getFullYear() >= new Date(weekStart).getFullYear() ) ||
+      );
+    } else if (new Date(weekStart).getMonth() < new Date(weekLast).getMonth()) {
+      return (
+        (new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
+          new Date(exp.date).getMonth() >= new Date(weekStart).getMonth() &&
+          new Date(exp.date).getFullYear() >=
+            new Date(weekStart).getFullYear()) ||
         (new Date(exp.date).getDate() <= new Date(weekLast).getDate() &&
-       new Date(exp.date).getMonth() <= new Date(weekLast).getMonth() && 
-        new Date(exp.date).getFullYear() <= new Date(weekLast).getFullYear())
-      }
+          new Date(exp.date).getMonth() <= new Date(weekLast).getMonth() &&
+          new Date(exp.date).getFullYear() <= new Date(weekLast).getFullYear())
+      );
     }
-  );
+  });
 
- /*  console.log(monthlyExpenses); */
-
- weeklyExpenses?.map((exp) => {
+  weeklyExpenses?.map((exp) => {
     const { amount, category } = exp;
     if (addedCategories[category]) {
       addedCategories[category] += amount;
@@ -44,12 +41,9 @@ function HistoryExpWeekGraph({weekStart,weekLast}) {
     }
   });
 
-  /* console.log(addedCategories); */
-
   for (const category in addedCategories) {
     expensesSummary.push({ category, amount: addedCategories[category] });
   }
-  /* console.log(expensesSummary); */
 
   const [chartData, setChartData] = useState({
     labels: expensesSummary?.map(
@@ -75,7 +69,7 @@ function HistoryExpWeekGraph({weekStart,weekLast}) {
         {
           label: "Amount Spent ",
           data: expensesSummary?.map((expense) => expense?.amount),
-          backgroundColor: [ 
+          backgroundColor: [
             "#2a71d0",
             "#35d02a",
             "#d02aa9",
@@ -89,12 +83,16 @@ function HistoryExpWeekGraph({weekStart,weekLast}) {
         },
       ],
     });
-  }, [weekStart,weekLast,state.user]);
+  }, [weekStart, weekLast, state.user]);
   return (
     <div>
-        <BarExpWeekGraph chartData={chartData} weekLast={weekLast} weekStart={weekStart}/>
+      <BarExpWeekGraph
+        chartData={chartData}
+        weekLast={weekLast}
+        weekStart={weekStart}
+      />
     </div>
-  )
+  );
 }
 
-export default HistoryExpWeekGraph
+export default HistoryExpWeekGraph;

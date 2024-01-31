@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Profile from "../profile/Profile";
 import SideMenu from "../sideMenu/SideMenu";
 import { context } from "../../context/context";
@@ -6,7 +6,6 @@ import "./history.css";
 import BASE_URL from "../../config/urlConfig";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import HistoryBarExpGraph from "../graph/ExpensesGraphs/ExpensesMainGraph/HistoryExpMainGraph";
 import HistoryExpMainGraph from "../graph/ExpensesGraphs/ExpensesMainGraph/HistoryExpMainGraph";
 import IncomeMainGraph from "../graph/IncomesGraphs/IncomeMainGraph/IncomeMainGraph";
 import {
@@ -16,16 +15,15 @@ import {
   summariseExpenses,
   summariseIncomes,
 } from "./HistoryHelpers";
-import Balance from "../balance/Balance";
+
 function History() {
   const { state, dispatch } = useContext(context);
   const [filteredExpenses, setFilteredExpenses] = useState([]);
-  const [filteredIncomes, setFilteredIncomes] = useState([]); 
+  const [filteredIncomes, setFilteredIncomes] = useState([]);
   const [selectedDuration, setSelectedDuration] = useState("");
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
   const [monthYear, setMonthYear] = useState(new Date().getFullYear());
-  /*   const [day, setDay] = useState(new Date().getDate()); */
   const [calDate, setCalDate] = useState(new Date());
   const [recieptCategory, setRecieptCategory] = useState("");
   const [weekDay, setWeekDay] = useState(new Date());
@@ -43,6 +41,7 @@ function History() {
   const [recieptUrl, setRecieptUrl] = useState("");
   const [recieptDate, setRecieptDate] = useState(null);
   const curr = state.user?.currency?.slice(3);
+
   const getUserById = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -57,13 +56,13 @@ function History() {
           }
         );
         const result = await response.json();
-        /*  console.log(result); */
         dispatch({ type: "setUser", payload: result.data });
       }
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     const duration = localStorage.getItem("selectedDuration") || "month";
     setSelectedDuration(duration);
@@ -105,55 +104,66 @@ function History() {
   const handleWeek = () => {
     setSelectedDuration("week");
     localStorage.setItem("selectedDuration", "week");
-    const currentWeekExpenses = state.user?.expenses.filter(
-      (exp) =>{
-        if(new Date(weekStart).getMonth()===new Date(weekLast).getMonth()){
-          return new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
+    const currentWeekExpenses = state.user?.expenses.filter((exp) => {
+      if (new Date(weekStart).getMonth() === new Date(weekLast).getMonth()) {
+        return (
+          new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
           new Date(exp.date).getMonth() >= new Date(weekStart).getMonth() &&
-          new Date(exp.date).getFullYear() >= new Date(weekStart).getFullYear() &&
+          new Date(exp.date).getFullYear() >=
+            new Date(weekStart).getFullYear() &&
           new Date(exp.date).getDate() <= new Date(weekLast).getDate() &&
           new Date(exp.date).getMonth() <= new Date(weekLast).getMonth() &&
           new Date(exp.date).getFullYear() <= new Date(weekLast).getFullYear()
-        }else if(new Date(weekStart).getMonth()<new Date(weekLast).getMonth()){
-          return (new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
-         new Date(exp.date).getMonth() >= new Date(weekStart).getMonth()&&
-          new Date(exp.date).getFullYear() >= new Date(weekStart).getFullYear() ) ||
+        );
+      } else if (
+        new Date(weekStart).getMonth() < new Date(weekLast).getMonth()
+      ) {
+        return (
+          (new Date(exp.date).getDate() >= new Date(weekStart).getDate() &&
+            new Date(exp.date).getMonth() >= new Date(weekStart).getMonth() &&
+            new Date(exp.date).getFullYear() >=
+              new Date(weekStart).getFullYear()) ||
           (new Date(exp.date).getDate() <= new Date(weekLast).getDate() &&
-         new Date(exp.date).getMonth() <= new Date(weekLast).getMonth() && 
-          new Date(exp.date).getFullYear() <= new Date(weekLast).getFullYear())
-        }
+            new Date(exp.date).getMonth() <= new Date(weekLast).getMonth() &&
+            new Date(exp.date).getFullYear() <=
+              new Date(weekLast).getFullYear())
+        );
       }
-    
-       
-    );
+    });
 
-
-    const currentWeekIncomes = state.user?.incomes.filter(
-      (inc) =>
-      {
-        if(new Date(weekStart).getMonth()===new Date(weekLast).getMonth()){
-          return new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
+    const currentWeekIncomes = state.user?.incomes.filter((inc) => {
+      if (new Date(weekStart).getMonth() === new Date(weekLast).getMonth()) {
+        return (
+          new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
           new Date(inc.date).getMonth() >= new Date(weekStart).getMonth() &&
-          new Date(inc.date).getFullYear() >= new Date(weekStart).getFullYear() &&
+          new Date(inc.date).getFullYear() >=
+            new Date(weekStart).getFullYear() &&
           new Date(inc.date).getDate() <= new Date(weekLast).getDate() &&
           new Date(inc.date).getMonth() <= new Date(weekLast).getMonth() &&
           new Date(inc.date).getFullYear() <= new Date(weekLast).getFullYear()
-        }else if(new Date(weekStart).getMonth()<new Date(weekLast).getMonth()){
-          return (new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
-         new Date(inc.date).getMonth() >= new Date(weekStart).getMonth()&&
-          new Date(inc.date).getFullYear() >= new Date(weekStart).getFullYear() ) ||
+        );
+      } else if (
+        new Date(weekStart).getMonth() < new Date(weekLast).getMonth()
+      ) {
+        return (
+          (new Date(inc.date).getDate() >= new Date(weekStart).getDate() &&
+            new Date(inc.date).getMonth() >= new Date(weekStart).getMonth() &&
+            new Date(inc.date).getFullYear() >=
+              new Date(weekStart).getFullYear()) ||
           (new Date(inc.date).getDate() <= new Date(weekLast).getDate() &&
-         new Date(inc.date).getMonth() <= new Date(weekLast).getMonth() && 
-          new Date(inc.date).getFullYear() <= new Date(weekLast).getFullYear())
-        }
+            new Date(inc.date).getMonth() <= new Date(weekLast).getMonth() &&
+            new Date(inc.date).getFullYear() <=
+              new Date(weekLast).getFullYear())
+        );
       }
-    );
+    });
 
     const expensesSummary = summariseExpenses(currentWeekExpenses);
     setFilteredExpenses(expensesSummary);
     const incomesSummary = summariseIncomes(currentWeekIncomes);
     setFilteredIncomes(incomesSummary);
   };
+
   // HANDLE MONTH
   const handleMonth = () => {
     setSelectedDuration("month");
@@ -173,12 +183,11 @@ function History() {
     setFilteredExpenses(expensesSummary);
     setFilteredIncomes(incomesSummary);
   };
+
   // HANDLE YEAR
   const handleYear = () => {
     setSelectedDuration("year");
     localStorage.setItem("selectedDuration", "year");
-    /*  setFilteredExpenses([]);
-    setFilteredIncomes([]); */
     const yearlyExpenses = state.user?.expenses.filter(
       (exp) => new Date(exp.date).getFullYear() === year
     );
@@ -190,13 +199,13 @@ function History() {
     setFilteredExpenses(expensesSummary);
     setFilteredIncomes(incomesSummary);
   };
+
   // SELECTED DATE
   const selectedDate = (calDate) => {
     setCalDate(calDate);
-    /*    getUserById() */
     handleDay();
-    /*   localStorage.setItem("historyDate", calDate); */
   };
+
   // HANDLE DAY
   const handleDay = () => {
     setSelectedDuration("day");
@@ -213,10 +222,11 @@ function History() {
         new Date(inc.date).getMonth() === new Date(calDate).getMonth() &&
         new Date(inc.date).getFullYear() === new Date(calDate).getFullYear()
     );
-    
+
     setFilteredExpenses(currentDayExpenses);
-    setFilteredIncomes(currentDayIncomes); 
+    setFilteredIncomes(currentDayIncomes);
   };
+
   // HANDLE LAST MONTH
   const handleLastMoth = () => {
     if (month >= 1 && month <= 11) {
@@ -225,10 +235,9 @@ function History() {
       setMonth(11);
       setMonthYear(monthYear - 1);
     }
-    /*     localStorage.setItem("historyMonth", month);
-    localStorage.setItem("historyYear", year);  */
     getUserById();
   };
+
   // HANDLE NEXT MONTH
   const handleNextMonth = () => {
     if (month >= 0 && month <= 10) {
@@ -239,11 +248,13 @@ function History() {
     }
     getUserById();
   };
+
   // HANDLE LAST YEAR
   const handleLastYear = () => {
     setYear(year - 1);
     getUserById();
   };
+
   // HANDLE NEXT YEAR
   const handleNextYear = () => {
     setYear(year + 1);
@@ -266,6 +277,7 @@ function History() {
     setWeekLast(setToEndOfWeek(new Date(nextWeekStart)));
     getUserById();
   };
+
   // HANDLE RECIEPT
   const handleReciept = (url, date, category) => {
     setIsRecieptView(true);
@@ -282,16 +294,18 @@ function History() {
     acc += exp.amount;
     return parseFloat(acc.toFixed(2));
   }, 0);
+
   // Total incomes
   const totalIncomes = filteredIncomes?.reduce((acc, inc) => {
     acc += inc.amount;
     return parseFloat(acc.toFixed(2));
   }, 0);
+
   // Total balance
   const totalBalance = parseFloat((totalIncomes - totalExpenses).toFixed(2));
-  //download expenses function
-  //switch case to display duration selected
+
   let durationLabel;
+
   switch (selectedDuration) {
     case "day":
       durationLabel = `${new Date(calDate).toLocaleDateString()}`;
@@ -309,6 +323,7 @@ function History() {
       durationLabel = "All";
       break;
   }
+
   const downloadData = () => {
     const csvContent =
       `Duration${durationLabel}\n` +
@@ -469,8 +484,7 @@ function History() {
               <div className="data-container">
                 {selectedDuration === "day" && (
                   <div className="historyCalendarContainer">
-                    {/*  <h4>Select the Date</h4> */}
-                    <Calendar  
+                    <Calendar
                       value={calDate}
                       onChange={selectedDate}
                       name="calendar"
@@ -497,18 +511,12 @@ function History() {
                     <tbody>
                       {filteredExpenses
                         ?.map((exp, index) => (
-                          <tr
-                            className="expData"
-                            /* key={`${exp.date}`} */
-                            /*key={`${exp.category}-${exp.date}`}*/ //ran in to issues with this key
-                            key={index}
-                          >
+                          <tr className="expData" key={index}>
                             <td className="data">
                               {exp?.category.charAt(0).toUpperCase() +
                                 exp?.category.slice(1)}
                             </td>
                             <td className="data">{exp?.amount?.toFixed(2)}</td>
-                            {/* <p>{new Date(exp.date).toLocaleDateString()}</p> */}
                             {selectedDuration === "day" && (
                               <td className="data">
                                 <img
@@ -553,11 +561,7 @@ function History() {
                     </thead>
                     <tbody>
                       {filteredIncomes?.map((inc, index) => (
-                        <tr
-                          className="incData"
-                          /* key={`${inc.category}-${inc.date}`} */
-                          key={index}
-                        >
+                        <tr className="incData" key={index}>
                           <td className="data">
                             {inc?.category.charAt(0).toUpperCase() +
                               inc?.category.slice(1)}
@@ -626,7 +630,6 @@ function History() {
             </div>
           </div>
         </div>
-        {/* side right */} {/* !! added total  !! */}
       </div>
       <Profile />
     </div>

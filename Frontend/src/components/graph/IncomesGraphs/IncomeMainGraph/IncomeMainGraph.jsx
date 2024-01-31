@@ -5,6 +5,7 @@ import HistoryIncMonthGraph from "../IncomeMonthGraphs/HistoryIncMonthGraph";
 import HistoryIncWeekGraph from "../IncomeWeekGraphs/HistoryIncWeekGraph";
 import HistoryIncYearGraph from "../IncomeYearGraphs/HistoryIncYearGraph";
 import "../../barChartStyle.css";
+
 function IncomeMainGraph({
   selectedDuration,
   year,
@@ -15,7 +16,6 @@ function IncomeMainGraph({
   monthYear,
 }) {
   const { state, dispatch } = useContext(context);
-  /*  console.log(state.user?.expenses) */
 
   return (
     <div>

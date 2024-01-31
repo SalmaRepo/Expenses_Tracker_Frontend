@@ -104,14 +104,10 @@
   box-shadow: 2px 2px 10px 3px rgb(116, 114, 114);
 }
 
-.sideBar .sideNav-Link.active:hover{
-  background-color:none;
+.sideBar .sideNav-Link.active:hover {
+  background-color: none;
   padding: 0.5rem;
- 
-
 }
-
-
 
 /* Mobile */
 @media (max-width: 760px) {
@@ -136,12 +132,12 @@
     justify-content: center;
   }
 
-  .sideBar .side-logout{
+  .sideBar .side-logout {
     margin-left: -0.5rem;
   }
 
-  .sideBar .themeSideNav{
-    margin-left: .7rem;
+  .sideBar .themeSideNav {
+    margin-left: 0.7rem;
   }
 
   .sideBarTop .sideBar-logo-container span {

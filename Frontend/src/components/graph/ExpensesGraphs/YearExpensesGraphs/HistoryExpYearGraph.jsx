@@ -2,14 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { context } from "../../../../context/context";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
-/* import LineYearChart from "./LineExpYearChart";
-import LineExpxYearChart from "./LineExpYearChart"; */
 import LineExpYearChart from "./LineExpYearChart";
 Chart.register(CategoryScale);
 
 function HistoryExpYearGraph({ year }) {
   const { state, dispatch } = useContext(context);
-  /* console.log(year) */
   const months = [
     "January",
     "February",
@@ -43,27 +40,19 @@ function HistoryExpYearGraph({ year }) {
   state.user?.expenses?.map((exp) => {
     const { amount } = exp;
     for (let i = 0; i < months.length; i++) {
-     /*  console.log(addedCategories); */
       if (
         new Date(exp.date).getMonth() === i &&
         new Date(exp.date).getFullYear() === year
       ) {
         addedCategories[months[i]] = addedCategories[months[i]] + amount;
-        /* console.log(addedCategories); */
       }
     }
   });
 
- /*  console.log(addedCategories); */
-
   for (const month in addedCategories) {
     expensesSummary.push({ month, amount: addedCategories[month] });
   }
- /*  console.log(expensesSummary); */
 
-
-
- /*  console.log(summary) */
   const [chartData, setChartData] = useState({
     labels: months?.map((month) => month),
     datasets: [
@@ -83,28 +72,25 @@ function HistoryExpYearGraph({ year }) {
     ],
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     setChartData({
       labels: months?.map((month) => month),
       datasets: [
         {
           label: "Amount Spent ",
           data: expensesSummary?.map((expense) => expense?.amount),
-          backgroundColor: [
-            "#d9abbac9",
-            
-          ],
+          backgroundColor: ["#d9abbac9"],
           fill: true,
-          borderColor: '#c63968',
-          borderWidth:2
+          borderColor: "#c63968",
+          borderWidth: 2,
         },
       ],
-    })
-   },[year,state.user])
+    });
+  }, [year, state.user]);
 
   return (
     <div>
-      <LineExpYearChart chartData={chartData} year={year}/>
+      <LineExpYearChart chartData={chartData} year={year} />
     </div>
   );
 }

@@ -14,7 +14,7 @@ function SelectCurrency() {
   const [all, setAll] = useState(null);
   const [filter, setFilter] = useState(null);
   const [curr, setCurr] = useState(null);
-  console.log(curr)
+  console.log(curr);
 
   useEffect(() => {
     console.log(state.isSignUp);
@@ -23,8 +23,6 @@ function SelectCurrency() {
   }, [state.isSignUp]);
 
   let res = all && [...Object.entries(all)];
-  /*   all && console.log(Object.entries(all)); */
-
   const getUserById = () => {
     if (state.user) {
       const token = localStorage.getItem("token");
@@ -106,10 +104,6 @@ function SelectCurrency() {
             ref={currenySearch}
             onInput={handleSearch}
           />
-          {/* Displaying filtered currencies */}
-
-          {/* added this code to hide the dropdown */}
-
           {filter && filter.length > 0 && (
             <div className="alllistCurrencies">
               {filter?.map((re) => {
@@ -128,25 +122,23 @@ function SelectCurrency() {
               })}
             </div>
           )}
-          {/* Button for submitting the selected currency */}
-          
-          {curr && <div className="div-submit">
-            <button
-              className="curr-submit"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Submit
-            </button>
-          </div>}
-
+          {curr && (
+            <div className="div-submit">
+              <button
+                className="curr-submit"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            </div>
+          )}
         </div>
-        <div>{/* {!isupdatecurrency && <h1>Expenses Tracker</h1>}  */}</div>
+        <div></div>
       </div>
       {state.isSignUp && <Footer />}
     </>
   );
 }
-
 
 export default SelectCurrency;

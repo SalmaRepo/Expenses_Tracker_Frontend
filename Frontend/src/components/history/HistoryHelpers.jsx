@@ -1,6 +1,4 @@
-import { useContext } from "react";
-import { context } from "../../context/context";
-export const months=[
+export const months = [
   "January",
   "February",
   "March",
@@ -15,15 +13,12 @@ export const months=[
   "December",
 ];
 
-export const summariseExpenses=(filterExpenses) => {
+export const summariseExpenses = (filterExpenses) => {
   const expensesSummary = [];
   let addedCategories = {};
   filterExpenses?.map((exp) => {
     const { category, amount, date } = exp;
-    if (
-      addedCategories[category]
-      //new Date(addedCategories[date]).getMonth() === month
-    ) {
+    if (addedCategories[category]) {
       addedCategories[category] += amount;
     } else {
       addedCategories[category] = amount;
@@ -40,10 +35,7 @@ export const summariseIncomes = (filterIncomes) => {
   let addedCategories = {};
   filterIncomes?.map((inc) => {
     const { category, amount, date } = inc;
-    if (
-      addedCategories[category]
-      //new Date(addedCategories[date]).getMonth() === month
-    ) {
+    if (addedCategories[category]) {
       addedCategories[category] += amount;
     } else {
       addedCategories[category] = amount;
@@ -57,14 +49,10 @@ export const summariseIncomes = (filterIncomes) => {
 
 export const setToStartOfWeek = (date) => {
   return new Date(
-    date.setDate(
-      date.getDate() - date.getDay() + (date.getDay() > 0 ? 1 : -6)
-    )
+    date.setDate(date.getDate() - date.getDay() + (date.getDay() > 0 ? 1 : -6))
   );
 };
 
 export const setToEndOfWeek = (date) => {
   return new Date(date.setDate(date.getDate() + 6));
 };
-
-

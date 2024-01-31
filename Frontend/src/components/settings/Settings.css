@@ -35,7 +35,8 @@
   list-style-type: none;
 }
 
-.SettingHero .settings-btn , .SettingHero .settings-btn-dark-ligth{
+.SettingHero .settings-btn,
+.SettingHero .settings-btn-dark-ligth {
   border: none;
   padding: 1rem;
   margin: 1rem;
@@ -45,7 +46,6 @@
   border-radius: 1rem;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 
 .SettingHero .settings-btn:hover {
   background-color: #2a3f8f;
@@ -93,7 +93,7 @@
     border-radius: 0.5rem;
   }
 
-  .SettingHero .settings-btn-dark-ligth{
+  .SettingHero .settings-btn-dark-ligth {
     font-size: 12px;
     margin: 0;
     padding: 1.2rem 0.8rem;
