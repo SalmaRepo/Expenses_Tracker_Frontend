@@ -29,17 +29,17 @@ function Help() {
             If you wish to change currencies on income or expenses, you can go
             Settings and click on the change currency tab.{" "}
           </p>
-          <h2> Q4 How to add receipts? </h2>
+          <h2> Q4 How to add reciept? </h2>
           <p>
             {" "}
-            If you wish to add receipts to your expenses, go to the "Add
+            If you wish to add reciept to your expenses, go to the "Add
             expenses" Tab, after you enter the category, with the "Add Reciept"
             you can upload your receipt as an image.{" "}
           </p>
-          <h2> Q5 How to view my uploaded receipts? </h2>
+          <h2> Q5 How to view my uploaded reciept? </h2>
           <p>
             {" "}
-            If you wish to view your uploaded receipts, go to the "Add expenses"
+            If you wish to view your uploaded reciept, go to the "History"
             Tab, select particular day from the list of expenses, and click on
             the reciept icon for that date.{" "}
           </p>
