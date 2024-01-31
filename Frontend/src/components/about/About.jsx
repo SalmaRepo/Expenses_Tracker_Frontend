@@ -50,8 +50,10 @@ export default function About() {
           </div>
         </main>
       )}
+      <div id="about">
 
-      <div id="about" className="about-app">
+      </div>
+       <div  className="about-app">
         <h1 className="about-app-title">
         <span>Why to use</span> Expensify?
         </h1>
