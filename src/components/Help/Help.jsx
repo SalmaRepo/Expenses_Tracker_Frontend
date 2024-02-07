@@ -1,8 +1,7 @@
 import React from "react";
 import "./help.css";
-/* import Profile from "../profile/Profile"; */
-import SideMenu from "../sideMenu/SideMenu";
 import Profile from "../profile/Profile";
+import SideMenu from "../sideMenu/SideMenu";
 
 function Help() {
   return (
@@ -53,7 +52,7 @@ function Help() {
           </p>
         </section>
       </div>
-      <Profile/>
+      <Profile />
     </div>
   );
 }
