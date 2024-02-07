@@ -59,7 +59,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("images/BG-landing.jpg");
+  background-image: url("/images/BG-landing.jpg");
   background-size: cover;
   background-position: center;
   padding-bottom: 5rem;
