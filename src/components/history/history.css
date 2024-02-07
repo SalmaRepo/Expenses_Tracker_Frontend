@@ -48,6 +48,7 @@
   text-align: center;
   padding: 1rem 3rem;
   border-radius: 1rem;
+  color: black;
 }
 
 .historyTop-options li button:hover {
